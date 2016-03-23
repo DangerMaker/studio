@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <include layout="@layout/main_toolbar" />
+
+        <EditText
+            android:id="@+id/edittextyijianfankui"
+            android:layout_width="270dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#00ffffff"
+            android:gravity="top"
+            android:hint="你的意见是我们改进的捷径"
+            android:paddingTop="20dp"
+            android:textColor="@color/Black" />
+
+        <Button
+            android:id="@+id/btntijiaoyijian"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="240dp"
+            android:background="@drawable/shape_btn_blue_radius_10dip"
+            android:text="提交"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+</LinearLayout>

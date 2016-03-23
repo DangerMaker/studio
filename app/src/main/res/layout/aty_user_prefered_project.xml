@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:flowlayout="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <include layout="@layout/main_toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayoutowLayout
+            android:id="@+id/flow_layout0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            flowlayout:horizontal_spacing="10dp"
+            flowlayout:vertical_spacing="10dp" />
+
+        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayoutowLayout
+            android:id="@+id/flow_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/flow_layout0"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            flowlayout:horizontal_spacing="10dp"
+            flowlayout:vertical_spacing="10dp" />
+
+        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayoutowLayout
+            android:id="@+id/flow_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/flow_layout1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            flowlayout:horizontal_spacing="10dp"
+            flowlayout:vertical_spacing="10dp" />
+
+        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayoutowLayout
+            android:id="@+id/flow_layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/flow_layout2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            flowlayout:horizontal_spacing="10dp"
+            flowlayout:vertical_spacing="10dp" />
+
+        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayoutowLayout
+            android:id="@+id/flow_layout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/flow_layout3"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            flowlayout:horizontal_spacing="10dp"
+            flowlayout:vertical_spacing="10dp" />
+
+        <LinearLayout
+            android:id="@+id/ly"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btnsave"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#0082a4"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="保 存"
+                android:textColor="#ffffff"
+                android:textSize="19dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/ly"
+            android:gravity="center"
+            android:text="（最多三项）" />
+    </RelativeLayout>
+
+</LinearLayout>

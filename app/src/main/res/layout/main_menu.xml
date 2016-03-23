@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_menu_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BtnBlue" >
+
+    <RelativeLayout
+        android:id="@+id/UserInformation_list"
+        android:layout_width="fill_parent"
+        android:layout_height="76dp" >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivUserIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/userhw" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivUserIcon"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tvUserName_UserInformationHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="昵称"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/ivMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="13dp"
+                    android:src="@drawable/no_message_icon" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvUserBirthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/UserInformation_line"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/UserInformation_list"
+        android:background="@color/divider" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/UserInformation_line"
+        android:divider="#00000033"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/menu_gamelist"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:clickable="true" >
+
+            <ImageView
+                android:id="@+id/menu_gamelist_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/activities_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@id/menu_gamelist_icon"
+                android:singleLine="true"
+                android:text="赛事活动"
+                android:textColor="@color/BtnTextColorWhite"
+                android:textSize="18sp" />
+        </RelativeLayout>
+        
+        <View android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider"/>
+
+        <RelativeLayout
+            android:id="@+id/menu_startrun"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:clickable="true" >
+
+            <ImageView
+                android:id="@+id/menu_startrun_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/run_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@id/menu_startrun_icon"
+                android:singleLine="true"
+                android:text="开始跑步"
+                android:textColor="@color/BtnTextColorWhite"
+                android:textSize="18sp" />
+        </RelativeLayout>
+<View android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider"/>
+        <RelativeLayout
+            android:id="@+id/menu_club"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:clickable="true" >
+
+            <ImageView
+                android:id="@+id/menu_club_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/club_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@id/menu_club_icon"
+                android:singleLine="true"
+                android:text="协会俱乐部"
+                android:textColor="@color/BtnTextColorWhite"
+                android:textSize="18sp" />
+        </RelativeLayout>
+<View android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider"/>
+        <RelativeLayout
+            android:id="@+id/menu_personal"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:clickable="true" >
+
+            <ImageView
+                android:id="@+id/menu_personal_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/person_center_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@id/menu_personal_icon"
+                android:singleLine="true"
+                android:text="个人中心"
+                android:textColor="@color/BtnTextColorWhite"
+                android:textSize="18sp" />
+        </RelativeLayout>
+<View android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider"/>
+        <RelativeLayout
+            android:id="@+id/menu_news"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:clickable="true" >
+
+            <ImageView
+                android:id="@+id/menu_news_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/news_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@id/menu_news_icon"
+                android:singleLine="true"
+                android:text="新闻资讯"
+                android:textColor="@color/BtnTextColorWhite"
+                android:textSize="18sp" />
+        </RelativeLayout>
+<View android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider"/>
+        <RelativeLayout
+            android:id="@+id/menu_setting"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:clickable="true" >
+
+            <ImageView
+                android:id="@+id/menu_setting_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/config_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@id/menu_setting_icon"
+                android:singleLine="true"
+                android:text="设置"
+                android:textColor="@color/BtnTextColorWhite"
+                android:textSize="18sp" />
+        </RelativeLayout>
+        <View android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider"/>
+    </LinearLayout>
+
+</RelativeLayout>

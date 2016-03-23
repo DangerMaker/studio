@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clubListItemLinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@drawable/linear_bg"
+    android:orientation="horizontal" >
+
+    <!--
+     	<Button 
+	  android:id="@+id/button"  
+	  android:layout_width="80dip"
+	  android:layout_height="wrap_content"
+	  />
+    -->
+
+    <ImageView
+        android:id="@+id/imageClubList"
+        android:layout_width="160dip"
+        android:layout_height="110dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/addphoto" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvClubTitleClubList"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="示例"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/ivClubPersonIcon"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_below="@id/tvClubTitleClubList"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/person_num_icon" />
+
+        <TextView
+            android:id="@+id/tvClubPersonNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/ivClubPersonIcon"
+            android:layout_toRightOf="@id/ivClubPersonIcon"
+            android:textColor="@color/texttag"
+            android:text="1000" />
+
+        <TextView
+            android:id="@+id/tvClubBriefIntroClubList"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivClubPersonIcon"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/texttag"
+            android:text="简单的介绍内容。"
+            android:lines="3"
+            android:textSize="12dp" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/welcomebackgroud">
+
+    <RelativeLayout
+        android:id="@+id/layoutbottom"
+        android:layout_width="fill_parent"
+        android:layout_height="290dp"
+        android:layout_alignParentBottom="true" 
+        android:background="@color/BtnTextColorWhite">
+
+        <View
+            android:id="@+id/Line1_UserInformationHome"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/tvPersonalScoreText_UserInformationHome"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/TextSpan"
+            android:layout_above="@id/Line1_UserInformationHome"
+            android:layout_marginLeft="@dimen/TextMarginLeft"
+            android:gravity="center"
+            android:text="@string/PersonalScore"
+            android:textSize="@dimen/TextSize_20dp" />
+         
+        <TextView
+            android:id="@+id/PersonalScore_UserInformationHome"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/TextSpan"
+            android:layout_above="@id/Line1_UserInformationHome"
+            android:layout_alignTop="@id/tvPersonalScoreText_UserInformationHome"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="25dp"
+            android:layout_toRightOf="@id/tvPersonalScoreText_UserInformationHome"
+            android:background="#00000000"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <View
+            android:id="@+id/Line2_UserInformationHome"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_above="@id/tvPersonalScoreText_UserInformationHome"
+            android:layout_marginLeft="@dimen/line_margin_left_20dp"
+            android:layout_marginRight="@dimen/line_margin_right_20dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/tvCompetetionScoreText_UserInformationHome"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/TextSpan"
+            android:layout_above="@id/tvPersonalScoreText_UserInformationHome"
+            android:layout_marginLeft="@dimen/TextMarginLeft"
+            android:gravity="center"
+            android:text="@string/CompetetionGrade"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/Line2_UserInformationHome"
+            android:layout_alignTop="@id/tvCompetetionScoreText_UserInformationHome"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="25dp"
+            android:layout_toRightOf="@id/tvCompetetionScoreText_UserInformationHome"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <View
+            android:id="@+id/Line3_UserInformationHome"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_above="@id/tvCompetetionScoreText_UserInformationHome"
+            android:layout_marginLeft="@dimen/line_margin_left_20dp"
+            android:layout_marginRight="@dimen/line_margin_right_20dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/tvAllConsumedEnergyText_UserInformationHome"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/TextSpan"
+            android:layout_above="@id/Line3_UserInformationHome"
+            android:layout_marginLeft="@dimen/TextMarginLeft"
+            android:gravity="center"
+            android:text="@string/AllConsumedEnergy"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:id="@+id/tvAllConsumedEnergy_UserInformationHome"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/TextSpan"
+            android:layout_above="@id/Line3_UserInformationHome"
+            android:layout_alignTop="@id/tvAllConsumedEnergyText_UserInformationHome"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/tvAllConsumedEnergyText_UserInformationHome"
+            android:gravity="center_vertical"
+            android:text="0.00"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/TextSpan"
+            android:layout_above="@id/Line3_UserInformationHome"
+            android:layout_alignTop="@id/tvAllConsumedEnergyText_UserInformationHome"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_toRightOf="@id/tvAllConsumedEnergy_UserInformationHome"
+            android:gravity="center_vertical"
+            android:text="@string/Calories"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:id="@+id/tvTimeText_UserInformationHome"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/TextSpan"
+            android:layout_above="@id/tvAllConsumedEnergyText_UserInformationHome"
+            android:layout_marginLeft="@dimen/TextMarginLeft"
+            android:gravity="center"
+            android:text="@string/Time"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:id="@+id/tvTime_UserInformationHome"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/TextSpan"
+            android:layout_alignTop="@id/tvTimeText_UserInformationHome"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/tvTimeText_UserInformationHome"
+            android:gravity="center_vertical"
+            android:text="0"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:id="@+id/tvAllMilesText_UserInformationHome"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/TextSpan"
+            android:layout_alignTop="@id/tvTimeText_UserInformationHome"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@id/tvTime_UserInformationHome"
+            android:gravity="center"
+            android:text="@string/AllMiles"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:id="@+id/tvAllMiles_UserInformationHome"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/TextSpan"
+            android:layout_alignTop="@id/tvTimeText_UserInformationHome"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/tvAllMilesText_UserInformationHome"
+            android:gravity="center_vertical"
+            android:text="0.00"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/TextSpan"
+            android:layout_above="@id/Line3_UserInformationHome"
+            android:layout_alignTop="@id/tvTimeText_UserInformationHome"
+            android:layout_alignBottom="@id/tvTimeText_UserInformationHome"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/tvAllMiles_UserInformationHome"
+            android:gravity="center_vertical"
+            android:text="@string/KM"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <View
+            android:id="@+id/Line4_UserInformationHome"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_above="@id/tvTimeText_UserInformationHome"
+            android:layout_marginLeft="@dimen/line_margin_left_20dp"
+            android:layout_marginRight="@dimen/line_margin_right_20dp"
+            android:layout_marginTop="10dp"
+            android:background="#000000" />
+        
+       
+
+        <TextView
+            android:id="@+id/tvLoveProjectText_UserInformationHome"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/TextMarginLeft"
+            android:gravity="bottom"
+            android:text="@string/PreferredProject"
+            android:textSize="@dimen/TextSize_20dp" />
+        <TextView
+            android:id="@+id/gdLovedProject"
+            
+            android:layout_below="@id/tvLoveProjectText_UserInformationHome"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            >
+            
+        </TextView>
+
+        <Button
+            android:id="@+id/btnAddLovedProject_UserInformationHome"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_above="@id/Line4_UserInformationHome"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/tvLoveProjectText_UserInformationHome"
+            android:background="#00000000"
+            android:text="M"
+            android:textSize="@dimen/TextSize_20dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="360dp"
+        android:layout_height="140dp"
+        android:layout_above="@id/layoutbottom"
+        android:layout_alignParentTop="false"
+        android:background="@drawable/shape_btn_blue_radius_5dip" >
+
+        <TextView
+            android:id="@+id/tvHeight_UserInformationHome"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="170cm"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:id="@+id/tvHeightText_UserInformationHome"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tvHeight_UserInformationHome"
+            android:gravity="center"
+            android:text="@string/Height"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/LineVertical_1_UserInformationHome"
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:layout_alignBottom="@id/tvHeight_UserInformationHome"
+            android:layout_alignTop="@id/tvHeightText_UserInformationHome"
+            android:layout_toRightOf="@id/tvHeightText_UserInformationHome"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/tvWeight_UserInformationHome"
+            android:layout_width="@dimen/VerticalLineSpan"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/LineVertical_1_UserInformationHome"
+            android:gravity="center"
+            android:text="75.0kg"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:id="@+id/tvWeightText_UserInformationHome"
+            android:layout_width="@dimen/VerticalLineSpan"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tvWeight_UserInformationHome"
+            android:layout_toRightOf="@id/LineVertical_1_UserInformationHome"
+            android:gravity="center"
+            android:text="@string/Weight"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/LineVertical_2_UserInformationHome"
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:layout_alignBottom="@id/tvHeight_UserInformationHome"
+            android:layout_alignTop="@id/tvHeightText_UserInformationHome"
+            android:layout_toRightOf="@id/tvWeightText_UserInformationHome"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/tvBMI_UserInformationHome"
+            android:layout_width="@dimen/VerticalLineSpan"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/LineVertical_2_UserInformationHome"
+            android:gravity="center"
+            android:text="22.5"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:id="@+id/tvBMIText_UserInformationHome"
+            android:layout_width="@dimen/VerticalLineSpan"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tvBMI_UserInformationHome"
+            android:layout_toRightOf="@id/LineVertical_2_UserInformationHome"
+            android:gravity="center"
+            android:text="@string/BMI"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/LineVertical3_UserInformationHome"
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:layout_alignBottom="@id/tvHeight_UserInformationHome"
+            android:layout_alignTop="@id/tvHeightText_UserInformationHome"
+            android:layout_toRightOf="@id/tvBMIText_UserInformationHome"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/tvBodyFat_UserInformationHome"
+            android:layout_width="@dimen/VerticalLineSpan"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/LineVertical3_UserInformationHome"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="16%"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:id="@+id/tvBodyFatText_UserInformationHome"
+            android:layout_width="@dimen/VerticalLineSpan"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tvBodyFat_UserInformationHome"
+            android:layout_toRightOf="@id/LineVertical3_UserInformationHome"
+            android:gravity="center"
+            android:text="@string/BodyFat"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/Line_UserInformationHome"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_above="@id/tvHeightText_UserInformationHome"
+            android:layout_marginBottom="10dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/tvUserAttr_UserInformationHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/Line_UserInformationHome"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="25dp"
+            android:text="@string/UserAttr"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:id="@+id/tvUserName_UserInformationHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tvUserAttr_UserInformationHome"
+            android:layout_marginLeft="25dp"
+            android:text="@string/UserName"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <TextView
+            android:id="@+id/tvUserBirthday_UserInformationHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tvUserAttr_UserInformationHome"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@id/tvUserName_UserInformationHome"
+            android:text="@string/UserBirthday"
+            android:textSize="@dimen/TextSize_20dp" />
+
+        <Button
+            android:id="@+id/btnMove"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_above="@id/Line_UserInformationHome"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/tvUserBirthday_UserInformationHome"
+            android:background="#00000000" 
+            android:text="@string/BtnMoveText"
+            android:textSize="@dimen/TextSize_20dp"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

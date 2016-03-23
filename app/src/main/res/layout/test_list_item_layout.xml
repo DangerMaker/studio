@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/tvRunDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/tvRunDateTime"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/left_icon" />
+
+    <TextView
+        android:id="@+id/tvDistanceItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvRunDateTime"
+        android:padding="0dp"
+        android:textColor="#0086a4"
+        android:textSize="45dp" />
+
+    <ImageView
+        android:id="@+id/ivGongli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tvDistanceItem"
+        android:layout_toRightOf="@id/tvDistanceItem"
+        android:src="@drawable/gongli" />
+
+    <ImageView
+        android:id="@+id/ivSpeedIconBelow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ivGongli"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/ivGongli"
+        android:src="@drawable/km" />
+
+    <ImageView
+        android:id="@+id/ivSpeedIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ivSpeedIconBelow"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/ivGongli"
+        android:src="@drawable/max_speed_icon" />
+
+    <TextView
+        android:id="@+id/tvAverageSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ivSpeedIconBelow"
+        android:layout_toRightOf="@id/ivSpeedIcon"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:id="@+id/ivCalorieIconBelow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ivGongli"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/ivSpeedIconBelow"
+        android:src="@drawable/calories" />
+
+    <ImageView
+        android:id="@+id/ivCalorieIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ivCalorieIconBelow"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/ivSpeedIconBelow"
+        android:src="@drawable/calories_icon" />
+
+    <TextView
+        android:id="@+id/tvCalorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ivCalorieIconBelow"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/ivCalorieIcon"
+        android:textSize="25sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/ivGongli"
+        android:background="@color/divider" />
+
+</RelativeLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:CircleIndicator="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/loginback"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/ivAllPeople"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/all_people_come_on" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPagerWelcome"
+        android:layout_width="fill_parent"
+        android:layout_height="350dp"
+        android:layout_below="@id/ivAllPeople"
+        android:layout_gravity="center" >
+    </android.support.v4.view.ViewPager>
+
+    <pers.medusa.circleindicator.widget.CircleIndicator
+        android:id="@+id/indicatorWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="140dp"
+        CircleIndicator:ci_background="@android:color/white"
+        CircleIndicator:ci_gravity="center"
+        CircleIndicator:ci_margin="5dp"
+        CircleIndicator:ci_mode="outside"
+        CircleIndicator:ci_radius="3dp"
+        CircleIndicator:ci_selected_background="0xffe6454a" >
+    </pers.medusa.circleindicator.widget.CircleIndicator>
+
+    <Button
+        android:id="@+id/btnCurrentUser"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="21dp"
+        android:layout_marginLeft="25dp"
+        android:background="@drawable/shape_btn_deep_grey_5dip"
+        android:padding="10dp"
+        android:text="@string/CurrentUser"
+        android:textColor="@color/BtnTextColorWhite"
+        android:textSize="@dimen/btn_text_size_18sp" />
+
+    <Button
+        android:id="@+id/btnJoinNow"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnCurrentUser"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/shape_btn_blue_radius_5dip"
+        android:padding="10dp"
+        android:text="@string/JoinNow"
+        android:textColor="@color/BtnTextColorWhite"
+        android:textSize="@dimen/btn_text_size_18sp" />
+
+</RelativeLayout>

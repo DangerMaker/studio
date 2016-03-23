@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#e0e3ee">
+    <LinearLayout 
+    android:id="@+id/titlebar"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="horizontal" 
+    android:background="@drawable/title_bar_bg"
+    android:gravity="bottom"
+    >
+    <ImageView android:id="@+id/ivBackBtn"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/backbtn"
+        android:layout_marginBottom="10dp"
+        />
+    <TextView 
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="申请表"
+        android:textSize="20sp"
+        android:layout_marginBottom="4dp"
+        android:textColor="#ffffff"
+        />
+    <ImageView android:id="@+id/ivMessageBtn"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:scaleType="fitCenter"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/messagebtn"
+        android:visibility="invisible"
+        />
+
+</LinearLayout>
+    <ScrollView android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:layout_below="@id/titlebar"
+    >
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="#e0e3ee">
+    <TextView android:id="@+id/tvGameNameAssocEntryForm"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:background="@color/BtnGrey"
+        android:textColor="#ffffff"
+        android:text="赛事名字"/>
+    <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|right"
+            android:layout_marginLeft="20dp"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp"
+            ></TextView>
+        <TextView android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:text="申请人"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:textSize="20dp"
+            android:textColor="#6f6d6d"
+            />
+        <EditText android:id="@+id/etApplyUserNameAssocEntryForm"
+            android:layout_marginLeft="20dp"
+            android:layout_width="0dp"
+            android:textSize="20dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="#6f6d6d"
+            android:paddingLeft="10dp"
+            />
+    </LinearLayout>
+     <View android:layout_height="1px" 
+			    android:background="#000000" 
+			    android:layout_width="fill_parent"
+			    />
+     <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        >
+         <TextView android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|right"
+            android:layout_marginLeft="20dp"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp"
+            ></TextView>
+        <TextView android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:text="性别"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:textSize="20dp"
+            android:textColor="#6f6d6d"
+            />
+        <TextView android:id="@+id/tvSexAssocEntryForm"
+            android:layout_marginLeft="20dp"
+            android:layout_width="0dp"
+            android:textSize="20dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="男"
+            android:textColor="#6f6d6d"
+            android:paddingLeft="10dp"
+            />
+    </LinearLayout>
+     <View android:layout_height="1px" 
+			    android:background="#000000" 
+			    android:layout_width="fill_parent"
+			    />
+     
+      <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|right"
+            android:layout_marginLeft="20dp"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp"
+            ></TextView>
+        <TextView android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:text="年龄"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:textSize="20dp"
+            android:textColor="#6f6d6d"
+            />
+        <EditText android:id="@+id/etUserAgeAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:inputType="number"
+            android:text=""
+            android:textColor="#6f6d6d"
+            android:singleLine="true"
+            android:numeric="decimal"
+            android:digits="0123456789"
+            />
+    </LinearLayout>
+     <View android:layout_height="1px" 
+			    android:background="#000000" 
+			    android:layout_width="fill_parent"
+			    />
+      <LinearLayout 
+		android:background="#ffffff"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|right"
+            android:layout_marginLeft="20dp"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp"
+            ></TextView>
+        <TextView android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:text="手机"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:textSize="20dp"
+            android:textColor="#6f6d6d"
+            />
+        <EditText android:id="@+id/etUserNumAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:numeric="decimal"
+            android:digits="0123456789"
+            android:text=""
+            android:inputType="number"
+            android:textColor="#6f6d6d"
+            android:paddingLeft="10dp"
+            />
+    </LinearLayout>
+     <View android:layout_height="1px" 
+			    android:background="#000000" 
+			    android:layout_width="fill_parent"
+			    />
+      <LinearLayout 
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        >
+         <TextView android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|right"
+            android:layout_marginLeft="20dp"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp"
+            ></TextView>
+        <TextView android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:text="身份证"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:textSize="20dp"
+            android:textColor="#6f6d6d"
+            />
+        <EditText android:id="@+id/etUserIdCardAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="#6f6d6d"
+            android:singleLine="true"
+            android:numeric="decimal"
+            android:digits="0123456789Xx"
+            />
+    </LinearLayout>
+     <View android:layout_height="1px" 
+			    android:background="#000000" 
+			    android:layout_width="fill_parent"
+			    />
+     <View android:layout_height="1px" 
+			    android:background="#000000" 
+			    android:layout_width="fill_parent"
+			    android:layout_marginTop="20dp"
+			    />
+      <LinearLayout
+        android:background="#ffffff" 
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|right"
+            android:layout_marginLeft="20dp"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp"
+            ></TextView>
+        <TextView android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:text="邮箱"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:textSize="20dp"
+            android:textColor="#6f6d6d"
+            />
+        <EditText android:id="@+id/etUserEmailAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="#6f6d6d"
+            android:singleLine="true"
+            />
+    </LinearLayout>
+     <View android:layout_height="1px" 
+			    android:background="#000000" 
+			    android:layout_width="fill_parent"
+			    />
+      <LinearLayout
+          android:background="#ffffff" 
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|right"
+            android:layout_marginLeft="20dp"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp"
+            ></TextView>
+        <TextView android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:text="地 区"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:textSize="20dp"
+            android:textColor="#6f6d6d"
+            />
+        <EditText android:id="@+id/etLocationAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="18dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="#6f6d6d"
+            android:singleLine="true"
+            />
+    </LinearLayout>
+     <View android:layout_height="1px" 
+			    android:background="#000000" 
+			    android:layout_width="fill_parent"
+			    />
+     <View android:layout_height="1px" 
+			    android:background="#000000" 
+			    android:layout_width="fill_parent"
+			    android:layout_marginTop="20dp"
+			    />
+      <LinearLayout
+          android:background="#ffffff" 
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|right"
+            android:layout_marginLeft="20dp"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp"
+            ></TextView>
+        <TextView android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:text="会费"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            />
+        <TextView android:id="@+id/tvPayFeeAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="18dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="0"
+            android:textColor="#000000"
+            android:singleLine="true"
+            />
+    </LinearLayout>
+     <View android:layout_height="1px" 
+			    android:background="#000000" 
+			    android:layout_width="fill_parent"
+			    />
+     <LinearLayout
+         android:orientation="horizontal"
+         android:layout_width="fill_parent"
+         android:layout_height="200dp"
+         android:background="@color/BtnGrey">
+     <CheckBox android:id="@+id/cbAgreeRulesAssocEntryForm"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="20dp"
+         android:layout_marginTop="20dp"
+         android:button="@android:drawable/checkbox_on_background"
+         android:checked="true"/>
+     <TextView android:text="已阅读并同意规程"
+         android:id="@+id/tvRules"
+         android:layout_marginTop="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         />
+     
+    </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+    <Button android:id="@+id/btnCommitPersonalEntry"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:text="提  交"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:layout_margin="0dp"
+        android:background="#1f83ac"
+        android:textColor="#ffffff"
+		android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>

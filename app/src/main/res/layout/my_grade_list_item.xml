@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MyGradeListItemLinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@drawable/linear_bg"
+    android:orientation="horizontal" >
+
+    <!--
+     	<Button 
+	  android:id="@+id/button"  
+	  android:layout_width="80dip"
+	  android:layout_height="wrap_content"
+	  />
+    -->
+
+    <ImageView
+        android:id="@+id/frontImageMyGradeList"
+        android:layout_width="160dip"
+        android:layout_height="110dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/addphoto" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="110dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@id/frontImageMyGradeList" >
+
+        <TextView
+            android:id="@+id/tvGameTitleMyGradeList"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingRight="5dp"
+            android:maxLines="2"
+            android:text="赛事名称"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+		<TextView
+            android:id="@+id/tvGradeMyGradeList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tvGameTitleMyGradeList"
+            android:text="成绩：未完成"
+            android:textColor="#5f5b5b" />
+        <ImageView
+            android:id="@+id/ivNewsMyGradeList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/news_my_grade_icon" />
+
+        <ImageView
+            android:id="@+id/ivGradesReportMyGradeList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:layout_toRightOf="@id/ivNewsMyGradeList"
+            android:src="@drawable/grade_report_my_grade_icon" />
+        
+        
+    </RelativeLayout>
+
+</RelativeLayout>

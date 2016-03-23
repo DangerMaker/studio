@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="CurrentUser">现有用户</string>
+    <string name="JoinNow">立即加入</string>
+    <string name="PleaseEnterYourPhoneNumber">请输入您的手机号码</string>
+    <string name="Password">密 码</string>
+    <string name="ConfigPassword">确认密码</string>
+    <string name="IdentifyCode">验证码</string>
+    <string name="GetIdentifyCode">获取验证码</string>
+    <string name="TouristLogin">游客登录</string>
+    <string name="EnterAllMenExercise">加入全民健身动起来即表示您同意我们的</string>
+    <string name="SecretAndInformation">使用条款</string>
+    <string name="RegisterNow">立即注册</string>
+    <string name="Register">注 册</string>
+    <string name="BackBtnIcon">&lt;</string>
+    <string name="LoginNow">立即登陆</string>
+    <string name="ForgetPassword">忘记密码</string>
+    <string name="Login">注册</string>
+    <string name="Personalize">个性化</string>
+    <string name="Kilogram">公斤</string>
+    <string name="Centimeter">厘米</string>
+    <string name="SlightTouchToAddPersonalImage">轻按添加个人头像\n设置个人信息</string>
+    <string name="ConfigPersonalInformation">设置个人信息</string>
+    <string name="Drop">跳过</string>
+    <string name="Finish">完成</string>
+    <string name="Add">+</string>
+    <string name="HelpUsHelpYourSelf">您提供的信息越多，您体验的就越好\n\t\t\t帮助我们就是帮助您自己</string>
+    
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/about_us_bg"
+    android:orientation="vertical" >
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textSize="15dp"
+        android:textColor="#595757"
+        android:text="\t\t全民健身动起来APP是北京菲奥文化传播有限公司开发的一款快捷开展体育运动APP。结合了当下人民对体育运动的需求与国家政策，结合互联网＋体育的互联网思维，整合而成。
+     \r\n\t\t团队由技术开发部、市场运营部、产品运营部、电商服务部和公关部组成。创始成员由曾任职国内知名互联网企业高管、体育传媒业内资深老师、国家体育健将和国内知名高校博士和研究生组成。
+     \r\n\t\t该产品主要针对京津冀群众运动而开发，功能主要包括大众运动项目报名付费、运动数据记录、场馆预约、协会俱乐部加入、协会俱乐部会员管理等。让运动更简单便捷、让更多人参与运动是我们的目标。
+    \r\n\t\t 我们的目标是打造全民健身运动平台。群众参与运动更简单便捷，更多人参与健身运动，更多养成健康运动习惯。未来将继续结合当下大环境与需求，不断革新。"/>
+	<TextView android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="12dp"
+	    android:layout_gravity="center_horizontal|bottom"
+	    android:gravity="center"
+	    android:textColor="#595757"
+	    android:text="\t\t北京菲奥文化传播有限公司 版权所有\r\n
+Copyright © 2016 Beijing FIO Culture Communication Co., Ltd\r\n
+\t\t\tAll Rights Reserved"/>
+</LinearLayout>

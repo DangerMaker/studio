@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/news_content"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <include layout="@layout/main_toolbar" />
+
+    <TextView
+        android:id="@+id/tvNewsTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="新闻标题"
+        android:textColor="#000000"
+        android:textSize="18dp" />
+
+    <ImageView
+        android:id="@+id/ivNewsPic"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/person_num_icon" />
+
+        <TextView
+            android:id="@+id/tvAssocName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="协会名字" />
+
+        <TextView
+            android:id="@+id/tvDateNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:text="0000-00-00" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#aacccccc" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp" />
+
+</LinearLayout>

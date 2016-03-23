@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MyClubAndAssocListItemLinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@drawable/linear_bg"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:layout_width="160dp"
+        android:layout_height="110dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp" >
+
+        <ImageView
+            android:id="@+id/frontImageMyClubAndAssocList"
+            android:layout_width="160dp"
+            android:layout_height="110dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/userhw" />
+
+        <ImageView
+            android:id="@+id/ivStatusMyClubAndAssocList"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvClubOrAssocNameMyClubAndAssocList"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="示例"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tvParticipantPersonMyClubAndAssocList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvClubOrAssocNameMyClubAndAssocList"
+            android:layout_marginTop="8dp"
+            android:text="参赛人员："
+            android:textColor="#5f5b5b"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tvTimeMyClubAndAssocList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvParticipantPersonMyClubAndAssocList"
+            android:layout_marginTop="3dp"
+            android:singleLine="true"
+            android:text="时间:"
+            android:textColor="#5f5b5b"
+            android:textSize="13dp" />
+
+        <ImageView
+            android:id="@+id/ivModifyInformationMyClubAndAssocList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="3dp"
+            android:clickable="false" />
+
+        <ImageView
+            android:id="@+id/ivPayMyClubAndAssocList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="3dp"
+            android:layout_toRightOf="@id/ivModifyInformationMyClubAndAssocList"
+            android:clickable="false" />
+    </RelativeLayout>
+
+</LinearLayout>

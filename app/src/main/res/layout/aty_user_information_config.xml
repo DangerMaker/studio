@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f1f6"
+    android:orientation="vertical" >
+
+    <include layout="@layout/main_toolbar" />
+
+    <ScrollView
+        android:id="@+id/user_info_scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical" >
+
+            <TableLayout
+                android:id="@+id/firstLayoutPersonConfig"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical" >
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical"
+                        android:text="昵称"
+                        android:textColor="#717171"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/etNickNameUserInformationConfig"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        android:hint="请输入昵称"
+                        android:singleLine="true"
+                        android:textColor="#898989"
+                        android:textCursorDrawable="@drawable/run_icon_edittext"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical"
+                        android:text="性别"
+                        android:textColor="#717171"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/tvSex"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:textColor="#717171"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical"
+                        android:text="身高"
+                        android:textColor="#717171"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/etHeightUserInformationConfig"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:textColor="#898989"
+                        android:textCursorDrawable="@drawable/run_icon_edittext"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center"
+                        android:text="cm"
+                        android:textColor="#717171"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical"
+                        android:text="体重"
+                        android:textColor="#717171"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/etWeightUserInformationConfig"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:textColor="#898989"
+                        android:textCursorDrawable="@drawable/run_icon_edittext"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center"
+                        android:text="Kg"
+                        android:textColor="#717171"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical"
+                        android:text="生日"
+                        android:textColor="#717171"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/etBirthdayUserInformationConfig"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        android:digits="1234567890-"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textColor="#898989"
+                        android:textCursorDrawable="@drawable/run_icon_edittext"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical"
+                        android:text="所在地"
+                        android:textColor="#717171"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/etLocationUserInformationConfig"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        android:singleLine="true"
+                        android:textColor="#898989"
+                        android:textCursorDrawable="@drawable/run_icon_edittext"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/secondtvPersonConfig"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/firstLayoutPersonConfig"
+                android:background="#f2f1f6"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/firstTvPersonConfig"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="#f2f1f6"
+                    android:gravity="center"
+                    android:text="请简单的介绍下您自己"
+                    android:textColor="#b5b5b5"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="#f2f1f6"
+                    android:gravity="center"
+                    android:text="请放心，我们不会共享您的信息，它可以帮您快速报名"
+                    android:textColor="#b5b5b5"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <TableLayout
+                android:id="@+id/tableLayoutConfig"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondtvPersonConfig"
+                android:orientation="vertical"
+                android:stretchColumns="*" >
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical"
+                            android:text="姓名"
+                            android:textColor="#727071"
+                            android:textSize="16dp" />
+
+                        <EditText
+                            android:id="@+id/etUserNameUserInformationConfig"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:singleLine="true"
+                            android:textColor="#898989"
+                            android:textCursorDrawable="@drawable/run_icon_edittext"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical"
+                            android:text="血型"
+                            android:textColor="#727071"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/tvBlood"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:textColor="#717171"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical"
+                            android:text="身份证"
+                            android:textColor="#727071"
+                            android:textSize="16dp" />
+
+                        <EditText
+                            android:id="@+id/etUserIDCardUserInformationConfig"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:digits="1234567890X"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textColor="#898989"
+                            android:textCursorDrawable="@drawable/run_icon_edittext"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical"
+                            android:text="电子邮箱"
+                            android:textColor="#727071"
+                            android:textSize="16dp" />
+
+                        <EditText
+                            android:id="@+id/etUserEmailUserInformationConfig"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:inputType="textEmailAddress"
+                            android:singleLine="true"
+                            android:textColor="#898989"
+                            android:textCursorDrawable="@drawable/run_icon_edittext"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical"
+                            android:text="通信地址"
+                            android:textColor="#727071"
+                            android:textSize="16dp" />
+
+                        <EditText
+                            android:id="@+id/etUserTelAddressUserInformation"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:singleLine="true"
+                            android:textColor="#898989"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical"
+                            android:text="邮编"
+                            android:textColor="#727071"
+                            android:textSize="16dp" />
+
+                        <EditText
+                            android:id="@+id/etTelCodeUserInformationConfig"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textColor="#898989"
+                            android:textCursorDrawable="@drawable/run_icon_edittext"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical"
+                            android:text="国家"
+                            android:textColor="#727071"
+                            android:textSize="16dp" />
+
+                        <EditText
+                            android:id="@+id/etUserNationUserInformationConfig"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:singleLine="true"
+                            android:textColor="#898989"
+                            android:textCursorDrawable="@drawable/run_icon_edittext"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dp"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="160dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical"
+                            android:text="所属地区/协会单位"
+                            android:textColor="#727071"
+                            android:textSize="16dp" />
+
+                        <EditText
+                            android:id="@+id/etAssocUserInformationConfig"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:hint="地区/协会单位"
+                            android:singleLine="true"
+                            android:textColor="#898989"
+                            android:textCursorDrawable="@drawable/run_icon_edittext"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="140dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical"
+                            android:text="紧急联系人电话"
+                            android:textColor="#727071"
+                            android:textSize="16dp" />
+
+                        <EditText
+                            android:id="@+id/etEmergenceContactPhoneUserInformationConfig"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:inputType="phone"
+                            android:singleLine="true"
+                            android:textColor="#898989"
+                            android:textCursorDrawable="@drawable/run_icon_edittext"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="140dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical"
+                            android:text="紧急联系人姓名"
+                            android:textColor="#727071"
+                            android:textSize="16dp" />
+
+                        <EditText
+                            android:id="@+id/etEmerContactNameUserInformationConfig"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:singleLine="true"
+                            android:textColor="#898989"
+                            android:textCursorDrawable="@drawable/run_icon_edittext"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <View
+                    android:layout_height="1dip"
+                    android:background="#b2b4b3" />
+            </TableLayout>
+
+            <Button
+                android:id="@+id/btnSubmitUserInformationConfig"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/tableLayoutConfig"
+                android:background="#0082a4"
+                android:text="完  成"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

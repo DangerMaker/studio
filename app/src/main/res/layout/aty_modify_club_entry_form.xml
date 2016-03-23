@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e0e3ee"
+    android:orientation="vertical" >
+
+    <include layout="@layout/main_toolbar" />
+
+    <TextView
+        android:id="@+id/tvClubOrAssocNameModifyClubOrAssocEntryForm"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/BtnGrey"
+        android:gravity="center"
+        android:text="协会俱乐部"
+        android:textColor="#ffffff"
+        android:textSize="20dp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical|right"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:text="姓名"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/etUserNameModifyClubOrAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="**"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#000000" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical|right"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:text="性别"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/etSexClubOrAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="0"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#000000" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical|right"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:text="年龄"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/etAgeClubOrAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="20"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#000000" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="#ffffff"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical|right"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:text="电话"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/etTelClubOrAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="18810110111"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#000000" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical|right"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:text="身份证"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/etIdCardClubOrAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="360112131321313210"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#000000" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical|right"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:text="邮箱"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/etEmailClubOrAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="2963@qq.com"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#000000" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical|right"
+            android:text="*"
+            android:textColor="#ff0000"
+            android:textSize="20dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:singleLine="true"
+            android:text="地区"
+            android:textColor="#6f6d6d"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/etLocationClubOrAssocEntryForm"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="#6f6d6d"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#000000" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/BtnGrey"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/cbAgreeRulesAssocEntryForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:button="@android:drawable/checkbox_on_background"
+            android:checked="true" />
+
+        <TextView
+            android:id="@+id/tvRules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="已阅读并同意规程" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCommitModifyClubOrAssocEntryForm"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="0dp"
+        android:background="#1f83ac"
+        android:gravity="center"
+        android:text="提  交"
+        android:textColor="#ffffff"
+        android:textSize="20dp" />
+
+</LinearLayout>

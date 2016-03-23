@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="PersonalScore">个人积分：</string>
+    <string name="CompetetionGrade">比赛成绩：</string>
+    <string name="AllConsumedEnergy">总消耗能量</string>
+    <string name="Calories">卡路里</string>
+    <string name="Time">时间</string>
+    <string name="AllMiles">总公里数</string>
+    <string name="KM">KM</string>
+    <string name="PreferredProject">喜欢的全民健身项目：</string>
+    <string name="Height">身高</string>
+    <string name="Weight">体重</string>
+    <string name="BMI">BMI</string>
+    <string name="BodyFat">体脂</string>
+    <string name="UserAttr">舞蹈协会会员</string>
+    <string name="UserName">石伟</string>
+    <string name="UserBirthday">1985&#8211;03&#8211;23</string>
+    <string name="BtnMoveText">&gt;</string>
+    
+</resources>

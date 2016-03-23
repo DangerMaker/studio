@@ -1,0 +1,179 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/loginback"
+    android:id="@+id/rootAtyRegister"
+    >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+         >
+
+        <Button
+            android:id="@+id/btnBackRegisterHomePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="#00000000"
+            android:text="@string/BackBtnIcon"
+            android:textSize="40sp" 
+            android:textColor="#ffffff"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="注    册"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:textSize="40sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/backgroud_round_corner_grey"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btnTouristLogin"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textSize="@dimen/btn_text_size_18sp"
+            android:background="@drawable/shape_btn_green_radius_5dip"
+            android:text="@string/TouristLogin"
+            android:textColor="@color/BtnTextColorWhite" />
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/backgroud_round_corner_white"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/etTouristPhoneNum"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:hint="@string/PleaseEnterYourPhoneNumber"
+                android:inputType="phone"
+                android:paddingBottom="8dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:singleLine="true"
+                android:textSize="@dimen/edit_text_size_12sp" />
+			<View android:layout_height="1px" 
+			    android:background="@color/BackgroudLightGrey" 
+			    android:layout_width="fill_parent"
+			    />
+            <EditText
+                android:id="@+id/etTouristPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:hint="@string/Password"
+                android:paddingBottom="8dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="8dp"
+                android:singleLine="true"
+                android:textSize="@dimen/edit_text_size_12sp"
+                android:inputType="textPassword"/>
+			<View android:layout_height="1px" 
+			    android:background="@color/BackgroudLightGrey" 
+			    android:layout_width="fill_parent"
+			    />
+            <EditText
+                android:id="@+id/etTouristConfigPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:hint="@string/ConfigPassword"
+                android:paddingBottom="8dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="8dp"
+                android:singleLine="true"
+                 android:textSize="@dimen/edit_text_size_12sp" 
+                android:inputType="textPassword"/>
+			<View android:layout_height="1px" 
+			    android:background="@color/BackgroudLightGrey" 
+			    android:layout_width="fill_parent"
+			    />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal" 
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <EditText
+                    android:id="@+id/etTouristIdentifyCode"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#00000000"
+                    android:hint="@string/IdentifyCode"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="3dp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/edit_text_size_12sp" />
+
+                <Button
+                    android:id="@+id/btnTouristGetIdentifyCode"
+                    android:layout_width="120dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/shape_btn_grey_5dip"
+                    android:text="@string/GetIdentifyCode"
+                    android:textSize="@dimen/edit_text_size_12sp" 
+                    android:textColor="#848686"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/EnterAllMenExercise"
+                android:textColor="#848686" 
+                android:textSize="@dimen/edit_text_size_12sp"/>
+
+            <TextView
+                android:id="@+id/tvSecretAndInformation"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/SecretAndInformation"
+                android:textColor="#848686" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnRegisterNow"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_btn_blue_radius_10dip"
+            android:text="@string/RegisterNow"
+            android:textColor="@color/BtnTextColorWhite" 
+            android:textSize="@dimen/btn_text_size_18sp"/>
+    </LinearLayout>
+</RelativeLayout>

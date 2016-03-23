@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ExerciseApp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+	<string name="pull_to_refresh">下拉可以刷新</string>
+	<string name="release_to_refresh">释放立即刷新</string>
+	<string name="refreshing">正在刷新…</string>
+	<string name="not_updated_yet">暂未更新过</string>
+	<string name="updated_at">上次更新于%1$s前</string>
+	<string name="updated_just_now">刚刚更新</string>
+	<string name="time_error">时间有问题</string>
+	 <string name="pull_to_refresh_pull_label">Pull to refresh…</string>
+    <string name="pull_to_refresh_release_label">Release to refresh…</string>
+    <string name="pull_to_refresh_refreshing_label">Loading…</string>
+
+    <!-- Just use standard Pull Down String when pulling up. These can be set for languages which require it -->
+    <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
+    <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
+    <string name="contact_us_content">
+          合作：\r\n 
+        【线上】\r\n活动推广传播、活动线上报名、活动线上直播、活动参与人员数据管理、活动后期影响传播。\r\n
+        【线下】\r\n活动策划与承办、定制活动、项目经营。\r\n
+        【APP地区运营】\r\n我团队目前主要布局京津翼地区，欢迎其他地区团队加入我们的大家庭，我们将提供成熟的技术支持，与运营策略。携手共创互联网体育事业。</string>
+	
+</resources>

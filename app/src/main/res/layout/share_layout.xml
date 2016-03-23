@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/sharebg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/btnWxTimeLine"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/wx_friends" />
+
+    <Button
+        android:id="@+id/btnWxFriends"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/wx_time_line" />
+
+    <Button
+        android:id="@+id/btnWeibo"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/wobo" />
+
+</LinearLayout>
