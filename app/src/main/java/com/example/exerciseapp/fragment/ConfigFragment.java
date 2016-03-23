@@ -24,6 +24,7 @@ import com.example.exerciseapp.Config;
 import com.example.exerciseapp.MainActivity;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.aty.sliding.AtyAboutUs;
+import com.example.exerciseapp.aty.sliding.AtyChangePassw;
 import com.example.exerciseapp.aty.sliding.AtySlidingHome;
 import com.example.exerciseapp.aty.sliding.Atyyijianfankui;
 import com.umeng.update.UmengUpdateAgent;
@@ -42,6 +43,9 @@ public class ConfigFragment extends Fragment{
 	 ImageView imgAboutUs;
 //	 ToggleButton toggleBtn;
 	 Button btntuichudenglu;
+
+	private LinearLayout linearchangepass;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -115,13 +119,13 @@ public class ConfigFragment extends Fragment{
 		
 		linearjiancexinbanben = (LinearLayout) view.findViewById(R.id.linearjiancexinbanben);
 		linearjiancexinbanben.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				UpdateConfig.setDebug(true);
 				UmengUpdateAgent.setDefault();
-                //请在调用update,forceUpdate,silentUpdate函数之前设置推广id
-                UmengUpdateAgent.setSlotId("123456");
+				//请在调用update,forceUpdate,silentUpdate函数之前设置推广id
+				UmengUpdateAgent.setSlotId("123456");
 				UmengUpdateAgent.forceUpdate(getActivity());
 			}
 		});
@@ -131,12 +135,12 @@ public class ConfigFragment extends Fragment{
 		imgyijianfankui.setImageDrawable(getResources().getDrawable(R.drawable.yijianfankui));
 		linearyijianfankui=(LinearLayout) view.findViewById(R.id.linearyijianfankui);
 		linearyijianfankui.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 //				Toast.makeText(getActivity(), "意见反馈", Toast.LENGTH_SHORT).show();
-				Intent i=new Intent(getActivity(),Atyyijianfankui.class);
+				Intent i = new Intent(getActivity(), Atyyijianfankui.class);
 				startActivity(i);
 			}
 		});
@@ -144,11 +148,11 @@ public class ConfigFragment extends Fragment{
 		imgAboutUs.setImageDrawable(getResources().getDrawable(R.drawable.aboutus));
 		linearaboutus=(LinearLayout) view.findViewById(R.id.linearaboutus);
 		linearaboutus.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent i=new Intent(getActivity(),AtyAboutUs.class);
+				Intent i = new Intent(getActivity(), AtyAboutUs.class);
 				startActivity(i);
 			}
 		});
@@ -166,8 +170,16 @@ public class ConfigFragment extends Fragment{
 				
 			}
 		});
-		
-		
+
+		linearchangepass = (LinearLayout) view.findViewById(R.id.linearchangepass);
+		linearchangepass.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setClass(ConfigFragment.this.getContext(), AtyChangePassw.class);
+				startActivity(intent);
+			}
+		});
 		return view;
 	}
 	public static class DataCleanManager {

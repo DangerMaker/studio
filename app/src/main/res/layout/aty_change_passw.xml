@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e2e4ec"
+    android:orientation="vertical" >
+
+    <include layout="@layout/main_toolbar" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/shape_view_group" >
+
+        <LinearLayout
+            android:id="@+id/change_passw_editarea"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/shape_view_group_white"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/change_passw_phone"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:inputType="phone"
+                android:hint="请输入手机号码"
+                android:textColor="#595652"
+                android:textColorHint="#bcb8b1"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"
+                android:background="#bbb6b0" />
+
+            <EditText
+                android:id="@+id/change_passw_pre_passw"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:hint="请输入旧的密码"
+                android:inputType="textPassword"
+                android:textColor="#595652"
+                android:textColorHint="#bcb8b1"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"
+                android:background="#bbb6b0" />
+
+            <EditText
+                android:id="@+id/change_passw_new_passw"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:hint="请输入新的密码"
+                android:inputType="textPassword"
+                android:textColor="#595652"
+                android:textColorHint="#bcb8b1"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"
+                android:background="#bbb6b0" />
+
+            <EditText
+                android:id="@+id/change_passw_new_passw_again"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:hint="请再次输入新的密码"
+                android:inputType="textPassword"
+                android:textColor="#595652"
+                android:textColorHint="#bcb8b1"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/change_passw_confirm"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/change_passw_editarea"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/shape_btn_blue_radius_10dip"
+            android:text="确定"
+            android:gravity="center"
+            android:textColor="@color/BtnTextColorWhite"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="21dp"
+            android:layout_below="@id/change_passw_confirm" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -287,9 +287,10 @@ public class AtyRegisterHomePage extends Activity {
 	                                JSONObject jsonObject = new JSONObject(s);
 	                                if(jsonObject.getString("result").equals("1")){
 	                                	Config.cacheUserUid(getApplicationContext(), jsonObject.getJSONObject("data").getString(Config.KEY_UID));
-	                                	startActivity(new Intent(AtyRegisterHomePage.this,AtySlidingHome.class));
+	                                	startActivity(new Intent(AtyRegisterHomePage.this, AtySlidingHome.class));
 	                                	Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
 	                                	Config.STATUS_FINISH_ACTIVITY = 1;
+										Config.TOURIST_MODE = false;
 	                                	finish();
 	                                }else{
 	                                	Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();

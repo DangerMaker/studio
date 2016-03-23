@@ -435,6 +435,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
+        <activity
+            android:name=".aty.sliding.AtyChangePassw"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>
