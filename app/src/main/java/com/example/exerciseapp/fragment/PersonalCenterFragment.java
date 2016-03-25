@@ -137,7 +137,7 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
 					tvUserNamePersonalCenter.setText("游客");
 					ivMessageButtonPersonalCenter.setVisibility(View.INVISIBLE);
 				}else{
-					tvUserNamePersonalCenter.setText(json.getString(Config.KEY_USER_NAME));
+					tvUserNamePersonalCenter.setText(json.getString(Config.KEY_NICK_NAME));
 					tvUserBirthdayPersonalCenter.setText(json.getString(Config.KEY_USER_BIRTHDAY));
 					tvUserAttrPersonalCenter.setText(json.getString(Config.KEY_ASSOC));
 					tvUserPointPersonalCenter.setText("积分"+json.getString("point"));

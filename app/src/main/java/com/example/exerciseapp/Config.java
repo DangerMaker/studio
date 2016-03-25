@@ -55,7 +55,8 @@ public class Config {
 	public static final int PAGE_TAG_PERSONAL_CENTER = 3;
 	public static final int PAGE_TAG_NEWS = 4;
 	public static final int PAGE_TAG_CONFIG = 5;
-	public static final int PAGE_USER_INFORMATION_HOME = 6;	
+	public static final int PAGE_USER_INFORMATION_HOME = 6;
+	public static final int PAGE_TAG_TEAM = 7;
 	
 	
 	//通信所用的键

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
@@ -43,5 +44,14 @@ public class BaseActivity extends AppCompatActivity {
 		int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
 		return resources.getDimensionPixelSize(resourceId);
 	}
+
+    public void addFragment(Fragment newFragment,int layoutId) {
+        if(!this.isFinishing()) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(layoutId, newFragment)
+                    .addToBackStack(null)
+                    .commitAllowingStateLoss();
+        }
+    }
 
 }
