@@ -41,6 +41,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseapp.aty.team.CreateTeamActivity;
 import com.example.exerciseapp.fragment.TeamFragment;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
@@ -69,7 +70,13 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.message.PushAgent;
 
+import butterknife.Bind;
+import butterknife.OnClick;
+
 public class AtySlidingHome extends BaseActivity {
+
+    @Bind(R.id.toolbar_text_right)
+    TextView mToolbarRight;
     private Fragment mContent;
     private Activity activity = this;
     private GameListFragment_ gameListFragment = null;
@@ -96,12 +103,13 @@ public class AtySlidingHome extends BaseActivity {
     @SuppressLint("NewApi")
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.content_frame);
         mRequestQueue = Volley.newRequestQueue(this);
         instance = this;
         api = WXAPIFactory.createWXAPI(this, Config.WxAPP_ID);
         api.registerApp(Config.WxAPP_ID);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_frame);
+
         PushAgent.getInstance(getApplicationContext()).onAppStart();
 
         initView();
@@ -120,6 +128,12 @@ public class AtySlidingHome extends BaseActivity {
             getUserInfo();
         }
     }
+
+    @OnClick(R.id.toolbar_text_right)
+    public void createTeam(){
+        startActivity(CreateTeamActivity.getCreateTeamIntent(this));
+    }
+
 
     private void getUserInfo() {
         StringRequest stringRequestUserBriefInformation = new StringRequest(
@@ -389,6 +403,7 @@ public class AtySlidingHome extends BaseActivity {
     public void initActionBar(int clickPosition) {
         TextView textview;
         textview = (TextView) activity.findViewById(R.id.toolbar_text);
+        mToolbarRight.setVisibility(View.GONE);
         switch (clickPosition) {
             // case Config.PAGE_TAG_ABOUT_US:
             // newContent = new PageFragment(Config.PAGE_TAG_ABOUT_US);
@@ -433,6 +448,7 @@ public class AtySlidingHome extends BaseActivity {
                 // textview = (TextView)
                 // actionBar.getCustomView().findViewById(R.id.tvPageTitleOfAll);
                 textview.setText("运动团队");
+                mToolbarRight.setVisibility(View.VISIBLE);
                 break;
             default:
                 break;

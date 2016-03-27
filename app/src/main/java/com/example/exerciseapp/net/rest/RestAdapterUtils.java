@@ -1,11 +1,12 @@
-package com.example.exerciseapp.net;
+package com.example.exerciseapp.net.rest;
 
 
 import com.example.exerciseapp.BuildConfig;
-import com.example.exerciseapp.Config;
 import com.example.exerciseapp.HttpConfig;
+import com.example.exerciseapp.api.TeamService;
 import com.squareup.okhttp.OkHttpClient;
 
+import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.client.Client;
 import retrofit.client.OkClient;
@@ -29,6 +30,11 @@ public class RestAdapterUtils {
                 .setLogLevel(level)
                 .setEndpoint(endpoint)
                 .setClient(getHttpClient())
+                .setRequestInterceptor(new RequestInterceptor() {
+                    @Override
+                    public void intercept(RequestFacade request) {
+                    }
+                })
                 .build();
 
         return restAdapter.create(service);

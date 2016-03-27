@@ -1,5 +1,6 @@
 package com.example.exerciseapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
@@ -7,6 +8,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
+import android.widget.Button;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by Cherie_No.47 on 2016/3/12 13:54.
@@ -19,6 +23,12 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initWindow();
+    }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+        ButterKnife.bind(this);
     }
 
     /**
@@ -54,4 +64,28 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+    }
+
+    private ProgressDialog dialog;
+    public void showDialog() {
+        if (dialog == null) {
+            dialog = new ProgressDialog(this);
+            dialog.setMessage("正在加载，请稍等");
+        }
+        if (!dialog.isShowing()) {
+            dialog.show();
+        }
+
+    }
+
+    public void closeDialog() {
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
+    }
 }

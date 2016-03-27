@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_green"
+    >
+
+    <include layout="@layout/main_toolbar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/CreateTeamText"
+        android:text="团队名称："
+        />
+
+    <EditText
+        android:id="@+id/create_team_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:background="@color/White"
+        android:hint="团队名称："
+        android:paddingLeft="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/Black"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/CreateTeamText"
+        android:text="团队标签："
+        android:layout_marginTop="20dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        >
+        <EditText
+            android:id="@+id/create_team_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:background="@color/White"
+            android:hint="团队标签："
+            android:paddingLeft="20dp"
+            android:textColor="@color/Black"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/create_team_tagadd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CreateTeamText"
+            android:text="点击添加"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/CreateTeamText"
+        android:text="团队简介："
+        android:layout_marginTop="20dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="center_vertical"
+        >
+        <EditText
+            android:id="@+id/create_team_des"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/White"
+            android:hint="团队简介："
+            android:paddingLeft="20dp"
+            android:minLines="4"
+            android:maxEms="40"
+            android:textColor="@color/Black"
+            android:gravity="top|left"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            />
+
+        <TextView
+            android:id="@+id/create_team_desadd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CreateTeamText"
+            android:text="40字以内"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <Button
+        android:id="@+id/create_team_submit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/shape_btn_blue_radius_5dip"
+        android:gravity="center"
+        android:text="提交信息"
+        android:textColor="@color/BtnTextColorWhite"
+        android:textSize="18sp" />
+
+
+</LinearLayout>

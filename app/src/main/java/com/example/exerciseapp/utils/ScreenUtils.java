@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 /**
  * author cherie
@@ -122,4 +123,8 @@ public class ScreenUtils
 
 	}
 
+	public static void show_msg(Context context, String msg) {
+		if (context == null) return;
+		Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
+	}
 }
