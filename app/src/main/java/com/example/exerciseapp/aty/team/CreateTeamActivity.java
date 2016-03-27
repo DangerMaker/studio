@@ -69,7 +69,7 @@ public class CreateTeamActivity extends BaseActivity {
         String des = mCreateDes.getText().toString();
         showDialog();
 
-        RestAdapterUtils.getTeamAPI().createTeam("3", "sdfsd", "sdf", "6", "create_group", new Callback<ErrorMsg>() {
+        RestAdapterUtils.getTeamAPI().createTeam("1", "sdffdsfg", "sdfsdff", "10", "create_group", new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorrMsg, Response response) {
                 closeDialog();
