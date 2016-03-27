@@ -447,6 +447,10 @@
             android:name=".aty.team.CreateTeamActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".aty.team.CreateMyTeamActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
 
     </application>
 

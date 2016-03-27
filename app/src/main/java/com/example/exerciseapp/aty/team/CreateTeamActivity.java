@@ -10,17 +10,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.exerciseapp.BaseActivity;
-import com.example.exerciseapp.Config;
 import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
-import com.google.gson.Gson;
-import com.squareup.okhttp.Request;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.example.exerciseapp.volley.RequestQueue;
+import com.example.exerciseapp.volley.toolbox.Volley;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -42,6 +38,7 @@ public class CreateTeamActivity extends BaseActivity {
 
     Toolbar toolbar;
     TextView pageTitle;
+    private RequestQueue mRequestQueue;
 
     public static Intent getCreateTeamIntent(Context context) {
 //        if (StringUtils.isNullOrEmpty(tvShowId)) {
@@ -56,6 +53,7 @@ public class CreateTeamActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_myteam);
         setTitleBar(this);
+        mRequestQueue =  Volley.newRequestQueue(this);
     }
 
     @OnClick(R.id.create_team_submit)
@@ -70,21 +68,12 @@ public class CreateTeamActivity extends BaseActivity {
         String tag = mCreateTag.getText().toString();
         String des = mCreateDes.getText().toString();
         showDialog();
-        Gson gson = new Gson();
-        Map<String, String> map = new HashMap<>();
-        map.put("uid", "1");
-        map.put("group_name", "fsdf");
-        map.put("group_intro", "group_intro");
-        map.put("group_tag_id", "2");
-        map.put("action", "create_group");
-        String str = gson.toJson(map);
 
-//        RestAdapterUtils.getTeamAPI().createTeam(uid, name, tag, des, "create_group", new Callback<ErrorMsg>() {
-        RestAdapterUtils.getTeamAPI().createTeam(str, new Callback<ErrorMsg>() {
+        RestAdapterUtils.getTeamAPI().createTeam("3", "sdfsd", "sdf", "6", "create_group", new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorrMsg, Response response) {
                 closeDialog();
-                if (errorrMsg != null && errorrMsg.getResult().equals("1")) {
+                if (errorrMsg != null && errorrMsg.getResult() == 1) {
                     ScreenUtils.show_msg(CreateTeamActivity.this, "创建成功！");
                     // TODO: 2016/3/27
                 } else {
@@ -98,7 +87,54 @@ public class CreateTeamActivity extends BaseActivity {
                 ScreenUtils.show_msg(CreateTeamActivity.this, "创建失败" + error.getMessage());
             }
         });
-
+//        String url = HttpConfig.BASE_CMS_URL_NEW + "/py/group";
+//        StringRequest  stringRequest = new StringRequest(
+//                com.example.exerciseapp.volley.Request.Method.POST,
+//                url,
+//                new com.example.exerciseapp.volley.Response.Listener<String>() {
+//
+//                    @Override
+//                    public void onResponse(String s) {
+//                        try {
+////	                            	progressDialog.dismiss();
+//                            JSONObject jsonObject = new JSONObject(s);
+//                            if(jsonObject.getString("result").equals("1")){
+//                                ScreenUtils.show_msg(CreateTeamActivity.this,"fsdfsadf");
+//                            }else{
+//                                Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        } catch (aa.e e) {
+//                            // TODO Auto-generated catch block
+//                            e.printStackTrace();
+//                        } catch (Exception e) {
+//                            // TODO Auto-generated catch block
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                },
+//                new com.example.exerciseapp.volley.Response.ErrorListener() {
+//
+//                    @Override
+//                    public void onErrorResponse(VolleyError volleyError) {
+////	                        	progressDialog.dismiss();
+//                        Toast.makeText(getApplicationContext(), Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
+//                    }
+//                }){
+//
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> map = new HashMap<>();
+//                map.put("uid", "1");
+//                map.put("group_name", "fsdf");
+//                map.put("group_intro", "group_intro");
+//                map.put("group_tag_id", "2");
+//                map.put("action", "create_group");
+//                return map;
+//            }
+//        };
+//        mRequestQueue.add(stringRequest);
 
     }
 

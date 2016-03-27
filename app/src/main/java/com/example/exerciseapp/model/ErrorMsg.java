@@ -1,43 +1,49 @@
 package com.example.exerciseapp.model;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by lyjq on 2016/3/27.
  */
 public class ErrorMsg {
-    String flag;
-    String data;
-    String result;
-    String desc;
 
-    public String getFlag() {
-        return flag;
-    }
+    /**
+     * flag : 0
+     * data : {}
+     * result : 1
+     * desc : success
+     */
 
-    public void setFlag(String flag) {
+    private int flag;
+    private int result;
+    private String desc;
+
+    public void setFlag(int flag) {
         this.flag = flag;
     }
 
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
+    public void setResult(int result) {
         this.result = result;
-    }
-
-    public String getDesc() {
-        return desc;
     }
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public String getDesc() {
+        return desc;
     }
 }

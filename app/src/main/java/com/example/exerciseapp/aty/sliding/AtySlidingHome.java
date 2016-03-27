@@ -41,6 +41,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseapp.aty.team.CreateMyTeamActivity;
 import com.example.exerciseapp.aty.team.CreateTeamActivity;
 import com.example.exerciseapp.fragment.TeamFragment;
 import com.example.exerciseapp.volley.AuthFailureError;
@@ -131,7 +132,7 @@ public class AtySlidingHome extends BaseActivity {
 
     @OnClick(R.id.toolbar_text_right)
     public void createTeam(){
-        startActivity(CreateTeamActivity.getCreateTeamIntent(this));
+        startActivity(CreateMyTeamActivity.getCreateMyTeamIntent(this));
     }
 
 

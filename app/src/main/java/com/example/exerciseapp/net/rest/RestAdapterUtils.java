@@ -4,12 +4,14 @@ package com.example.exerciseapp.net.rest;
 import com.example.exerciseapp.BuildConfig;
 import com.example.exerciseapp.HttpConfig;
 import com.example.exerciseapp.api.TeamService;
+import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.client.Client;
 import retrofit.client.OkClient;
+import retrofit.converter.GsonConverter;
 
 /**
  * Created by vclub on 15/6/29.
@@ -33,8 +35,9 @@ public class RestAdapterUtils {
                 .setRequestInterceptor(new RequestInterceptor() {
                     @Override
                     public void intercept(RequestFacade request) {
+//                        request.addHeader("Content-Type", "application/x-www-form-urlencoded");
                     }
-                })
+                }).setConverter(new GsonConverter(new GsonBuilder().create()))
                 .build();
 
         return restAdapter.create(service);
