@@ -45,6 +45,7 @@
     </uses-permission>
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/icon_of_app" >
 
@@ -441,6 +442,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
+
+        <activity
+            android:name=".aty.team.CreateTeamActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".aty.team.CreateMyTeamActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>

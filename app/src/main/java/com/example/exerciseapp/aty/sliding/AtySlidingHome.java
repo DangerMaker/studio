@@ -41,6 +41,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseapp.aty.team.CreateMyTeamActivity;
+import com.example.exerciseapp.aty.team.CreateTeamActivity;
+import com.example.exerciseapp.fragment.TeamFragment;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -68,7 +71,13 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.message.PushAgent;
 
+import butterknife.Bind;
+import butterknife.OnClick;
+
 public class AtySlidingHome extends BaseActivity {
+
+    @Bind(R.id.toolbar_text_right)
+    TextView mToolbarRight;
     private Fragment mContent;
     private Activity activity = this;
     private GameListFragment_ gameListFragment = null;
@@ -76,6 +85,7 @@ public class AtySlidingHome extends BaseActivity {
     private ConfigFragment configFragment = null;
     private MyListFragment myListFragment = null;
     private NewsFragment newsFragment = null;
+    private TeamFragment teamFragment = null;
     private PersonalCenterFragment personalCenterFragment = null;
     private StartRunFragment startRunFragment = null;
     public static Activity instance;
@@ -84,7 +94,7 @@ public class AtySlidingHome extends BaseActivity {
     private long exitTime = 0;
 
     private Toolbar toolbar;
-    private View menu, item_gamelist, item_run, item_club, item_person, item_news, item_setting;
+    private View menu, item_gamelist, item_run, item_group, item_club, item_person, item_news, item_setting;
     protected SlidingMenu slidingMenu;
     private FragmentManager fragmentManager;
 
@@ -94,12 +104,13 @@ public class AtySlidingHome extends BaseActivity {
     @SuppressLint("NewApi")
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.content_frame);
         mRequestQueue = Volley.newRequestQueue(this);
         instance = this;
         api = WXAPIFactory.createWXAPI(this, Config.WxAPP_ID);
         api.registerApp(Config.WxAPP_ID);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_frame);
+
         PushAgent.getInstance(getApplicationContext()).onAppStart();
 
         initView();
@@ -107,7 +118,7 @@ public class AtySlidingHome extends BaseActivity {
         fragmentManager = getSupportFragmentManager();
         setNavigateSelected();
 
-        boolean isMessagePush = true;// 不开启就设置为false;
+        boolean isMessagePush = false;// 不开启就设置为false;
         if (isMessagePush) {
             startService(new Intent(this, com.example.exerciseapp.service.MessageService.class));
         }
@@ -118,6 +129,12 @@ public class AtySlidingHome extends BaseActivity {
             getUserInfo();
         }
     }
+
+    @OnClick(R.id.toolbar_text_right)
+    public void createTeam(){
+        startActivity(CreateMyTeamActivity.getCreateMyTeamIntent(this));
+    }
+
 
     private void getUserInfo() {
         StringRequest stringRequestUserBriefInformation = new StringRequest(
@@ -209,6 +226,7 @@ public class AtySlidingHome extends BaseActivity {
         menu = findViewById(R.id.main_menu_layout);
         item_gamelist = findViewById(R.id.menu_gamelist);
         item_run = findViewById(R.id.menu_startrun);
+        item_group = findViewById(R.id.menu_sportgroup);
         item_club = findViewById(R.id.menu_club);
         item_person = findViewById(R.id.menu_personal);
         item_news = findViewById(R.id.menu_news);
@@ -222,6 +240,7 @@ public class AtySlidingHome extends BaseActivity {
         item_person.setOnClickListener(menuItemListener);
         item_news.setOnClickListener(menuItemListener);
         item_setting.setOnClickListener(menuItemListener);
+        item_group.setOnClickListener(menuItemListener);
 
         uNickname = (TextView) findViewById(R.id.tvUserName_UserInformationHome);
         uBirthday = (TextView) findViewById(R.id.tvUserBirthday);
@@ -253,6 +272,16 @@ public class AtySlidingHome extends BaseActivity {
                     }
                     mContent = startRunFragment;
                     initActionBar(Config.PAGE_TAG_START_RUNNING);
+                    break;
+                case R.id.menu_sportgroup:
+                    if (null == teamFragment) {
+                        teamFragment = TeamFragment.newInstance();
+                        transaction.add(R.id.content_frame, teamFragment);
+                    } else {
+                        transaction.show(teamFragment);
+                    }
+                    mContent = teamFragment;
+                    initActionBar(Config.PAGE_TAG_TEAM);
                     break;
                 case R.id.menu_club:
                     if (null == clubFragment) {
@@ -326,6 +355,9 @@ public class AtySlidingHome extends BaseActivity {
         if (startRunFragment != null) {
             transaction.hide(startRunFragment);
         }
+        if(teamFragment != null){
+            transaction.hide(teamFragment);
+        }
     }
 
     @Override
@@ -372,6 +404,7 @@ public class AtySlidingHome extends BaseActivity {
     public void initActionBar(int clickPosition) {
         TextView textview;
         textview = (TextView) activity.findViewById(R.id.toolbar_text);
+        mToolbarRight.setVisibility(View.GONE);
         switch (clickPosition) {
             // case Config.PAGE_TAG_ABOUT_US:
             // newContent = new PageFragment(Config.PAGE_TAG_ABOUT_US);
@@ -412,6 +445,11 @@ public class AtySlidingHome extends BaseActivity {
                 // textview = (TextView)
                 // actionBar.getCustomView().findViewById(R.id.tvPageTitleOfAll);
                 textview.setText("设置");
+            case Config.PAGE_TAG_TEAM:
+                // textview = (TextView)
+                // actionBar.getCustomView().findViewById(R.id.tvPageTitleOfAll);
+                textview.setText("运动团队");
+                mToolbarRight.setVisibility(View.VISIBLE);
                 break;
             default:
                 break;
@@ -480,7 +518,7 @@ public class AtySlidingHome extends BaseActivity {
      * @param webPageUrl  需要跳转的链接
      * @param title       分享标题
      * @param description 分享内容
-     * @param bitmap    图片地址
+     * @param bitmap      图片地址
      * @param flag        分享到朋友还是朋友圈的flag
      */
 

@@ -23,6 +23,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.exerciseapp.volley.VolleyLog.MarkerLog;
 
@@ -134,7 +135,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
         mUrl = url;
         mErrorListener = listener;
         setRetryPolicy(new DefaultRetryPolicy());
-
+        Log.v("request", url);
         mDefaultTrafficStatsTag = findDefaultTrafficStatsTag(url);
     }
 

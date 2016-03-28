@@ -16,6 +16,8 @@
 
 package com.example.exerciseapp.volley.toolbox;
 
+import android.util.Log;
+
 import com.example.exerciseapp.volley.NetworkResponse;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.Response;
@@ -23,6 +25,8 @@ import com.example.exerciseapp.volley.Response.ErrorListener;
 import com.example.exerciseapp.volley.Response.Listener;
 
 import java.io.UnsupportedEncodingException;
+
+import static com.example.exerciseapp.utils.LogUtils.LOGD;
 
 /**
  * A canned request for retrieving the response body at a given URL as a String.
@@ -65,6 +69,7 @@ public class StringRequest extends Request<String> {
         String parsed;
         try {
             parsed = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+            Log.v("http",parsed);
         } catch (UnsupportedEncodingException e) {
             parsed = new String(response.data);
         }

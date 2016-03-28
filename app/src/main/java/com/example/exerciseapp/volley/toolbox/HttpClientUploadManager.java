@@ -43,54 +43,54 @@ public class HttpClientUploadManager {
      */  
     public static String upload(String url, String filepath,  
             String fileKey, HashMap<String, String> mapParams) {  
-        HttpClient client = new DefaultHttpClient();  
-        HttpPost httpPost = new HttpPost(url);  
-        client.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION,  
-                HttpVersion.HTTP_1_1);  
-        client.getParams().setParameter(  
-                CoreProtocolPNames.HTTP_CONTENT_CHARSET, "utf-8");  
-  
-        try {  
-            MultipartEntity entity = new MultipartEntity();  
-            // 文件参数部分  
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url);
+        client.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION,
+                HttpVersion.HTTP_1_1);
+        client.getParams().setParameter(
+                CoreProtocolPNames.HTTP_CONTENT_CHARSET, "utf-8");
+
+        try {
+            MultipartEntity entity = new MultipartEntity();
+            // 文件参数部分
             File file = new File(filepath);
             String url111 = file.getAbsolutePath();
-            ContentBody fileBody = new FileBody(file); // file  
-            entity.addPart(fileKey, fileBody);  
-            // 字符参数部分  
-            Set<String> set = mapParams.keySet();  
-            for (String key : set) {  
-                entity.addPart(key, new StringBody(mapParams.get(key)));  
-            }  
-            httpPost.setEntity(entity);  
-  
-            HttpResponse response = client.execute(httpPost);  
-//            Message message = handler.obtainMessage();  
-            if (response.getStatusLine().getStatusCode() == 200) { // 成功  
-                //获取服务器返回值  
-                HttpEntity responseEntity = response.getEntity();  
-                InputStream input = responseEntity.getContent();  
-                StringBuilder sb = new StringBuilder();  
-                int s;  
-                while ((s = input.read()) != -1) {  
-                    sb.append((char) s);  
-                }  
-                String result = sb.toString(); 
+            ContentBody fileBody = new FileBody(file); // file
+            entity.addPart(fileKey, fileBody);
+            // 字符参数部分
+            Set<String> set = mapParams.keySet();
+            for (String key : set) {
+                entity.addPart(key, new StringBody(mapParams.get(key)));
+            }
+            httpPost.setEntity(entity);
+
+            HttpResponse response = client.execute(httpPost);
+//            Message message = handler.obtainMessage();
+            if (response.getStatusLine().getStatusCode() == 200) { // 成功
+                //获取服务器返回值
+                HttpEntity responseEntity = response.getEntity();
+                InputStream input = responseEntity.getContent();
+                StringBuilder sb = new StringBuilder();
+                int s;
+                while ((s = input.read()) != -1) {
+                    sb.append((char) s);
+                }
+                String result = sb.toString();
                 return result;
 //                message.what = HttpClientUploadResponse.SUCCESS;
-//                message.obj = result;//将数据返回给activity  
-            }else {  
-//                message.what = HttpClientUploadResponse.FAIL;  
+//                message.obj = result;//将数据返回给activity
+            }else {
+//                message.what = HttpClientUploadResponse.FAIL;
             	return null;
-            }  
-//            handler.sendMessage(message);  
-        } catch (Exception e) {  
-//            Message message = handler.obtainMessage();  
-//            message.what = HttpClientUploadResponse.FAIL;  
-//            handler.sendMessage(message);  
+            }
+//            handler.sendMessage(message);
+        } catch (Exception e) {
+//            Message message = handler.obtainMessage();
+//            message.what = HttpClientUploadResponse.FAIL;
+//            handler.sendMessage(message);
         	e.printStackTrace();
         }
-		return null;  
+		return null;
     }  
     
     public static boolean saveBitmap2file(Context context,Bitmap bmp,String filename){

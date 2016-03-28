@@ -133,6 +133,36 @@
 <View android:layout_width="fill_parent"
             android:layout_height="0.5dp"
             android:background="@color/divider"/>
+
+        <RelativeLayout
+            android:id="@+id/menu_sportgroup"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:clickable="true" >
+
+            <ImageView
+                android:id="@+id/menu_group_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/run_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@id/menu_group_icon"
+                android:singleLine="true"
+                android:text="运动团队"
+                android:textColor="@color/BtnTextColorWhite"
+                android:textSize="18sp" />
+        </RelativeLayout>
+        <View android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider"/>
+
         <RelativeLayout
             android:id="@+id/menu_club"
             android:layout_width="fill_parent"
