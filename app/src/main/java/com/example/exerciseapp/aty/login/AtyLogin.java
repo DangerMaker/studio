@@ -127,6 +127,7 @@ public class AtyLogin extends Activity {
 	                                JSONObject jsonObject = new JSONObject(s);
 	                                if(jsonObject.getString("result").equals("1")){
 	                                	Config.cacheUserUid(getApplicationContext(), jsonObject.getJSONObject("data").getString(Config.KEY_UID));
+										Config.cacheUserTel(getApplicationContext(), etPhoneNum.getText().toString());
 										String uid =jsonObject.getJSONObject("data").getString(Config.KEY_UID);
 										SharedPreferencesHelper.getInstance(AtyLogin.this).setValue("uid",uid);
 										((MyApplication)getApplication()).setUid(uid);

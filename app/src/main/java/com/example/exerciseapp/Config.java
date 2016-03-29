@@ -69,6 +69,8 @@ public class Config {
 	public static final String KEY_BMI = "bmi";					//身体质量指数（正常 肥胖 非常肥胖 等）
 	public static final String KEY_AVATAR = "avatar";			//用户头像存储url
 	public static final String KEY_PASSWORD = "password";		//用户密码
+	public static final String KEY_ORI_PASSWORD = "ori_password";		//用户修改密码原始密码
+	public static final String KEY_NEW_PASSWORD = "new_password";		//用户修改密码新密码
 	public static final String KEY_CODE = "code";				//验证码
 	public static final String KEY_SEX = "sex";					//用户性别	
 	public static final String KEY_AGE = "age";					//用户年龄
@@ -274,6 +276,20 @@ public class Config {
 	public static String getCachedUserUid(Context context){
 		mCache = ACache.get(context,"Uid");
 		return mCache.getAsString(KEY_UID);
+	}
+
+	//缓存用户tel
+	public static void cacheUserTel(Context context, String tel){
+		mCache = ACache.get(context,"tel");
+		if(mCache.getAsString(KEY_TEL) != null){
+			mCache.remove(KEY_TEL);
+		}
+		mCache.put(KEY_TEL, tel, CACHE_TIME);
+	}
+
+	public static String getCachedUserTel(Context context){
+		mCache = ACache.get(context,"tel");
+		return mCache.getAsString(KEY_TEL);
 	}
 	
 	//缓存用户名和生日
