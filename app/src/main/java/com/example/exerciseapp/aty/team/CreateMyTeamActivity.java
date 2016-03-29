@@ -16,10 +16,7 @@ import butterknife.OnClick;
 /**
  * Created by lyjq on 2016/3/27.
  */
-public class CreateMyTeamActivity extends BaseActivity {
-
-    Toolbar toolbar;
-    TextView pageTitle;
+public class CreateMyTeamActivity extends BackBaseActivity {
 
     public static Intent getCreateMyTeamIntent(Context context) {
         Intent intent = new Intent(context, CreateMyTeamActivity.class);
@@ -30,27 +27,13 @@ public class CreateMyTeamActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_on);
-        setTitleBar(this);
+        setTitleBar("创建我的团队");
     }
 
     @OnClick(R.id.create_team_submit1)
     public void submit(){
         startActivity(CreateTeamActivity.getCreateTeamIntent(this));
+        finish();
     }
 
-    public void setTitleBar(final Activity activity) {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        pageTitle = (TextView) findViewById(R.id.toolbar_text);
-        pageTitle.setText("创建我的团队");
-        toolbar.setPadding(0, getDimensionMiss(), 0, 0);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.backbtn);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.finish();
-            }
-        });
-    }
 }
