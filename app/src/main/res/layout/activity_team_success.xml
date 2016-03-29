@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/light_green"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_toolbar" />
+
+    <ImageView
+        android:id="@+id/success_team_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_launcher"
+        android:layout_marginTop="50dp"
+        />
+
+    <TextView
+        android:id="@+id/success_team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/common_grey"
+        android:textSize="20sp"
+        android:text="队名"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/BtnBlue"
+        android:text="添加团队成员"
+        style="@style/CreateTeamText1"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|left"
+        android:textColor="@color/BtnBlue"
+        android:text="备注：添加团成员，提醒团队成员，完善好个人信息，以便赛事报名。"
+        style="@style/CreateTeamText1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="@dimen/line_margin_bottom_20dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/common_grey"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:id="@+id/success_team_submit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/shape_btn_blue_radius_5dip"
+        android:gravity="center"
+        android:text="进入团队"
+        android:textColor="@color/BtnTextColorWhite"
+        android:textSize="18sp" />
+</LinearLayout>

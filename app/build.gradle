@@ -32,6 +32,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:gridlayout-v7:23.1.1'
     compile files('libs/alipaySdk-20151103.jar')
     compile files('libs/AMap_2DMap_v2.6.0_20150916.jar')
     compile files('libs/AMap_Android_3DMapSDK_V3.1.0_20151124.jar')
