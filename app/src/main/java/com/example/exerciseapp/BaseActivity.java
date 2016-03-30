@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.example.exerciseapp.utils.ScreenUtils;
+
 import butterknife.ButterKnife;
 
 /**
@@ -18,7 +20,7 @@ import butterknife.ButterKnife;
  */
 public class BaseActivity extends AppCompatActivity {
     protected Context context;
-
+    String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +88,21 @@ public class BaseActivity extends AppCompatActivity {
     public void closeDialog() {
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
+        }
+    }
+
+    public String getUid(){
+        uid = ((MyApplication) getApplication()).getUid();
+        return uid;
+    }
+
+    public boolean isUidAvailable(){
+        uid = ((MyApplication) getApplication()).getUid();
+        if (uid == null || uid.equals("")) {
+            ScreenUtils.show_msg(this, "没有用户id,请登录");
+            return false;
+        }else{
+            return true;
         }
     }
 }

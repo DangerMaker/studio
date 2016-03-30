@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_root"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:padding="10dp"
+    >
+    <ImageView
+        android:id="@+id/item_group_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_launcher"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/item_group_name"
+        android:layout_toRightOf="@id/item_group_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Black"
+        android:text="名字"
+        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/item_group_tag"
+        android:layout_below="@id/item_group_name"
+        android:layout_toRightOf="@id/item_group_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/White"
+        android:text="健身"
+        android:textSize="12sp"
+        android:layout_marginLeft="10dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:background="@color/divider"
+        />
+
+    <TextView
+        android:id="@+id/item_group_num"
+        android:layout_below="@id/item_group_name"
+        android:layout_toRightOf="@id/item_group_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/texttag"
+        android:text="人数：80"
+        android:textSize="12sp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/item_group_des"
+        android:layout_below="@id/item_group_tag"
+        android:layout_toRightOf="@id/item_group_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/texttag"
+        android:text="享受生活热爱小C"
+        android:textSize="12sp"
+        android:layout_marginLeft="10dp"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
+        />
+
+    <TextView
+        android:id="@+id/item_group_invite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/btnzantingduanlian"
+        android:text="该团邀请您加入"
+        android:textSize="15sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

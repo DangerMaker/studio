@@ -7,6 +7,7 @@
     android:background="#ffffff">
 
     <RelativeLayout
+        android:id="@+id/team_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/common_grey"
@@ -20,8 +21,9 @@
     </RelativeLayout>
 
     <com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshListView
+        android:layout_below="@id/team_search"
         android:id="@+id/pull_to_refresh_team"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent" />
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
 
 </RelativeLayout> 

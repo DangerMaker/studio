@@ -68,7 +68,7 @@ public class CreateTeamActivity extends BackBaseActivity {
                 if (createSuc != null && createSuc.getResult() == 1) {
                     teamId = createSuc.getData().getId();
                     ScreenUtils.show_msg(CreateTeamActivity.this, "创建成功！");
-                    startActivity(CreateTeamSucActivity.getCreateSuccessIntent(CreateTeamActivity.this));
+                    startActivity(CreateTeamSucActivity.getCreateSuccessIntent(CreateTeamActivity.this,teamId));
                     finish();
                     // TODO: 2016/3/27
                 } else {

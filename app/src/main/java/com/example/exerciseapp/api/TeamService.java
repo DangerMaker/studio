@@ -1,7 +1,9 @@
 package com.example.exerciseapp.api;
 
+import com.example.exerciseapp.model.AllGroup;
 import com.example.exerciseapp.model.CreateSuc;
 import com.example.exerciseapp.model.ErrorMsg;
+import com.example.exerciseapp.model.GroupDetail;
 
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -100,5 +102,15 @@ public interface TeamService{
                    @Field("uid") String uid,
                    Callback<ErrorMsg> callback);
 
+    @GET("/py/group")
+    void getAllGroup(@Query("uid") String id,
+                      @Query("action") String get_all_group,
+                      Callback<AllGroup> callback);
+
+    @GET("/py/group")
+    void getDetailInfo(@Query("id") String id,
+                       @Query("uid") String uid,
+                       @Query("action") String get_detail_group_info,
+                       Callback<GroupDetail> callback);
 
 }
