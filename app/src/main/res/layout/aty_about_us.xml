@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="30dip"
+        android:layout_height="35dp"
         android:background="#aaaaaa" >
 
         <TextView
@@ -19,9 +19,9 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:gravity="center"
-            android:text="APP简介"
+            android:text="简介"
             android:textColor="@color/White"
-            android:textSize="18dip" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvClubTitleAtyAboutUs"
@@ -29,9 +29,9 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:gravity="center"
-            android:text="联系我们"
+            android:text="关于我们"
             android:textColor="@color/White"
-            android:textSize="18dip" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout

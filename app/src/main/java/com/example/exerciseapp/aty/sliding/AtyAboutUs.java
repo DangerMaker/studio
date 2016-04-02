@@ -38,7 +38,6 @@ public class AtyAboutUs extends BaseActivity {
 	private ImageView cursorOneAtyAboutUs;
 	private ImageView cursorTwoAtyAboutUs;
 	TextView texttel;
-	
 	private Toolbar toolbar;
 	private TextView pageTitle;
 
@@ -47,20 +46,12 @@ public class AtyAboutUs extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		PushAgent.getInstance(this).onAppStart();
 		setContentView(R.layout.aty_about_us);
-		// setTitle("联系我们");
-		// ActionBar actionBar = getActionBar();
-		// actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-		// actionBar.setCustomView(R.layout.actionbar_start_running);//自定义ActionBar布局
-		// initActionBar();
 		mPager = (ViewPager) findViewById(R.id.vPagerAtyAboutUs);
 		cursorOneAtyAboutUs = (ImageView) findViewById(R.id.cursorOneAtyAboutUs);
 		cursorTwoAtyAboutUs = (ImageView) findViewById(R.id.cursorTwoAtyAboutUs);
 		cursorTwoAtyAboutUs.setVisibility(View.INVISIBLE);
 		setTitleBar(AtyAboutUs.this);
 		InitTextView();
-//		AtyMyGrades.setTitleBar(this);
-
-		// InitImageView();
 		InitViewPager();
 	}
 	
