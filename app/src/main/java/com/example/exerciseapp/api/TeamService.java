@@ -16,7 +16,7 @@ import retrofit.http.Query;
 /**
  * Created by lyjq on 2016/3/24.
  */
-public interface TeamService{
+public interface TeamService {
 
     @FormUrlEncoded
     @POST("/py/group")
@@ -28,10 +28,9 @@ public interface TeamService{
                     Callback<CreateSuc> callback);
 
     /**
-     *
-     * @param id 团队id
+     * @param id            团队id
      * @param new_groupname 新的团队名称
-     * @param param 要更改的参数为团队名称
+     * @param param         要更改的参数为团队名称
      * @param change_param
      * @param callback
      */
@@ -39,15 +38,14 @@ public interface TeamService{
     @FormUrlEncoded
     @POST("/py/group")
     void alterTeamName(@Field("id") String id,
-                    @Field("new_groupname") String new_groupname,
-                    @Field("param") String param,
-                    @Field("action") String change_param,
-                    Callback<ErrorMsg> callback);
+                       @Field("new_groupname") String new_groupname,
+                       @Field("param") String param,
+                       @Field("action") String change_param,
+                       Callback<ErrorMsg> callback);
 
     /**
-     *
-     * @param id 团队id
-     * @param tel_str 多个手机号码中间用逗号连接
+     * @param id             团队id
+     * @param tel_str        多个手机号码中间用逗号连接
      * @param invite_friends
      * @param callback
      */
@@ -60,7 +58,6 @@ public interface TeamService{
                        Callback<ErrorMsg> callback);
 
     /**
-     *
      * @param uid 用户uid
      */
     @GET("/py/invite")
@@ -69,7 +66,6 @@ public interface TeamService{
                       Callback<ErrorMsg> callback);
 
     /**
-     *
      * @param id 该次邀请的id (索引）
      */
 
@@ -79,7 +75,6 @@ public interface TeamService{
                     Callback<ErrorMsg> callback);
 
     /**
-     *
      * @param id 该次邀请的id (索引）
      */
 
@@ -89,10 +84,9 @@ public interface TeamService{
                       Callback<ErrorMsg> callback);
 
     /**
-     *
-     * @param id 要加入的团队的id
+     * @param id     要加入的团队的id
      * @param excuse 申请理由
-     * @param uid 用户uid
+     * @param uid    用户uid
      */
 
     @FormUrlEncoded
@@ -104,13 +98,22 @@ public interface TeamService{
 
     @GET("/py/group")
     void getAllGroup(@Query("uid") String id,
-                      @Query("action") String get_all_group,
-                      Callback<AllGroup> callback);
+                     @Query("action") String get_all_group,
+                     Callback<AllGroup> callback);
 
     @GET("/py/group")
     void getDetailInfo(@Query("id") String id,
                        @Query("uid") String uid,
                        @Query("action") String get_detail_group_info,
                        Callback<GroupDetail> callback);
+
+    @FormUrlEncoded
+    @POST("/py/group")
+    void changeTeamName(@Field("id") String id,
+                        @Field("new_groupname") String new_groupname,
+                        @Field("param") String param,
+                        @Field("action") String change_param,
+                        Callback<ErrorMsg> callback);
+
 
 }

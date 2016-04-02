@@ -18,6 +18,7 @@ import com.example.exerciseapp.utils.ScreenUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -28,6 +29,7 @@ import retrofit.client.Response;
 public class TeamDetailActivity extends BackBaseActivity implements View.OnClickListener {
 
     int teamId;
+    GroupDetail.DataEntity entity;
     @Bind(R.id.detail_team_icon)
     ImageView detailTeamIcon;
     @Bind(R.id.detail_team_name)
@@ -45,10 +47,13 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
     @Bind(R.id.detail_team_rank)
     GridLayout detailTeamRank;
 
+    @Bind(R.id.toolbar_img_right)
+    ImageView setting;
 
     LayoutInflater inflater;
 
     int screenWidth;
+
     public static Intent getTeamDetailIntent(Context context, int teamId) {
         Intent intent = new Intent(context, TeamDetailActivity.class);
         return intent.putExtra("teamId", teamId);
@@ -60,6 +65,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
         setContentView(R.layout.activity_myteam);
         ButterKnife.bind(this);
         setTitleBar("我的团队");
+        setting.setVisibility(View.VISIBLE);
         inflater = LayoutInflater.from(this);
         screenWidth = ScreenUtils.getScreenWidth(this);
         widthUnit = screenWidth / 3;
@@ -97,6 +103,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
     private int widthUnit;
 
     private void setDataToDetail(GroupDetail.DataEntity entity) {
+        this.entity = entity;
         detailTeamName.setText(entity.getGroup_info().getGroup_name());
         detailTeamNum.setText("团队人数：" + entity.getGroup_info().getMembernum());
         detailTeamDes.setText(entity.getGroup_info().getIntro());
@@ -119,7 +126,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
                 detailTeamSome.addView(userItem);
         }
 
-        if(entity.getUser_info_point_some_return().size() == 0){
+        if (entity.getUser_info_point_some_return().size() == 0) {
             detailTeamRank.setVisibility(View.GONE);
         }
 
@@ -143,5 +150,10 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
     @Override
     public void onClick(View v) {
 
+    }
+
+    @OnClick(R.id.toolbar_img_right)
+    public void rightClick(){
+        startActivity(TeamSettingActivity.getTeamSettingIntent(this, teamId,entity.getGroup_info().getGroup_name(),entity.getGroup_info().getIntro()));
     }
 }

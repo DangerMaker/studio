@@ -465,6 +465,21 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".aty.team.TeamSettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.team.AlterTeamNameActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.team.AlterTeamDesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>
