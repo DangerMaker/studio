@@ -36,7 +36,6 @@ public class CreateTeamActivity extends BackBaseActivity {
     EditText mCreateDes;
 
     int teamId;
-
     public static Intent getCreateTeamIntent(Context context) {
         Intent intent = new Intent(context, CreateTeamActivity.class);
         return intent;
@@ -69,7 +68,7 @@ public class CreateTeamActivity extends BackBaseActivity {
                 if (createSuc != null && createSuc.getResult() == 1) {
                     teamId = createSuc.getData().getId();
                     ScreenUtils.show_msg(CreateTeamActivity.this, "创建成功！");
-                    startActivity(CreateTeamSucActivity.getCreateSuccessIntent(CreateTeamActivity.this, teamId));
+                    startActivity(CreateTeamSucActivity.getCreateSuccessIntent(CreateTeamActivity.this,teamId));
                     finish();
                     // TODO: 2016/3/27
                 } else {
