@@ -35,6 +35,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,13 +86,13 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
 	private TextView tvExerciseTimePersonalCenter;	//用户锻炼时间
 	private TextView tvExerciseDistancePersonalCenter;//用户锻炼距离
 	
-	private TableRow UserConfigPersonalCenter;	//个人设置
-	private TableRow MyEntryFormPersonalCenter;	//我的报名
-//	private TableRow VenuesReservationPersonalCenter;//场馆预约
-	private TableRow MyClubAndAssocPersonalCenter;//我的协会/俱乐部
-	private TableRow MyGradesPersonalCenter;//我的成绩
-//	private TableRow ScoresManagerPersonalCenter;//积分管理
-//	private TableRow MyFocusPersonalCenter;		//我的关注
+	private RelativeLayout UserConfigPersonalCenter;	//个人设置
+	private RelativeLayout MyEntryFormPersonalCenter;	//我的报名
+//	private RelativeLayout VenuesReservationPersonalCenter;//场馆预约
+	private RelativeLayout MyClubAndAssocPersonalCenter;//我的协会/俱乐部
+	private RelativeLayout MyGradesPersonalCenter;//我的成绩
+//	private RelativeLayout ScoresManagerPersonalCenter;//积分管理
+//	private RelativeLayout MyFocusPersonalCenter;		//我的关注
 	
 	private AlertDialog alertDialog = null;
 	private List<Map<String,String>> alertItem = new ArrayList<Map<String,String>>();
@@ -118,13 +119,13 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
 		tvExerciseRecordPersonalCenter = (TextView) view.findViewById(R.id.tvExerciseRecordPersonalCenter);
 		
 		
-		UserConfigPersonalCenter = (TableRow) view.findViewById(R.id.UserConfigPersonalCenter);
-		MyEntryFormPersonalCenter = (TableRow) view.findViewById(R.id.MyEntryFormPersonalCenter);
-//		VenuesReservationPersonalCenter = (TableRow) view.findViewById(R.id.VenuesReservationPersonalCenter);
-		MyClubAndAssocPersonalCenter = (TableRow) view.findViewById(R.id.MyClubAndAssocPersonalCenter);
-		MyGradesPersonalCenter = (TableRow) view.findViewById(R.id.MyGradesPersonalCenter);
-//		ScoresManagerPersonalCenter = (TableRow) view.findViewById(R.id.ScoresManagerPersonalCenter);
-//		MyFocusPersonalCenter = (TableRow) view.findViewById(R.id.MyFocusPersonalCenter);
+		UserConfigPersonalCenter = (RelativeLayout) view.findViewById(R.id.UserConfigPersonalCenter);
+		MyEntryFormPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyEntryFormPersonalCenter);
+//		VenuesReservationPersonalCenter = (RelativeLayout) view.findViewById(R.id.VenuesReservationPersonalCenter);
+		MyClubAndAssocPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyClubAndAssocPersonalCenter);
+		MyGradesPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyGradesPersonalCenter);
+//		ScoresManagerPersonalCenter = (RelativeLayout) view.findViewById(R.id.ScoresManagerPersonalCenter);
+//		MyFocusPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyFocusPersonalCenter);
 		
 		//头像   用户名等初始化
 		if(Config.getCachedUserHwURL(getActivity().getApplicationContext())!=null){

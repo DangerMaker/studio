@@ -459,6 +459,7 @@ public class AtySlidingHome extends BaseActivity {
                 // textview = (TextView)
                 // actionBar.getCustomView().findViewById(R.id.tvPageTitleOfAll);
                 textview.setText("设置");
+                break;
             case Config.PAGE_TAG_TEAM:
                 // textview = (TextView)
                 // actionBar.getCustomView().findViewById(R.id.tvPageTitleOfAll);
@@ -480,8 +481,20 @@ public class AtySlidingHome extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        private GameListFragment_ gameListFragment = null;
+//        private ClubFragment clubFragment = null;
+//        private ConfigFragment configFragment = null;
+//        private MyListFragment myListFragment = null;
+//        private NewsFragment newsFragment = null;
+//        private TeamFragment teamFragment = null;
+//        private PersonalCenterFragment personalCenterFragment = null;
+//        private StartRunFragment startRunFragment = null;
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exit();
+            if(mContent.equals(startRunFragment)){
+                exit();
+            }else {
+                toggle();
+            }
             return false;
         }
         return super.onKeyDown(keyCode, event);

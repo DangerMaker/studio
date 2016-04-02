@@ -4,13 +4,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/loginback"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/firstLayoutPersonalCenter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ibUserHWPersonalCenter"
@@ -25,25 +25,26 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ibUserHWPersonalCenter"
+            android:layout_alignBottom="@+id/ibUserHWPersonalCenter"
             android:layout_alignTop="@id/ibUserHWPersonalCenter"
-            android:layout_marginLeft="20dp" >
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/ibUserHWPersonalCenter">
 
             <TextView
                 android:id="@+id/tvUserNamePersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:singleLine="true"
                 android:text="昵称"
                 android:textColor="#ffffff"
-                android:layout_marginTop="8dp"
                 android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tvUserBirthdayPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/tvUserNamePersonalCenter"
+                android:layout_alignBaseline="@+id/tvUserNamePersonalCenter"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/tvUserNamePersonalCenter"
                 android:singleLine="true"
@@ -55,28 +56,29 @@
                 android:id="@+id/tvUserAttrPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
                 android:singleLine="true"
                 android:text="舞蹈协会会员"
                 android:textColor="#ffffff"
-                android:textSize="15sp"
-                android:layout_below="@id/tvUserNamePersonalCenter"
-                android:layout_marginTop="10dp" />
-			<TextView
+                android:textSize="15sp" />
+
+            <TextView
                 android:id="@+id/tvUserPointPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:singleLine="true"
                 android:text="积分 0"
                 android:textColor="#ffffff"
-                android:textSize="15sp"
-                android:layout_below="@id/tvUserAttrPersonalCenter"
-                android:layout_marginTop="5dp" />
+                android:textSize="15sp" />
+
             <ImageView
                 android:id="@+id/ivMessageButtonPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
-                android:layout_marginTop="13dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/tvUserBirthdayPersonalCenter"
                 android:src="@drawable/no_message_icon" />
         </RelativeLayout>
@@ -149,25 +151,26 @@
             android:textSize="12sp" />
     </RelativeLayout>
 
-    <TableLayout
+    <LinearLayout
         android:id="@+id/secondLayoutPersonalCenter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/firstLayoutPersonalCenter"
         android:layout_marginTop="9dp"
-        android:background="#88ffffff" >
+        android:background="#88ffffff"
+        android:orientation="vertical">
 
-        <TableRow
+        <RelativeLayout
             android:id="@+id/UserConfigPersonalCenter"
             android:layout_width="fill_parent"
             android:layout_height="42dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:gravity="center_vertical">
 
             <ImageView
+                android:id="@+id/tvUserConfigPersonalCenter_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
                 android:src="@drawable/person_config_icon" />
 
@@ -175,29 +178,30 @@
                 android:id="@+id/tvUserConfigPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
+                android:layout_toRightOf="@+id/tvUserConfigPersonalCenter_image"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:text="个人设置"
                 android:textColor="#292121"
                 android:textSize="16sp" />
-        </TableRow>
+        </RelativeLayout>
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#88cccccc" />
 
-        <TableRow
+        <RelativeLayout
             android:id="@+id/MyEntryFormPersonalCenter"
             android:layout_width="fill_parent"
             android:layout_height="42dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:gravity="center_vertical">
 
             <ImageView
+                android:id="@+id/tvMyEntryFormPersonalCenter_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
                 android:src="@drawable/my_entry_icon" />
 
@@ -205,31 +209,31 @@
                 android:id="@+id/tvMyEntryFormPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
+                android:layout_toRightOf="@+id/tvMyEntryFormPersonalCenter_image"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:text="我的报名"
                 android:textColor="#292121"
                 android:textSize="16sp" />
-        </TableRow>
+        </RelativeLayout>
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#88cccccc" />
 
-       
 
-        <TableRow
+        <RelativeLayout
             android:id="@+id/MyClubAndAssocPersonalCenter"
             android:layout_width="fill_parent"
             android:layout_height="42dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:gravity="center_vertical">
 
             <ImageView
+                android:id="@+id/tvMyClubAndAssocPersonalCenter_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
                 android:src="@drawable/my_club_icon" />
 
@@ -238,28 +242,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
                 android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tvMyClubAndAssocPersonalCenter_image"
                 android:gravity="center_vertical"
                 android:text="我的协会/俱乐部"
                 android:textColor="#292121"
                 android:textSize="16sp" />
-        </TableRow>
+        </RelativeLayout>
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#88cccccc" />
 
-        <TableRow
+        <RelativeLayout
             android:id="@+id/MyGradesPersonalCenter"
             android:layout_width="fill_parent"
             android:layout_height="42dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:gravity="center_vertical">
 
             <ImageView
+                android:id="@+id/tvMyGradesPersonalCenter_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
                 android:src="@drawable/my_grade_icon" />
 
@@ -267,29 +272,30 @@
                 android:id="@+id/tvMyGradesPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
+                android:layout_toRightOf="@+id/tvMyGradesPersonalCenter_image"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:text="我的成绩"
                 android:textColor="#292121"
                 android:textSize="16sp" />
-        </TableRow>
+        </RelativeLayout>
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#88cccccc" />
 
-        <TableRow
+        <RelativeLayout
             android:id="@+id/ScoresManagerPersonalCenter"
             android:layout_width="fill_parent"
             android:layout_height="42dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:gravity="center_vertical">
 
             <ImageView
+                android:id="@+id/tvScoresManagerPersonalCenter_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
                 android:src="@drawable/score_manager_icon" />
 
@@ -297,15 +303,16 @@
                 android:id="@+id/tvScoresManagerPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
+                android:layout_toRightOf="@+id/tvScoresManagerPersonalCenter_image"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:text="积分管理"
                 android:textColor="#292121"
                 android:textSize="16sp" />
-        </TableRow>
+        </RelativeLayout>
 
-        
-    </TableLayout>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="fill_parent"

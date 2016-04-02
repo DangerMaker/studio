@@ -65,13 +65,6 @@ public class AtyForgetPwd extends Activity {
 		btnCertain = (Button) findViewById(R.id.btnCertain);
 		btnGetCode = (Button) findViewById(R.id.btnGetCode);
 		controlKeyboardLayout(root, btnCertain);
-		findViewById(R.id.btnBack).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				finish();
-			}
-		});
 		btnGetCode.setOnClickListener(new OnClickListener() {
 			
 			@Override

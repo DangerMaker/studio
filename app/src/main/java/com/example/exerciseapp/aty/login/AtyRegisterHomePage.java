@@ -345,13 +345,6 @@ public class AtyRegisterHomePage extends Activity {
 //				Config.KEY_PASSWORD,etPassword.getText().toString());
 			}
 		});
-		findViewById(R.id.btnBackRegisterHomePage).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				finish();
-			}
-		});
 	}
 	public interface OnTextViewClickListener{
 		public void clickTextView();

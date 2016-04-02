@@ -3,6 +3,7 @@ package com.example.exerciseapp.aty.sliding;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
@@ -50,6 +51,8 @@ public class AtyLocalSceneDetail extends BaseActivity {
     }
 
     private void getInfo() {
+        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webView.getSettings().setLoadWithOverviewMode(true);
         try {
             webView.loadUrl(jsonObj.getString("content"));
         } catch (JSONException e) {

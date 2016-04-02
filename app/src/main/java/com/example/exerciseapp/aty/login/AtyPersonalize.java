@@ -116,7 +116,7 @@ public class AtyPersonalize extends Activity {
 				}
 				if (null != bitmap)
 				{
-					upload(bitmap);
+					upload(bitmap,etHeight.getText().toString(),etWeight.getText().toString());
 				}else{
 					Toast.makeText(AtyPersonalize.this, "请选择头像", Toast.LENGTH_SHORT).show();
 					return;
@@ -135,16 +135,7 @@ public class AtyPersonalize extends Activity {
 			}
 		});
 		
-		findViewById(R.id.btnBackPersonalizePage).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				startActivity(new Intent(AtyPersonalize.this,AtyLogin.class));
-				finish();
-			}
-		});
-		
-		
+
 		
 		
 		
@@ -206,7 +197,7 @@ public class AtyPersonalize extends Activity {
 	}
 	
 	/**上传图片到服务器*/
-	private void upload(final Bitmap bitmap)
+	private void upload(final Bitmap bitmap,final String height, final String weight)
 	{
 
 		new AsyncTask<Bitmap, Void, String>()
@@ -228,19 +219,19 @@ public class AtyPersonalize extends Activity {
 					
 					@Override
 					public void onSuccess(String result) {
-						Toast.makeText(AtyPersonalize.this, result, 5).show();
+						Toast.makeText(AtyPersonalize.this, result, Toast.LENGTH_LONG).show();
 						return;
 					}
 				}, new UserGetCodeConnection.FailCallBack() {
 					
 					@Override
 					public void onFail(String result) {
-						Toast.makeText(AtyPersonalize.this, result, 5).show();
+						Toast.makeText(AtyPersonalize.this, result,Toast.LENGTH_LONG).show();
 						return;
 					}
 				}, Config.KEY_UID,Config.getCachedUserUid(getApplicationContext()),
-				Config.KEY_HEIGHT,etHeight.getText().toString(),Config.KEY_WEIGHT,
-				etWeight.getText().toString());
+				Config.KEY_HEIGHT,height,Config.KEY_WEIGHT,
+				weight);
 				HashMap<String,String> map = new HashMap<String, String>();
 				map.put(Config.KEY_UID, Config.getCachedUserUid(getApplicationContext()));
 				return HttpClientUploadManager.upload(Config.SERVER_URL+"Users/updateHeaderNew", context.getFilesDir()+"/myAvatar.png", "myAvatar", map);

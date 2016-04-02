@@ -3,16 +3,12 @@ package com.example.exerciseapp.fragment;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
-import com.example.exerciseapp.adapter.ClubAndAssocListAdapter;
 import com.example.exerciseapp.adapter.NewsListAdapter;
-import com.example.exerciseapp.aty.sliding.AtyAssocOrClubInformation;
 import com.example.exerciseapp.aty.sliding.AtyNewsDetails;
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -23,8 +19,6 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -88,7 +82,7 @@ public class NewsFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent intent = new Intent(getActivity(),AtyNewsDetails.class);
-				intent.putExtra("newsDetails", view.getTag().toString());
+				intent.putExtra("newsDetails", mNewsListItems.get(position-1).toString());
 				startActivity(intent);
 				return;
 			}
@@ -157,8 +151,8 @@ public class NewsFragment extends Fragment {
                 mRequestQueue.add(stringRequestUserInformation);
         	}else{
         	StringRequest  stringRequestUserInformation = new StringRequest(
-                    Request.Method.POST,
-                    Config.SERVER_URL+"Game/getNews",
+                    Request.Method.GET,
+                    "http://101.200.214.68/py/game?action=get_all_lives",
                     new Response.Listener<String>() {
  
                         @Override
@@ -171,6 +165,10 @@ public class NewsFragment extends Fragment {
                             		Config.cacheNewsList(getActivity().getApplicationContext(), jsonArr);
                             		jsonArr = Config.getCachedNewsList(getActivity().getApplicationContext());
                             		mNewsListItems.clear();
+                                    if(0==jsonArr.length()){
+                                        Toast.makeText(NewsFragment.this.getContext(),"没有资讯",Toast.LENGTH_LONG).show();
+                                        return;
+                                    }
                             		for(int i =0;i<jsonArr.length();i++){
                             			mNewsListItems.addFirst(jsonArr.getJSONObject(i));
                             		}

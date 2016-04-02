@@ -32,24 +32,18 @@ import com.squareup.picasso.Picasso;
         public View getView(int position, View convertView, ViewGroup parent) {  
             LayoutInflater inflater = context.getLayoutInflater();  
             View itemView = inflater.inflate(R.layout.news_list_item, null);  
-            TextView tvNewsTitle = (TextView) itemView.findViewById(R.id.tvNewsTitle);
+            TextView tvNewsTitle = (TextView) itemView.findViewById(R.id.ivNewsTitle);
             ImageView ivNewsPic = (ImageView) itemView.findViewById(R.id.ivNewsPic);
-            TextView tvAssocName = (TextView) itemView.findViewById(R.id.tvAssocName);
-            TextView tvDateNews = (TextView) itemView.findViewById(R.id.tvDateNews);
-            
+            TextView tvDateTime = (TextView) itemView.findViewById(R.id.ivNewsTime);
             try {
 				tvNewsTitle.setText(list.get(position).getString(Config.KEY_TITLE));
-				tvAssocName.setText(list.get(position).getString(Config.KEY_ANAME));
-				tvDateNews.setText(list.get(position).getString(Config.KEY_DATE));
+				tvDateTime.setText(list.get(position).getString("time").substring(0, list.get(position).getString("time").length() - 5));
 				Picasso.with(context).load(list.get(position).getString(Config.KEY_PIC)).into(ivNewsPic);
 				itemView.setTag(list.get(position));
             } catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            
-            
-            return itemView;  
+            return itemView;
         }  
       
         @Override  

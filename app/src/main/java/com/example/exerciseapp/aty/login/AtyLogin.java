@@ -66,13 +66,6 @@ public class AtyLogin extends Activity {
 		btnLoginNow = (Button) findViewById(R.id.btnLoginNow);
 		btnForgetPwd = (Button) findViewById(R.id.btnForgetPassword);
 		controlKeyboardLayout(root, btnLoginNow);
-		findViewById(R.id.btnBackLoginPage).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				finish();
-			}
-		});
 		//找回密码
 		btnForgetPwd.setOnClickListener(new OnClickListener() {
 			
