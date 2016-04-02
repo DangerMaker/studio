@@ -422,7 +422,7 @@
             android:name=".aty.sliding.AtyGradeDetail"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            android:theme="@style/AppTheme" >
         </activity>
         <activity
             android:name=".aty.login.AtyUserLawItem"
@@ -458,6 +458,10 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".aty.team.TeamDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".aty.sliding.AtyLocalSceneDetail"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 

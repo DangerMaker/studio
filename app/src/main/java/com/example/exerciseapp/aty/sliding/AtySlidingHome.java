@@ -38,6 +38,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -98,7 +99,7 @@ public class AtySlidingHome extends BaseActivity {
     protected SlidingMenu slidingMenu;
     private FragmentManager fragmentManager;
 
-    private TextView uNickname, uBirthday;
+    private TextView uNickname;
     private ImageView uIcon;
 
     @SuppressLint("NewApi")
@@ -124,7 +125,6 @@ public class AtySlidingHome extends BaseActivity {
         }
         if (Config.TOURIST_MODE) {
             uNickname.setText("游客");
-            uBirthday.setText("");
         } else {
             getUserInfo();
         }
@@ -151,7 +151,6 @@ public class AtySlidingHome extends BaseActivity {
                                 Config.cacheUserHwURL(getApplicationContext(),
                                         json.getJSONObject("data").getString(Config.KEY_AVATAR));
                                 uNickname.setText(json.getJSONObject("data").getString(Config.KEY_USER_NAME));
-                                uBirthday.setText(json.getJSONObject("data").getString(Config.KEY_USER_BIRTHDAY));
                                 if (!Config.STATUS_SUBMIT_USER_HW) {
                                     Picasso.with(AtySlidingHome.this).load(json.getJSONObject("data").getString(Config.KEY_AVATAR)).into(uIcon);
                                 }
@@ -243,8 +242,23 @@ public class AtySlidingHome extends BaseActivity {
         item_group.setOnClickListener(menuItemListener);
 
         uNickname = (TextView) findViewById(R.id.tvUserName_UserInformationHome);
-        uBirthday = (TextView) findViewById(R.id.tvUserBirthday);
         uIcon = (ImageView) findViewById(R.id.ivUserIcon);
+    }
+
+    @OnClick(R.id.UserInformation_list)
+    public void turnToPersonalCenter(){
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        hideFragments(transaction);
+        if (null == personalCenterFragment) {
+            personalCenterFragment = new PersonalCenterFragment();
+            transaction.add(R.id.content_frame, personalCenterFragment);
+        } else {
+            transaction.show(personalCenterFragment);
+        }
+        initActionBar(Config.PAGE_TAG_PERSONAL_CENTER);
+        mContent = personalCenterFragment;
+        transaction.commit();
+        toggle();
     }
 
     private OnClickListener menuItemListener = new OnClickListener() {

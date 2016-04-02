@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayoutowLayout
+        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayout
             android:id="@+id/flow_layout0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
             flowlayout:horizontal_spacing="10dp"
             flowlayout:vertical_spacing="10dp" />
 
-        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayoutowLayout
+        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayout
             android:id="@+id/flow_layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             flowlayout:horizontal_spacing="10dp"
             flowlayout:vertical_spacing="10dp" />
 
-        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayoutowLayout
+        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayout
             android:id="@+id/flow_layout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             flowlayout:horizontal_spacing="10dp"
             flowlayout:vertical_spacing="10dp" />
 
-        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayoutowLayout
+        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayout
             android:id="@+id/flow_layout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
             flowlayout:horizontal_spacing="10dp"
             flowlayout:vertical_spacing="10dp" />
 
-        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayoutowLayout
+        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayout
             android:id="@+id/flow_layout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

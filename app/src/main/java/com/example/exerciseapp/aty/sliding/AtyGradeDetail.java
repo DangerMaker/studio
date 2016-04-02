@@ -1,91 +1,55 @@
 package com.example.exerciseapp.aty.sliding;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebView;
 import android.widget.TextView;
-import android.widget.RelativeLayout.LayoutParams;
-
-import com.example.exerciseapp.Config;
+import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.R;
+import butterknife.Bind;
 
-public class AtyGradeDetail extends Activity{
+public class AtyGradeDetail extends BaseActivity {
+    private String url;
+    @Bind(R.id.wvGradeDetail)
+    WebView webView;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.toolbar_text)
+    TextView toolBarTitle;
 
-	private WebView webView;
-	
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.aty_grade_detail);
-//		initActionBar();
-		setTitleBar(this);
-		webView = (WebView) findViewById(R.id.wvGradeDetail);
-		webView.getSettings().setSupportZoom(true); 
-		// 设置出现缩放工具 
-		webView.getSettings().setBuiltInZoomControls(true);
-		webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
-		webView.getSettings().setLoadWithOverviewMode(true);
-		TextView text = (TextView) findViewById(R.id.tvTitle);
-		if(getIntent().getStringExtra("agreement")!=null){
-			if(!getIntent().getStringExtra("agreement").equals("")){
-				text.setText("赛事规程");
-        		webView.loadUrl(getIntent().getStringExtra("agreement"));
-			}
-        }else{
-        	text.setText("成绩详情");
-        	webView.loadUrl(getIntent().getStringExtra("url"));
-        }
-	}
-//	private void initActionBar(){
-//		ActionBar actionBar = getActionBar();  
-//        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-//        LayoutInflater inflater = getLayoutInflater();
-//        View view = inflater.inflate(R.layout.actionbar_start_running, null);
-//        TextView text = (TextView) view.findViewById(R.id.tvPageTitleOfAll);
-//        if(getIntent().getStringExtra("agreement")!=null||!getIntent().getStringExtra("agreement").equals("")){
-//        	text.setText("赛事规程");
-//        	webView.loadUrl(getIntent().getStringExtra("agreement"));
-//        }else{
-//        	text.setText("成绩详情");
-//        	webView.loadUrl(getIntent().getStringExtra("url"));
-//        }
-//        view.findViewById(R.id.ivBackBtnStartRunning).setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				finish();
-//			}
-//		});
-//        actionBar.setCustomView(view);
-//	}
-	
-	@SuppressLint("InlinedApi") public static void setTitleBar(final Activity activity){
-		activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);  
-        //透明导航栏  
-//		activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION); 
-		activity.findViewById(R.id.ivBackBtn).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				activity.finish();
-			}
-		});
-        
-        int currentapiVersion=android.os.Build.VERSION.SDK_INT;
-        if(currentapiVersion<20){
-        	activity.findViewById(R.id.titlebar).setBackgroundResource(R.drawable.actionbarbg);
-        	activity.findViewById(R.id.titlebar).setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-        }else{
-        	activity.findViewById(R.id.titlebar).getLayoutParams().height = Config.getDimensionMiss(activity.getApplicationContext())+80;
-        }
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.aty_grade_detail);
+        setTitleBar();
+        getInfo();
+    }
+
+    private void getInfo(){
+        url = getIntent().getStringExtra("url");
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.loadUrl(getIntent().getStringExtra("url"));
+    }
+
+    public void setTitleBar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolBarTitle = (TextView) findViewById(R.id.toolbar_text);
+        toolbar.setPadding(0, getDimensionMiss(), 0, 0);
+        toolbar.setTitle("");
+        toolBarTitle.setText("成绩播报");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.backbtn);
+        toolbar.setNavigationOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AtyGradeDetail.this.finish();
+            }
+        });
+    }
 }

@@ -93,6 +93,7 @@ public class Config {
 	
 	
 	public static final String KEY_GAME_ID = "gid";				//赛事id
+	public static final String KEY_GAME_H5_URL = "gintro";				//赛事id
 	public static final String KEY_GAME_LIST = "gameList";		//赛事列表
 	public static final String KEY_GAME_NAME = "gname";			//赛事名称
 	public static final String KEY_GAME_TYPE = "gtype";			//赛事类型（如跑步）
@@ -104,9 +105,12 @@ public class Config {
 	public static final String KEY_GAME_START_TIME = "gstarttime";//赛事开始时间
 	public static final String KEY_GAME_END_TIME = "gendtime";	//赛事结束时间
 	public static final String KEY_GAME_ACCEPT_START = "gacceptstart";//赛事接受报名时间
+	public static final String KEY_GAME_ACCEPT_START_NEW = "gacceptstartdate";//赛事接受报名时间 new
 	public static final String KEY_GAME_ACCEPT_END = "gacceptend";//赛事截止报名时间
+	public static final String KEY_GAME_ACCEPT_END_NEW = "gacceptenddate";//赛事截止报名时间 new
 	public static final String KEY_GAME_OUT_TIME = "gouttime";	//赛事发布时间
 	public static final String KEY_GAME_MAX_ATTEND = "gmaxattend";//赛事最大报名人数
+	public static final String KEY_GAME_ATTEND = "gattend";//赛事报名人数
 	public static final String KEY_GAME_BIREF_INTRO = "gbriefintro";//赛事简介（文字）
 	public static final String KEY_GAME_INTRO = "gintro";		//赛事简介（图片url )
 	public static final String KEY_GAME_FRONT_PAGE = "gfrontpage";//赛事封面图（为图片url）

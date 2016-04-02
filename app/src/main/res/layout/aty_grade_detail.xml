@@ -1,48 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/grade_detail_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-   >
-   <LinearLayout 
-    android:id="@+id/titlebar"
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:orientation="horizontal" 
-    android:background="@drawable/title_bar_bg"
-    android:gravity="bottom"
-    >
-    <ImageView android:id="@+id/ivBackBtn"
-        android:layout_width="60dp"
-        android:layout_height="20dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/backbtn"
-        android:layout_marginBottom="10dp"
-        />
-    <TextView 
-        android:id="@+id/tvTitle"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="成绩详情"
-        android:textSize="20sp"
-        android:layout_marginBottom="4dp"
-        android:textColor="#ffffff"
-        />
-    <ImageView android:id="@+id/ivMessageBtn"
-        android:layout_width="60dp"
-        android:layout_height="20dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/messagebtn"
-        android:layout_marginBottom="10dp"
-        android:visibility="invisible"
-        />
+    android:orientation="vertical">
 
-</LinearLayout>
-    <WebView android:id="@+id/wvGradeDetail"
+    <include layout="@layout/main_toolbar" />
+
+    <WebView
+        android:id="@+id/wvGradeDetail"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/titlebar"
-        />
-</RelativeLayout>
+        android:layout_below="@id/titlebar" />
+</LinearLayout>
