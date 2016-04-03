@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:flowlayout="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
@@ -12,60 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayout
-            android:id="@+id/flow_layout0"
+        <GridView
+            android:id="@+id/user_prefered_gridView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            flowlayout:horizontal_spacing="10dp"
-            flowlayout:vertical_spacing="10dp" />
-
-        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayout
-            android:id="@+id/flow_layout1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/flow_layout0"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            flowlayout:horizontal_spacing="10dp"
-            flowlayout:vertical_spacing="10dp" />
-
-        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayout
-            android:id="@+id/flow_layout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/flow_layout1"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            flowlayout:horizontal_spacing="10dp"
-            flowlayout:vertical_spacing="10dp" />
-
-        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayout
-            android:id="@+id/flow_layout3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/flow_layout2"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            flowlayout:horizontal_spacing="10dp"
-            flowlayout:vertical_spacing="10dp" />
-
-        <com.example.exerciseapp.view.liangfeizc.flowlayout.FlowLayout
-            android:id="@+id/flow_layout4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/flow_layout3"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            flowlayout:horizontal_spacing="10dp"
-            flowlayout:vertical_spacing="10dp" />
+            android:columnWidth="90dp"
+            android:numColumns="5"
+            android:verticalSpacing="24dp"
+            android:horizontalSpacing="10dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            />
 
         <LinearLayout
             android:id="@+id/ly"

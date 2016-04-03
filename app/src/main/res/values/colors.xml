@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="divider">#209bbc</color>
-    
+
+    <color name="shape_oval">#F0EBC6</color>
     <color name="lightpink">#FFB6C1</color>
     <color name="textdark">#818181</color>
     <color name="texttag">#575757</color>
