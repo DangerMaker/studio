@@ -173,7 +173,7 @@ public class ClubFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent intent = new Intent(getActivity(),AtyAssocOrClubInformation.class);
-				intent.putExtra(Config.KEY_AID, view.getTag().toString());
+				intent.putExtra(Config.KEY_ASSOC_INFO, view.getTag().toString());
 				startActivity(intent);
 				return;
 			}

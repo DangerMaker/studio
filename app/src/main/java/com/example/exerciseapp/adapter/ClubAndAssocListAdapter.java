@@ -59,8 +59,8 @@ public class ClubAndAssocListAdapter extends BaseAdapter {
 			tvClubTitleClubList.setText(list.get(position).getString(Config.KEY_ANAME));
 			Picasso.with(context).load(list.get(position).getString(Config.KEY_FRONT_PAGE)).into(imageClubList);
 			tvPersonNum.setText(list.get(position).getString(Config.KEY_MEMBER_NUM));
-			tvClubBriefIntroClubList.setText(list.get(position).getString(Config.KEY_AINTRO));
-			itemView.setTag(list.get(position).getString(Config.KEY_AID));
+			tvClubBriefIntroClubList.setText(list.get(position).getString(Config.KEY_OPENTYPE));
+			itemView.setTag(list.get(position).toString());
         } catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

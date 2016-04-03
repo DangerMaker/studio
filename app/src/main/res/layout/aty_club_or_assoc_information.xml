@@ -1,53 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/club_or_assoc_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/club_or_assoc_content"
-    android:background="#ffffff" >
+    android:background="#ffffff">
 
     <LinearLayout
-        android:id="@+id/club_or_assoc_toolbar"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
         <include layout="@layout/main_toolbar_withpopwin" />
 
-        <ImageView
-            android:id="@+id/ivFrontPageClubOrAssocInformation"
+        <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/loginback" />
+            android:layout_height="fill_parent"
+            android:scrollbars="none">
+
+            <WebView
+                android:id="@+id/assoc_info_ht5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvClubOrAssocName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/club_or_assoc_toolbar"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="协会名字"
-        android:textColor="#000000"
-        android:textSize="20dp" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/tvClubOrAssocName"
-        android:layout_marginTop="10dp"
-        android:background="@color/BackgroudLightGrey" />
-
-    <TextView
-        android:id="@+id/tvClubOrAssocIntro"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view"
-        android:layout_marginTop="10dp"
-        android:text="介紹：..." />
 
     <Button
         android:id="@+id/btnApplyToEntry"

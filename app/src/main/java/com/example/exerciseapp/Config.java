@@ -171,6 +171,7 @@ public class Config {
 	public static final String KEY_AID = "aid";				//俱乐部ID
 	public static final String KEY_ID = "id";				//编号ID
 	public static final String KEY_APAY_FEE = "apayfee";	//加入协会的费用
+	public static final String KEY_ASSOC_INFO = "info";
 	
 	//******************项目，级别，费用点击Flag*******************************
 	public static final int FLAG_GAME_PROJECT_DEFAULT = 0;
@@ -216,6 +217,7 @@ public class Config {
 	private static final String KEY_AVATAR_BITMAP = "bitmap";
 	public static final String KEY_MEMBER_NUM = "member_num";
 	public static final String KEY_AINTRO = "aintro";
+	public static final String KEY_OPENTYPE = "opentype";
 	private static final String KEY_ASSOC_LIST = "assoclist";
 	private static final String KEY_NEWS_LIST = "newslist";
 	
