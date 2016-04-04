@@ -290,7 +290,7 @@ public class Config {
 		if(mCache.getAsString(KEY_TEL) != null){
 			mCache.remove(KEY_TEL);
 		}
-		mCache.put(KEY_TEL, tel, CACHE_TIME);
+		mCache.put(KEY_TEL, tel);
 	}
 
 	public static String getCachedUserTel(Context context){
