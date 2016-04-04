@@ -38,6 +38,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.exerciseapp.BaseActivity;
+import com.example.exerciseapp.aty.login.AtyUserLawItem;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -52,10 +53,6 @@ import com.example.exerciseapp.listener.TextClickSpan;
 import com.umeng.message.PushAgent;
 
 import butterknife.Bind;
-/**
- * 协会报名表
- */
-
 /**
  * 协会报名表
  */
@@ -85,6 +82,7 @@ public class AtyAssocEntryForm extends BaseActivity {
     private AlertDialog alertDialogNoCompleteInformation = null;
 
     private String aId = new String();
+    private JSONObject info;
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -94,21 +92,12 @@ public class AtyAssocEntryForm extends BaseActivity {
     private void initView() {
         tvGameNameAssocEntryForm = (TextView) findViewById(R.id.tvGameNameAssocEntryForm);
         tvPayFeeAssocEntryForm = (TextView) findViewById(R.id.tvPayFeeAssocEntryForm);
-//		tvGameNameAssocEntryForm.setText(getIntent().getStringExtra(Config.KEY_ANAME));
-        if (Config.getCachedAssocList(getApplicationContext()) != null) {
-            JSONObject json;
-            for (int i = 0; i < Config.getCachedAssocList(getApplicationContext()).length(); i++) {
-                try {
-                    if (Config.getCachedAssocList(getApplicationContext()).getJSONObject(i).getString(Config.KEY_AID).equals(aId)) {
-                        json = Config.getCachedAssocList(getApplicationContext()).getJSONObject(i);
-                        tvGameNameAssocEntryForm.setText(json.getString(Config.KEY_ANAME));
-                        tvPayFeeAssocEntryForm.setText(json.getString(Config.KEY_APAY_FEE));
-                    }
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
+        try {
+            info = new JSONObject(getIntent().getStringExtra(Config.KEY_ASSOC_INFO));
+            tvGameNameAssocEntryForm.setText(info.getString(Config.KEY_ANAME));
+            tvPayFeeAssocEntryForm.setText(info.getString(Config.KEY_APAY_FEE));
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
         etApplyUserNameAssocEntryForm = (EditText) findViewById(R.id.etApplyUserNameAssocEntryForm);
         tvSexAssocEntryForm = (TextView) findViewById(R.id.tvSexAssocEntryForm);
@@ -152,7 +141,7 @@ public class AtyAssocEntryForm extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AtyAssocEntryForm.this, AtyGradeDetail.class);
+                Intent intent = new Intent(AtyAssocEntryForm.this, AtyUserLawItem.class);
                 intent.putExtra("agreement", agreement);
                 startActivity(intent);
 

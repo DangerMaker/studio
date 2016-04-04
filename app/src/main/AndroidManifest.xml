@@ -298,7 +298,7 @@
             android:name=".aty.sliding.AtyEntryForm"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            android:theme="@style/AppTheme" >
         </activity>
         <activity
             android:name=".aty.sliding.AtyAboutUs"

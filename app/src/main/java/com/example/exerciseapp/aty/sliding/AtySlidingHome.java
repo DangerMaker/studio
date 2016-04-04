@@ -448,7 +448,7 @@ public class AtySlidingHome extends BaseActivity {
             case Config.PAGE_TAG_CLUB:
                 // textview = (TextView)
                 // actionBar.getCustomView().findViewById(R.id.tvPageTitleOfAll);
-                textview.setText("协会俱乐部");
+                textview.setText("组织机构");
                 break;
             case Config.PAGE_TAG_NEWS:
                 // textview = (TextView)

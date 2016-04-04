@@ -142,6 +142,7 @@ public class AtyGameInformation extends BaseActivity {
                                     progressDialog.dismiss();
                                     Intent intent = new Intent(AtyGameInformation.this, AtyEntryForm.class);
                                     intent.putExtra(Config.KEY_GAME_ID, gameId);
+                                    intent.putExtra(Config.KEY_GAME_NAME, gameName);
                                     intent.putExtra("entryInfor", jsonObject.getJSONObject("data").toString());
                                     startActivity(intent);
                                 } else {
