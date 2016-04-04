@@ -4,14 +4,19 @@ import com.example.exerciseapp.model.AllGroup;
 import com.example.exerciseapp.model.CreateSuc;
 import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.model.GroupDetail;
+import com.example.exerciseapp.model.GroupList;
+import com.example.exerciseapp.model.SingleGroup;
 
 import retrofit.Callback;
 import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
+import retrofit.http.Multipart;
 import retrofit.http.POST;
+import retrofit.http.Part;
 import retrofit.http.Query;
+import retrofit.mime.TypedFile;
 
 /**
  * Created by lyjq on 2016/3/24.
@@ -28,24 +33,9 @@ public interface TeamService {
                     Callback<CreateSuc> callback);
 
     /**
-     * @param id            团队id
-     * @param new_groupname 新的团队名称
-     * @param param         要更改的参数为团队名称
-     * @param change_param
-     * @param callback
-     */
-
-    @FormUrlEncoded
-    @POST("/py/group")
-    void alterTeamName(@Field("id") String id,
-                       @Field("new_groupname") String new_groupname,
-                       @Field("param") String param,
-                       @Field("action") String change_param,
-                       Callback<ErrorMsg> callback);
-
-    /**
-     * @param id             团队id
-     * @param tel_str        多个手机号码中间用逗号连接
+     *
+     * @param id
+     * @param tel
      * @param invite_friends
      * @param callback
      */
@@ -53,7 +43,7 @@ public interface TeamService {
     @FormUrlEncoded
     @POST("/py/invite")
     void inviteFriends(@Field("id") String id,
-                       @Field("tel_str") String tel_str,
+                       @Field("tel") String tel,
                        @Field("action") String invite_friends,
                        Callback<ErrorMsg> callback);
 
@@ -94,7 +84,15 @@ public interface TeamService {
     void postApply(@Field("id") String id,
                    @Field("excuse") String excuse,
                    @Field("uid") String uid,
+                   @Field("action") String post_apply,
                    Callback<ErrorMsg> callback);
+
+    /**
+     * 自己的group
+     * @param id
+     * @param get_all_group
+     * @param callback
+     */
 
     @GET("/py/group")
     void getAllGroup(@Query("uid") String id,
@@ -114,6 +112,47 @@ public interface TeamService {
                         @Field("param") String param,
                         @Field("action") String change_param,
                         Callback<ErrorMsg> callback);
+
+    @FormUrlEncoded
+    @POST("/py/group")
+    void changeTeamDes(@Field("id") String id,
+                        @Field("new_group_intro") String new_group_intro,
+                        @Field("param") String param,
+                        @Field("action") String change_param,
+                        Callback<ErrorMsg> callback);
+
+    @Multipart
+    @POST("/index.php/Api/Users/updateHeaderNew")
+    void uploadAvatar(@Part("avatar") TypedFile avatar, @Part("uid") String uid, Callback<ErrorMsg> callback);
+
+
+    @GET("/py/group")
+    void showAllMembers(@Query("id") String id,
+                       @Query("action") String show_all_members,
+                       Callback<GroupDetail> callback);
+
+    @GET("/py/group")
+    void breakGroup(@Query("id") int id,
+                        @Query("uid") String uid,
+                        @Query("action") String break_group,
+                        Callback<ErrorMsg> callback);
+
+    /**
+     * 全部
+     * @param callback
+     */
+    @GET("/py/group?action=get_group_list")
+    void getGroupList(Callback<GroupList> callback);
+
+    @GET("/py/apply")
+    void passApply(@Query("id") String id,
+                   @Query("action") String pass_apply,
+                   Callback<ErrorMsg> callback);
+
+    @GET("/py/apply")
+    void refuseApply(@Query("id") String id,
+                   @Query("action") String refuse_apply,
+                   Callback<ErrorMsg> callback);
 
 
 }

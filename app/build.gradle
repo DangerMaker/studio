@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 22
     buildToolsVersion '22.0.1'
 
-    useLibrary 'org.apache.http.legacy'
+//    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.example.exerciseapp"
         minSdkVersion 15
@@ -30,9 +30,9 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile 'com.android.support:gridlayout-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
+    compile 'com.android.support:gridlayout-v7:22.2.1'
     compile files('libs/alipaySdk-20151103.jar')
     compile files('libs/AMap_2DMap_v2.6.0_20150916.jar')
     compile files('libs/AMap_Android_3DMapSDK_V3.1.0_20151124.jar')
@@ -48,4 +48,6 @@ dependencies {
     compile 'com.orhanobut:logger:1.10'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp:2.7.5'
+    compile 'com.facebook.fresco:fresco:0.7.0'
+    compile 'com.facebook.fresco:imagepipeline-okhttp:0.7.0'
 }

@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import com.example.exerciseapp.aty.team.CreateMyTeamActivity;
 import com.example.exerciseapp.aty.team.CreateTeamActivity;
+import com.example.exerciseapp.fragment.AllTeamFragment;
 import com.example.exerciseapp.fragment.TeamFragment;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
@@ -86,7 +87,7 @@ public class AtySlidingHome extends BaseActivity {
     private ConfigFragment configFragment = null;
     private MyListFragment myListFragment = null;
     private NewsFragment newsFragment = null;
-    private TeamFragment teamFragment = null;
+    private AllTeamFragment teamFragment = null;
     private PersonalCenterFragment personalCenterFragment = null;
     private StartRunFragment startRunFragment = null;
     public static Activity instance;
@@ -289,7 +290,7 @@ public class AtySlidingHome extends BaseActivity {
                     break;
                 case R.id.menu_sportgroup:
                     if (null == teamFragment) {
-                        teamFragment = TeamFragment.newInstance();
+                        teamFragment = AllTeamFragment.newInstance();
                         transaction.add(R.id.content_frame, teamFragment);
                     } else {
                         transaction.show(teamFragment);

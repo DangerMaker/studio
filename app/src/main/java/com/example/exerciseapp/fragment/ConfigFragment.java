@@ -176,7 +176,7 @@ public class ConfigFragment extends Fragment{
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent();
-				intent.setClass(ConfigFragment.this.getContext(), AtyChangePassw.class);
+				intent.setClass(getActivity(), AtyChangePassw.class);
 				startActivity(intent);
 			}
 		});

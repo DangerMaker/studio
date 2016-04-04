@@ -166,7 +166,7 @@ public class NewsFragment extends Fragment {
                             		jsonArr = Config.getCachedNewsList(getActivity().getApplicationContext());
                             		mNewsListItems.clear();
                                     if(0==jsonArr.length()){
-                                        Toast.makeText(NewsFragment.this.getContext(),"没有资讯",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(),"没有资讯",Toast.LENGTH_LONG).show();
                                         return;
                                     }
                             		for(int i =0;i<jsonArr.length();i++){

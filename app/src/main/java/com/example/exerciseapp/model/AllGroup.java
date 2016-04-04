@@ -28,6 +28,24 @@ public class AllGroup extends ErrorMsg {
         private int group_num;
         private List<SingleGroup> leader_group_info_return;
         private List<SingleGroup> group_info_return;
+        private List<SingleGroup> invite_list_return;
+        private List<SingleGroup> apply_list_return;
+
+        public List<SingleGroup> getApply_list_return() {
+            return apply_list_return;
+        }
+
+        public void setApply_list_return(List<SingleGroup> apply_list_return) {
+            this.apply_list_return = apply_list_return;
+        }
+
+        public List<SingleGroup> getInvite_list_return() {
+            return invite_list_return;
+        }
+
+        public void setInvite_list_return(List<SingleGroup> invite_list_return) {
+            this.invite_list_return = invite_list_return;
+        }
 
         public int getGroup_num() {
             return group_num;

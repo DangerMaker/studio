@@ -47,4 +47,5 @@
     <color name="spots_dialog_color">@android:color/holo_blue_dark</color>
 
     <color name="light_green">#f8feff</color>
+    <color name="green">#61d3af</color>
 </resources>

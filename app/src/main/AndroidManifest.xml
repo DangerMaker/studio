@@ -480,6 +480,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
+        <activity android:name=".aty.team.CheckMembersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity android:name=".aty.team.AddMemberActivity"
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme" />
+
+        <activity android:name=".aty.team.MyTeamActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>

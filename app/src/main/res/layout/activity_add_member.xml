@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/White"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_toolbar" />
+
+    <TextView
+        style="@style/CreateTeamText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:text="添加成员" />
+
+    <EditText
+        android:id="@+id/team_add_member"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="@color/Black"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        />
+
+    <TextView
+        android:id="@+id/team_add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/White"
+        android:background="@drawable/shape_btn_blue_radius_5dip"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center|left"
+        android:text="继续添加 >" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <Button
+        android:id="@+id/add_member_submit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/shape_btn_blue_radius_5dip"
+        android:gravity="center"
+        android:text="提交信息"
+        android:textColor="@color/BtnTextColorWhite"
+        android:textSize="18sp" />
+
+</LinearLayout>

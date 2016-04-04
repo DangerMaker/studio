@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_root"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:padding="10dp"
+    >
+    <ImageView
+        android:id="@+id/item_member_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_launcher"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/item_member_name"
+        android:layout_toRightOf="@id/item_member_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textColor="@color/Black"
+        android:text="名字"
+        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/item_member_tag"
+        android:layout_toRightOf="@id/item_member_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/White"
+        android:text="健身"
+        android:textSize="12sp"
+        android:layout_marginLeft="10dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:background="@color/divider"
+        android:layout_centerVertical="true"
+        />
+</RelativeLayout>

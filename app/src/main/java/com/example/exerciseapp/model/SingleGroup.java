@@ -21,11 +21,56 @@ public class SingleGroup {
     private String createtime;
     private int tag_id;
     private String group_name;
+    private String sumrun;
     private String tag_name;
     private String intro;
     private String avatar;
     private int membernum;
     private int id;
+    private String type = "";
+    private String invite_id;
+    private String applytime;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getApplytime() {
+        return applytime;
+    }
+
+    public void setApplytime(String applytime) {
+        this.applytime = applytime;
+    }
+
+    public String getInvite_id() {
+        return invite_id;
+    }
+
+    public void setInvite_id(String invite_id) {
+        this.invite_id = invite_id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getSumrun() {
+        return sumrun;
+    }
+
+    public void setSumrun(String sumrun) {
+        this.sumrun = sumrun;
+    }
 
     public void setLeader_id(int leader_id) {
         this.leader_id = leader_id;

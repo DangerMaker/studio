@@ -41,7 +41,7 @@
         android:id="@+id/toolbar_img_right"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:src="@drawable/ic_launcher"
+        android:src="@drawable/config_icon"
         android:layout_gravity="right"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"

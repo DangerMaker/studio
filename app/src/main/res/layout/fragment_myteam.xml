@@ -6,12 +6,7 @@
     tools:context=".MainActivity"
     android:background="#ffffff">
 
-    <include layout="@layout/search_layout"
-        android:id="@+id/team_search"
-        />
-
     <com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshListView
-        android:layout_below="@id/team_search"
         android:id="@+id/pull_to_refresh_team"
         android:layout_height="match_parent"
         android:layout_width="match_parent"

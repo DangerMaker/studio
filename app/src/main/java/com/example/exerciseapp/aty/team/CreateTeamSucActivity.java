@@ -3,10 +3,12 @@ package com.example.exerciseapp.aty.team;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.utils.ScreenUtils;
 
+import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
@@ -14,6 +16,8 @@ import butterknife.OnClick;
  */
 public class CreateTeamSucActivity extends BackBaseActivity{
 
+    @Bind(R.id.success_add_member)
+    TextView addMember;
     int teamId;
     public static Intent getCreateSuccessIntent(Context context,int teamId) {
         Intent intent = new Intent(context, CreateTeamSucActivity.class);
@@ -35,7 +39,12 @@ public class CreateTeamSucActivity extends BackBaseActivity{
 
     @OnClick(R.id.success_team_submit)
     public void enter(){
-        startActivity(TeamDetailActivity.getTeamDetailIntent(this,teamId));
+        startActivity(TeamDetailActivity.getTeamDetailIntent(this,teamId,"leader_group_info_return",null));
         finish();
+    }
+
+    @OnClick(R.id.success_add_member)
+    public void add(){
+        startActivity(AddMemberActivity.getAddMemberIntent(this,teamId));
     }
 }

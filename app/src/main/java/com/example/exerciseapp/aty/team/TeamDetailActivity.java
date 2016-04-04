@@ -2,19 +2,28 @@ package com.example.exerciseapp.aty.team;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.login.AtyLogin;
+import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.model.GroupDetail;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,9 +38,10 @@ import retrofit.client.Response;
 public class TeamDetailActivity extends BackBaseActivity implements View.OnClickListener {
 
     int teamId;
+    String type;
     GroupDetail.DataEntity entity;
     @Bind(R.id.detail_team_icon)
-    ImageView detailTeamIcon;
+    SimpleDraweeView detailTeamIcon;
     @Bind(R.id.detail_team_name)
     TextView detailTeamName;
     @Bind(R.id.detail_team_num)
@@ -46,34 +56,66 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
     GridLayout detailTeamSome;
     @Bind(R.id.detail_team_rank)
     GridLayout detailTeamRank;
-
+//
+//    @Bind(R.id.toolbar_text_right)
+//    TextView add;
     @Bind(R.id.toolbar_img_right)
     ImageView setting;
+
+    @Bind(R.id.view_parent)
+    LinearLayout view_parent;
 
     LayoutInflater inflater;
 
     int screenWidth;
+    String invite_id;
 
-    public static Intent getTeamDetailIntent(Context context, int teamId) {
+    public static Intent getTeamDetailIntent(Context context, int teamId, String type,String invite_id) {
         Intent intent = new Intent(context, TeamDetailActivity.class);
-        return intent.putExtra("teamId", teamId);
+        intent.putExtra("teamId", teamId);
+        intent.putExtra("type", type);
+        intent.putExtra("invite_id",invite_id);
+        return intent;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myteam);
-        ButterKnife.bind(this);
         setTitleBar("我的团队");
-        setting.setVisibility(View.VISIBLE);
+
         inflater = LayoutInflater.from(this);
         screenWidth = ScreenUtils.getScreenWidth(this);
         widthUnit = screenWidth / 3;
         teamId = getIntent().getIntExtra("teamId", -1);
+        type = getIntent().getStringExtra("type");
         if (teamId == -1) {
             ScreenUtils.show_msg(this, "创建失败");
             finish();
             return;
+        }
+
+        if (type.equals("leader_group_info_return")) {
+            setting.setVisibility(View.VISIBLE);
+        } else if (type.equals("invite_list_return")) {
+            setting.setVisibility(View.GONE);
+            invite_id = getIntent().getStringExtra("invite_id");
+            setting.post(new Runnable() {
+                @Override
+                public void run() {
+                    showAgreeWindow();
+                }
+            });
+        } else if(type.equals("group_info_normal")){
+            setting.setVisibility(View.GONE);
+            setting.post(new Runnable() {
+                @Override
+                public void run() {
+                    showApplyWindow();
+                }
+            });
+        } else {
+            setting.setVisibility(View.GONE);
         }
 
         if (!isUidAvailable()) {
@@ -104,6 +146,8 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
 
     private void setDataToDetail(GroupDetail.DataEntity entity) {
         this.entity = entity;
+
+        detailTeamIcon.setImageURI(Uri.parse(entity.getGroup_info().getAvatar()));
         detailTeamName.setText(entity.getGroup_info().getGroup_name());
         detailTeamNum.setText("团队人数：" + entity.getGroup_info().getMembernum());
         detailTeamDes.setText(entity.getGroup_info().getIntro());
@@ -115,11 +159,12 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
         for (int i = 0; i < entity.getUser_info_some_return().size(); i++) {
             LinearLayout userItem = (LinearLayout) inflater.inflate(R.layout.item_team_some, detailTeamSome, false);
             TextView name = (TextView) userItem.findViewById(R.id.item_some_name);
-            GridLayout.LayoutParams param = new GridLayout.LayoutParams();
-            param.setGravity(Gravity.FILL);
-            param.width = widthUnit;
+            SimpleDraweeView item_some_img = (SimpleDraweeView) userItem.findViewById(R.id.item_some_img);
+//            GridLayout.LayoutParams param = new GridLayout.LayoutParams();
+//            param.setGravity(Gravity.FILL);
             userItem.setOnClickListener(this);
-            userItem.setLayoutParams(param);
+//            userItem.setLayoutParams(param);
+            item_some_img.setImageURI(Uri.parse(entity.getUser_info_some_return().get(i).getAvatar()));
             userItem.setTag(entity.getUser_info_some_return().get(i));
             name.setText(entity.getUser_info_some_return().get(i).getUsername());
             if (detailTeamSome != null)
@@ -131,14 +176,16 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
         }
 
         for (int i = 0; i < entity.getUser_info_point_some_return().size(); i++) {
-            LinearLayout userItem = (LinearLayout) inflater.inflate(R.layout.item_team_rank, detailTeamSome, false);
+            RelativeLayout userItem = (RelativeLayout) inflater.inflate(R.layout.item_team_rank, detailTeamSome, false);
             TextView name = (TextView) userItem.findViewById(R.id.item_some_name);
+            SimpleDraweeView item_some_img = (SimpleDraweeView)userItem.findViewById(R.id.item_some_img);
             GridLayout.LayoutParams param = new GridLayout.LayoutParams();
             param.setGravity(Gravity.FILL);
             param.width = screenWidth;
             userItem.setOnClickListener(this);
             userItem.setLayoutParams(param);
             userItem.setTag(entity.getUser_info_point_some_return().get(i));
+            item_some_img.setImageURI(Uri.parse(entity.getUser_info_point_some_return().get(i).getAvatar()));
             name.setText(entity.getUser_info_point_some_return().get(i).getUsername());
             if (detailTeamRank != null)
                 detailTeamRank.addView(userItem);
@@ -149,11 +196,123 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()){
+            case R.id.invate_agree:
+                System.out.println("invate_agree");
+                agree();
+                popupWindow.dismiss();
+                break;
+            case R.id.invate_disagree:
+                System.out.println("invate_disagree");
+                disagree();
+                popupWindow.dismiss();
+                break;
+            case R.id.invate_apply:
+                apply();
+                popupWindow.dismiss();
+                break;
+        }
     }
 
     @OnClick(R.id.toolbar_img_right)
-    public void rightClick(){
-        startActivity(TeamSettingActivity.getTeamSettingIntent(this, teamId,entity.getGroup_info().getGroup_name(),entity.getGroup_info().getIntro()));
+    public void rightClick() {
+        startActivity(TeamSettingActivity.getTeamSettingIntent(this, teamId, entity.getGroup_info().getGroup_name(), entity.getGroup_info().getIntro()));
     }
+
+    PopupWindow popupWindow;
+    private void showAgreeWindow() {
+        View convertView = LayoutInflater.from(this).inflate(R.layout.view_invate_agree, null);
+        Button agree = (Button) convertView.findViewById(R.id.invate_agree);
+        Button disagree = (Button) convertView.findViewById(R.id.invate_disagree);
+        agree.setOnClickListener(this);
+        disagree.setOnClickListener(this);
+        popupWindow = new PopupWindow(convertView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setFocusable(true);
+        popupWindow.setOutsideTouchable(true);
+//        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        popupWindow.showAtLocation(view_parent, Gravity.BOTTOM, 0, 0);
+    }
+
+    private void showApplyWindow() {
+        View convertView = LayoutInflater.from(this).inflate(R.layout.view_invate_apply, null);
+        Button apply = (Button) convertView.findViewById(R.id.invate_apply);
+        apply.setOnClickListener(this);
+        popupWindow = new PopupWindow(convertView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setFocusable(true);
+        popupWindow.setOutsideTouchable(true);
+//        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        popupWindow.showAtLocation(view_parent, Gravity.BOTTOM, 0, 0);
+    }
+
+
+    private void agree(){
+        RestAdapterUtils.getTeamAPI().passInvite(invite_id, "pass_invite", new Callback<ErrorMsg>() {
+            @Override
+            public void success(ErrorMsg errorMsg, Response response) {
+                if (errorMsg != null && errorMsg.getResult() == 1) {
+                    if (isFinishing()) {
+                        return;
+                    }
+                    ScreenUtils.show_msg(TeamDetailActivity.this, "加入成功");
+                    if (popupWindow != null)
+                        popupWindow.dismiss();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                ScreenUtils.show_msg(TeamDetailActivity.this, "加入失败");
+            }
+        });
+    }
+
+    private void disagree() {
+        RestAdapterUtils.getTeamAPI().refuseInvite(invite_id, "refuse_invite", new Callback<ErrorMsg>() {
+            @Override
+            public void success(ErrorMsg errorMsg, Response response) {
+                if (errorMsg != null && errorMsg.getResult() == 1) {
+                    if (isFinishing()) {
+                        return;
+                    }
+                    ScreenUtils.show_msg(TeamDetailActivity.this, "拒绝成功");
+                    if (popupWindow != null)
+                        popupWindow.dismiss();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                ScreenUtils.show_msg(TeamDetailActivity.this, "拒绝失败");
+            }
+        });
+    }
+
+    private void apply() {
+
+        if(!isUidAvailable()){
+            Intent i = new Intent(this,AtyLogin.class);
+            startActivity(i);
+            return;
+        }
+
+        RestAdapterUtils.getTeamAPI().postApply(teamId+"", "是",getUid(),"post_apply", new Callback<ErrorMsg>() {
+            @Override
+            public void success(ErrorMsg errorMsg, Response response) {
+                if (errorMsg != null && errorMsg.getResult() == 1) {
+                    if (isFinishing()) {
+                        return;
+                    }
+                    ScreenUtils.show_msg(TeamDetailActivity.this, "申请成功");
+                    if (popupWindow != null)
+                        popupWindow.dismiss();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                ScreenUtils.show_msg(TeamDetailActivity.this, "申请失败");
+            }
+        });
+    }
+
 }

@@ -40,6 +40,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseapp.aty.team.MyTeamActivity;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -90,6 +91,7 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
     private RelativeLayout MyEntryFormPersonalCenter;    //我的报名
     //	private RelativeLayout VenuesReservationPersonalCenter;//场馆预约
     private RelativeLayout MyClubAndAssocPersonalCenter;//我的协会/俱乐部
+    private RelativeLayout MyTeamAndAssocPersonalCenter;
     private RelativeLayout MyGradesPersonalCenter;//我的成绩
 //	private RelativeLayout ScoresManagerPersonalCenter;//积分管理
 //	private RelativeLayout MyFocusPersonalCenter;		//我的关注
@@ -123,6 +125,7 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
         MyEntryFormPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyEntryFormPersonalCenter);
 //		VenuesReservationPersonalCenter = (RelativeLayout) view.findViewById(R.id.VenuesReservationPersonalCenter);
         MyClubAndAssocPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyClubAndAssocPersonalCenter);
+        MyTeamAndAssocPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyTeamAndAssocPersonalCenter);
         MyGradesPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyGradesPersonalCenter);
 //		ScoresManagerPersonalCenter = (RelativeLayout) view.findViewById(R.id.ScoresManagerPersonalCenter);
 //		MyFocusPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyFocusPersonalCenter);
@@ -224,6 +227,7 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
         MyEntryFormPersonalCenter.setOnClickListener(this);
 //		VenuesReservationPersonalCenter.setOnClickListener(this);
         MyClubAndAssocPersonalCenter.setOnClickListener(this);
+        MyTeamAndAssocPersonalCenter.setOnClickListener(this);
         MyGradesPersonalCenter.setOnClickListener(this);
 //		ScoresManagerPersonalCenter.setOnClickListener(this);
 //		MyFocusPersonalCenter.setOnClickListener(this);
@@ -608,6 +612,9 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
 //		case R.id.MyFocusPersonalCenter:
 //			startActivity(new Intent(getActivity(),AtyMyFocus.class));
 //			break;
+        case R.id.MyTeamAndAssocPersonalCenter:
+            startActivity(new Intent(getActivity(),MyTeamActivity.class));
+                break;
 
         }
     }

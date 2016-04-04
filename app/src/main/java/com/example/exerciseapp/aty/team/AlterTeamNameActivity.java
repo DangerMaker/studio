@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
+import com.example.exerciseapp.utils.ScreenUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -63,15 +64,18 @@ public class AlterTeamNameActivity extends BackBaseActivity {
             return;
         }
 
-        RestAdapterUtils.getTeamAPI().changeTeamName(teamId, text, name,"change_param", new Callback<ErrorMsg>() {
+        RestAdapterUtils.getTeamAPI().changeTeamName(teamId, text, "groupname","change_param", new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {
                 System.out.println("修改成功");
+                ScreenUtils.show_msg(AlterTeamNameActivity.this,"修改成功");
+                finish();
             }
 
             @Override
             public void failure(RetrofitError error) {
                 System.out.println("修改失败");
+                ScreenUtils.show_msg(AlterTeamNameActivity.this,"修改失败");
             }
         });
 
