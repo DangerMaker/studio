@@ -159,7 +159,7 @@
                 android:layout_marginLeft="14dp"
                 android:layout_toRightOf="@id/menu_club_icon"
                 android:singleLine="true"
-                android:text="协会俱乐部"
+                android:text="组织机构"
                 android:textColor="@color/BtnTextColorWhite"
                 android:textSize="18sp" />
         </RelativeLayout>

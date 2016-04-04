@@ -4,28 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/White"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/toolbar_map_content"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <include layout="@layout/main_toolbar" />
 
         <RelativeLayout
             android:id="@+id/relativeshowmap"
             android:layout_width="fill_parent"
-            android:layout_height="500dp" >
+            android:layout_height="500dp">
 
-            <com.amap.api.maps2d.MapView
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/mapViewshow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-            </com.amap.api.maps2d.MapView>
+                android:layout_height="match_parent"></com.amap.api.maps2d.MapView>
         </RelativeLayout>
     </LinearLayout>
 
@@ -33,7 +31,7 @@
         android:id="@+id/relativesavedate"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true">
 
         <LinearLayout
             android:id="@+id/linearshowjulishijian"
@@ -41,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/linearshowsuduhepingjunsudu"
             android:background="@color/White"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <RelativeLayout
                 android:id="@+id/linearshowjuli"
@@ -49,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="100"
                 android:background="@color/BackgroundBrown"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textshowjuli"
@@ -86,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="100"
                 android:background="@color/BackgroundBrown"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textshowshijian"
@@ -120,77 +118,88 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/viewline1"
             android:background="@color/White"
-            android:orientation="horizontal" >
-
-            <!--
-                <RelativeLayout
-            android:id="@+id/relativeshowsudu"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="100"
             android:orientation="horizontal">
-          <LinearLayout 
-               android:id="@+id/linearshowsudu1"
-               android:layout_width="fill_parent"
-               android:layout_height="wrap_content"
-               android:orientation="horizontal">
-               <ImageView 
-                   android:src="@drawable/max_speed_icon"
-                   android:layout_width="0dp"
-                   android:layout_weight="1"
-                   android:layout_height="wrap_content"
-                   />
-               <TextView 
-                   android:id="@+id/textshowzuigaosudu"
-                   android:layout_height="wrap_content"
-                   android:layout_width="0dp"
-                   android:layout_weight="1"
-                   android:textColor="@color/Black"
-                   android:textSize="20dp"
-                   android:text="4.75"/>
-           </LinearLayout> 
-           <LinearLayout 
-               android:id="@+id/linearshowsudu2"
-               android:layout_below="@id/linearshowsudu1"
-               android:layout_height="wrap_content"
-               android:layout_width="fill_parent"
-               android:orientation="horizontal">
-               <TextView 
-                   android:layout_height="wrap_content"
-                   android:layout_width="0dp"
-                   android:layout_weight="1"
-                   android:text="最高速度"
-                   android:textColor="@color/Black"
-                   android:gravity="center"/>
-               <TextView 
-                   android:layout_height="wrap_content"
-                   android:layout_width="0dp"
-                   android:layout_weight="1"
-                   android:text="km/h"
-                   android:textSize="17dp"
-                   android:textColor="@color/BtnGrey"/>
-           </LinearLayout>
-        </RelativeLayout>
-        <View 
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:background="@color/BtnGrey"/>
-            -->
+
+            <RelativeLayout
+                android:id="@+id/relativeshowsudu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/linearshowsudu1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:paddingTop="4dp"
+                        android:src="@drawable/max_speed_icon" />
+
+                    <TextView
+                        android:id="@+id/textshowzuigaosudu"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:paddingTop="4dp"
+                        android:text="4.75"
+                        android:textColor="@color/Black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearshowsudu2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/linearshowsudu1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="23dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="速度"
+                        android:textColor="#606060"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="23dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="km/h"
+                        android:textColor="#606060"
+                        android:textSize="16sp"
+                        android:textStyle="bold"  />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/BtnGrey" />
 
             <RelativeLayout
                 android:id="@+id/relativeshowpingjunsudu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="100"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/linearshowpingjunsudu1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="0dp"
@@ -217,7 +226,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/linearshowpingjunsudu1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
@@ -254,19 +263,86 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/viewline2"
             android:background="@color/White"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:id="@+id/relativeshowAlit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:orientation="horizontal">
 
+                <LinearLayout
+                    android:id="@+id/linearshowAlit"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:paddingTop="4dp"
+                        android:src="@drawable/hai_ba_icon" />
+
+                    <TextView
+                        android:id="@+id/textshowAlit"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:paddingTop="4dp"
+                        android:text="+8"
+                        android:textColor="@color/Black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearshowAlit1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/linearshowAlit"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="23dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="海拔"
+                        android:textColor="#606060"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="23dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="m"
+                        android:textColor="#606060"
+                        android:textSize="16sp"
+                        android:textStyle="bold"  />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/BtnGrey" />
             <RelativeLayout
                 android:id="@+id/relativeshowkaluli"
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:layout_weight="100"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/linearshowkaluli1"
                     android:layout_width="fill_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="0dp"
@@ -293,7 +369,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/linearshowkaluli1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
@@ -343,7 +419,7 @@
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:background="@color/White"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnfangqi"

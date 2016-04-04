@@ -164,6 +164,9 @@ public class AtyRunningRecord extends BaseActivity {
 							json.put("intentshijian", params[0].getString("duration"));
 							json.put("kaluli", params[0].getString("calorie"));
 							json.put("remark", params[0].getString("remark"));
+							json.put("altitude", params[0].getString("altitude"));
+							json.put("step_count", params[0].getString("step_count"));
+							json.put("sport_type", params[0].getString("sport_type"));
 							return json;
 						}
 					} catch (java.io.FileNotFoundException e) {
@@ -205,6 +208,9 @@ public class AtyRunningRecord extends BaseActivity {
 				intent.putExtra("intentkaluli", Float.valueOf(result.getString("kaluli")));
 				intent.putExtra("data", result.getString("data"));
 				intent.putExtra("remark", result.getString("remark"));
+				intent.putExtra("altitude", result.getString("altitude"));
+				intent.putExtra("step_count", result.getString("step_count"));
+				intent.putExtra("sport_type", result.getString("sport_type"));
 				// intent.putExtra("z", z);
 				// intent.putExtra("intentpolyjing", polyjing);
 				// intent.putExtra("intentpolywei",polywei);
@@ -525,7 +531,7 @@ public class AtyRunningRecord extends BaseActivity {
 	 *            分享标题
 	 * @param description
 	 *            分享内容
-	 * @param imageUrl
+	 * @param bitmap
 	 *            图片地址
 	 * @param flag
 	 *            分享到朋友还是朋友圈的flag

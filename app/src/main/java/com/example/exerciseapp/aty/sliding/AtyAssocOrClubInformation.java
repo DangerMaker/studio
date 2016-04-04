@@ -118,6 +118,7 @@ public class AtyAssocOrClubInformation extends BaseActivity {
                 try {
                     intent.putExtra(Config.KEY_ANAME, info.getString(Config.KEY_ANAME));
                     intent.putExtra("agreement", agreement);
+                    intent.putExtra(Config.KEY_ASSOC_INFO,info.toString());
                     startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -144,17 +145,17 @@ public class AtyAssocOrClubInformation extends BaseActivity {
 
         listMenuTitle = new ArrayList<Map<String, String>>();
         HashMap<String, String> mapTemp = new HashMap<String, String>();
-        mapTemp.put("item", "协会赛事活动");
+        mapTemp.put("item", "赛事活动");
         listMenuTitle.add(mapTemp);
         HashMap<String, String> mapTemp1 = new HashMap<String, String>();
-        mapTemp1.put("item", "协会资讯");
+        mapTemp1.put("item", "资讯");
         listMenuTitle.add(mapTemp1);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_withpopwin);
         pageTitle = (TextView) findViewById(R.id.toolbar_withpopwin_text);
         toolbar.setPadding(0, getDimensionMiss(), 0, 0);
         toolbar.setTitle("");
-        pageTitle.setText("协会信息");
+        pageTitle.setText("机构信息");
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.backbtn);
         pageTitle.setCompoundDrawables(null, null, arrowDown, null);

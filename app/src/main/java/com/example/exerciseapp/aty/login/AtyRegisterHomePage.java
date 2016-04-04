@@ -125,7 +125,6 @@ public class AtyRegisterHomePage extends Activity {
 				progressDialog.show();
 				StringRequest stringRequest = new StringRequest(Request.Method.POST,
 						Config.SERVER_URL + "Users/getCode", new Response.Listener<String>() {
-
 					@Override
 					public void onResponse(String s) {
 						try {
@@ -134,18 +133,16 @@ public class AtyRegisterHomePage extends Activity {
 							if (jsonObject.getString("result").equals("1")) {
 								Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
 								Config.STATUS_FINISH_ACTIVITY = 1;
-								finish();
+								progressDialog.dismiss();
 							} else {
 								Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
 							}
-
 						} catch (JSONException e) {
 							progressDialog.dismiss();
 							e.printStackTrace();
 						}
 					}
 				}, new Response.ErrorListener() {
-
 					@Override
 					public void onErrorResponse(VolleyError volleyError) {
 						progressDialog.dismiss();

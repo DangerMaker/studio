@@ -15,7 +15,7 @@
         android:gravity="center"
         android:text="赛事名字"
         android:textColor="#ffffff"
-        android:textSize="20dp" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -26,11 +26,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="18sp"
             android:gravity="center_vertical|right"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp" >
+            android:textSize="18sp" >
         </TextView>
 
         <TextView
@@ -40,19 +40,19 @@
             android:singleLine="true"
             android:text="姓名"
             android:textColor="#6f6d6d"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etAgeClubOrAssocEntryForm"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="18sp"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:singleLine="true"
             android:text="差利"
             android:textColor="#6f6d6d"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <View
@@ -62,18 +62,18 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:background="#ffffff"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="18sp"
             android:gravity="center_vertical|right"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp" >
+            android:textSize="18sp" >
         </TextView>
 
         <TextView
@@ -83,19 +83,19 @@
             android:singleLine="true"
             android:text="性别"
             android:textColor="#6f6d6d"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etTelClubOrAssocEntryForm"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="18sp"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
             android:text="男"
             android:textColor="#6f6d6d"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <View
@@ -112,11 +112,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="18sp"
             android:gravity="center_vertical|right"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp" >
+            android:textSize="18sp" >
         </TextView>
 
         <TextView
@@ -126,19 +126,19 @@
             android:singleLine="true"
             android:text="年龄"
             android:textColor="#6f6d6d"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etIdCardClubOrAssocEntryForm"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="18sp"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:singleLine="true"
             android:text="23"
             android:textColor="#6f6d6d"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <View
@@ -155,11 +155,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="18sp"
             android:gravity="center_vertical|right"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp" >
+            android:textSize="18sp" >
         </TextView>
 
         <TextView
@@ -169,19 +169,19 @@
             android:singleLine="true"
             android:text="手机"
             android:textColor="#6f6d6d"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etEmailClubOrAssocEntryForm"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="18sp"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:singleLine="true"
             android:text="156-2621-7875"
             android:textColor="#6f6d6d"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <View
@@ -198,11 +198,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="18sp"
             android:gravity="center_vertical|right"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp" >
+            android:textSize="18sp" >
         </TextView>
 
         <TextView
@@ -212,13 +212,13 @@
             android:singleLine="true"
             android:text="身份证"
             android:textColor="#6f6d6d"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etLocationClubOrAssocEntryForm"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="18sp"
             android:layout_weight="1"
             android:digits="0123456789X"
             android:gravity="center_vertical"
@@ -245,8 +245,8 @@
             android:id="@+id/cbAgreeRulesAssocEntryForm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="18sp"
+            android:layout_marginTop="18sp"
             android:button="@android:drawable/checkbox_on_background"
             android:checked="true" />
 
@@ -254,7 +254,7 @@
             android:id="@+id/tvRules"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="18sp"
             android:text="已阅读并同意规程" />
     </LinearLayout>
 
@@ -268,6 +268,6 @@
         android:gravity="center"
         android:text="提  交"
         android:textColor="#ffffff"
-        android:textSize="20dp" />
+        android:textSize="18sp" />
 
 </LinearLayout>

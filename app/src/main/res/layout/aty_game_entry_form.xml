@@ -13,7 +13,7 @@
         android:scrollbars="none">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#e0e3ee"
             android:orientation="vertical">
@@ -41,18 +41,18 @@
                     android:gravity="center_vertical|right"
                     android:text="*"
                     android:textColor="#ff0000"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"></TextView>
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="fill_parent"
                     android:gravity="center_vertical|left"
                     android:singleLine="true"
-                    android:text="申请人"
+                    android:text="类型/组别"
                     android:textColor="#6f6d6d"
                     android:textSize="18sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/etApplyUserNameAssocEntryForm"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
@@ -60,7 +60,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:paddingLeft="10dp"
-                    android:text=""
+                    android:text="选择"
                     android:textColor="#6f6d6d"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -83,7 +83,91 @@
                     android:gravity="center_vertical|right"
                     android:text="*"
                     android:textColor="#ff0000"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"></TextView>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical|left"
+                    android:singleLine="true"
+                    android:text="费用"
+                    android:textColor="#6f6d6d"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvSexAssocEntryForm"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="18sp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text="0"
+                    android:textColor="#6f6d6d"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="18sp"
+                    android:gravity="center_vertical|right"
+                    android:text="*"
+                    android:textColor="#ff0000"
+                    android:textSize="18sp"></TextView>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical|left"
+                    android:singleLine="true"
+                    android:text="姓名"
+                    android:textColor="#6f6d6d"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/etUserAgeAssocEntryForm"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="18sp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="差利"
+                    android:textColor="#6f6d6d"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="#ffffff"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="18sp"
+                    android:gravity="center_vertical|right"
+                    android:text="*"
+                    android:textColor="#ff0000"
+                    android:textSize="18sp"></TextView>
 
                 <TextView
                     android:layout_width="100dp"
@@ -95,7 +179,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/tvSexAssocEntryForm"
+                    android:id="@+id/tvUserNumAssocEntryForm"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginLeft="18sp"
@@ -125,7 +209,7 @@
                     android:gravity="center_vertical|right"
                     android:text="*"
                     android:textColor="#ff0000"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"></TextView>
 
                 <TextView
                     android:layout_width="100dp"
@@ -137,17 +221,15 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/etUserAgeAssocEntryForm"
+                    android:id="@+id/etUserIdCardAssocEntryForm"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginLeft="18sp"
                     android:layout_weight="1"
-                    android:digits="0123456789"
                     android:gravity="center_vertical"
                     android:inputType="number"
-                    android:numeric="decimal"
                     android:singleLine="true"
-                    android:text=""
+                    android:text="23"
                     android:textColor="#6f6d6d"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -170,7 +252,7 @@
                     android:gravity="center_vertical|right"
                     android:text="*"
                     android:textColor="#ff0000"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"></TextView>
 
                 <TextView
                     android:layout_width="100dp"
@@ -182,17 +264,15 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/etUserNumAssocEntryForm"
+                    android:id="@+id/etUserEmailAssocEntryForm"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginLeft="18sp"
                     android:layout_weight="1"
-                    android:digits="0123456789"
                     android:gravity="center_vertical"
                     android:inputType="number"
-                    android:numeric="decimal"
-                    android:paddingLeft="10dp"
-                    android:text=""
+                    android:singleLine="true"
+                    android:text="156-2621-7875"
                     android:textColor="#6f6d6d"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -215,7 +295,7 @@
                     android:gravity="center_vertical|right"
                     android:text="*"
                     android:textColor="#ff0000"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"></TextView>
 
                 <TextView
                     android:layout_width="100dp"
@@ -227,7 +307,7 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/etUserIdCardAssocEntryForm"
+                    android:id="@+id/etPayFeeAssocEntryForm"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginLeft="18sp"
@@ -235,147 +315,8 @@
                     android:digits="0123456789Xx"
                     android:gravity="center_vertical"
                     android:inputType="number"
-                    android:numeric="decimal"
                     android:singleLine="true"
-                    android:text=""
-                    android:textColor="#6f6d6d"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:background="#000000" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:layout_marginTop="18sp"
-                android:background="#000000" />
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="18sp"
-                    android:gravity="center_vertical|right"
-                    android:text="*"
-                    android:textColor="#ff0000"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="fill_parent"
-                    android:gravity="center_vertical|left"
-                    android:singleLine="true"
-                    android:text="邮箱"
-                    android:textColor="#6f6d6d"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/etUserEmailAssocEntryForm"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="18sp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:singleLine="true"
-                    android:text=""
-                    android:textColor="#6f6d6d"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:background="#000000" />
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="18sp"
-                    android:gravity="center_vertical|right"
-                    android:text="*"
-                    android:textColor="#ff0000"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="fill_parent"
-                    android:gravity="center_vertical|left"
-                    android:singleLine="true"
-                    android:text="地 区"
-                    android:textColor="#6f6d6d"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/etLocationAssocEntryForm"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="18sp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:singleLine="true"
-                    android:text=""
-                    android:textColor="#6f6d6d"
-                    android:textSize="18dp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:background="#000000" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:layout_marginTop="18sp"
-                android:background="#000000" />
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="18sp"
-                    android:gravity="center_vertical|right"
-                    android:text="*"
-                    android:textColor="#ff0000"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="fill_parent"
-                    android:gravity="center_vertical|left"
-                    android:singleLine="true"
-                    android:text="会费"
-                    android:textColor="#6f6d6d"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/tvPayFeeAssocEntryForm"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="18sp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:singleLine="true"
-                    android:text="0"
+                    android:text="360122199310220202"
                     android:textColor="#6f6d6d"
                     android:textSize="18dp" />
             </LinearLayout>
@@ -386,8 +327,10 @@
                 android:background="#000000" />
 
             <LinearLayout
+
                 android:layout_width="fill_parent"
-                android:layout_height="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="@color/BtnGrey"
                 android:orientation="horizontal">
 
@@ -409,6 +352,12 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/BtnGrey"
+                />
+
             <Button
                 android:id="@+id/btnCommitPersonalEntry"
                 android:layout_width="fill_parent"
@@ -421,7 +370,5 @@
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
         </LinearLayout>
-
-
     </ScrollView>
 </LinearLayout>
