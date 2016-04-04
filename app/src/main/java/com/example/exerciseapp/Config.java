@@ -227,7 +227,9 @@ public class Config {
 	public static final String KEY_CALORIE="calorie";           //鍗¤矾閲�   鍗�
 	public static final String KEY_DISTANCE="distance";      //璺濈  km
 	public static final String KEY_REMARK="remark";         //澶囨敞
-	
+	public static final String KEY_ALTI="altitude";
+	public static final String KEY_PACE="step_count";
+
 	//现场实况
 	public static final String KEY_PIC_NUM = "picNum";
 	public static final String KEY_POSITION = "position";

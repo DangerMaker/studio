@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.example.exerciseapp.aty.login.AtyAdvertisement;
 import com.example.exerciseapp.aty.login.AtyWelcome;
 import com.example.exerciseapp.aty.sliding.AtySlidingHome;
 import com.umeng.message.PushAgent;
@@ -33,12 +34,12 @@ public class MainActivity extends Activity {
         //如果已经登录过了，就直接进入主界面
         if(Config.getCachedUserUid(getApplicationContext())!=null){
             if(Config.getCachedUserUid(getApplicationContext()).equals("")){
-                startActivity(new Intent(MainActivity.this, AtyWelcome.class));
+                startActivity(new Intent(MainActivity.this, AtyAdvertisement.class));
             }else{
                 startActivity(new Intent(MainActivity.this, AtySlidingHome.class));
             }
         }else{
-            startActivity(new Intent(MainActivity.this, AtyWelcome.class));
+            startActivity(new Intent(MainActivity.this, AtyAdvertisement.class));
         }
         finish();
     }

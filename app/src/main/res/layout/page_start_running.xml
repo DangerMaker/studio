@@ -3,20 +3,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/White"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/linear3choose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/linearchoosesports"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:text="运动"
+                android:textColor="@color/textdark"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/choose_sports" />
+
+            <TextView
+                android:id="@+id/textchoosesports"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="6dp"
+                android:text="未选择"
+                android:textColor="@color/textdark"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/BtnGrey" />
 
         <LinearLayout
             android:id="@+id/linearchoosetargeticon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical" >
+            android:clickable="true"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -31,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/choose_run_target_icon" />
+                android:src="@drawable/choose_tag" />
 
             <TextView
                 android:id="@+id/textchoosetargeticon"
@@ -39,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingBottom="6dp"
-                android:text="未选择任何内容"
+                android:text="未填写任何内容"
                 android:textColor="@color/textdark"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -54,7 +94,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical" >
+            android:clickable="true"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -69,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/choose_map_icon" />
+                android:src="@drawable/choose_map" />
 
             <TextView
                 android:id="@+id/textchoosemapicon"
@@ -96,50 +137,33 @@
         android:layout_height="20dp"
         android:layout_below="@id/reladeline"
         android:background="@drawable/chunbai"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:text="欢迎您来到"
-            android:textColor="@color/textdark"
-            android:textSize="12sp" />
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:src="@drawable/xiangxia_icon" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/gpsxinhaodemo" />
     </RelativeLayout>
 
-    <com.amap.api.maps2d.MapView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/relativegpsxinhao" >
-    </com.amap.api.maps2d.MapView>
+        android:layout_below="@id/relativegpsxinhao"></com.amap.api.maps2d.MapView>
 
     <RelativeLayout
         android:id="@+id/relativegexiangcanshu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible" >
+        android:visibility="invisible">
 
         <RelativeLayout
             android:id="@+id/linearbuttonline_no1"
             android:layout_width="fill_parent"
             android:layout_height="80dp"
             android:layout_alignParentTop="true"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/texttongjijuli"
@@ -155,13 +179,13 @@
                 android:id="@+id/texttongjijuli_"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/BtnTextColorWhite"
+                android:layout_alignParentBottom="true"
                 android:layout_below="@id/texttongjijuli"
-                android:paddingBottom="6dp"
+                android:background="@color/BtnTextColorWhite"
                 android:gravity="center_horizontal"
+                android:paddingBottom="6dp"
                 android:text="距离（米）"
                 android:textColor="@color/CharacterGrey"
-                android:layout_alignParentBottom="true"
                 android:textSize="13sp" />
         </RelativeLayout>
 
@@ -177,12 +201,12 @@
             android:layout_width="fill_parent"
             android:layout_height="65dp"
             android:layout_below="@id/viewlinecanshu1"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
-                android:layout_weight="1" >
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/texttongjishijian"
@@ -210,14 +234,16 @@
             </RelativeLayout>
 
             <View
-                android:layout_width="1dp"
+                android:layout_width="0.5dp"
                 android:layout_height="fill_parent"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
                 android:background="@color/BtnGrey" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" >
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/textpingjunsudu"
@@ -226,7 +252,7 @@
                     android:background="@color/BtnTextColorWhite"
                     android:gravity="center"
                     android:paddingTop="6dp"
-                    android:text="0.0"
+                    android:text="--"
                     android:textColor="#000000"
                     android:textSize="27sp" />
 
@@ -258,12 +284,48 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/viewlinecanshu2"
             android:background="@color/White"
-            android:orientation="vertical" >
+            android:orientation="horizontal">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" >
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/text_speed"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/BtnTextColorWhite"
+                    android:gravity="center"
+                    android:paddingTop="6dp"
+                    android:text="--"
+                    android:textColor="#000000"
+                    android:textSize="27sp" />
+
+                <TextView
+                    android:id="@+id/text_speed_"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_speed"
+                    android:background="@color/BtnTextColorWhite"
+                    android:gravity="center"
+                    android:paddingBottom="6dp"
+                    android:text="速度（公里/时）"
+                    android:textColor="@color/CharacterGrey"
+                    android:textSize="13sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/BtnGrey" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/textkaluli"
@@ -272,7 +334,7 @@
                     android:background="@color/BtnTextColorWhite"
                     android:gravity="center"
                     android:paddingTop="6dp"
-                    android:text="0.0"
+                    android:text="--"
                     android:textColor="#000000"
                     android:textSize="27sp" />
 
@@ -293,7 +355,7 @@
         <View
             android:id="@+id/viewlinecanshu3"
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:layout_below="@id/linearbuttonline2"
             android:background="@color/BackgroudLightGrey" />
 
@@ -302,7 +364,7 @@
             android:layout_width="fill_parent"
             android:layout_height="20dp"
             android:layout_below="@id/viewlinecanshu3"
-            android:background="@color/White" >
+            android:background="@color/White">
 
             <ImageView
                 android:id="@+id/imgshouqi"
@@ -320,7 +382,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:background="@drawable/content_bg"
-        android:visibility="invisible" >
+        android:visibility="invisible">
 
         <TextView
             android:id="@+id/textchoosetarget"
@@ -339,7 +401,7 @@
             android:layout_below="@id/textchoosetarget"
             android:orientation="horizontal"
             android:paddingBottom="10dp"
-            android:paddingTop="10dp" >
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -347,7 +409,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="距离"
-                android:textColor="#000000"
+                android:textColor="@color/texttag"
                 android:textSize="12sp" />
 
             <TextView
@@ -356,7 +418,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="卡路里"
-                android:textColor="#000000"
+                android:textColor="@color/texttag"
                 android:textSize="12sp" />
 
             <TextView
@@ -365,7 +427,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="计时"
-                android:textColor="#000000"
+                android:textColor="@color/texttag"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -375,7 +437,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/linearchoosetarget_"
             android:orientation="horizontal"
-            android:paddingBottom="10dp" >
+            android:paddingBottom="10dp">
 
             <EditText
                 android:id="@+id/edittextjuli"
@@ -386,7 +448,8 @@
                 android:gravity="center"
                 android:hint="km"
                 android:inputType="numberDecimal"
-                android:textColor="#000000"
+                android:textColor="@color/texttag"
+                android:textColorHint="@color/texttag"
                 android:textSize="12sp" />
 
             <EditText
@@ -397,7 +460,8 @@
                 android:gravity="center"
                 android:hint="大卡"
                 android:numeric="integer"
-                android:textColor="#000000"
+                android:textColor="@color/texttag"
+                android:textColorHint="@color/texttag"
                 android:textSize="12sp" />
 
             <EditText
@@ -408,7 +472,8 @@
                 android:gravity="center"
                 android:hint="分钟"
                 android:numeric="integer"
-                android:textColor="#000000"
+                android:textColor="@color/texttag"
+                android:textColorHint="@color/texttag"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -424,7 +489,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/view11112hengxian"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textchoosetargetmeiyou"
@@ -439,7 +504,9 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="0.5"
                 android:background="@color/BackgroundBlue" />
 
             <TextView
@@ -455,13 +522,101 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativechoose_sports"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/content_bg"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/textchoose_sports"
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:text="运动选择"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/linearchoose_sports"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textchoose_sports"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/sports_run"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="跑步"
+                android:textColor="@color/texttag"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/sports_walk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="步行"
+                android:textColor="@color/texttag"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/sports_ride"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="骑行"
+                android:textColor="@color/texttag"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/sports_climb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="登山"
+                android:textColor="@color/texttag"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view11111hengxian_sports"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@id/linearchoose_sports"
+            android:background="#b0b0b2" />
+
+        <TextView
+            android:id="@+id/textqueding_sports"
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:layout_below="@id/view11111hengxian_sports"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:text="确定"
+            android:textColor="#5caec4"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/relativechoosemap"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:background="@drawable/content_bg"
-        android:visibility="invisible" >
+        android:visibility="invisible">
 
         <TextView
             android:id="@+id/textchoosemap"
@@ -480,7 +635,7 @@
             android:layout_below="@id/textchoosemap"
             android:orientation="horizontal"
             android:paddingBottom="20dp"
-            android:paddingTop="20dp" >
+            android:paddingTop="20dp">
 
             <TextView
                 android:id="@+id/textpingmianmap"
@@ -489,7 +644,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="平面地图   "
-                android:textColor="#000000"
+                android:textColor="@color/texttag"
                 android:textSize="12sp" />
 
             <TextView
@@ -499,7 +654,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="卫星地图"
-                android:textColor="#000000"
+                android:textColor="@color/texttag"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -542,7 +697,7 @@
         android:layout_height="115dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:visibility="invisible" >
+        android:visibility="invisible">
 
         <Button
             android:id="@+id/textjieshuyundong"
