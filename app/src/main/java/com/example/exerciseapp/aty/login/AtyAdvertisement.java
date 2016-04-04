@@ -45,7 +45,8 @@ public class AtyAdvertisement extends BaseActivity {
 
     public void next() {
         Intent intent = new Intent();
-        intent.setClass(AtyAdvertisement.this,AtyWelcome.class);
+        intent.setClass(AtyAdvertisement.this, AtyWelcome.class);
         startActivity(intent);
+        finish();
     }
 }

@@ -45,7 +45,6 @@ public class AtyWelcome extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				startActivityForResult(new Intent(AtyWelcome.this, AtyLogin.class),0);
-				
 			}
 		});
 		
@@ -54,7 +53,7 @@ public class AtyWelcome extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				startActivityForResult(new Intent(AtyWelcome.this,AtyRegisterHomePage.class),0);
+				startActivityForResult(new Intent(AtyWelcome.this, AtyRegisterHomePage.class),0);
 			}
 		});
 		

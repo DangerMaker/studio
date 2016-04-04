@@ -23,6 +23,7 @@ import android.widget.ToggleButton;
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.MainActivity;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.login.AtyWelcome;
 import com.example.exerciseapp.aty.sliding.AtyAboutUs;
 import com.example.exerciseapp.aty.sliding.AtyChangePassw;
 import com.example.exerciseapp.aty.sliding.AtySlidingHome;
@@ -163,11 +164,11 @@ public class ConfigFragment extends Fragment{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 //				Toast.makeText(getActivity(), "退出", 2).show();
-				startActivity(new Intent(getActivity(),MainActivity.class));
+				startActivity(new Intent(getActivity(),AtyWelcome.class));
 				DataCleanManager.quitCurrentUser(getActivity().getApplicationContext());
 				AtySlidingHome.instance.finish();
 //				DataCleanManager.clearAllCache(getActivity().getApplicationContext());
-				
+
 			}
 		});
 

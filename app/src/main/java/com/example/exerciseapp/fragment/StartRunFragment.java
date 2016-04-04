@@ -215,8 +215,11 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
                             JSONObject jsonObject = new JSONObject(s);
                             if (jsonObject.getString("result").equals("1")) {
                                 if (jsonObject.getJSONObject("data").getString("weight") != null)
-                                    tizhong = Integer.parseInt(jsonObject.getJSONObject("data").getString("weight"));
-                                else tizhong = 75;
+                                    if (jsonObject.getJSONObject("data").getString("weight").equals("")) {
+                                        tizhong = 75;
+                                    } else {
+                                        tizhong = Integer.parseInt(jsonObject.getJSONObject("data").getString("weight"));
+                                    }
                             } else {
                                 Toast.makeText(getActivity(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
                             }
@@ -659,7 +662,7 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
             textSpeed.setText((float) (Math.round((3.6 * juli / shijian) * 100)) / 100 + " ");
             textkaluli.setText((float) (Math.round(juli * tizhong * 1.036 / 1000 * 100)) / 100 + " ");
             speed = (float) (Math.round(speed * 100)) / 100;//取小数点后两位
-            speedTextView.setText(speed+"");
+            speedTextView.setText(speed + "");
             mMap.addPolyline(polylineops);
         }
     }
