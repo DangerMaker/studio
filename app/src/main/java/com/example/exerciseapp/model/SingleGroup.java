@@ -3,7 +3,7 @@ package com.example.exerciseapp.model;
 /**
  * Created by lyjq on 2016/3/29.
  */
-public class SingleGroup {
+public class SingleGroup extends ErrorMsg{
 
     /**
      * leader_id : 1

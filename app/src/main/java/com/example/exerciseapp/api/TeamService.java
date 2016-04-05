@@ -1,8 +1,10 @@
 package com.example.exerciseapp.api;
 
 import com.example.exerciseapp.model.AllGroup;
+import com.example.exerciseapp.model.AllTag;
 import com.example.exerciseapp.model.CreateSuc;
 import com.example.exerciseapp.model.ErrorMsg;
+import com.example.exerciseapp.model.GroupData;
 import com.example.exerciseapp.model.GroupDetail;
 import com.example.exerciseapp.model.GroupList;
 import com.example.exerciseapp.model.SingleGroup;
@@ -154,5 +156,12 @@ public interface TeamService {
                    @Query("action") String refuse_apply,
                    Callback<ErrorMsg> callback);
 
+    @GET("/py/tag")
+    void getTag(Callback<AllTag> callback);
+
+    @GET("/py/group")
+    void getGroupInfo(@Query("id") String id,
+                @Query("action") String get_group_info,
+            Callback<GroupData> callback);
 
 }

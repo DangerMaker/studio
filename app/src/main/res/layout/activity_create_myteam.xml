@@ -17,14 +17,13 @@
     <EditText
         android:id="@+id/create_team_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:singleLine="true"
-        android:background="@color/White"
-        android:hint="团队名称："
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:textColor="@color/Black"
+        android:maxLength="9"
         />
 
     <TextView
@@ -36,28 +35,25 @@
         />
 
     <RelativeLayout
+        android:id="@+id/create_team_tagadd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         >
-        <EditText
+        <TextView
             android:id="@+id/create_team_tag"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:background="@color/White"
-            android:hint="团队标签："
+            android:layout_height="50dp"
             android:paddingLeft="20dp"
             android:textColor="@color/Black"
             android:layout_centerVertical="true"
             />
 
         <TextView
-            android:id="@+id/create_team_tagadd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/CreateTeamText"
-            android:text="点击添加"
+            android:text="点击添加>"
             android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
@@ -83,8 +79,6 @@
             android:id="@+id/create_team_des"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:background="@color/White"
-            android:hint="团队简介："
             android:paddingLeft="20dp"
             android:minLines="4"
             android:maxEms="40"
@@ -92,6 +86,7 @@
             android:gravity="top|left"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
+            android:maxLength="40"
             />
 
         <TextView

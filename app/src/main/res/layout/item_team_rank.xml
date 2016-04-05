@@ -5,8 +5,9 @@
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp"
+    >
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/item_some_img"
@@ -21,10 +22,8 @@
         style="@style/CreateTeamText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
         android:gravity="center|left"
         android:text="石伟" />
 
@@ -34,10 +33,8 @@
         style="@style/CreateTeamText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
         android:gravity="center|right"
         android:layout_alignParentRight="true"
         android:text="1000" />

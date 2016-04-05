@@ -5,13 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.adapter.TagGridAdapter;
 import com.example.exerciseapp.model.CreateSuc;
 import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
@@ -30,10 +33,12 @@ public class CreateTeamActivity extends BackBaseActivity {
 
     @Bind(R.id.create_team_name)
     EditText mCreateName;
-    @Bind(R.id.create_team_tag)
-    EditText mCreateTag;
+    @Bind(R.id.create_team_tagadd)
+    RelativeLayout mCreateTag;
     @Bind(R.id.create_team_des)
     EditText mCreateDes;
+    @Bind(R.id.create_team_tag)
+    TextView mTagText;
 
     int teamId;
     public static Intent getCreateTeamIntent(Context context) {
@@ -48,6 +53,11 @@ public class CreateTeamActivity extends BackBaseActivity {
         setTitleBar("创建团队");
     }
 
+    @OnClick(R.id.create_team_tagadd)
+    public void tag(){
+        startActivityForResult(TeamTagActivity.getTeamTagIntent(this), 9);
+    }
+
     @OnClick(R.id.create_team_submit)
     public void submit() {
         String uid = ((MyApplication) getApplication()).getUid();
@@ -57,11 +67,24 @@ public class CreateTeamActivity extends BackBaseActivity {
             return;
         }
         String name = mCreateName.getText().toString();
-        String tag = mCreateTag.getText().toString();
+        String tag = mTagText.getText().toString();
         String des = mCreateDes.getText().toString();
+
+        if(TextUtils.isEmpty(name)){
+            ScreenUtils.show_msg(this,"团队名称不能为空");
+            return;
+        }
+        if(TextUtils.isEmpty(tag)){
+            ScreenUtils.show_msg(this,"请选择一个标签");
+            return;
+        }
+        if(TextUtils.isEmpty(des)){
+            ScreenUtils.show_msg(this,"简介不能为空");
+            return;
+        }
         showDialog();
 
-        RestAdapterUtils.getTeamAPI().createTeam(uid, name, des, "10", "create_group", new Callback<CreateSuc>() {
+        RestAdapterUtils.getTeamAPI().createTeam(uid, name, des, tagCode, "create_group", new Callback<CreateSuc>() {
             @Override
             public void success(CreateSuc createSuc, Response response) {
                 closeDialog();
@@ -84,4 +107,15 @@ public class CreateTeamActivity extends BackBaseActivity {
         });
     }
 
+    String tagName = "跑步";
+    String tagCode = "1";
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data != null) {
+            tagName = data.getStringExtra("tagName");
+            tagCode = data.getStringExtra("tagId");
+            mTagText.setText(tagName);
+        }
+    }
 }

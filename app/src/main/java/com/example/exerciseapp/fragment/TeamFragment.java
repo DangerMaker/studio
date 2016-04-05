@@ -194,6 +194,7 @@ public class TeamFragment extends BaseFragment implements GroupListAdapter.OnLis
             public void success(ErrorMsg errorMsg, Response response) {
                 if (errorMsg != null && errorMsg.getResult() == 1) {
                     ScreenUtils.show_msg(getActivity(), "拒绝成功");
+                    load();
                 }
             }
 

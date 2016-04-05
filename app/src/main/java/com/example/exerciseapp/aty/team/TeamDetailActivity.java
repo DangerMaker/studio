@@ -114,7 +114,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
                     showApplyWindow();
                 }
             });
-        } else {
+        } else if(type.equals("group_info_return")){
             setting.setVisibility(View.GONE);
         }
 
@@ -141,7 +141,6 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
         });
     }
 
-
     private int widthUnit;
 
     private void setDataToDetail(GroupDetail.DataEntity entity) {
@@ -160,10 +159,11 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
             LinearLayout userItem = (LinearLayout) inflater.inflate(R.layout.item_team_some, detailTeamSome, false);
             TextView name = (TextView) userItem.findViewById(R.id.item_some_name);
             SimpleDraweeView item_some_img = (SimpleDraweeView) userItem.findViewById(R.id.item_some_img);
-//            GridLayout.LayoutParams param = new GridLayout.LayoutParams();
-//            param.setGravity(Gravity.FILL);
+            GridLayout.LayoutParams param = new GridLayout.LayoutParams();
+            param.setGravity(Gravity.FILL);
+            param.width = widthUnit;
             userItem.setOnClickListener(this);
-//            userItem.setLayoutParams(param);
+            userItem.setLayoutParams(param);
             item_some_img.setImageURI(Uri.parse(entity.getUser_info_some_return().get(i).getAvatar()));
             userItem.setTag(entity.getUser_info_some_return().get(i));
             name.setText(entity.getUser_info_some_return().get(i).getUsername());
