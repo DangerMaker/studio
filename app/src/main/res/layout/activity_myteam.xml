@@ -173,6 +173,19 @@
                 android:gravity="center|left"
                 android:text="团队排行榜" />
 
+            <TextView
+                android:id="@+id/detail_team_allRank"
+                style="@style/TeamBlueText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center|left"
+                android:text="查看更多 >" />
+
         </RelativeLayout>
 
         <View

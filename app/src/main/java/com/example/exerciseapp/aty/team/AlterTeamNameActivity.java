@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.model.ErrorMsg;
+import com.example.exerciseapp.model.GroupInstance;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
 
@@ -68,7 +69,8 @@ public class AlterTeamNameActivity extends BackBaseActivity {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {
                 System.out.println("修改成功");
-                ScreenUtils.show_msg(AlterTeamNameActivity.this,"修改成功");
+                ScreenUtils.show_msg(AlterTeamNameActivity.this, "修改成功");
+                GroupInstance.getInstance().setGroup_name(text);
                 finish();
             }
 

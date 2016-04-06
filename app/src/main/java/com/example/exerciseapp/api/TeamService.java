@@ -1,6 +1,8 @@
 package com.example.exerciseapp.api;
 
 import com.example.exerciseapp.model.AllGroup;
+import com.example.exerciseapp.model.AllMember;
+import com.example.exerciseapp.model.AllRank;
 import com.example.exerciseapp.model.AllTag;
 import com.example.exerciseapp.model.CreateSuc;
 import com.example.exerciseapp.model.ErrorMsg;
@@ -8,6 +10,7 @@ import com.example.exerciseapp.model.GroupData;
 import com.example.exerciseapp.model.GroupDetail;
 import com.example.exerciseapp.model.GroupList;
 import com.example.exerciseapp.model.SingleGroup;
+import com.example.exerciseapp.model.UpTeamAvatar;
 
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -125,19 +128,34 @@ public interface TeamService {
 
     @Multipart
     @POST("/index.php/Api/Users/updateHeaderNew")
-    void uploadAvatar(@Part("avatar") TypedFile avatar, @Part("uid") String uid, Callback<ErrorMsg> callback);
+    void uploadAvatar(@Part("myAvatar") TypedFile avatar, @Part("uid") String uid, Callback<UpTeamAvatar> callback);
+
+    @Multipart
+    @POST("/index.php/Api/Users/updateGroupAvatarAnd")
+    void uploadTeamAvatar(@Part("group_avatar") TypedFile avatar, @Part("id") String id, Callback<UpTeamAvatar> callback);
 
 
     @GET("/py/group")
     void showAllMembers(@Query("id") String id,
                        @Query("action") String show_all_members,
-                       Callback<GroupDetail> callback);
+                       Callback<AllMember> callback);
+
+    @GET("/py/group")
+    void showAllRank(@Query("id") String id,
+                        @Query("action") String show_all_rank,
+                        Callback<AllRank> callback);
 
     @GET("/py/group")
     void breakGroup(@Query("id") int id,
                         @Query("uid") String uid,
                         @Query("action") String break_group,
                         Callback<ErrorMsg> callback);
+
+    @GET("/py/group")
+    void exitGroup(@Query("id") int id,
+                    @Query("uid") String uid,
+                    @Query("action") String exit_group,
+                    Callback<ErrorMsg> callback);
 
     /**
      * 全部

@@ -39,26 +39,24 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
- <!--   <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />-->
+    <!--   <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />-->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" >
-    </uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
 
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@drawable/icon_of_app" >
+        android:icon="@drawable/icon_of_app">
 
         <!-- 监听通知点击或者忽略处理的广播 -->
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
-            android:exported="false" >
-        </receiver>
+            android:exported="false"></receiver>
 
         <!-- 监听开机运行、网络连接变化、卸载的广播 -->
         <receiver
             android:name="com.umeng.message.SystemReceiver"
-            android:process=":push" >
+            android:process=":push">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -76,7 +74,7 @@
         <receiver
             android:name="com.umeng.message.MessageReceiver"
             android:exported="false"
-            android:process=":push" >
+            android:process=":push">
             <intent-filter>
                 <action android:name="org.agoo.android.intent.action.RECEIVE" />
             </intent-filter>
@@ -85,7 +83,7 @@
         <!-- 监听宿主选举的广播 -->
         <receiver
             android:name="com.umeng.message.ElectionReceiver"
-            android:process=":push" >
+            android:process=":push">
             <intent-filter>
                 <action android:name="org.agoo.android.intent.action.ELECTION_RESULT_V4" />
 
@@ -97,12 +95,12 @@
         <!-- 【应用包名】字符串需要替换成本应用的应用包名 -->
         <receiver
             android:name="com.umeng.message.RegistrationReceiver"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.example.exerciseapp.intent.action.COMMAND" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.umeng.message.UmengMessageBootReceiver" >
+        <receiver android:name="com.umeng.message.UmengMessageBootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -114,7 +112,7 @@
             android:name="com.umeng.message.UmengService"
             android:exported="true"
             android:label="PushService"
-            android:process=":push" >
+            android:process=":push">
             <intent-filter>
                 <action android:name="com.example.exerciseapp.intent.action.START" />
             </intent-filter>
@@ -137,7 +135,7 @@
         <service
             android:name="com.umeng.message.UmengMessageIntentReceiverService"
             android:exported="true"
-            android:process=":push" >
+            android:process=":push">
             <intent-filter>
                 <action android:name="org.android.agoo.client.MessageReceiverService" />
             </intent-filter>
@@ -149,7 +147,7 @@
         <!-- v2.4.1添加的Service，Umeng的消息接收后的处理服务 -->
         <service
             android:name="com.umeng.message.UmengMessageCallbackHandlerService"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.umeng.messge.registercallback.action" />
             </intent-filter>
@@ -175,36 +173,31 @@
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="569cd85e67e58e225b0004f3" >
-        </meta-data>
+            android:value="569cd85e67e58e225b0004f3"></meta-data>
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="d52397be74890d8c8ea85afd491225cb" >
-        </meta-data>
+            android:value="d52397be74890d8c8ea85afd491225cb"></meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="exerciseapp" >
-        </meta-data>
+            android:value="exerciseapp"></meta-data>
 
-    <!--    <service android:name="com.amap.api.location.APSService" >
-        </service>-->
+        <!--    <service android:name="com.amap.api.location.APSService" >
+            </service>-->
 
         <!-- 更新注册的service和Activity -->
         <service
             android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService" >
-        </service>
+            android:process=":DownloadingService"></service>
 
         <activity
             android:name="com.umeng.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="298baf8d37730a2ba181c4cc3660b43d" />
         <!-- 下面会创建一个应用私有的com.cnblogs.tianxia:message的独立进程 -->
-        <service android:name="com.example.exerciseapp.service.MessageService" >
+        <service android:name="com.example.exerciseapp.service.MessageService">
             <intent-filter>
                 <action android:name="com.example.exerciseapp.service.MessageService" />
             </intent-filter>
@@ -214,7 +207,7 @@
             android:name=".MainActivity"
             android:label="全民健身"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -236,216 +229,180 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
-        </activity>
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
         <activity
             android:name=".aty.login.AtyForgetPwd"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
-        </activity>
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
         <activity
             android:name=".aty.login.AtyPersonalize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".aty.login.AtyRegisterHomePage"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
             android:name=".aty.login.AtyRegisterPage"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
             android:name=".aty.login.AtyWelcome"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
             android:name=".aty.sliding.AtySlidingHome"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyUserInformationHome"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
             android:name=".aty.sliding.AtyUserInformationConfig"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyGameInformation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyEntryForm"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyAboutUs"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyPay"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyMyEntryForm"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyVenuesReservation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
         <activity
             android:name=".aty.sliding.AtyMyClubAndAssociation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyMyGrades"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyScoresManager"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
         <activity
             android:name=".aty.sliding.AtyMyFocus"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyMessage"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyModifyPersonalInformationMyEntryForm"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyModifyClubEntryForm"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyUserPreferedProject"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyAssocOrClubInformation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyAssocEntryForm"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyLocalScene"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyGradeReport"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtySaveRunData"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.Atyyijianfankui"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyNewsDetails"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
-        <activity android:name=".aty.sliding.AtyMessageDetail" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".aty.sliding.AtyMessageDetail"></activity>
         <activity
             android:name=".aty.sliding.AtyRunningRecord"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyGradeDetail"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.login.AtyUserLawItem"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyRunRecordDetail"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyChangePassw"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
 
         <activity
             android:name=".aty.team.CreateTeamActivity"
@@ -484,19 +441,28 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".aty.team.CheckMembersActivity"
+        <activity
+            android:name=".aty.team.CheckMembersActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".aty.team.AddMemberActivity"
-        android:screenOrientation="portrait"
-        android:theme="@style/AppTheme" />
-
-        <activity android:name=".aty.team.MyTeamActivity"
+        <activity
+            android:name=".aty.team.CheckRanksActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".aty.team.TeamTagActivity"
+        <activity
+            android:name=".aty.team.AddMemberActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.team.MyTeamActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.team.TeamTagActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
