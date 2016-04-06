@@ -115,11 +115,11 @@
 
             <ImageView
                 android:id="@+id/menu_group_icon"
-                android:layout_width="wrap_content"
+                android:layout_width="24dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
-                android:src="@drawable/run_icon" />
+                android:src="@drawable/team_icon" />
 
             <TextView
                 android:layout_width="wrap_content"

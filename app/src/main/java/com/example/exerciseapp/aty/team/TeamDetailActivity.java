@@ -268,7 +268,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
         Button disagree = (Button) convertView.findViewById(R.id.invate_disagree);
         agree.setOnClickListener(this);
         disagree.setOnClickListener(this);
-        popupWindow = new PopupWindow(convertView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
+        popupWindow = new PopupWindow(convertView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, false);
         popupWindow.setFocusable(true);
         popupWindow.setOutsideTouchable(true);
 //        popupWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -279,9 +279,8 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
         View convertView = LayoutInflater.from(this).inflate(R.layout.view_invate_apply, null);
         Button apply = (Button) convertView.findViewById(R.id.invate_apply);
         apply.setOnClickListener(this);
-        popupWindow = new PopupWindow(convertView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.setFocusable(true);
-        popupWindow.setOutsideTouchable(true);
+        popupWindow = new PopupWindow(convertView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, false);
+//
 //        popupWindow.setBackgroundDrawable(new BitmapDrawable());
         popupWindow.showAtLocation(view_parent, Gravity.BOTTOM, 0, 0);
     }

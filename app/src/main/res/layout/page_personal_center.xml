@@ -168,7 +168,7 @@
 
             <ImageView
                 android:id="@+id/tvUserConfigPersonalCenter_image"
-                android:layout_width="wrap_content"
+                android:layout_width="27dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
@@ -199,7 +199,7 @@
 
             <ImageView
                 android:id="@+id/tvMyEntryFormPersonalCenter_image"
-                android:layout_width="wrap_content"
+                android:layout_width="27dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
@@ -231,7 +231,7 @@
 
             <ImageView
                 android:id="@+id/tvMyClubAndAssocPersonalCenter_image"
-                android:layout_width="wrap_content"
+                android:layout_width="27dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
@@ -262,11 +262,11 @@
 
             <ImageView
                 android:id="@+id/tvMyTeamAndAssocPersonalCenter_image"
-                android:layout_width="wrap_content"
+                android:layout_width="27dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
-                android:src="@drawable/my_club_icon" />
+                android:src="@drawable/person_team_img" />
 
             <TextView
                 android:id="@+id/tvMyTeamAndAssocPersonalCenter"
@@ -295,7 +295,7 @@
 
             <ImageView
                 android:id="@+id/tvMyGradesPersonalCenter_image"
-                android:layout_width="wrap_content"
+                android:layout_width="27dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
@@ -326,7 +326,7 @@
 
             <ImageView
                 android:id="@+id/tvScoresManagerPersonalCenter_image"
-                android:layout_width="wrap_content"
+                android:layout_width="27dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
