@@ -116,7 +116,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
                 }
             });
         } else if (type.equals("group_info_return")) {
-            setting.setVisibility(View.GONE);
+            setting.setVisibility(View.VISIBLE);
         }
 
         if (!isUidAvailable()) {
@@ -247,7 +247,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
 
     @OnClick(R.id.toolbar_img_right)
     public void rightClick() {
-        startActivity(TeamSettingActivity.getTeamSettingIntent(this, teamId, entity.getGroup_info().getGroup_name(), entity.getGroup_info().getIntro()));
+        startActivity(TeamSettingActivity.getTeamSettingIntent(this,type));
     }
 
     @OnClick(R.id.detail_team_allMember)
