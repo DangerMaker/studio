@@ -1,5 +1,7 @@
 package com.example.exerciseapp.fragment;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +32,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,6 +44,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.exerciseapp.aty.team.MyTeamActivity;
+import com.example.exerciseapp.model.GroupInstance;
+import com.example.exerciseapp.model.UpTeamAvatar;
+import com.example.exerciseapp.myutils.UploadImageUtils;
+import com.example.exerciseapp.net.rest.RestAdapterUtils;
+import com.example.exerciseapp.utils.ScreenUtils;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -70,6 +78,9 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import dmax.dialog.SpotsDialog;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.mime.TypedFile;
 
 public class PersonalCenterFragment extends Fragment implements OnClickListener {
 
@@ -100,6 +111,7 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
     private List<Map<String, String>> alertItem = new ArrayList<Map<String, String>>();
 
     private RequestQueue mRequestQueue;
+    Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -183,31 +195,22 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
 
             @Override
             public void onClick(View v) {
-                new Builder(getActivity())
+                new AlertDialog.Builder(getActivity())
                         .setItems(new String[]{"拍照", "从相册中选取"},
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,
                                                         int which) {
                                         dialog.dismiss();
-                                        Intent intent;
                                         switch (which) {
-
                                             case 0:
-                                                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// 请求拍照的Action
-                                                // 在onActivityResult中处理拍照结果
-                                                startActivityForResult(intent, CAMERA_REQUEST_CODE);
+                                                fromCamera();
                                                 break;
                                             case 1:
-                                                intent = new Intent(Intent.ACTION_GET_CONTENT);
-                                                intent.setType("image/*");// 选择图片类型
-                                                // 在onActivityResult中处理选择结果
-                                                startActivityForResult(intent, PICTURE_REQUEST_CODE);
+                                                fromPicture();
                                                 break;
                                             default:
                                                 break;
                                         }
-//						Toast.makeText(getActivity(),
-//						"你选择了: " + which, 5).show();
                                     }
 
                                 }).setNegativeButton("取消", null).show();
@@ -612,142 +615,139 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
 //		case R.id.MyFocusPersonalCenter:
 //			startActivity(new Intent(getActivity(),AtyMyFocus.class));
 //			break;
-        case R.id.MyTeamAndAssocPersonalCenter:
-            startActivity(new Intent(getActivity(),MyTeamActivity.class));
+            case R.id.MyTeamAndAssocPersonalCenter:
+                startActivity(new Intent(getActivity(), MyTeamActivity.class));
                 break;
 
         }
     }
 
 
-    private static final int CAMERA_REQUEST_CODE = 222;
-    private static final int PICTURE_REQUEST_CODE = 444;
-    private int mWH = 90;// 单位dp
-    Bitmap bitmap = null;
-    private static Context context;
+    public static final int IMG_FROM_PICTURE = 0x1001;
+    public static final int IMG_FROM_CAMERA = 0x1002;
 
-    /**
-     * 通过给定的图片路径生成对应的bitmap
-     */
-    private Bitmap genBitmap(String imgPath) {
-        Options options = new Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(imgPath, options);
-        int imageWidth = options.outWidth;
-        int imageHeight = options.outHeight;
-
-        int widthSample = (int) (imageWidth / mWH);
-        int heightSample = (int) (imageHeight / mWH);
-        // 计算缩放比例
-        options.inSampleSize = widthSample < heightSample ? heightSample
-                : widthSample;
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeFile(imgPath, options);
-    }
-
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            if (null != uri) {
-                String imgPath = null;
-                ContentResolver resolver = context.getContentResolver();
-                String[] columns = {MediaStore.Images.Media.DATA};
-                Cursor cursor = null;
-                cursor = resolver.query(uri, columns, null, null, null);
-                if (Build.VERSION.SDK_INT > 18)// 4.4以后文件选择发生变化，判断处理
-                {
-                    if (requestCode == PICTURE_REQUEST_CODE)// 选择图片
-                    {
-                        imgPath = uri.getPath();
-                        if (!TextUtils.isEmpty(imgPath)
-                                && imgPath.contains(":")) {
-                            String imgIndex = imgPath.split(":")[1];
-                            cursor = resolver.query(
-                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                                    columns, "_id=?", new String[]{imgIndex},
-                                    null);
-                        }
-                    }
-                }
-                if (null != cursor && cursor.moveToFirst()) {
-                    int columnIndex = cursor.getColumnIndex(columns[0]);
-                    imgPath = cursor.getString(columnIndex);
-                    cursor.close();
-                }
-                if (!TextUtils.isEmpty(imgPath)) {
-                    bitmap = genBitmap(imgPath);
-                }
-            } else if (requestCode == CAMERA_REQUEST_CODE)// 拍照
-            {
-                // 拍照时，注意小米手机不会保存图片到本地，只可以从intent中取出bitmap, 要特殊处理
-                Object object = data.getExtras().get("data");
-                if (null != object && object instanceof Bitmap) {
-                    bitmap = (Bitmap) object;
-                }
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case IMG_FROM_CAMERA:
+                    new WriteToSdcardTask(false, null).execute();
+                    break;
+                case IMG_FROM_PICTURE:
+                    Uri uri = data.getData();
+                    new WriteToSdcardTask(true, uri).execute();
+                    break;
+                default:
+                    break;
             }
-            Config.STATUS_SUBMIT_USER_HW = true;
-            Config.cacheUserHw(getActivity().getApplicationContext(), bitmap);
-            ibUserHWPersonalCenter.setImageBitmap(bitmap);
-            HttpClientUploadManager.saveBitmap2file(getActivity(), bitmap, "myAvatar.png");
-            upload(bitmap);
+        }
+    }
 
+    void fromCamera() {
+        outputAvatarPath = UploadImageUtils.getAvatarPath(context);
+        if (!TextUtils.isEmpty(outputAvatarPath)) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            File tmpFile = new File(outputAvatarPath);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tmpFile));
+            startActivityForResult(intent, IMG_FROM_CAMERA);
+        } else {
+            ScreenUtils.show_msg(context, "未插入SD卡");
+        }
+    }
+
+
+    void fromPicture() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, IMG_FROM_PICTURE);
+    }
+
+    private String outputAvatarPath = "";
+    private ProgressDialog dialog;
+
+    public void showDialog() {
+        if (dialog == null) {
+            dialog = new ProgressDialog(context);
+            dialog.setMessage("正在加载，请稍等");
+        }
+        if (!dialog.isShowing()) {
+            dialog.show();
         }
 
     }
 
-    /**
-     * 上传图片到服务器
-     */
-    @SuppressWarnings("unused")
-    private void upload(final Bitmap bitmap) {
+    public void closeDialog() {
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
+    }
 
-        new AsyncTask<Bitmap, Void, String>() {
-            ProgressDialog progressDialog;
+    public class WriteToSdcardTask extends AsyncTask {
+        private boolean isUri;
+        private Uri uri;
 
-            protected void onPreExecute() {
-                progressDialog = new ProgressDialog(getActivity());
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.setMessage("上传中……");
-                progressDialog.show();
+        public WriteToSdcardTask(boolean isUri, Uri uri) {
+            this.isUri = isUri;
+            this.uri = uri;
+            showDialog();
+        }
+
+        @Override
+        protected String doInBackground(Object... params) {
+            String path = "";
+            try {
+                if (isUri) {
+                    path = UploadImageUtils.writeUriToSDcard(context, uri);
+                } else {
+                    path = UploadImageUtils.writeStringToSDcard(context, outputAvatarPath);
+                }
+
+            } catch (IOException e) {
+                ScreenUtils.show_msg(context, "对不起,无法找到此图片!");
             }
+            return path;
+        }
 
-            ;
+        @Override
+        protected void onPostExecute(Object result) {
+            String path = (String) result;
+            if (!TextUtils.isEmpty(path)) {
+                submitUserIcon(new File(path));
+            } else {
+                ScreenUtils.show_msg(context, "对不起,无法找到此图片!");
+            }
+        }
+    }
+
+    public void submitUserIcon(File file) {
+        TypedFile typedFile = new TypedFile("application/octet-stream", file);
+        RestAdapterUtils.getTeamAPI().uploadAvatar(typedFile, Config.getCachedUserUid(getActivity().getApplicationContext()), new Callback<UpTeamAvatar>() {
+            @Override
+            public void success(UpTeamAvatar upTeamAvatar, retrofit.client.Response response) {
+                if (upTeamAvatar != null && upTeamAvatar.getResult() == 1) {
+
+                    Picasso.with(getActivity()).load(upTeamAvatar.getData()).into(ibUserHWPersonalCenter);
+                    ScreenUtils.show_msg(context, "上传头像成功!");
+                } else {
+                    // 上传 异常
+                    Log.e("____aaaaaaaa", "_____111111");
+                    Log.e("____aaaaaaaa", response.getUrl());
+                    ScreenUtils.show_msg(context, "上传头像失败!");
+                }
+                closeDialog();
+            }
 
             @Override
-            protected String doInBackground(Bitmap... params) {
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put(Config.KEY_UID, Config.getCachedUserUid(getActivity().getApplicationContext()));
-                return HttpClientUploadManager.upload(Config.SERVER_URL + "Users/updateHeaderNew", context.getFilesDir() + "/myAvatar.png", "myAvatar", map);
+            public void failure(RetrofitError error) {
+                closeDialog();
+                Log.e("____aaaaaaaa", "2222222222");
+                Log.e("____aaaaaaaa", error.getMessage());
+                ScreenUtils.show_msg(context, "上传头像失败!");
             }
-
-            protected void onPostExecute(String result) {
-                progressDialog.dismiss();
-                if (result != null && !result.equals("")) {
-                    try {
-                        JSONObject jsonObject = new JSONObject(result);
-                        if (null != jsonObject
-                                && "1".equals(jsonObject.getString("result"))) {// 上传成功
-                            Toast.makeText(getActivity(), "上传成功",
-                                    Toast.LENGTH_SHORT).show();
-                            Config.cacheUserHwURL(getActivity().getApplicationContext(), jsonObject.getString(Config.KEY_FILE_URL));
-                            if (Config.getCachedUserHwURL(getActivity().getApplicationContext()) != null) {
-                                Picasso.with(getActivity()).load(jsonObject.getString(Config.KEY_FILE_URL)).into(ibUserHWPersonalCenter);
-//								Picasso.with(getActivity()).load(jsonObject.getString(Config.KEY_FILE_URL)).into(SlidingMenuListFragment.ivUserIcon);
-                            }
-                        }
-                        Toast.makeText(getActivity().getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    Toast.makeText(getActivity(), "上传失败",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            ;
-        }.execute(bitmap);
+        });
     }
+
 
 }

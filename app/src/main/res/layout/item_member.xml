@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_root"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:padding="10dp"
-    >
-    <ImageView
+    android:padding="10dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/item_member_img"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_launcher"
         android:layout_marginLeft="10dp"
+        fresco:placeholderImage="@drawable/defult_avatar"
+        fresco:placeholderImageScaleType="fitXY"
         />
 
     <TextView
@@ -25,7 +27,7 @@
         android:textSize="15sp"
         android:layout_marginLeft="10dp"
         />
-
+<!--
     <TextView
         android:id="@+id/item_member_tag"
         android:layout_toRightOf="@id/item_member_name"
@@ -40,4 +42,5 @@
         android:background="@color/divider"
         android:layout_centerVertical="true"
         />
+        -->
 </RelativeLayout>

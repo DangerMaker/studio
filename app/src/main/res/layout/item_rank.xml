@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/item_root"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp"
+    >
+
+    <TextView
+        android:id="@+id/item_rank_position"
+        style="@style/CreateTeamText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center|left"
+        android:text="石伟" />
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_toRightOf="@id/item_rank_position"
+        android:id="@+id/item_some_img"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        fresco:placeholderImage="@drawable/defult_avatar"
+        fresco:placeholderImageScaleType="fitXY"  />
+
+    <TextView
+        android:layout_toRightOf="@id/item_some_img"
+        android:id="@+id/item_some_name"
+        style="@style/CreateTeamText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center|left"
+        android:text="石伟" />
+
+    <TextView
+        android:layout_toRightOf="@id/item_some_name"
+        android:id="@+id/item_some_score"
+        style="@style/CreateTeamText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="5dp"
+        android:gravity="center|right"
+        android:layout_alignParentRight="true"
+        android:text="" />
+</RelativeLayout>

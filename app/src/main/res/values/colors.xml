@@ -50,4 +50,5 @@
 
     <color name="light_green">#f8feff</color>
     <color name="green">#61d3af</color>
+    <color name="color_transparent_black">#2F0F0F0F</color>
 </resources>

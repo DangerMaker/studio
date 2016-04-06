@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:background="@color/White"
     android:layout_height="match_parent">
 
@@ -28,11 +30,12 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="3dp"
         android:background="@color/common_grey_disabled"
         />
 
     <RelativeLayout
+        android:id="@+id/team_setting_alter_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -49,7 +52,8 @@
             android:gravity="center|left"
             android:text="团头像：" />
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/team_setting_img"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
@@ -58,7 +62,8 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
             android:gravity="center|left"
-            android:src="@drawable/ic_launcher" />
+            fresco:placeholderImage="@drawable/defult_avatar"
+            fresco:placeholderImageScaleType="fitXY"  />
 
     </RelativeLayout>
 
@@ -86,6 +91,20 @@
             android:gravity="center|left"
             android:text="团名称：" />
 
+        <TextView
+            android:id="@+id/team_setting_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center|left"
+            style="@style/CreateTeamText"
+            android:text="奥菲>"
+            />
+
     </RelativeLayout>
 
     <View
@@ -102,7 +121,6 @@
         android:background="@color/White">
 
         <TextView
-
             style="@style/CreateTeamText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,11 +131,26 @@
             android:gravity="center|left"
             android:text="团简介：" />
 
+        <TextView
+            android:id="@+id/team_setting_des_text"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:singleLine="true"
+            android:gravity="center|right"
+            style="@style/CreateTeamText"
+            android:text="奥菲法师打发士大夫士大夫撒地方的萨芬撒>"
+            />
+
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="3dp"
         android:background="@color/common_grey_disabled"
         />
 
@@ -170,7 +203,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="3dp"
         android:background="@color/common_grey_disabled"
         />
 
