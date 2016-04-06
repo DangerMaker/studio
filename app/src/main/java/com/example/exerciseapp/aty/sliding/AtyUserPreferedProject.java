@@ -44,6 +44,7 @@ public class AtyUserPreferedProject extends BaseActivity {
     GridView gridView;
     private List<JSONObject> list = new ArrayList<>();
     private PreGridAdapter preGridAdapter;
+    private Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class AtyUserPreferedProject extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
                     if (!preGridAdapter.setChoiced(list.get(position).getInt("id"))) {
-                        Toast.makeText(AtyUserPreferedProject.this, "最多选择三项哦", Toast.LENGTH_SHORT).show();
+                        showToast("最多选择三项哦");
                         return;
                     }
                 } catch (JSONException e) {
@@ -123,6 +124,27 @@ public class AtyUserPreferedProject extends BaseActivity {
             }
         };
         mRequestQueue.add(stringRequest);
+    }
+
+    public void showToast(String text) {
+        if(mToast == null) {
+            mToast = Toast.makeText(AtyUserPreferedProject.this, text, Toast.LENGTH_SHORT);
+        } else {
+            mToast.setText(text);
+            mToast.setDuration(Toast.LENGTH_SHORT);
+        }
+        mToast.show();
+    }
+
+    public void cancelToast() {
+        if (mToast != null) {
+            mToast.cancel();
+        }
+    }
+
+    public void onBackPressed() {
+        cancelToast();
+        super.onBackPressed();
     }
 
 

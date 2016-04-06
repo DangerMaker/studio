@@ -6,11 +6,13 @@
     <color name="lightpink">#FFB6C1</color>
     <color name="textdark">#818181</color>
     <color name="texttag">#575757</color>
+    <color name="texttag_choosed">#5caec4</color>
     <color name="azure">#F0FFFF</color><!--天蓝色 -->
     
     <color name="BtnBlue">#0082a4</color>
     <color name="BtnGrey">#CCCCCC</color>
     <color name="CharacterGrey">#888888</color>
+    <color name="CharacterBlack">#45464a</color>
     <color name="BtnGreen">#99CC33</color>
     <color name="BackgroudLightGrey">#DDDDDD</color>
     <color name="BackgroudDarkGrey">#8d8d8d</color>

@@ -98,11 +98,26 @@ public class AtySaveRunData extends BaseActivity {
     private TextView pageTitle;
 
     private int sport_type;
+    private double max_speed;
+    private double minSpeed_onAverage;
 
-    @Bind(R.id.textshowAlit)
-    TextView textAlit;
     @Bind(R.id.textshowzuigaosudu)
     TextView textSpeed;
+
+    @Bind(R.id.relativeshowDesc)
+    RelativeLayout distance;
+    @Bind(R.id.textshowDesc)
+    TextView descText;
+
+    @Bind(R.id.relativeshowPace)
+    RelativeLayout paces;
+    @Bind(R.id.textshowPace)
+    TextView paceText;
+
+    @Bind(R.id.relativeshowAlit)
+    RelativeLayout alit;
+    @Bind(R.id.textshowAlit)
+    TextView alitText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,34 +126,29 @@ public class AtySaveRunData extends BaseActivity {
         setContentView(R.layout.saverundata);
         api = WXAPIFactory.createWXAPI(this, Config.WxAPP_ID);
         api.registerApp(Config.WxAPP_ID);
-//		initActionBar();
         setTitleBar();
         mRequestQueue = Volley.newRequestQueue(this);
         Intent i = getIntent();
-        BigDecimal b = new BigDecimal(i.getFloatExtra("intentjuli", 0) / 1000.0);
+        BigDecimal b = new BigDecimal(i.getFloatExtra("intentjuli", 0) / 1000.0);//重要 距离
         juli = b.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
 //		juli=i.getFloatExtra("intentjuli", 0);
 //		 juli=Math.round((i.getFloatExtra("intentjuli", -1)/1000)*100)/100;//Math.round((i.getFloatExtra("intentjuli", -1)/1000)*100))/100
-        shijian = i.getLongExtra("intentshijian", -1);
+        shijian = i.getLongExtra("intentshijian", -1);//重要 时间
 //		int speed;
 //		PolylineOptions pol=i.getParcelableExtra("intentpolyline");
-        polyjing = i.getDoubleArrayExtra("intentpolyjing");
-        polywei = i.getDoubleArrayExtra("intentpolywei");
-        polyalti = i.getDoubleArrayExtra("intentpolyalti");
-        sport_type = i.getIntExtra("sport_type", 0);
+        polyjing = i.getDoubleArrayExtra("intentpolyjing");//重要
+        polywei = i.getDoubleArrayExtra("intentpolywei");//重要
+        polyalti = i.getDoubleArrayExtra("intentpolyalti");//重要
+        sport_type = i.getIntExtra("sport_type", 0);//重要
+        max_speed = i.getDoubleExtra("max_speed", 0);//重要
+        minSpeed_onAverage = i.getDoubleExtra("minSpeed_onAverage", 0);//重要
         z = i.getIntExtra("z", -1);
         PolylineOptions polys = new PolylineOptions();
-
-
         if (juli == 0) speed = 0;
         else speed = (int) (shijian / juli);
         kaluli = i.getFloatExtra("intentkaluli", -1);
         Typeface fontFace = Typeface.createFromAsset(getAssets(),
                 "fonts/impact.ttf");
-//	}
-//	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//			Bundle savedInstanceState){
-//		View view=inflater.inflate(R.layout.saverundata, container, false);
         mMapView = (MapView) findViewById(R.id.mapViewshow);
         mMapView.onCreate(savedInstanceState);
         setUpMapIfNeeded();
@@ -146,19 +156,9 @@ public class AtySaveRunData extends BaseActivity {
         if (z > 1) {
             for (int m = 0; m < z; m++) {
                 polys.add(new LatLng(polyjing[m], polywei[m]));
-//			Toast.makeText(getApplicationContext(), "polyjing", Toast.LENGTH_SHORT).show();
             }
             mMap.addPolyline(polys);
         }
-//		getActionBar().getCustomView().findViewById(R.id.tvPageTitleOfAll).setOnClickListener(new 
-//				OnClickListener() {
-//					
-//					@Override
-//					public void onClick(View v) {
-//						// TODO Auto-generated method stub
-//						
-//					}
-//				});
         relativeshowmap = (RelativeLayout) findViewById(R.id.relativeshowmap);
         linearshowjulishijian = (LinearLayout) findViewById(R.id.linearshowjulishijian);
         linearshowjuli = (RelativeLayout) findViewById(R.id.linearshowjuli);
@@ -173,22 +173,13 @@ public class AtySaveRunData extends BaseActivity {
         textshowshijian.setTypeface(fontFace);
         textshowshijiandanwei = (TextView) findViewById(R.id.textshowshijiandanwei);
         linearshowsuduhepingjunsudu = (LinearLayout) findViewById(R.id.linearshowsuduhepingjunsudu);
-//		relativeshowsudu=(RelativeLayout) findViewById(R.id.relativeshowsudu);
-//		linearshowsudu1=(LinearLayout) findViewById(R.id.linearshowsudu1);
-//		textshowzuigaosudu=(TextView) findViewById(R.id.textshowzuigaosudu);
-//		textshowzuigaosudu.setTypeface(fontFace);
-//		linearshowsudu2=(LinearLayout) findViewById(R.id.linearshowsudu2);
         relativeshowpingjunsudu = (RelativeLayout) findViewById(R.id.relativeshowpingjunsudu);
         linearshowpingjunsudu1 = (LinearLayout) findViewById(R.id.linearshowpingjunsudu1);
         textshowpingjunsudu = (TextView) findViewById(R.id.textshowpingjunsudu);
         edittextbeizhu = (EditText) findViewById(R.id.edittextbeizhu);
         if (speed == 0) textshowpingjunsudu.setText("0");
-        else if ((int) (speed / 3600) == 0)
-            textshowpingjunsudu.setText((int) ((speed - (speed / 3600) * 3600) / 60) +
-                    ":" + (int) ((speed - speed / 3600 * 3600 - (speed - (speed / 3600) * 3600) / 60 * 60)));//速度
-        else
-            textshowpingjunsudu.setText((int) speed / 3600 + ":" + (int) (speed - (speed / 3600) * 3600) / 60 +
-                    ":" + (int) (speed - speed / 3600 * 3600 - (speed - (speed / 3600) * 3600) / 60 * 60));//速度
+
+        textshowpingjunsudu.setText(minSpeed_onAverage+"");//速度
         textshowpingjunsudu.setTypeface(fontFace);
         linearshowpingjunsudu2 = (LinearLayout) findViewById(R.id.linearshowpingjunsudu2);
         linearshowhaibahekaluli = (LinearLayout) findViewById(R.id.linearshowhaibahekaluli);
@@ -197,22 +188,9 @@ public class AtySaveRunData extends BaseActivity {
         textshowkaluli = (TextView) findViewById(R.id.textshowkaluli);
         textshowkaluli.setText(kaluli + " ");//卡路里
         textshowkaluli.setTypeface(fontFace);
-
-        int alit = (int) (polyalti[polyalti.length - 1] - polyalti[0]);
-        if (alit == 0) {
-            textAlit.setText("0");
-        } else {
-            textAlit.setText(alit + "");
-        }
-        int mSpeed = (int) (juli / shijian);
-        if (mSpeed == 0) textSpeed.setText("0");
-        else if ((int) (mSpeed / 3600) == 0)
-            textSpeed.setText((int) ((mSpeed - (mSpeed / 3600) * 3600) / 60) +
-                    ":" + (int) ((mSpeed - mSpeed / 3600 * 3600 - (mSpeed - (mSpeed / 3600) * 3600) / 60 * 60)));//速度
-        else
-            textSpeed.setText((int) mSpeed / 3600 + ":" + (int) (mSpeed - (mSpeed / 3600) * 3600) / 60 +
-                    ":" + (int) (mSpeed - mSpeed / 3600 * 3600 - (mSpeed - (mSpeed / 3600) * 3600) / 60 * 60));//速度
-
+        setUpSportData();
+        textSpeed.setText(max_speed + " ");
+        textSpeed.setTypeface(fontFace);
         linearshowkaluli2 = (LinearLayout) findViewById(R.id.linearshowkaluli2);
         btnsave = (Button) findViewById(R.id.btnsave);
         btnsave.setOnClickListener(new OnClickListener() {
@@ -231,7 +209,7 @@ public class AtySaveRunData extends BaseActivity {
                     for (int m = 0; m < z; m++) {
 //					polys.add(new LatLng(polyjing[m], polywei[m]));
 //					Toast.makeText(getApplicationContext(), "polyjing", Toast.LENGTH_SHORT).show();
-                        writeTxtToFile(polyjing[m] + " " + polywei[m] + polyalti[m] + "\n", filePath, fileName);
+                        writeTxtToFile(polyjing[m] + " " + polywei[m] + polyalti[m] + "\n", filePath, fileName);//写入点数据，包括经度纬度海拔
                     }
                 }
 //			    writeTxtToFile("txt content", filePath, fileName);
@@ -393,11 +371,11 @@ public class AtySaveRunData extends BaseActivity {
                         map.put(Config.KEY_UID, Config.getCachedUserUid(AtySaveRunData.this.getApplicationContext()));
                         map.put(Config.KEY_DURATION, Long.toString(shijian));
                         //  (float)(Math.round((3.6*juli/shijian)*100))/100
-                        map.put(Config.KEY_AVERAGESPEED, Float.toString((float) (Math.round((3.6 * juli * 1000 / shijian) * 100)) / 100));
+                        map.put(Config.KEY_AVERAGESPEED, Double.toString((((minSpeed_onAverage) * 100)) / 100));
                         map.put(Config.KEY_CALORIE, Integer.toString((int) kaluli));
                         map.put(Config.KEY_DISTANCE, Float.toString(juli));
                         map.put(Config.KEY_REMARK, note);
-                        int alit = (int) (polyalti[polyalti.length - 1] - polyalti[0]);
+                        int alit = (int) (polyalti[z - 1] - polyalti[0]);
                         if (alit == 0) {
                             map.put(Config.KEY_ALTI, "0");
                         } else {
@@ -410,6 +388,7 @@ public class AtySaveRunData extends BaseActivity {
                             map.put(Config.KEY_PACE, pace + "");
                         }
                         map.put("sport_type", sport_type + "");
+                        map.put("max_speed", max_speed + "");
                         return HttpClientUploadManager.upload(Config.SERVER_URL + "Users/submitRunData", "/sdcard/Test/" + filename_, "rundata", map);
                     }
 
@@ -436,11 +415,7 @@ public class AtySaveRunData extends BaseActivity {
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
-
-                    ;
                 }.execute("");
-
-
             }
         });
         btnfangqi = (Button) findViewById(R.id.btnfangqi);
@@ -453,6 +428,35 @@ public class AtySaveRunData extends BaseActivity {
                 startActivity(i);
             }
         });
+    }
+
+    private void setUpSportData() {
+        Typeface fontFace = Typeface.createFromAsset(getAssets(),
+                "fonts/impact.ttf");
+        switch (sport_type) {
+            case 0:
+            case 2:
+                distance.setVisibility(View.VISIBLE);
+                paces.setVisibility(View.GONE);
+                alit.setVisibility(View.GONE);
+                descText.setText(juli + "");
+                descText.setTypeface(fontFace);
+                break;
+            case 1:
+                distance.setVisibility(View.GONE);
+                paces.setVisibility(View.VISIBLE);
+                alit.setVisibility(View.GONE);
+                paceText.setText((int) (juli * 1000 / 0.5) + "");
+                paceText.setTypeface(fontFace);
+                break;
+            case 3:
+                distance.setVisibility(View.GONE);
+                paces.setVisibility(View.GONE);
+                alit.setVisibility(View.VISIBLE);
+                alitText.setText((int) (polyalti[z - 1] - polyalti[0]) + "");
+                alitText.setTypeface(fontFace);
+                break;
+        }
     }
 
     private void setUpMapIfNeeded() {
@@ -568,7 +572,7 @@ public class AtySaveRunData extends BaseActivity {
      * @param webPageUrl  需要跳转的链接
      * @param title       分享标题
      * @param description 分享内容
-     * @param bitmap    图片地址
+     * @param bitmap      图片地址
      * @param flag        分享到朋友还是朋友圈的flag
      */
 
