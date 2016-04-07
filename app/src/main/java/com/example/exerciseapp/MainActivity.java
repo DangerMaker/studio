@@ -34,12 +34,12 @@ public class MainActivity extends Activity {
         //如果已经登录过了，就直接进入主界面
         if(Config.getCachedUserUid(getApplicationContext())!=null){
             if(Config.getCachedUserUid(getApplicationContext()).equals("")){
-                startActivity(new Intent(MainActivity.this, AtyAdvertisement.class));
+                startActivity(new Intent(MainActivity.this, AtyWelcome.class));
             }else{
                 startActivity(new Intent(MainActivity.this, AtySlidingHome.class));
             }
         }else{
-            startActivity(new Intent(MainActivity.this, AtyAdvertisement.class));
+            startActivity(new Intent(MainActivity.this, AtyWelcome.class));
         }
         finish();
     }

@@ -40,6 +40,7 @@ import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.PolylineOptions;
+import com.example.exerciseapp.utils.SpeedConvert;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -112,14 +113,14 @@ public class AtyRunRecordDetail extends BaseActivity {
                 distance.setVisibility(View.VISIBLE);
                 paces.setVisibility(View.GONE);
                 alit.setVisibility(View.GONE);
-                descText.setText(juli + "");
+                descText.setText((float) (Math.round(juli / 1000 * 100)) / 100 + "");
                 descText.setTypeface(fontFace);
                 break;
             case 1:
                 distance.setVisibility(View.GONE);
                 paces.setVisibility(View.VISIBLE);
                 alit.setVisibility(View.GONE);
-                paceText.setText((int) (juli * 1000 / 0.5) + "");
+                paceText.setText((int) (juli / 0.5) + "");
                 paceText.setTypeface(fontFace);
                 break;
             case 3:
@@ -145,12 +146,14 @@ public class AtyRunRecordDetail extends BaseActivity {
         setTitleBar();
         mRequestQueue = Volley.newRequestQueue(this);
         Intent i = getIntent();
-        juli = i.getFloatExtra("intentjuli", -1);// Math.round((i.getFloatExtra("intentjuli",
+        juli = i.getFloatExtra("distance", -1);// Math.round((i.getFloatExtra("intentjuli",
         // -1)/1000)*100))/100
-        shijian = i.getLongExtra("intentshijian", -1);
+        shijian = i.getLongExtra("duration", -1);
         sport_type = i.getIntExtra("sport_type", 0);//重要
         max_speed = i.getDoubleExtra("max_speed", 0);//重要
+        max_speed = SpeedConvert.oriToShow(max_speed);
         minSpeed_onAverage = i.getDoubleExtra("minSpeed_onAverage", 0);//重要
+        minSpeed_onAverage = SpeedConvert.oriToShow(minSpeed_onAverage);
         textshowzuigaosudu = (TextView) findViewById(R.id.textshowzuigaosudu);
         String[] data = i.getStringExtra("data").trim().split(" ");
         for (int j = 0; j < data.length; j++) {
@@ -164,9 +167,9 @@ public class AtyRunRecordDetail extends BaseActivity {
             }
         }
         PolylineOptions polys = new PolylineOptions();
-        kaluli = i.getFloatExtra("intentkaluli", -1);
+        kaluli = i.getFloatExtra("calorie", -1);
         Typeface fontFace = Typeface.createFromAsset(getAssets(), "fonts/impact.ttf");
-        textshowzuigaosudu.setText(max_speed + "");
+        textshowzuigaosudu.setText((float) (Math.round(SpeedConvert.oriToShow(max_speed) * 100)) / 100 + "");
         textshowzuigaosudu.setTypeface(fontFace);
         mMapView = (MapView) findViewById(R.id.mapViewshow);
         mMapView.onCreate(savedInstanceState);
@@ -183,7 +186,7 @@ public class AtyRunRecordDetail extends BaseActivity {
         linearshowjulishijian = (LinearLayout) findViewById(R.id.linearshowjulishijian);
         linearshowjuli = (LinearLayout) findViewById(R.id.linearshowjuli);
         textshowjuli = (TextView) findViewById(R.id.textshowjuli);
-        textshowjuli.setText(juli + ""); // 获取并显示距离
+        textshowjuli.setText((float) (Math.round(juli / 1000 * 100)) / 100 + ""); // 获取并显示距离
         textshowjuli.setTypeface(fontFace);
         textshowjulidanwei = (TextView) findViewById(R.id.textshowjulidanwei);
         linearshowshijian = (LinearLayout) findViewById(R.id.linearshowshijian);
@@ -199,7 +202,7 @@ public class AtyRunRecordDetail extends BaseActivity {
         edittextbeizhu = (EditText) findViewById(R.id.edittextbeizhu);
         edittextbeizhu.setText(i.getStringExtra("remark"));
         if (minSpeed_onAverage == 0) textshowpingjunsudu.setText("0");
-        textshowpingjunsudu.setText(minSpeed_onAverage + "");//速度
+        textshowpingjunsudu.setText((float) (Math.round(SpeedConvert.oriToShow(minSpeed_onAverage) * 100)) / 100 + "");//速度
         textshowpingjunsudu.setTypeface(fontFace);
         linearshowpingjunsudu2 = (LinearLayout) findViewById(R.id.linearshowpingjunsudu2);
         linearshowhaibahekaluli = (LinearLayout) findViewById(R.id.linearshowhaibahekaluli);

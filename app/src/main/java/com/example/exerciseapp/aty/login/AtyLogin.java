@@ -125,7 +125,7 @@ public class AtyLogin extends Activity {
 										SharedPreferencesHelper.getInstance(AtyLogin.this).setValue("uid",uid);
 										((MyApplication)getApplication()).setUid(uid);
 										finish();
-	                                	startActivity(new Intent(AtyLogin.this,AtySlidingHome.class));
+	                                	startActivity(new Intent(AtyLogin.this,AtyAdvertisement.class));
 	                                	Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
 	                                	Config.STATUS_FINISH_ACTIVITY = 1;
 	                                	Config.TOURIST_MODE = false;

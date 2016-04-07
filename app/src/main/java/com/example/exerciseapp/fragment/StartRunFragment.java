@@ -43,6 +43,7 @@ import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.amap.api.maps2d.AMapUtils;
+import com.example.exerciseapp.utils.SpeedConvert;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -65,10 +66,10 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
     static double[] polyjing = new double[20000];//重要！上传数据！
     static double[] polywei = new double[20000];//重要！上传数据！
     static double[] polyalti = new double[20000];//重要！上传数据！
-    private double max_speed = 0;//重要！上传数据！分钟/公里 由minSpeed求得
+    private double max_speed = 0;//重要！上传数据！分钟/公里 由minSpeed求得 m/s
+    private double minSpeed_onAverage = 0;//上传数据！分钟/公里 由minSpeed求得 m/s
     private double locSpeed = 0; //高德地图获取的速度 米/秒
     private double minSpeed = 0;//分钟/公里
-    private double minSpeed_onAverage = 0;//分钟/公里 由minSpeed求得
     private double hourSpeed = 0;//公里/小时
 
     static int z;
@@ -77,7 +78,7 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
     static zuobiao oldll = new zuobiao();
     LinearLayout linearbuttonline1;
     RelativeLayout linearxiangshang;
-    TextView textjuli,textjuli_, textTime, textSpeed, textshunshisudu, textkaluli, textTime_, textSpeed_, textshunshisudu_, textkaluli_;
+    TextView textjuli, textjuli_, textTime, textSpeed, textshunshisudu, textkaluli, textTime_, textSpeed_, textshunshisudu_, textkaluli_;
     LinearLayout linear3choose, linearchoosetargeticon, linearchoosemapicon;
     TextView textchoosetargetiocn, textchoosemapicon, textjieshuyundong;
     RelativeLayout relativegpsxinhao;
@@ -573,20 +574,20 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
             if (0 == locSpeed) {
                 minSpeed = 0;
             } else {
-                minSpeed = 1.0 / (0.06 * locSpeed);//min/km
+                minSpeed = SpeedConvert.oriToShow(locSpeed);//min/km
             }
-            if (minSpeed > max_speed) {
-                max_speed = minSpeed;
+            if (locSpeed > max_speed) {
+                max_speed = locSpeed;
             }
             if (0 == juli) {
-                if (0 == minSpeed) {
+                if (0 == locSpeed) {
                     minSpeed_onAverage = 0;
                 } else {
-                    minSpeed_onAverage = minSpeed;
+                    minSpeed_onAverage = locSpeed;
                 }
             } else {
                 if (0 != AMapUtils.calculateLineDistance(oldlatlng, newlatlng)) {
-                    minSpeed_onAverage = 1 / ((((int) juli / minSpeed_onAverage) + ((int) AMapUtils.calculateLineDistance(oldlatlng, newlatlng) / minSpeed)) / ((int) juli + (int) AMapUtils.calculateLineDistance(oldlatlng, newlatlng)));
+                    minSpeed_onAverage = (juli + AMapUtils.calculateLineDistance(oldlatlng, newlatlng)) * minSpeed_onAverage * locSpeed / (juli * locSpeed + AMapUtils.calculateLineDistance(oldlatlng, newlatlng) * minSpeed_onAverage);
                 }
             }
             if (runtag == 1 && oldll.jingdu != 0.0 && newll.jingdu != 0.0) {
@@ -697,12 +698,12 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
             shijian = (86400000 - millisUntilFinished) / 1000;
             textTime.setText(shijian / 3600 + ":" + (shijian - (shijian / 3600) * 3600) / 60 +
                     ":" + (shijian - shijian / 3600 * 3600 - (shijian - (shijian / 3600) * 3600) / 60 * 60));//以1：2：3的形式显示计时
-            if(sportTag==1){
+            if (sportTag == 1) {
                 textjuli.setText((int) (juli / 0.5) + "");
-            }else{
+            } else {
                 textjuli.setText((float) (Math.round(juli / 1000 * 100)) / 100 + "");
             }
-            textSpeed.setText((float) (Math.round(minSpeed_onAverage * 100)) / 100 + " ");
+            textSpeed.setText((float) (Math.round(SpeedConvert.oriToShow(minSpeed_onAverage) * 100)) / 100 + " ");//m/s to min/km
             textkaluli.setText((float) (Math.round(juli * tizhong * 1.036 / 1000 * 100)) / 100 + " ");
             minute_speed.setText((float) (Math.round(minSpeed * 100)) / 100 + "");//取小数点后两位
             mMap.addPolyline(polylineops);

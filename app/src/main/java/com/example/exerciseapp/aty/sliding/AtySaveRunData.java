@@ -49,6 +49,7 @@ import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.PolylineOptions;
+import com.example.exerciseapp.utils.SpeedConvert;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -130,7 +131,7 @@ public class AtySaveRunData extends BaseActivity {
         mRequestQueue = Volley.newRequestQueue(this);
         Intent i = getIntent();
         BigDecimal b = new BigDecimal(i.getFloatExtra("intentjuli", 0) / 1000.0);//重要 距离
-        juli = b.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+        juli = Float.parseFloat(i.getStringExtra("intentjuli"));
 //		juli=i.getFloatExtra("intentjuli", 0);
 //		 juli=Math.round((i.getFloatExtra("intentjuli", -1)/1000)*100)/100;//Math.round((i.getFloatExtra("intentjuli", -1)/1000)*100))/100
         shijian = i.getLongExtra("intentshijian", -1);//重要 时间
@@ -163,7 +164,7 @@ public class AtySaveRunData extends BaseActivity {
         linearshowjulishijian = (LinearLayout) findViewById(R.id.linearshowjulishijian);
         linearshowjuli = (RelativeLayout) findViewById(R.id.linearshowjuli);
         textshowjuli = (TextView) findViewById(R.id.textshowjuli);
-        textshowjuli.setText(juli + " ");   //获取并显示距离
+        textshowjuli.setText((float) (Math.round(juli / 1000 * 100)) / 100 + "");   //获取并显示距离
         textshowjuli.setTypeface(fontFace);
         textshowjulidanwei = (TextView) findViewById(R.id.textshowjulidanwei);
         linearshowshijian = (RelativeLayout) findViewById(R.id.linearshowshijian);
@@ -179,7 +180,7 @@ public class AtySaveRunData extends BaseActivity {
         edittextbeizhu = (EditText) findViewById(R.id.edittextbeizhu);
         if (minSpeed_onAverage == 0) textshowpingjunsudu.setText("0");
 
-        textshowpingjunsudu.setText(minSpeed_onAverage+"");//速度
+        textshowpingjunsudu.setText((Math.round(SpeedConvert.oriToShow(minSpeed_onAverage)* 100)) / 100 + "");//速度
         textshowpingjunsudu.setTypeface(fontFace);
         linearshowpingjunsudu2 = (LinearLayout) findViewById(R.id.linearshowpingjunsudu2);
         linearshowhaibahekaluli = (LinearLayout) findViewById(R.id.linearshowhaibahekaluli);
@@ -189,7 +190,7 @@ public class AtySaveRunData extends BaseActivity {
         textshowkaluli.setText(kaluli + " ");//卡路里
         textshowkaluli.setTypeface(fontFace);
         setUpSportData();
-        textSpeed.setText(max_speed + " ");
+        textSpeed.setText((Math.round(SpeedConvert.oriToShow(max_speed)* 100)) / 100 + "");
         textSpeed.setTypeface(fontFace);
         linearshowkaluli2 = (LinearLayout) findViewById(R.id.linearshowkaluli2);
         btnsave = (Button) findViewById(R.id.btnsave);
@@ -371,7 +372,7 @@ public class AtySaveRunData extends BaseActivity {
                         map.put(Config.KEY_UID, Config.getCachedUserUid(AtySaveRunData.this.getApplicationContext()));
                         map.put(Config.KEY_DURATION, Long.toString(shijian));
                         //  (float)(Math.round((3.6*juli/shijian)*100))/100
-                        map.put(Config.KEY_AVERAGESPEED, Double.toString((((minSpeed_onAverage) * 100)) / 100));
+                        map.put(Config.KEY_AVERAGESPEED, minSpeed_onAverage+"");
                         map.put(Config.KEY_CALORIE, Integer.toString((int) kaluli));
                         map.put(Config.KEY_DISTANCE, Float.toString(juli));
                         map.put(Config.KEY_REMARK, note);
@@ -439,14 +440,14 @@ public class AtySaveRunData extends BaseActivity {
                 distance.setVisibility(View.VISIBLE);
                 paces.setVisibility(View.GONE);
                 alit.setVisibility(View.GONE);
-                descText.setText(juli + "");
+                descText.setText((float) (Math.round(juli / 1000 * 100)) / 100 + "");
                 descText.setTypeface(fontFace);
                 break;
             case 1:
                 distance.setVisibility(View.GONE);
                 paces.setVisibility(View.VISIBLE);
                 alit.setVisibility(View.GONE);
-                paceText.setText((int) (juli * 1000 / 0.5) + "");
+                paceText.setText((int) (juli / 0.5) + "");
                 paceText.setTypeface(fontFace);
                 break;
             case 3:

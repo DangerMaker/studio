@@ -7,6 +7,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.sliding.AtySlidingHome;
 
 /**
  * Created by Cherie_No.47 on 2016/4/4 17:55.
@@ -45,7 +46,7 @@ public class AtyAdvertisement extends BaseActivity {
 
     public void next() {
         Intent intent = new Intent();
-        intent.setClass(AtyAdvertisement.this, AtyWelcome.class);
+        intent.setClass(AtyAdvertisement.this, AtySlidingHome.class);
         startActivity(intent);
         finish();
     }

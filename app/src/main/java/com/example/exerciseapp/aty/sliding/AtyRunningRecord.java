@@ -56,6 +56,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseapp.utils.SpeedConvert;
 import com.example.exerciseapp.view.se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import com.example.exerciseapp.view.se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 import com.example.exerciseapp.volley.AuthFailureError;
@@ -163,9 +164,9 @@ public class AtyRunningRecord extends BaseActivity {
                             instream.close();
                             JSONObject json = new JSONObject();
                             json.put("data", content);
-                            json.put("intentjuli", params[0].getString("distance"));
-                            json.put("intentshijian", params[0].getString("duration"));
-                            json.put("kaluli", params[0].getString("calorie"));
+                            json.put("distance", params[0].getString("distance"));
+                            json.put("duration", params[0].getString("duration"));
+                            json.put("calorie", params[0].getString("calorie"));
                             json.put("remark", params[0].getString("remark"));
                             json.put("altitude", params[0].getString("altitude"));
                             json.put("step_count", params[0].getString("step_count"));
@@ -208,9 +209,9 @@ public class AtyRunningRecord extends BaseActivity {
                     return;
                 }
                 Intent intent = new Intent(AtyRunningRecord.this, AtyRunRecordDetail.class);
-                intent.putExtra("intentjuli", Float.valueOf(result.getString("intentjuli")));
-                intent.putExtra("intentshijian", Long.valueOf(result.getString(("intentshijian"))));
-                intent.putExtra("intentkaluli", Float.valueOf(result.getString("kaluli")));
+                intent.putExtra("distance", Float.valueOf(result.getString("distance")));
+                intent.putExtra("duration", Long.valueOf(result.getString(("duration"))));
+                intent.putExtra("calorie", Float.valueOf(result.getString("calorie")));
                 intent.putExtra("data", result.getString("data"));
                 intent.putExtra("remark", result.getString("remark"));
                 intent.putExtra("altitude", result.getString("altitude"));
@@ -275,10 +276,8 @@ public class AtyRunningRecord extends BaseActivity {
             try {
                 return Long.valueOf(list.get(position).getString("id"));
             } catch (NumberFormatException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch (JSONException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             return 0;
@@ -303,20 +302,21 @@ public class AtyRunningRecord extends BaseActivity {
             try {
                 Typeface fontFace = Typeface.createFromAsset(getAssets(), "fonts/impact.ttf");
                 holder.tvRunDateTime.setText(list.get(position).getString("rundatetime"));
-                holder.tvAverageSpeed.setText(list.get(position).getString("averagespeed"));
+                double averagespeed = Double.parseDouble(list.get(position).getString("averagespeed"));
+                holder.tvAverageSpeed.setText((float) (Math.round(SpeedConvert.oriToShow(averagespeed) * 100)) / 100 + "");
                 holder.tvAverageSpeed.setTypeface(fontFace);
                 holder.tvCalorie.setText(list.get(position).getString("calorie"));
                 holder.tvCalorie.setTypeface(fontFace);
                 if (list.get(position).getString("sport_type").equals("1")) {
                     double dis = Double.parseDouble(list.get(position).getString("distance"));//m
-                    int pace = (int) (dis * 1000 / 0.5);
+                    int pace = (int) (dis / 0.5);
                     holder.tvSportType.setText("步数");
                     holder.tvDistance.setText(pace + "");
                     holder.tvDistance.setTypeface(fontFace);
                 } else {
                     double dis = Double.parseDouble(list.get(position).getString("distance"));//m
                     holder.tvSportType.setText("公里");
-                    holder.tvDistance.setText(dis + "");
+                    holder.tvDistance.setText((float) (Math.round(dis / 1000 * 100)) / 100 + "");
                     holder.tvDistance.setTypeface(fontFace);
                 }
             } catch (JSONException e) {
