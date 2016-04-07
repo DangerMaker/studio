@@ -12,8 +12,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivUserIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="10dp"
@@ -48,7 +48,7 @@
         <RelativeLayout
             android:id="@+id/menu_gamelist"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="43dp"
             android:clickable="true">
 
             <ImageView
@@ -79,7 +79,7 @@
         <RelativeLayout
             android:id="@+id/menu_startrun"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="43dp"
             android:clickable="true">
 
             <ImageView
@@ -110,7 +110,7 @@
         <RelativeLayout
             android:id="@+id/menu_sportgroup"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="43dp"
             android:clickable="true">
 
             <ImageView
@@ -141,7 +141,7 @@
         <RelativeLayout
             android:id="@+id/menu_club"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="43dp"
             android:clickable="true">
 
             <ImageView
@@ -172,7 +172,7 @@
         <RelativeLayout
             android:id="@+id/menu_personal"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="43dp"
             android:clickable="true">
 
             <ImageView
@@ -203,7 +203,7 @@
         <RelativeLayout
             android:id="@+id/menu_news"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="43dp"
             android:clickable="true">
 
             <ImageView
@@ -234,7 +234,7 @@
         <RelativeLayout
             android:id="@+id/menu_setting"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="43dp"
             android:clickable="true">
 
             <ImageView

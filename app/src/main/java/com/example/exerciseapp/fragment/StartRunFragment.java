@@ -62,16 +62,22 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
     OnLocationChangedListener mListener;
     LocationManagerProxy mAMapLocationManager;
     static PolylineOptions polylineops = new PolylineOptions();
-    static double[] polyjing = new double[20000];
-    static double[] polywei = new double[20000];
-    static double[] polyalti = new double[20000];
+    static double[] polyjing = new double[20000];//重要！上传数据！
+    static double[] polywei = new double[20000];//重要！上传数据！
+    static double[] polyalti = new double[20000];//重要！上传数据！
+    private double max_speed = 0;//重要！上传数据！分钟/公里 由minSpeed求得
+    private double locSpeed = 0; //高德地图获取的速度 米/秒
+    private double minSpeed = 0;//分钟/公里
+    private double minSpeed_onAverage = 0;//分钟/公里 由minSpeed求得
+    private double hourSpeed = 0;//公里/小时
+
     static int z;
     TextView mLocationErrText;
     static zuobiao newll = new zuobiao(-100, -100);
     static zuobiao oldll = new zuobiao();
-    LinearLayout linear2mix, linearbuttonline1, linearbuttonline2, linearbuttonline3, linearbuttonline4;
+    LinearLayout linearbuttonline1;
     RelativeLayout linearxiangshang;
-    TextView textjuli, textTime, textSpeed, textshunshisudu, textkaluli, textTime_, textSpeed_, textshunshisudu_, textkaluli_;
+    TextView textjuli,textjuli_, textTime, textSpeed, textshunshisudu, textkaluli, textTime_, textSpeed_, textshunshisudu_, textkaluli_;
     LinearLayout linear3choose, linearchoosetargeticon, linearchoosemapicon;
     TextView textchoosetargetiocn, textchoosemapicon, textjieshuyundong;
     RelativeLayout relativegpsxinhao;
@@ -98,9 +104,8 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
     boolean flagInitial = false;
     private boolean firstGetLocation = true;
 
-    private float speed = 0;
     @Bind(R.id.text_speed)
-    TextView speedTextView;
+    TextView minute_speed;
 
     @Bind(R.id.relativechoose_sports)
     RelativeLayout chooseSports;
@@ -156,25 +161,29 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
                     sportTag = 3;
                     break;
             }
+            setUpSportType();
+            chooseSports.setVisibility(View.INVISIBLE);
         }
     };
 
-    @OnClick(R.id.textqueding_sports)
-    public void confirmSports() {
-        chooseSports.setVisibility(View.INVISIBLE);
+    private void setUpSportType() {
         String sportContent = "";
         switch (sportTag) {
             case 0:
                 sportContent = "跑步";
+                textjuli_.setText("公里");
                 break;
             case 1:
                 sportContent = "步行";
+                textjuli_.setText("步数");
                 break;
             case 2:
                 sportContent = "骑行";
+                textjuli_.setText("公里");
                 break;
             case 3:
                 sportContent = "登山";
+                textjuli_.setText("公里");
                 break;
             default:
                 break;
@@ -245,8 +254,9 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
 
         relativegexiangcanshu = (RelativeLayout) view.findViewById(R.id.relativegexiangcanshu);
         textjuli = (TextView) view.findViewById(R.id.texttongjijuli);
+        textjuli_ = (TextView) view.findViewById(R.id.texttongjijuli_);
         linearbuttonline1 = (LinearLayout) view.findViewById(R.id.linearbuttonline1);
-        linearbuttonline2 = (LinearLayout) view.findViewById(R.id.linearbuttonline2);
+        setUpSportType();
         textTime = (TextView) view.findViewById(R.id.texttongjishijian);
         textSpeed = (TextView) view.findViewById(R.id.textpingjunsudu);
         textSpeed_ = (TextView) view.findViewById(R.id.textpingjunsudu_);
@@ -295,6 +305,14 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
                         runtag = 1;
                         juli = 0;
                         z = 0;
+                        shijian = 0;
+                        polyjing = new double[20000];
+                        polywei = new double[20000];
+                        polyalti = new double[20000];
+                        polylineops = new PolylineOptions();
+                        max_speed = 0;
+                        minSpeed = 0;
+                        minSpeed_onAverage = 0;
                         flagInitial = true;
                         btnduanlian.setTag(zantingduanlian);
                         btnduanlian.setText("暂停锻炼");
@@ -305,7 +323,7 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
                         chooseMap.setVisibility(View.INVISIBLE);
                         chooseTarget.setVisibility(View.INVISIBLE);
                         relativegpsxinhao.setVisibility(View.INVISIBLE);
-                        timecount = new TimeCount(86400000, 2000);
+                        timecount = new TimeCount(86400000, 1000);
                         timecount.start();
                         break;
                     case zantingduanlian:
@@ -324,6 +342,7 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+                //结束键响应恢复初始状态
                 runtag = 3;
                 btnduanlian.setTag(kaishiduanlian);
                 btnduanlian.setText("开始锻炼");
@@ -335,13 +354,22 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
                 relativegpsxinhao.setVisibility(View.VISIBLE);
                 timecount.cancel();//onFinish();
                 mMap.clear();
+                textTime.setText("0:0:0");
+                textjuli.setText("0.0");
+                textSpeed.setText("--");
+                textkaluli.setText("--");
+                minute_speed.setText("--");
                 MyLocationStyle myLocationStyle = new MyLocationStyle();
                 myLocationStyle.myLocationIcon(BitmapDescriptorFactory
                         .fromResource(R.drawable.yuanquan_icon));// 设置小蓝点的图标
                 mMap.setMyLocationStyle(myLocationStyle);
+                if (juli < 10 || polyjing.length < 10) {
+                    Toast.makeText(StartRunFragment.this.getActivity(), "运动距离太短，没有数据记录", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent i = new Intent(getActivity(), AtySaveRunData.class);
-                i.putExtra("intentjuli", juli);
-                i.putExtra("intentshijian", shijian);
+                i.putExtra("intentjuli", juli);//m
+                i.putExtra("intentshijian", shijian);//s
                 i.putExtra("intentkaluli", (float) (Math.round(juli * tizhong * 1.036 / 1000 * 100)) / 100);
 //				i.putExtra("intentpolyline", polylineops);
                 i.putExtra("z", z);
@@ -349,6 +377,8 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
                 i.putExtra("intentpolywei", polywei);
                 i.putExtra("intentpolyalti", polyalti);
                 i.putExtra("sport_type", sportTag);
+                i.putExtra("max_speed", (double) (Math.round(max_speed * 100)) / 100);
+                i.putExtra("minSpeed_onAverage", (double) (Math.round(minSpeed_onAverage * 100)) / 100);
                 startActivity(i);
             }
         });
@@ -527,9 +557,6 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
                 oldll.jingdu = amapLocation.getLatitude();
                 oldll.weidu = amapLocation.getLongitude();
                 oldll.altit = amapLocation.getAltitude();
-                newll.jingdu = amapLocation.getLatitude();
-                newll.weidu = amapLocation.getLongitude();
-                newll.altit = amapLocation.getAltitude();
                 flagInitial = false;
             } else {
                 oldll.jingdu = newll.jingdu;
@@ -541,13 +568,27 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
             newll.altit = amapLocation.getAltitude();
             LatLng newlatlng = new LatLng(newll.jingdu, newll.weidu);
             LatLng oldlatlng = new LatLng(oldll.jingdu, oldll.weidu);
-            speed = amapLocation.getSpeed();
-//            if ((AMapUtils.calculateLineDistance(oldlatlng, newlatlng) > 15.00)&&!firstGetLocation) {
-//                newll.jingdu = oldll.jingdu;
-//                newll.weidu = oldll.weidu;
-//                newll.altit = oldll.altit;
-//                return;
-//            }
+            locSpeed = amapLocation.getSpeed();//m/s
+            hourSpeed = locSpeed * 3.6;//km/h
+            if (0 == locSpeed) {
+                minSpeed = 0;
+            } else {
+                minSpeed = 1.0 / (0.06 * locSpeed);//min/km
+            }
+            if (minSpeed > max_speed) {
+                max_speed = minSpeed;
+            }
+            if (0 == juli) {
+                if (0 == minSpeed) {
+                    minSpeed_onAverage = 0;
+                } else {
+                    minSpeed_onAverage = minSpeed;
+                }
+            } else {
+                if (0 != AMapUtils.calculateLineDistance(oldlatlng, newlatlng)) {
+                    minSpeed_onAverage = 1 / ((((int) juli / minSpeed_onAverage) + ((int) AMapUtils.calculateLineDistance(oldlatlng, newlatlng) / minSpeed)) / ((int) juli + (int) AMapUtils.calculateLineDistance(oldlatlng, newlatlng)));
+                }
+            }
             if (runtag == 1 && oldll.jingdu != 0.0 && newll.jingdu != 0.0) {
                 juli += AMapUtils.calculateLineDistance(oldlatlng, newlatlng);
                 mMap.addPolyline((new PolylineOptions()).
@@ -574,7 +615,7 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
 //				LatLng newlatlng=new LatLng(newll.jingdu, newll.weidu);
 //				LatLng oldlatlng=new LatLng(oldll.jingdu, oldll.weidu);
 //				juli+=AMapUtils.calculateLineDistance(oldlatlng, newlatlng);
-//				
+//
 //				if(runtag==1){
 //					mMap.addPolyline((new PolylineOptions()).
 //							add(new LatLng(oldll.jingdu,oldll.weidu),new LatLng(newll.jingdu,newll.weidu)));
@@ -653,16 +694,17 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
 
         @Override
         public void onTick(long millisUntilFinished, int percent) {
-            // TODO Auto-generated method stub//计时过程显示
             shijian = (86400000 - millisUntilFinished) / 1000;
             textTime.setText(shijian / 3600 + ":" + (shijian - (shijian / 3600) * 3600) / 60 +
                     ":" + (shijian - shijian / 3600 * 3600 - (shijian - (shijian / 3600) * 3600) / 60 * 60));//以1：2：3的形式显示计时
-            juli = (float) (Math.round(juli * 100)) / 100;//取小数点后两位
-            textjuli.setText(juli + "");
-            textSpeed.setText((float) (Math.round((3.6 * juli / shijian) * 100)) / 100 + " ");
+            if(sportTag==1){
+                textjuli.setText((int) (juli / 0.5) + "");
+            }else{
+                textjuli.setText((float) (Math.round(juli / 1000 * 100)) / 100 + "");
+            }
+            textSpeed.setText((float) (Math.round(minSpeed_onAverage * 100)) / 100 + " ");
             textkaluli.setText((float) (Math.round(juli * tizhong * 1.036 / 1000 * 100)) / 100 + " ");
-            speed = (float) (Math.round(speed * 100)) / 100;//取小数点后两位
-            speedTextView.setText(speed + "");
+            minute_speed.setText((float) (Math.round(minSpeed * 100)) / 100 + "");//取小数点后两位
             mMap.addPolyline(polylineops);
         }
     }

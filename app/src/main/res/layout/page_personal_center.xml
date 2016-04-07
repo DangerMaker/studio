@@ -244,7 +244,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/tvMyClubAndAssocPersonalCenter_image"
                 android:gravity="center_vertical"
-                android:text="我的协会/俱乐部"
+                android:text="组织机构"
                 android:textColor="#292121"
                 android:textSize="16sp" />
         </RelativeLayout>
