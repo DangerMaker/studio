@@ -9,6 +9,8 @@
     <com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/pull_to_refresh_team"
         android:layout_height="match_parent"
-        android:layout_width="match_parent" />
+        android:layout_width="match_parent"
+        android:divider="@drawable/divder_line"
+        />
 
 </LinearLayout>

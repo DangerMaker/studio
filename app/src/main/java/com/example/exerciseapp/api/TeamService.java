@@ -164,6 +164,10 @@ public interface TeamService {
     @GET("/py/group?action=get_group_list")
     void getGroupList(Callback<GroupList> callback);
 
+    @GET("/py/group?action=get_group_find")
+    void getGroupFind(@Query("find_name") String find_name,
+            Callback<GroupList> callback);
+
     @GET("/py/apply")
     void passApply(@Query("id") String id,
                    @Query("action") String pass_apply,
@@ -181,5 +185,4 @@ public interface TeamService {
     void getGroupInfo(@Query("id") String id,
                 @Query("action") String get_group_info,
             Callback<GroupData> callback);
-
 }

@@ -8,34 +8,34 @@
     <include layout="@layout/main_toolbar" />
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/defult_avatar"
-        android:layout_marginTop="50dp"
+        android:layout_width="250dp"
+        android:layout_height="152dp"
+        android:src="@drawable/group_logo"
+        android:layout_marginTop="30dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@color/common_grey"
-        android:textSize="15sp"
+        android:textColor="@color/text_color_grey"
+        android:textSize="12sp"
         android:text="欢迎热爱运动的群体，创建属于自己的团体"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/common_grey"
+        android:background="@color/common_dark_shadow"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@color/common_grey"
-        android:textSize="20sp"
+        android:textColor="@color/text_color_grey"
+        android:textSize="18sp"
         android:text="团队特权"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
-        android:textColor="@color/common_grey"
+        android:textColor="@color/text_color_grey"
         android:text="1、带领团队报名指定团队比赛项目"
         style="@style/CreateTeamText1"
         android:paddingLeft="50dp"
@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
-        android:textColor="@color/common_grey"
+        android:textColor="@color/text_color_grey"
         android:text="2、200人以上的团队，可以申请为俱乐部"
         style="@style/CreateTeamText1"
         android:paddingLeft="50dp"
@@ -65,10 +65,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
-        android:textColor="@color/common_grey"
+        android:textColor="@color/text_color_grey"
         android:text="3、俱乐部可以发起团队"
         style="@style/CreateTeamText1"
         android:paddingLeft="50dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         />
 
     <TextView
@@ -85,13 +91,9 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/common_grey"
+        android:background="@color/common_dark_shadow"
         />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        />
+
 
 
     <Button

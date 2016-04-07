@@ -49,4 +49,8 @@
     <color name="light_green">#f8feff</color>
     <color name="green">#61d3af</color>
     <color name="color_transparent_black">#2F0F0F0F</color>
+    <color name="text_color_grey">#727171</color>
+    <color name="edit_color_grey">#dcdcdc</color>
+    <color name="text_color_blue">#047496</color>
+    <color name="divder_color_grey">#efeff0</color>
 </resources>

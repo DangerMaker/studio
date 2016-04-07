@@ -6,14 +6,17 @@
     android:orientation="horizontal"
     android:paddingBottom="5dp"
     android:paddingTop="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:gravity="center">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/item_some_img"
         android:layout_width="35dp"
         android:layout_height="35dp"
+        fresco:roundAsCircle="true"
         fresco:placeholderImage="@drawable/defult_avatar"
-        fresco:placeholderImageScaleType="fitXY" />
+        fresco:placeholderImageScaleType="fitCenter" />
 
     <TextView
         android:layout_toRightOf="@id/item_some_img"
@@ -21,8 +24,7 @@
         style="@style/CreateTeamText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
         android:gravity="center|left"
         android:singleLine="true"
         android:text="石伟" />

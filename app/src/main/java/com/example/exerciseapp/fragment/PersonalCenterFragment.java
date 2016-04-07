@@ -616,6 +616,7 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
 //			startActivity(new Intent(getActivity(),AtyMyFocus.class));
 //			break;
             case R.id.MyTeamAndAssocPersonalCenter:
+
                 startActivity(new Intent(getActivity(), MyTeamActivity.class));
                 break;
 

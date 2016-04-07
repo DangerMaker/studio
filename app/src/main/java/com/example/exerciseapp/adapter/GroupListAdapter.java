@@ -106,7 +106,7 @@ public class GroupListAdapter extends BaseAdapter {
         holder.item_group_img.setImageURI(Uri.parse(singleGroup.getAvatar()));
         holder.item_group_tag.setText(singleGroup.getTag_name());
         holder.item_group_des.setText(singleGroup.getIntro());
-        holder.item_group_num.setText("人数：" + singleGroup.getMembernum() +"");
+        holder.item_group_num.setText("人数:" + singleGroup.getMembernum() +"");
         holder.item_group_sum.setText(singleGroup.getSumrun() + "公里");
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
