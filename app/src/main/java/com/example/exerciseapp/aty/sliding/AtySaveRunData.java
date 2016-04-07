@@ -177,7 +177,7 @@ public class AtySaveRunData extends BaseActivity {
         linearshowpingjunsudu1 = (LinearLayout) findViewById(R.id.linearshowpingjunsudu1);
         textshowpingjunsudu = (TextView) findViewById(R.id.textshowpingjunsudu);
         edittextbeizhu = (EditText) findViewById(R.id.edittextbeizhu);
-        if (speed == 0) textshowpingjunsudu.setText("0");
+        if (minSpeed_onAverage == 0) textshowpingjunsudu.setText("0");
 
         textshowpingjunsudu.setText(minSpeed_onAverage+"");//速度
         textshowpingjunsudu.setTypeface(fontFace);
