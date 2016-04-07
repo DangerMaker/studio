@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,7 +35,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
@@ -54,7 +52,6 @@ import com.example.exerciseapp.volley.toolbox.Volley;
 import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
-import com.squareup.picasso.Picasso;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
@@ -96,6 +93,7 @@ public class AtyAssocOrClubInformation extends BaseActivity {
         initActionBar();
         try {
             info = new JSONObject(getIntent().getStringExtra(Config.KEY_ASSOC_INFO));
+            aId = info.getString("aid");
             webView.loadUrl(info.getString(Config.KEY_AINTRO));
             webView.setWebViewClient(new WebViewClient() {
                 @Override
@@ -118,7 +116,7 @@ public class AtyAssocOrClubInformation extends BaseActivity {
                 try {
                     intent.putExtra(Config.KEY_ANAME, info.getString(Config.KEY_ANAME));
                     intent.putExtra("agreement", agreement);
-                    intent.putExtra(Config.KEY_ASSOC_INFO,info.toString());
+                    intent.putExtra(Config.KEY_ASSOC_INFO, info.toString());
                     startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -213,15 +211,12 @@ public class AtyAssocOrClubInformation extends BaseActivity {
 //								
                             switch (arg2) {
                                 case 0:
-                                    Config.SHOW_GAME_LIST_FRAGMENT = true;
-                                    Intent intent = new Intent(AtyAssocOrClubInformation.this, AtySlidingHome.class);
-                                    Config.aId = aId;
-                                    startActivity(intent);
+                                    Toast.makeText(AtyAssocOrClubInformation.this, "暂无赛事信息", Toast.LENGTH_SHORT).show();
                                     break;
                                 case 1:
-                                    Config.SHOW_NEWS_FRAGMENT = true;
-                                    Intent i = new Intent(AtyAssocOrClubInformation.this, AtySlidingHome.class);
+                                    Intent i = new Intent(AtyAssocOrClubInformation.this, AtyTheAssocNews.class);
                                     Config.aId = aId;
+                                    i.putExtra(Config.KEY_AID, aId);
                                     startActivity(i);
                                     break;
                                 default:

@@ -91,7 +91,7 @@ public class AtyMyClubAndAssociation extends BaseActivity {
 		pageTitle = (TextView) findViewById(R.id.toolbar_text);
 		toolbar.setPadding(0, getDimensionMiss(), 0, 0);
 		toolbar.setTitle("");
-		pageTitle.setText("我的协会/俱乐部");
+		pageTitle.setText("组织机构");
 		setSupportActionBar(toolbar);
 		toolbar.setNavigationIcon(R.drawable.backbtn);
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
