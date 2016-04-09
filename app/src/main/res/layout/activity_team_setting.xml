@@ -3,7 +3,7 @@
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/White"
+    android:background="@color/light_green"
     android:layout_height="match_parent">
 
     <include layout="@layout/main_toolbar" />
@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:paddingTop="5dp"
         android:background="@color/White">
 
         <TextView
@@ -30,15 +30,26 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@color/common_grey_disabled"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/divder_color_grey"
         />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey"/>
+
 
     <RelativeLayout
         android:id="@+id/team_setting_alter_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:paddingTop="5dp"
         android:background="@color/White">
 
         <TextView
@@ -62,22 +73,25 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
             android:gravity="center|left"
+            fresco:roundAsCircle="true"
             fresco:placeholderImage="@drawable/defult_avatar"
-            fresco:placeholderImageScaleType="fitXY"  />
+            fresco:placeholderImageScaleType="fitCenter"  />
 
     </RelativeLayout>
 
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/common_grey_disabled"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey"
         />
+
 
     <RelativeLayout
         android:id="@+id/team_setting_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:paddingTop="5dp"
         android:background="@color/White">
 
         <TextView
@@ -109,15 +123,15 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/common_grey_disabled"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey"
         />
 
     <RelativeLayout
         android:id="@+id/team_setting_des"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:paddingTop="5dp"
         android:background="@color/White">
 
         <TextView
@@ -150,15 +164,27 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@color/common_grey_disabled"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/divder_color_grey"
         />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey"/>
+
 
     <RelativeLayout
         android:id="@+id/team_setting_manager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:paddingTop="5dp"
         android:background="@color/White">
 
         <TextView
@@ -176,8 +202,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/common_grey_disabled"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey"
         />
 
 
@@ -185,7 +211,7 @@
         android:id="@+id/team_setting_invate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:paddingTop="5dp"
         android:background="@color/White">
 
         <TextView
@@ -203,9 +229,20 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@color/common_grey_disabled"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/divder_color_grey"
         />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey"/>
+
 
     <View
         android:layout_width="match_parent"

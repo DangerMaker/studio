@@ -1,78 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/light_green"
     android:gravity="center_horizontal"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
     <include layout="@layout/main_toolbar" />
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/success_team_icon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="40dp"
         fresco:placeholderImage="@drawable/defult_avatar"
-        fresco:placeholderImageScaleType="fitXY"
-        />
+        fresco:placeholderImageScaleType="fitCenter"
+        fresco:roundingBorderWidth="3dp"
+        fresco:roundingBorderColor="@color/White"
+        fresco:roundAsCircle="true" />
 
     <TextView
         android:id="@+id/success_team_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/common_grey"
-        android:textSize="20sp"
-        android:text="队名"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        />
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="队名"
+        android:textColor="#595757"
+        android:textSize="20sp" />
 
 
     <TextView
         android:id="@+id/success_add_member"
+        style="@style/CreateTeamText1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/BtnBlue"
-        android:text="添加团队成员"
-        style="@style/CreateTeamText1"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        />
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="添加团队成员"
+        android:textColor="@color/text_color_blue" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1" />
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center|left"
-        android:textColor="@color/BtnBlue"
-        android:text="备注：添加团成员，提醒团队成员，完善好个人信息，以便赛事报名。"
-        style="@style/CreateTeamText1"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="@dimen/line_margin_bottom_20dp"
-        />
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/lll"
+            style="@style/CreateTeamText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="备注："
+            android:textColor="@color/text_color_blue" />
+
+        <TextView
+            android:id="@+id/lll1"
+            style="@style/CreateTeamText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/lll"
+            android:text="添加团成员，提醒团队成员，完善好个人信息，以便赛事报名。"
+            android:textColor="@color/text_color_blue" />
+
+    </RelativeLayout>
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/common_grey"
         android:layout_marginBottom="20dp"
-        />
+        android:background="@color/edit_color_grey" />
 
     <Button
         android:id="@+id/success_team_submit"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="22dp"
@@ -83,5 +97,5 @@
         android:gravity="center"
         android:text="进入团队"
         android:textColor="@color/BtnTextColorWhite"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 </LinearLayout>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fresco="http://schemas.android.com/tools"
-    android:background="@color/White"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/light_green"
     android:fillViewport="false">
 
     <LinearLayout
@@ -24,20 +24,25 @@
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/detail_team_icon"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginTop="20dp"
                 fresco:placeholderImage="@drawable/defult_avatar"
-                fresco:placeholderImageScaleType="fitXY" />
+                fresco:placeholderImageScaleType="fitCenter"
+                android:contentDescription="@null"
+                fresco:roundAsCircle="true"
+                fresco:roundBottomRight="true"
+                />
+
 
             <TextView
                 android:id="@+id/detail_team_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="队名"
-                android:textColor="@color/common_grey"
+                android:textColor="#595757"
                 android:textSize="18sp" />
 
 
@@ -49,12 +54,11 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="成员:200"
-                android:textColor="@color/common_grey"
+                android:textColor="#595757"
                 android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/detail_team_des"
-                style="@style/CreateTeamText1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -62,20 +66,32 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center|left"
-                android:text="团队简介:菲奥文化是个超级厉害的团队，来自几百强的企业，发家致富" />
+                android:text="团队简介:菲奥文化是个超级厉害的团队，来自几百强的企业，发家致富"
+                android:textColor="@color/text_color_grey"
+                android:textSize="13sp" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/common_grey_disabled"
-            />
+            android:layout_height="1px"
+            android:background="@color/edit_color_grey" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/divder_color_grey" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/edit_color_grey" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@color/White">
+            android:background="@color/light_green">
 
             <TextView
                 style="@style/CreateTeamText1"
@@ -105,15 +121,25 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/common_grey_disabled"
-            />
+            android:layout_height="1px"
+            android:background="@color/edit_color_grey" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/divder_color_grey" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/edit_color_grey" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@color/White">
+            android:background="@color/light_green">
 
             <TextView
                 style="@style/CreateTeamText1"
@@ -144,23 +170,71 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/common_grey_disabled"
-            />
+            android:background="@color/divder_color_grey" />
 
         <android.support.v7.widget.GridLayout
             android:id="@+id/detail_team_some"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            app:columnCount="3"></android.support.v7.widget.GridLayout>
+            app:alignmentMode="alignBounds"
+            app:columnCount="3"
+            app:rowCount="2">
+            <!--
+                        <include
+                            layout="@layout/item_team_some"
+                            app:layout_columnWeight="1"
+                            app:layout_rowWeight="1" />
 
+                        <include
+                            layout="@layout/item_team_some"
+                            app:layout_columnWeight="1"
+                            app:layout_rowWeight="1" />
+
+                        <include
+                            layout="@layout/item_team_some"
+                            app:layout_columnWeight="1"
+                            app:layout_rowWeight="1" />
+
+                        <include
+                            layout="@layout/item_team_some"
+                            app:layout_columnWeight="1"
+                            app:layout_rowWeight="1" />
+
+                        <include
+                            layout="@layout/item_team_some"
+                            app:layout_columnWeight="1"
+                            app:layout_rowWeight="1" />
+
+                        <include
+                            layout="@layout/item_team_some"
+                            app:layout_columnWeight="1"
+                            app:layout_rowWeight="1" />
+            -->
+
+        </android.support.v7.widget.GridLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/edit_color_grey" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/divder_color_grey" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/edit_color_grey" />
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@color/White">
+            android:background="@color/light_green">
 
             <TextView
                 style="@style/CreateTeamText1"
@@ -191,8 +265,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/common_grey_disabled"
-            />
+            android:background="@color/divder_color_grey" />
 
         <android.support.v7.widget.GridLayout
             android:id="@+id/detail_team_rank"
@@ -202,6 +275,20 @@
             app:alignmentMode="alignBounds"
             app:columnCount="1"></android.support.v7.widget.GridLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/edit_color_grey" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/divder_color_grey" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/edit_color_grey" />
 
     </LinearLayout>
 </ScrollView>

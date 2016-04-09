@@ -3,10 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
+    android:background="#dedede"
     android:layout_height="wrap_content">
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="28dp"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
@@ -14,18 +15,19 @@
         android:orientation="horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:background="@drawable/shape_search_white"
         >
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/btn_search_nor" />
+            android:paddingTop="3dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="3dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/search" />
 
     </FrameLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/common_grey"
-        />
 </LinearLayout>

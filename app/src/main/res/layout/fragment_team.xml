@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#ffffff">
+    android:background="@color/light_green">
 
     <include layout="@layout/search_layout"
         android:id="@+id/team_search"
@@ -15,6 +15,7 @@
         android:id="@+id/pull_to_refresh_team"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:divider="@drawable/divder_line"
         />
 
 </RelativeLayout> 

@@ -12,8 +12,9 @@
         android:layout_height="50dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
+        fresco:roundAsCircle="true"
         fresco:placeholderImage="@drawable/defult_avatar"
-        fresco:placeholderImageScaleType="fitXY"
+        fresco:placeholderImageScaleType="fitCenter"
         />
 
     <TextView

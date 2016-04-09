@@ -53,7 +53,7 @@
 
             <ImageView
                 android:id="@+id/menu_gamelist_icon"
-                android:layout_width="26dp"
+                android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
@@ -84,7 +84,7 @@
 
             <ImageView
                 android:id="@+id/menu_startrun_icon"
-                android:layout_width="26dp"
+                android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
@@ -115,7 +115,7 @@
 
             <ImageView
                 android:id="@+id/menu_group_icon"
-                android:layout_width="26dp"
+                android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
@@ -146,7 +146,7 @@
 
             <ImageView
                 android:id="@+id/menu_club_icon"
-                android:layout_width="26dp"
+                android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
@@ -177,7 +177,7 @@
 
             <ImageView
                 android:id="@+id/menu_personal_icon"
-                android:layout_width="26dp"
+                android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
@@ -208,7 +208,7 @@
 
             <ImageView
                 android:id="@+id/menu_news_icon"
-                android:layout_width="26dp"
+                android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
@@ -239,7 +239,7 @@
 
             <ImageView
                 android:id="@+id/menu_setting_icon"
-                android:layout_width="26dp"
+                android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"

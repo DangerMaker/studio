@@ -165,7 +165,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
 
         detailTeamIcon.setImageURI(Uri.parse(entity.getGroup_info().getAvatar()));
         detailTeamName.setText(entity.getGroup_info().getGroup_name());
-        detailTeamNum.setText("团队人数：" + entity.getGroup_info().getMembernum());
+        detailTeamNum.setText("团队成员：" + entity.getGroup_info().getMembernum()+"人");
         detailTeamDes.setText(entity.getGroup_info().getIntro());
 
 //        if (entity.getUser_info_some_return().size() == 0) {
@@ -268,9 +268,9 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
         Button disagree = (Button) convertView.findViewById(R.id.invate_disagree);
         agree.setOnClickListener(this);
         disagree.setOnClickListener(this);
-        popupWindow = new PopupWindow(convertView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.setFocusable(true);
-        popupWindow.setOutsideTouchable(true);
+        popupWindow = new PopupWindow(convertView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, false);
+//        popupWindow.setFocusable(true);
+//        popupWindow.setOutsideTouchable(true);
 //        popupWindow.setBackgroundDrawable(new BitmapDrawable());
         popupWindow.showAtLocation(view_parent, Gravity.BOTTOM, 0, 0);
     }
@@ -279,9 +279,8 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
         View convertView = LayoutInflater.from(this).inflate(R.layout.view_invate_apply, null);
         Button apply = (Button) convertView.findViewById(R.id.invate_apply);
         apply.setOnClickListener(this);
-        popupWindow = new PopupWindow(convertView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.setFocusable(true);
-        popupWindow.setOutsideTouchable(true);
+        popupWindow = new PopupWindow(convertView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, false);
+//
 //        popupWindow.setBackgroundDrawable(new BitmapDrawable());
         popupWindow.showAtLocation(view_parent, Gravity.BOTTOM, 0, 0);
     }

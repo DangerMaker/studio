@@ -14,6 +14,11 @@
         android:text="团队名称："
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey" />
+
     <EditText
         android:id="@+id/create_team_name"
         android:layout_width="match_parent"
@@ -24,7 +29,14 @@
         android:paddingBottom="5dp"
         android:textColor="@color/Black"
         android:maxLength="9"
+        android:background="@color/White"
         />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,11 +46,16 @@
         android:layout_marginTop="20dp"
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey" />
     <RelativeLayout
         android:id="@+id/create_team_tagadd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:background="@color/White"
         >
         <TextView
             android:id="@+id/create_team_tag"
@@ -47,6 +64,7 @@
             android:paddingLeft="20dp"
             android:textColor="@color/Black"
             android:layout_centerVertical="true"
+            android:gravity="center_vertical"
             />
 
         <TextView
@@ -61,6 +79,10 @@
 
 
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -70,6 +92,10 @@
         android:layout_marginTop="20dp"
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
@@ -87,6 +113,7 @@
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:maxLength="40"
+            android:background="@color/White"
             />
 
         <TextView
@@ -101,6 +128,10 @@
             android:layout_alignParentBottom="true"
             />
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/edit_color_grey" />
 
     <View
         android:layout_width="wrap_content"
