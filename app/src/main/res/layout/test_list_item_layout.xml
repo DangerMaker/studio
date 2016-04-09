@@ -68,6 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@+id/tvAverageSpeed"
                     android:orientation="vertical">
                     <ImageView
                         android:id="@+id/ivSpeedIcon"

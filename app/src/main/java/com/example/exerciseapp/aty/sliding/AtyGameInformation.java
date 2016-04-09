@@ -39,6 +39,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
@@ -191,6 +192,10 @@ public class AtyGameInformation extends BaseActivity {
 
     private void getInfo() {
         webView.loadUrl(gameH5Url);
+        WebSettings settings = webView.getSettings();
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -198,6 +203,7 @@ public class AtyGameInformation extends BaseActivity {
                 return true;
             }
         });
+
     }
 
 

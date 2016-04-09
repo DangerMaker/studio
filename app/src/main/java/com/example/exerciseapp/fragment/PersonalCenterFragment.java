@@ -49,6 +49,7 @@ import com.example.exerciseapp.model.UpTeamAvatar;
 import com.example.exerciseapp.myutils.UploadImageUtils;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
+import com.example.exerciseapp.utils.SpeedConvert;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -252,8 +253,11 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
                     public void onResponse(String s) {
                         try {
                             JSONObject jsonObject = new JSONObject(s);
-                            tvExerciseTimePersonalCenter.setText("时间：" + jsonObject.getString("duration") + "h");
-                            tvExerciseDistancePersonalCenter.setText("距离：" + jsonObject.getString("distance") + "km");
+                            jsonObject = jsonObject.getJSONObject("data");
+                            long t = (long) (jsonObject.getDouble("duration") * 3600);
+                            String unit = t / 3600 == 0 ? "分/秒" : "时/分";
+                            tvExerciseTimePersonalCenter.setText("时间：" + SpeedConvert.secToTime(t) + unit);
+                            tvExerciseDistancePersonalCenter.setText("距离：" + (float) (Math.round(jsonObject.getDouble("distance") / 1000 * 100)) / 100 + "km");
                             spotsDialog.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();
