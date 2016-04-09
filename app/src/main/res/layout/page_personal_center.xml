@@ -96,12 +96,14 @@
 
         <TextView
             android:id="@+id/tvSelectUserPreferProjectPersonalCenter"
-            android:layout_width="150dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvUserPreferProjectPersonalCenter"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:singleLine="true"
+            android:ellipsize="end"
+            android:maxWidth="120dp"
             android:text="无"
             android:textColor="#ffffff"
             android:textSize="12sp" />
@@ -267,7 +269,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
-                android:src="@drawable/my_club_icon" />
+                android:src="@drawable/my_team_icon_f" />
 
             <TextView
                 android:id="@+id/tvMyTeamAndAssocPersonalCenter"

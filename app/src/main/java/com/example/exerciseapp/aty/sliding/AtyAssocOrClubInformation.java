@@ -31,6 +31,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
@@ -95,6 +96,10 @@ public class AtyAssocOrClubInformation extends BaseActivity {
             info = new JSONObject(getIntent().getStringExtra(Config.KEY_ASSOC_INFO));
             aId = info.getString("aid");
             webView.loadUrl(info.getString(Config.KEY_AINTRO));
+            WebSettings settings = webView.getSettings();
+            settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+            settings.setUseWideViewPort(true);
+            settings.setLoadWithOverviewMode(true);
             webView.setWebViewClient(new WebViewClient() {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {

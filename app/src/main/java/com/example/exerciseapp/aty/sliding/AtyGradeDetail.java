@@ -7,6 +7,7 @@ import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
 import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.R;
@@ -31,9 +32,18 @@ public class AtyGradeDetail extends BaseActivity {
 
     private void getInfo(){
         url = getIntent().getStringExtra("url");
-        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        webView.getSettings().setLoadWithOverviewMode(true);
         webView.loadUrl(getIntent().getStringExtra("url"));
+        WebSettings settings = webView.getSettings();
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
     }
 
     public void setTitleBar() {

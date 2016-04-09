@@ -119,7 +119,7 @@
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
-                android:src="@drawable/run_icon" />
+                android:src="@drawable/my_team_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -252,7 +252,7 @@
                 android:layout_marginLeft="14dp"
                 android:layout_toRightOf="@id/menu_setting_icon"
                 android:singleLine="true"
-                android:text="设置"
+                android:text="设  置"
                 android:textColor="@color/BtnTextColorWhite"
                 android:textSize="18sp" />
         </RelativeLayout>

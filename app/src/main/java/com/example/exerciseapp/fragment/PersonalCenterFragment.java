@@ -180,6 +180,13 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
                 startActivity(new Intent(getActivity(), AtyUserPreferedProject.class));
             }
         });
+        tvSelectUserPreferProjectPersonalCenter.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AtyUserPreferedProject.class));
+            }
+        });
 
 
         //消息按钮点击跳转（目前缺少状态判断）
@@ -219,6 +226,20 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
         });
         //跳转历史记录
         tvExerciseRecordPersonalCenter.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AtyRunningRecord.class));
+            }
+        });
+        tvExerciseTimePersonalCenter.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AtyRunningRecord.class));
+            }
+        });
+        tvExerciseDistancePersonalCenter.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {

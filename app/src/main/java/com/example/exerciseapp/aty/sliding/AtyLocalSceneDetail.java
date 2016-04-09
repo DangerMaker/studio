@@ -51,13 +51,15 @@ public class AtyLocalSceneDetail extends BaseActivity {
     }
 
     private void getInfo() {
-        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        webView.getSettings().setLoadWithOverviewMode(true);
         try {
             webView.loadUrl(jsonObj.getString("content"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        WebSettings settings = webView.getSettings();
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
