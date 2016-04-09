@@ -586,7 +586,7 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
                     minSpeed_onAverage = locSpeed;
                 }
             } else {
-                if (0 != AMapUtils.calculateLineDistance(oldlatlng, newlatlng)) {
+                if (0 != locSpeed && 0 != AMapUtils.calculateLineDistance(oldlatlng, newlatlng)) {
                     minSpeed_onAverage = (juli + AMapUtils.calculateLineDistance(oldlatlng, newlatlng)) * minSpeed_onAverage * locSpeed / (juli * locSpeed + AMapUtils.calculateLineDistance(oldlatlng, newlatlng) * minSpeed_onAverage);
                 }
             }

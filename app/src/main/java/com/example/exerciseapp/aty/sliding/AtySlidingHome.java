@@ -181,13 +181,13 @@ public class AtySlidingHome extends BaseActivity {
     private void setNavigateSelected() {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         if (mContent == null) {
-            if (startRunFragment == null) {
-                startRunFragment = new StartRunFragment();
-                mContent = startRunFragment;
+            if (gameListFragment == null) {
+                gameListFragment = new GameListFragment_();
+                mContent = gameListFragment;
             }
         }
         transaction.replace(R.id.content_frame, mContent).commit();
-        initActionBar(Config.PAGE_TAG_START_RUNNING);
+        initActionBar(Config.PAGE_TAG_COMPETETION_ACTIVIES);
     }
 
     public void toggle() {
@@ -491,11 +491,11 @@ public class AtySlidingHome extends BaseActivity {
 //        private PersonalCenterFragment personalCenterFragment = null;
 //        private StartRunFragment startRunFragment = null;
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if(mContent.equals(startRunFragment)){
+//            if(mContent.equals(gameListFragment)){
                 exit();
-            }else {
-                toggle();
-            }
+//            }else {
+//                toggle();
+//            }
             return false;
         }
         return super.onKeyDown(keyCode, event);

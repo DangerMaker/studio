@@ -40,8 +40,8 @@
                 android:layout_alignBaseline="@+id/tvDistanceItem"
                 android:layout_toRightOf="@+id/tvDistanceItem"
                 android:paddingLeft="6dp"
-                android:textColor="@color/texttag"
-                android:text="公里" />
+                android:text="公里"
+                android:textColor="@color/texttag" />
         </RelativeLayout>
 
         <LinearLayout
@@ -63,66 +63,91 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/ivSpeedIconBelow"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="3dp"
-                    android:src="@drawable/km" />
-
-                <ImageView
-                    android:id="@+id/ivSpeedIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@id/ivSpeedIconBelow"
-                    android:layout_marginLeft="14dp"
-                    android:src="@drawable/max_speed_icon" />
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/ivSpeedIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/max_speed_icon" />
+                    <TextView
+                        android:id="@+id/ivSpeedIconBelow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="速度"
+                        android:textColor="@color/light_gray" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvAverageSpeed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@id/ivSpeedIconBelow"
-                    android:layout_marginLeft="8dp"
-                    android:layout_toRightOf="@id/ivSpeedIcon"
-                    android:text="0.0"
+                    android:singleLine="true"
+                    android:text="0.000"
+                    android:layout_alignLeft="@+id/textView"
+                    android:layout_above="@+id/textView"
                     android:textColor="@color/texttag"
                     android:textSize="25sp" />
 
-                <ImageView
-                    android:id="@+id/ivCalorieIconBelow"
+                <TextView
+                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/ivSpeedIconBelow"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="3dp"
-                    android:src="@drawable/calories" />
+                    android:layout_toLeftOf="@+id/ivCalorieLinearLayout"
+                    android:layout_marginRight="14dp"
+                    android:text="min/km"
+                    android:textColor="@color/light_gray" />
 
-                <ImageView
-                    android:id="@+id/ivCalorieIcon"
+
+                <LinearLayout
+                    android:id="@+id/ivCalorieLinearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@id/ivCalorieIconBelow"
-                    android:layout_marginLeft="15dp"
-                    android:layout_toRightOf="@id/ivSpeedIconBelow"
-                    android:src="@drawable/calories_icon" />
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@+id/tvCalorie"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/ivCalorieIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/calories_icon" />
+
+                    <TextView
+                        android:id="@+id/ivCalorieText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/light_gray"
+                        android:text="卡路里" />
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/tvCalorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@id/ivCalorieIconBelow"
-                    android:layout_marginLeft="16dp"
-                    android:layout_toRightOf="@id/ivCalorieIcon"
-                    android:text="0.0"
+                    android:layout_above="@+id/ivCalorieIconBelow"
+                    android:text="0.000"
+                    android:singleLine="true"
+                    android:layout_alignLeft="@+id/ivCalorieIconBelow"
                     android:textColor="@color/texttag"
                     android:textSize="25sp" />
 
-
+                <TextView
+                    android:id="@+id/ivCalorieIconBelow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="14dp"
+                    android:textColor="@color/light_gray"
+                    android:text="calorie" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

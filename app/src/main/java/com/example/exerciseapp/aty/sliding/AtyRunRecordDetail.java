@@ -152,7 +152,7 @@ public class AtyRunRecordDetail extends BaseActivity {
         sport_type = i.getIntExtra("sport_type", 0);//重要
         max_speed = i.getDoubleExtra("max_speed", 0);//重要
         max_speed = SpeedConvert.oriToShow(max_speed);
-        minSpeed_onAverage = i.getDoubleExtra("minSpeed_onAverage", 0);//重要
+        minSpeed_onAverage = i.getDoubleExtra("averagespeed", 0);//重要
         minSpeed_onAverage = SpeedConvert.oriToShow(minSpeed_onAverage);
         textshowzuigaosudu = (TextView) findViewById(R.id.textshowzuigaosudu);
         String[] data = i.getStringExtra("data").trim().split(" ");
@@ -162,14 +162,20 @@ public class AtyRunRecordDetail extends BaseActivity {
             } else {
                 if (data[j].equals("")) continue;
                 polywei[z] = Double.valueOf(data[j].substring(0, 7));
-                polyalti[z] = Double.valueOf(data[j].substring(8));
+                if (data[j].contains("-")) {
+                    polyalti[z] = Double.valueOf(data[j].split("-")[1]);
+                } else if (data[j].contains("+")) {
+                    polyalti[z] = Double.valueOf(data[j].split("//+")[1]);
+                } else {
+                    polyalti[z] = Double.valueOf(0);
+                }
                 z++;
             }
         }
         PolylineOptions polys = new PolylineOptions();
         kaluli = i.getFloatExtra("calorie", -1);
         Typeface fontFace = Typeface.createFromAsset(getAssets(), "fonts/impact.ttf");
-        textshowzuigaosudu.setText((float) (Math.round(SpeedConvert.oriToShow(max_speed) * 100)) / 100 + "");
+        textshowzuigaosudu.setText((float) (Math.round(max_speed * 100)) / 100 + "");
         textshowzuigaosudu.setTypeface(fontFace);
         mMapView = (MapView) findViewById(R.id.mapViewshow);
         mMapView.onCreate(savedInstanceState);
@@ -191,10 +197,14 @@ public class AtyRunRecordDetail extends BaseActivity {
         textshowjulidanwei = (TextView) findViewById(R.id.textshowjulidanwei);
         linearshowshijian = (LinearLayout) findViewById(R.id.linearshowshijian);
         textshowshijian = (TextView) findViewById(R.id.textshowshijian);
-        textshowshijian.setText(shijian / 3600 + ":" + (shijian - (shijian / 3600) * 3600) / 60 + ":"
-                + (shijian - shijian / 3600 * 3600 - (shijian - (shijian / 3600) * 3600) / 60 * 60));// 获取并显示时间
+        textshowshijian.setText(SpeedConvert.secToTime(shijian));// 获取并显示时间
         textshowshijian.setTypeface(fontFace);
         textshowshijiandanwei = (TextView) findViewById(R.id.textshowshijiandanwei);
+        if(0==shijian/3600){
+            textshowshijiandanwei.setText("分/秒");
+        }else{
+            textshowshijiandanwei.setText("时/分");
+        }
         linearshowsuduhepingjunsudu = (LinearLayout) findViewById(R.id.linearshowsuduhepingjunsudu);
         relativeshowpingjunsudu = (RelativeLayout) findViewById(R.id.relativeshowpingjunsudu);
         linearshowpingjunsudu1 = (LinearLayout) findViewById(R.id.linearshowpingjunsudu1);
@@ -202,7 +212,7 @@ public class AtyRunRecordDetail extends BaseActivity {
         edittextbeizhu = (EditText) findViewById(R.id.edittextbeizhu);
         edittextbeizhu.setText(i.getStringExtra("remark"));
         if (minSpeed_onAverage == 0) textshowpingjunsudu.setText("0");
-        textshowpingjunsudu.setText((float) (Math.round(SpeedConvert.oriToShow(minSpeed_onAverage) * 100)) / 100 + "");//速度
+        textshowpingjunsudu.setText((float) (Math.round(minSpeed_onAverage * 100))/ 100 + "");//速度
         textshowpingjunsudu.setTypeface(fontFace);
         linearshowpingjunsudu2 = (LinearLayout) findViewById(R.id.linearshowpingjunsudu2);
         linearshowhaibahekaluli = (LinearLayout) findViewById(R.id.linearshowhaibahekaluli);

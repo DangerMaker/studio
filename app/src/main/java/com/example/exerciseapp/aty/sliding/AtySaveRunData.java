@@ -130,8 +130,8 @@ public class AtySaveRunData extends BaseActivity {
         setTitleBar();
         mRequestQueue = Volley.newRequestQueue(this);
         Intent i = getIntent();
-        BigDecimal b = new BigDecimal(i.getFloatExtra("intentjuli", 0) / 1000.0);//重要 距离
-        juli = Float.parseFloat(i.getStringExtra("intentjuli"));
+//        BigDecimal b = new BigDecimal(i.getFloatExtra("intentjuli", 0) / 1000.0);//重要 距离
+        juli = i.getFloatExtra("intentjuli",0);
 //		juli=i.getFloatExtra("intentjuli", 0);
 //		 juli=Math.round((i.getFloatExtra("intentjuli", -1)/1000)*100)/100;//Math.round((i.getFloatExtra("intentjuli", -1)/1000)*100))/100
         shijian = i.getLongExtra("intentshijian", -1);//重要 时间

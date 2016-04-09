@@ -15,11 +15,8 @@ import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Locale;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -27,7 +24,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -45,11 +41,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -217,8 +211,8 @@ public class AtyRunningRecord extends BaseActivity {
                 intent.putExtra("altitude", result.getString("altitude"));
                 intent.putExtra("step_count", result.getString("step_count"));
                 intent.putExtra("sport_type", result.getString("sport_type"));
-                intent.putExtra("max_speed", result.getString("max_speed"));
-                intent.putExtra("averagespeed", result.getString("averagespeed"));
+                intent.putExtra("max_speed", Double.parseDouble(result.getString("max_speed")));
+                intent.putExtra("averagespeed", Double.parseDouble(result.getString("averagespeed")));
                 // intent.putExtra("z", z);
                 // intent.putExtra("intentpolyjing", polyjing);
                 // intent.putExtra("intentpolywei",polywei);
@@ -295,6 +289,8 @@ public class AtyRunningRecord extends BaseActivity {
                 holder.tvCalorie = (TextView) convertView.findViewById(R.id.tvCalorie);
                 holder.tvDistance = (TextView) convertView.findViewById(R.id.tvDistanceItem);
                 holder.tvSportType = (TextView) convertView.findViewById(R.id.ivGongli);
+                holder.calUnits = (TextView) convertView.findViewById(R.id.ivCalorieIconBelow);
+                holder.speedUnits = (TextView) convertView.findViewById(R.id.textView);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
@@ -307,6 +303,8 @@ public class AtyRunningRecord extends BaseActivity {
                 holder.tvAverageSpeed.setTypeface(fontFace);
                 holder.tvCalorie.setText(list.get(position).getString("calorie"));
                 holder.tvCalorie.setTypeface(fontFace);
+                holder.calUnits.setTypeface(fontFace);
+                holder.speedUnits.setTypeface(fontFace);
                 if (list.get(position).getString("sport_type").equals("1")) {
                     double dis = Double.parseDouble(list.get(position).getString("distance"));//m
                     int pace = (int) (dis / 0.5);
@@ -345,8 +343,13 @@ public class AtyRunningRecord extends BaseActivity {
             try {
                 headerText = list.get(position).getString("month");
                 holder.tvMonth.setText(list.get(position).getString("month"));
-                holder.tvDistance.setText("公里" + list.get(position).getString("sumdistance"));
-                holder.tvTime.setText("时长" + list.get(position).getString("sumduration"));// holder.img1.setImageURI(uri)
+                holder.tvDistance.setText("公里" + (float) (Math.round(Float.parseFloat(list.get(position).getString("sumdistance")) / 1000 * 100)) / 100 + "");
+                long t = list.get(position).getLong("sumduration");
+                if(0==t/3600){
+                    holder.tvTime.setText("分钟" + SpeedConvert.secToTime(t));// holder.img1.setImageURI(uri)
+                }else{
+                    holder.tvTime.setText("小时" + SpeedConvert.secToTime(t));// holder.img1.setImageURI(uri)
+                }
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -378,6 +381,8 @@ public class AtyRunningRecord extends BaseActivity {
             TextView tvAverageSpeed;
             TextView tvCalorie;
             TextView tvSportType;
+            TextView speedUnits;
+            TextView calUnits;
         }
 
     }
