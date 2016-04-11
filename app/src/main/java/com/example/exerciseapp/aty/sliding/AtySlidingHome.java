@@ -133,7 +133,11 @@ public class AtySlidingHome extends BaseActivity {
 
     @OnClick(R.id.toolbar_text_right)
     public void createTeam(){
-        startActivity(CreateMyTeamActivity.getCreateMyTeamIntent(this));
+        if(mContent.equals(teamFragment)){
+            startActivity(CreateMyTeamActivity.getCreateMyTeamIntent(this));
+        }else if(mContent.equals(startRunFragment)){
+            startActivity(new Intent(AtySlidingHome.this, AtyRunningRecord.class));
+        }
     }
 
 
@@ -431,6 +435,8 @@ public class AtySlidingHome extends BaseActivity {
                 // textview = (TextView)
                 // actionBar.getCustomView().findViewById(R.id.tvPageTitleOfAll);
                 textview.setText("开始跑步");
+                mToolbarRight.setVisibility(View.VISIBLE);
+                mToolbarRight.setText("历史数据");
                 break;
             // case Config.PAGE_TAG_MY_LIST:
             // textview = (TextView)
@@ -466,6 +472,7 @@ public class AtySlidingHome extends BaseActivity {
                 // actionBar.getCustomView().findViewById(R.id.tvPageTitleOfAll);
                 textview.setText("运动团队");
                 mToolbarRight.setVisibility(View.VISIBLE);
+                mToolbarRight.setText("创建团队");
                 break;
             default:
                 break;
