@@ -1,35 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.exerciseapp.view.SlidingMenu 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.exerciseapp.view.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cviews="http://schemas.android.com/apk/res-auto"
+    xmlns:shadow="http://schemas.android.com/apk/res-auto"
     android:id="@+id/start_content"
     android:layout_width="wrap_content"
     android:layout_height="fill_parent"
     android:scrollbars="none"
-    cviews:rightPadding="120dp" >
+    cviews:rightPadding="120dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/azure"
+        android:background="@color/BtnBlue"
         android:gravity="center_horizontal"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <include layout="@layout/main_menu" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:orientation="vertical" >
+        <app.mosn.zdepthshadowlayout.ZDepthShadowLayout
+            android:id="@+id/sliding_layout"
+            shadow:z_depth_paddingBottom="z_depth0"
+            shadow:z_depth_paddingLeft="z_depth0"
+            shadow:z_depth_paddingRight="z_depth0"
+            shadow:z_depth_paddingTop="z_depth0"
+            shadow:z_depth="z_depth2"
+            shadow:z_depth_shape="rect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <include layout="@layout/main_toolbar" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/content_frame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-            </FrameLayout>
-        </LinearLayout>
+                <include layout="@layout/main_toolbar" />
+
+                <FrameLayout
+                    android:id="@+id/content_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></FrameLayout>
+            </LinearLayout>
+        </app.mosn.zdepthshadowlayout.ZDepthShadowLayout>
     </LinearLayout>
 
 </com.example.exerciseapp.view.SlidingMenu>

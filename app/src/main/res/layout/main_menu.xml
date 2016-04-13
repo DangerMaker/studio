@@ -1,47 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:shadow="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_menu_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/BtnBlue">
+    android:background="@color/BtnBlue"
+    android:layout_marginRight="-30dp"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/UserInformation_list"
-        android:layout_width="fill_parent"
-        android:layout_height="76dp">
+    <app.mosn.zdepthshadowlayout.ZDepthShadowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        shadow:z_depth="z_depth2"
+        shadow:z_depth_paddingLeft="z_depth0"
+        shadow:z_depth_paddingRight="z_depth0"
+        shadow:z_depth_paddingTop="z_depth0"
+        shadow:z_depth_paddingBottom="z_depth2"
+        shadow:z_depth_shape="rect">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivUserIcon"
-            android:layout_width="43dp"
-            android:layout_height="43dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/userhw" />
+        <RelativeLayout
+            android:id="@+id/UserInformation_list"
+            android:layout_width="match_parent"
+            android:background="@color/BtnBlue"
+            android:layout_height="76dp">
 
-        <TextView
-            android:id="@+id/tvUserName_UserInformationHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/ivUserIcon"
-            android:paddingLeft="10dp"
-            android:text="昵称"
-            android:textColor="#ffffff"
-            android:textSize="15sp" />
-    </RelativeLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivUserIcon"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/userhw" />
 
-    <View
-        android:id="@+id/UserInformation_line"
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dp"
-        android:layout_below="@id/UserInformation_list"
-        android:background="@color/divider" />
+            <TextView
+                android:id="@+id/tvUserName_UserInformationHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/ivUserIcon"
+                android:paddingLeft="10dp"
+                android:text="昵称"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </app.mosn.zdepthshadowlayout.ZDepthShadowLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/UserInformation_line"
         android:divider="#00000033"
         android:orientation="vertical">
 
@@ -263,4 +270,4 @@
             android:background="@color/divider" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

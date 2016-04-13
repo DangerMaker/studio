@@ -73,6 +73,8 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.message.PushAgent;
 
+import app.mosn.zdepthshadowlayout.ZDepth;
+import app.mosn.zdepthshadowlayout.ZDepthShadowLayout;
 import butterknife.Bind;
 import butterknife.OnClick;
 
@@ -132,10 +134,10 @@ public class AtySlidingHome extends BaseActivity {
     }
 
     @OnClick(R.id.toolbar_text_right)
-    public void createTeam(){
-        if(mContent.equals(teamFragment)){
+    public void createTeam() {
+        if (mContent.equals(teamFragment)) {
             startActivity(CreateMyTeamActivity.getCreateMyTeamIntent(this));
-        }else if(mContent.equals(startRunFragment)){
+        } else if (mContent.equals(startRunFragment)) {
             startActivity(new Intent(AtySlidingHome.this, AtyRunningRecord.class));
         }
     }
@@ -194,7 +196,19 @@ public class AtySlidingHome extends BaseActivity {
         initActionBar(Config.PAGE_TAG_COMPETETION_ACTIVIES);
     }
 
+    @Bind(R.id.sliding_layout)
+    ZDepthShadowLayout slidingLayout;
+
     public void toggle() {
+        if(slidingMenu.isOpen()){
+            slidingLayout.setShow(false);
+            slidingLayout.setPadding();
+            slidingLayout.invalidate();
+        }else{
+            slidingLayout.setShow(true);
+            slidingLayout.setPadding();
+            slidingLayout.invalidate();
+        }
         slidingMenu.toggle();
     }
 
@@ -251,7 +265,7 @@ public class AtySlidingHome extends BaseActivity {
     }
 
     @OnClick(R.id.UserInformation_list)
-    public void turnToPersonalCenter(){
+    public void turnToPersonalCenter() {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         hideFragments(transaction);
         if (null == personalCenterFragment) {
@@ -374,7 +388,7 @@ public class AtySlidingHome extends BaseActivity {
         if (startRunFragment != null) {
             transaction.hide(startRunFragment);
         }
-        if(teamFragment != null){
+        if (teamFragment != null) {
             transaction.hide(teamFragment);
         }
     }
@@ -489,20 +503,12 @@ public class AtySlidingHome extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        private GameListFragment_ gameListFragment = null;
-//        private ClubFragment clubFragment = null;
-//        private ConfigFragment configFragment = null;
-//        private MyListFragment myListFragment = null;
-//        private NewsFragment newsFragment = null;
-//        private TeamFragment teamFragment = null;
-//        private PersonalCenterFragment personalCenterFragment = null;
-//        private StartRunFragment startRunFragment = null;
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-//            if(mContent.equals(gameListFragment)){
+            if (slidingMenu.isOpen()) {
+                toggle();
+            } else {
                 exit();
-//            }else {
-//                toggle();
-//            }
+            }
             return false;
         }
         return super.onKeyDown(keyCode, event);
