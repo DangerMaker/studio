@@ -267,5 +267,10 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/shape_btn_blue_radius_5dip"
         android:text="退出登录"
+        android:gravity="center"
         android:textColor="#ffffff" />
+    <View
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

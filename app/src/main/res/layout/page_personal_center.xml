@@ -166,7 +166,7 @@
         <RelativeLayout
             android:id="@+id/UserConfigPersonalCenter"
             android:layout_width="fill_parent"
-            android:layout_height="42dp"
+            android:layout_height="48dp"
             android:gravity="center_vertical">
 
             <ImageView
@@ -186,7 +186,7 @@
                 android:gravity="center_vertical"
                 android:text="个人设置"
                 android:textColor="#292121"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View
@@ -197,7 +197,7 @@
         <RelativeLayout
             android:id="@+id/MyEntryFormPersonalCenter"
             android:layout_width="fill_parent"
-            android:layout_height="42dp"
+            android:layout_height="48dp"
             android:gravity="center_vertical">
 
             <ImageView
@@ -217,7 +217,7 @@
                 android:gravity="center_vertical"
                 android:text="我的报名"
                 android:textColor="#292121"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View
@@ -229,7 +229,7 @@
         <RelativeLayout
             android:id="@+id/MyClubAndAssocPersonalCenter"
             android:layout_width="fill_parent"
-            android:layout_height="42dp"
+            android:layout_height="48dp"
             android:gravity="center_vertical">
 
             <ImageView
@@ -249,7 +249,7 @@
                 android:gravity="center_vertical"
                 android:text="组织机构"
                 android:textColor="#292121"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View
@@ -260,7 +260,7 @@
         <RelativeLayout
             android:id="@+id/MyTeamAndAssocPersonalCenter"
             android:layout_width="fill_parent"
-            android:layout_height="42dp"
+            android:layout_height="48dp"
             android:gravity="center_vertical">
 
             <ImageView
@@ -280,7 +280,7 @@
                 android:gravity="center_vertical"
                 android:text="我的团队"
                 android:textColor="#292121"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View
@@ -293,7 +293,7 @@
         <RelativeLayout
             android:id="@+id/MyGradesPersonalCenter"
             android:layout_width="fill_parent"
-            android:layout_height="42dp"
+            android:layout_height="48dp"
             android:gravity="center_vertical">
 
             <ImageView
@@ -313,7 +313,7 @@
                 android:gravity="center_vertical"
                 android:text="我的成绩"
                 android:textColor="#292121"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View
@@ -324,7 +324,7 @@
         <RelativeLayout
             android:id="@+id/ScoresManagerPersonalCenter"
             android:layout_width="fill_parent"
-            android:layout_height="42dp"
+            android:layout_height="48dp"
             android:gravity="center_vertical">
 
             <ImageView
@@ -344,7 +344,7 @@
                 android:gravity="center_vertical"
                 android:text="积分管理"
                 android:textColor="#292121"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
 

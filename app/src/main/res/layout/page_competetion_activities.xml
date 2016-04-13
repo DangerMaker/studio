@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/game_show"
+        android:src="@drawable/game_show1"
         tools:ignore="ContentDescription" />
 
     <!--

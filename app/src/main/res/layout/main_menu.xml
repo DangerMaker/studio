@@ -26,8 +26,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivUserIcon"
-                android:layout_width="43dp"
-                android:layout_height="43dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="10dp"
@@ -55,7 +55,7 @@
         <RelativeLayout
             android:id="@+id/menu_gamelist"
             android:layout_width="fill_parent"
-            android:layout_height="43dp"
+            android:layout_height="48dp"
             android:clickable="true">
 
             <ImageView
@@ -75,7 +75,7 @@
                 android:singleLine="true"
                 android:text="赛事活动"
                 android:textColor="@color/BtnTextColorWhite"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View
@@ -86,7 +86,7 @@
         <RelativeLayout
             android:id="@+id/menu_startrun"
             android:layout_width="fill_parent"
-            android:layout_height="43dp"
+            android:layout_height="48dp"
             android:clickable="true">
 
             <ImageView
@@ -106,7 +106,7 @@
                 android:singleLine="true"
                 android:text="开始跑步"
                 android:textColor="@color/BtnTextColorWhite"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View
@@ -117,7 +117,7 @@
         <RelativeLayout
             android:id="@+id/menu_sportgroup"
             android:layout_width="fill_parent"
-            android:layout_height="43dp"
+            android:layout_height="48dp"
             android:clickable="true">
 
             <ImageView
@@ -137,7 +137,7 @@
                 android:singleLine="true"
                 android:text="运动团队"
                 android:textColor="@color/BtnTextColorWhite"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View
@@ -148,7 +148,7 @@
         <RelativeLayout
             android:id="@+id/menu_club"
             android:layout_width="fill_parent"
-            android:layout_height="43dp"
+            android:layout_height="48dp"
             android:clickable="true">
 
             <ImageView
@@ -168,7 +168,7 @@
                 android:singleLine="true"
                 android:text="组织机构"
                 android:textColor="@color/BtnTextColorWhite"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View
@@ -179,7 +179,7 @@
         <RelativeLayout
             android:id="@+id/menu_personal"
             android:layout_width="fill_parent"
-            android:layout_height="43dp"
+            android:layout_height="48dp"
             android:clickable="true">
 
             <ImageView
@@ -199,7 +199,7 @@
                 android:singleLine="true"
                 android:text="个人中心"
                 android:textColor="@color/BtnTextColorWhite"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View
@@ -210,7 +210,7 @@
         <RelativeLayout
             android:id="@+id/menu_news"
             android:layout_width="fill_parent"
-            android:layout_height="43dp"
+            android:layout_height="48dp"
             android:clickable="true">
 
             <ImageView
@@ -230,7 +230,7 @@
                 android:singleLine="true"
                 android:text="新闻资讯"
                 android:textColor="@color/BtnTextColorWhite"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View
@@ -241,7 +241,7 @@
         <RelativeLayout
             android:id="@+id/menu_setting"
             android:layout_width="fill_parent"
-            android:layout_height="43dp"
+            android:layout_height="48dp"
             android:clickable="true">
 
             <ImageView
@@ -261,7 +261,7 @@
                 android:singleLine="true"
                 android:text="设  置"
                 android:textColor="@color/BtnTextColorWhite"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View

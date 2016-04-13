@@ -78,7 +78,7 @@ import app.mosn.zdepthshadowlayout.ZDepthShadowLayout;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class AtySlidingHome extends BaseActivity {
+public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingCallBack{
 
     @Bind(R.id.toolbar_text_right)
     TextView mToolbarRight;
@@ -199,16 +199,20 @@ public class AtySlidingHome extends BaseActivity {
     @Bind(R.id.sliding_layout)
     ZDepthShadowLayout slidingLayout;
 
-    public void toggle() {
+    @Override
+    public void onChangeState() {
         if(slidingMenu.isOpen()){
-            slidingLayout.setShow(false);
-            slidingLayout.setPadding();
-            slidingLayout.invalidate();
-        }else{
             slidingLayout.setShow(true);
             slidingLayout.setPadding();
             slidingLayout.invalidate();
+        }else{
+            slidingLayout.setShow(false);
+            slidingLayout.setPadding();
+            slidingLayout.invalidate();
         }
+    }
+
+    public void toggle() {
         slidingMenu.toggle();
     }
 
@@ -223,7 +227,7 @@ public class AtySlidingHome extends BaseActivity {
         toolbar.setPadding(0, getDimensionMiss(), 0, 0);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.backbtn);
+        toolbar.setNavigationIcon(R.drawable.menubtn);
 //		toolbar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 //			@Override
 //			public boolean onMenuItemClick(MenuItem item) {
@@ -250,6 +254,7 @@ public class AtySlidingHome extends BaseActivity {
         item_news = findViewById(R.id.menu_news);
         item_setting = findViewById(R.id.menu_setting);
         slidingMenu = (SlidingMenu) findViewById(R.id.start_content);
+        slidingMenu.setSlidingCallBack(AtySlidingHome.this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         item_gamelist.setOnClickListener(menuItemListener);

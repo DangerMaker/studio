@@ -25,6 +25,11 @@ public class SlidingMenu extends HorizontalScrollView {
 	private boolean once;
 	private float mLastMotionX, mLastMotionY;// TODO
 	private boolean flag = false;// TODO
+	protected SlidingCallBack slidingCallBack;
+
+	public void setSlidingCallBack(SlidingCallBack slidingCallBack){
+		this.slidingCallBack = slidingCallBack;
+	}
 
 	public SlidingMenu(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
@@ -101,9 +106,11 @@ public class SlidingMenu extends HorizontalScrollView {
 			if (scrollX > mHalfMenuWidth) {
 				this.smoothScrollTo(mMenuWidth, 0);
 				isOpen = false;
+				slidingCallBack.onChangeState();
 			} else {
 				this.smoothScrollTo(0, 0);
 				isOpen = true;
+				slidingCallBack.onChangeState();
 			}
 			return true;
 		}
@@ -119,6 +126,7 @@ public class SlidingMenu extends HorizontalScrollView {
 			return;
 		this.smoothScrollTo(0, 0);
 		isOpen = true;
+		slidingCallBack.onChangeState();
 	}
 
 	/**
@@ -128,6 +136,7 @@ public class SlidingMenu extends HorizontalScrollView {
 		if (isOpen) {
 			this.smoothScrollTo(mMenuWidth, 0);
 			isOpen = false;
+			slidingCallBack.onChangeState();
 		}
 	}
 
@@ -140,6 +149,10 @@ public class SlidingMenu extends HorizontalScrollView {
 		} else {
 			openMenu();
 		}
+	}
+
+	public interface SlidingCallBack{
+		void onChangeState();
 	}
 
 }
