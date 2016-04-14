@@ -22,7 +22,6 @@ public class AtyMessageDetail extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.aty_message_detail);
 		tvContent = (TextView) findViewById(R.id.tvContent);
@@ -30,7 +29,6 @@ public class AtyMessageDetail extends Activity {
 			jsonObj = new JSONObject(getIntent().getStringExtra("information"));
 			tvContent.setText(jsonObj.getString(Config.KEY_CONTENT));
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -41,14 +41,11 @@ import com.example.exerciseapp.adapter.MessageAdapter;
 import com.umeng.message.PushAgent;
 
 public class AtyMessage extends BaseActivity {
-
-	// private SwipeMenuListView listView;
 	private ListView listView;
 	private MessageAdapter adapter;
 	private List<JSONObject> list = new LinkedList<JSONObject>();
 	private RequestQueue mRequestQueue;
 	private JSONArray cachedMessage;
-
 	private Toolbar toolbar;
 	private TextView pageTitle;
 
@@ -71,71 +68,13 @@ public class AtyMessage extends BaseActivity {
 				cachedMessage = new JSONArray();
 			}
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		adapter = new MessageAdapter(this, list);
 		listView.setAdapter(adapter);
-		// SwipeMenuCreator creator = new SwipeMenuCreator() {
-		//
-		// @Override
-		// public void create(SwipeMenu menu) {
-		// // TODO Auto-generated method stub
-		// SwipeMenuItem item1 = new SwipeMenuItem(
-		// getApplicationContext());
-		// item1.setBackground(new ColorDrawable(Color.rgb(0xff, 0xff,
-		// 0xff)));
-		// item1.setWidth(90);
-		// item1.setIcon(R.drawable.delete);
-		// menu.addMenuItem(item1);
-		// }
-		// };
-		// listView.setMenuCreator(creator);
-		// listView.setOnItemClickListener(new OnItemClickListener() {
-		//
-		// @Override
-		// public void onItemClick(AdapterView<?> parent, View view,
-		// int position, long id) {
-		// // TODO Auto-generated method stub
-		// Intent intent = new Intent(AtyMessage.this,AtyMessageDetail.class);
-		// intent.putExtra("information", list.get(position).toString());
-		// startActivity(intent);
-		// }
-		// });
-		// listView.setOnMenuItemClickListener(new
-		// SwipeMenuListView.OnMenuItemClickListener() {
-		// @Override
-		// public boolean onMenuItemClick(int position, SwipeMenu menu, int
-		// index) {
-		// JSONObject jsonObj = list.get(position);
-		// list.remove(jsonObj);
-		// cachedMessage = new JSONArray();
-		// for(int i=0;i<list.size();i++){
-		// cachedMessage.put(list.get(i));
-		// }
-		// adapter.notifyDataSetChanged();
-		// return false;
-		// }
-		// });
-
-		// getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-		// getActionBar().setCustomView(R.layout.actionbar_start_running);
-		// TextView title = (TextView) getActionBar()
-		// .getCustomView().findViewById(R.id.tvPageTitleOfAll);
-		// title.setText("消息");
-		// getActionBar().getCustomView().findViewById(R.id.ivBackBtnStartRunning).setOnClickListener(new
-		// OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// finish();
-		// startActivity(new Intent(AtyMessage.this,AtySlidingHome.class));
-		// }
-		// });
 		setTitleBar();
 	}
 
-	@SuppressLint("InlinedApi")
 	public void setTitleBar() {
 		toolbar.setPadding(0, getDimensionMiss(), 0, 0);
 		toolbar.setTitle("");

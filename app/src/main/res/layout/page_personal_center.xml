@@ -35,20 +35,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
                 android:singleLine="true"
                 android:text="昵称"
-                android:textColor="#ffffff"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/tvUserBirthdayPersonalCenter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/tvUserNamePersonalCenter"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/tvUserNamePersonalCenter"
-                android:singleLine="true"
-                android:text="1985-03-23"
                 android:textColor="#ffffff"
                 android:textSize="15sp" />
 
@@ -56,102 +45,144 @@
                 android:id="@+id/tvUserAttrPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="5dp"
                 android:singleLine="true"
                 android:text="舞蹈协会会员"
                 android:textColor="#ffffff"
                 android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/tvUserPointPersonalCenter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:singleLine="true"
-                android:text="积分 0"
-                android:textColor="#ffffff"
-                android:textSize="15sp" />
-
-            <ImageView
-                android:id="@+id/ivMessageButtonPersonalCenter"
-                android:layout_width="wrap_content"
-                android:layout_height="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/tvUserBirthdayPersonalCenter"
-                android:src="@drawable/no_message_icon" />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tvUserPreferProjectPersonalCenter"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ibUserHWPersonalCenter"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="18dp"
-            android:text="喜欢的健身项目⊕"
-            android:textColor="#ffffff"
-            android:textSize="15sp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvSelectUserPreferProjectPersonalCenter"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvUserPreferProjectPersonalCenter"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:maxWidth="120dp"
-            android:text="无"
-            android:textColor="#ffffff"
-            android:textSize="12sp" />
+            <LinearLayout
+                android:id="@+id/layout_of_my_favor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_marginTop="18dp"
+                android:orientation="vertical">
 
-        <View
-            android:id="@+id/verticalLinePersonalCenter"
-            android:layout_width="1px"
-            android:layout_height="fill_parent"
-            android:layout_alignBottom="@id/tvSelectUserPreferProjectPersonalCenter"
-            android:layout_alignTop="@id/tvUserPreferProjectPersonalCenter"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/tvUserPreferProjectPersonalCenter"
-            android:background="@color/BackgroudLightGrey" />
+                <TextView
+                    android:id="@+id/tvUserPreferProjectPersonalCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="项目爱好 ⊕"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
 
-        <TextView
-            android:id="@+id/tvExerciseRecordPersonalCenter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/tvUserPreferProjectPersonalCenter"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/verticalLinePersonalCenter"
-            android:text="运动记录"
-            android:textColor="#ffffff"
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tvSelectUserPreferProjectPersonalCenter"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvUserPreferProjectPersonalCenter"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:maxWidth="120dp"
+                    android:singleLine="true"
+                    android:text="无"
+                    android:textColor="#ffffff"
+                    android:textSize="10sp" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvExerciseTimePersonalCenter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvExerciseRecordPersonalCenter"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/verticalLinePersonalCenter"
-            android:text="时间：0h"
-            android:textColor="#ffffff"
-            android:textSize="12sp" />
+            <View
+                android:id="@+id/verticalLinePersonalCenter"
+                android:layout_width="1px"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="18dp"
+                android:background="@color/BackgroudLightGrey" />
 
-        <TextView
-            android:id="@+id/tvExerciseDistancePersonalCenter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvExerciseRecordPersonalCenter"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/tvExerciseTimePersonalCenter"
-            android:text="里程：0Km"
-            android:textColor="#ffffff"
-            android:textSize="12sp" />
+            <LinearLayout
+                android:id="@+id/layout_of_my_recode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvExerciseRecordPersonalCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="运动记录 >"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvExerciseTimePersonalCenter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="0h"
+                        android:textColor="#ffffff"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/tvExerciseDistancePersonalCenter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@id/tvExerciseTimePersonalCenter"
+                        android:text="0Km"
+                        android:textColor="#ffffff"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="18dp"
+                android:background="@color/BackgroudLightGrey" />
+
+            <LinearLayout
+                android:id="@+id/layout_of_my_points"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="18dp"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:singleLine="true"
+                    android:text="个人积分 >"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvUserPointPersonalCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="#ffffff"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
 
     <LinearLayout
@@ -166,13 +197,13 @@
         <RelativeLayout
             android:id="@+id/UserConfigPersonalCenter"
             android:layout_width="fill_parent"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
             android:gravity="center_vertical">
 
             <ImageView
                 android:id="@+id/tvUserConfigPersonalCenter_image"
-                android:layout_width="26dp"
-                android:layout_height="wrap_content"
+                android:layout_width="22dp"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
                 android:src="@drawable/person_config_icon" />
@@ -180,9 +211,9 @@
             <TextView
                 android:id="@+id/tvUserConfigPersonalCenter"
                 android:layout_width="wrap_content"
-                android:layout_height="42dp"
-                android:layout_toRightOf="@+id/tvUserConfigPersonalCenter_image"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tvUserConfigPersonalCenter_image"
                 android:gravity="center_vertical"
                 android:text="个人设置"
                 android:textColor="#292121"
@@ -197,13 +228,13 @@
         <RelativeLayout
             android:id="@+id/MyEntryFormPersonalCenter"
             android:layout_width="fill_parent"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
             android:gravity="center_vertical">
 
             <ImageView
                 android:id="@+id/tvMyEntryFormPersonalCenter_image"
-                android:layout_width="26dp"
-                android:layout_height="wrap_content"
+                android:layout_width="22dp"
+                android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
                 android:src="@drawable/my_entry_icon" />
@@ -211,9 +242,9 @@
             <TextView
                 android:id="@+id/tvMyEntryFormPersonalCenter"
                 android:layout_width="wrap_content"
-                android:layout_height="42dp"
-                android:layout_toRightOf="@+id/tvMyEntryFormPersonalCenter_image"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tvMyEntryFormPersonalCenter_image"
                 android:gravity="center_vertical"
                 android:text="我的报名"
                 android:textColor="#292121"
@@ -229,13 +260,13 @@
         <RelativeLayout
             android:id="@+id/MyClubAndAssocPersonalCenter"
             android:layout_width="fill_parent"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
             android:gravity="center_vertical">
 
             <ImageView
                 android:id="@+id/tvMyClubAndAssocPersonalCenter_image"
-                android:layout_width="26dp"
-                android:layout_height="wrap_content"
+                android:layout_width="22dp"
+                android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
                 android:src="@drawable/my_club_icon" />
@@ -243,7 +274,7 @@
             <TextView
                 android:id="@+id/tvMyClubAndAssocPersonalCenter"
                 android:layout_width="wrap_content"
-                android:layout_height="42dp"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/tvMyClubAndAssocPersonalCenter_image"
                 android:gravity="center_vertical"
@@ -260,13 +291,13 @@
         <RelativeLayout
             android:id="@+id/MyTeamAndAssocPersonalCenter"
             android:layout_width="fill_parent"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
             android:gravity="center_vertical">
 
             <ImageView
                 android:id="@+id/tvMyTeamAndAssocPersonalCenter_image"
-                android:layout_width="26dp"
-                android:layout_height="wrap_content"
+                android:layout_width="22dp"
+                android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
                 android:src="@drawable/my_team_icon_f" />
@@ -274,7 +305,7 @@
             <TextView
                 android:id="@+id/tvMyTeamAndAssocPersonalCenter"
                 android:layout_width="wrap_content"
-                android:layout_height="42dp"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/tvMyTeamAndAssocPersonalCenter_image"
                 android:gravity="center_vertical"
@@ -289,17 +320,16 @@
             android:background="#88cccccc" />
 
 
-
         <RelativeLayout
             android:id="@+id/MyGradesPersonalCenter"
             android:layout_width="fill_parent"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
             android:gravity="center_vertical">
 
             <ImageView
                 android:id="@+id/tvMyGradesPersonalCenter_image"
-                android:layout_width="26dp"
-                android:layout_height="wrap_content"
+                android:layout_width="22dp"
+                android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
                 android:src="@drawable/my_grade_icon" />
@@ -307,9 +337,9 @@
             <TextView
                 android:id="@+id/tvMyGradesPersonalCenter"
                 android:layout_width="wrap_content"
-                android:layout_height="42dp"
-                android:layout_toRightOf="@+id/tvMyGradesPersonalCenter_image"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tvMyGradesPersonalCenter_image"
                 android:gravity="center_vertical"
                 android:text="我的成绩"
                 android:textColor="#292121"
@@ -324,13 +354,13 @@
         <RelativeLayout
             android:id="@+id/ScoresManagerPersonalCenter"
             android:layout_width="fill_parent"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
             android:gravity="center_vertical">
 
             <ImageView
                 android:id="@+id/tvScoresManagerPersonalCenter_image"
-                android:layout_width="26dp"
-                android:layout_height="wrap_content"
+                android:layout_width="22dp"
+                android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
                 android:src="@drawable/score_manager_icon" />
@@ -338,16 +368,14 @@
             <TextView
                 android:id="@+id/tvScoresManagerPersonalCenter"
                 android:layout_width="wrap_content"
-                android:layout_height="42dp"
-                android:layout_toRightOf="@+id/tvScoresManagerPersonalCenter_image"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tvScoresManagerPersonalCenter_image"
                 android:gravity="center_vertical"
                 android:text="积分管理"
                 android:textColor="#292121"
                 android:textSize="15sp" />
         </RelativeLayout>
-
-
     </LinearLayout>
 
     <TextView
