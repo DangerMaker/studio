@@ -4,45 +4,50 @@
     android:id="@+id/main_menu_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/BtnBlue"
     android:layout_marginRight="-30dp"
+    android:background="@color/BtnBlue"
     android:orientation="vertical">
 
     <app.mosn.zdepthshadowlayout.ZDepthShadowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         shadow:z_depth="z_depth2"
+        shadow:z_depth_paddingBottom="z_depth2"
         shadow:z_depth_paddingLeft="z_depth0"
         shadow:z_depth_paddingRight="z_depth0"
         shadow:z_depth_paddingTop="z_depth0"
-        shadow:z_depth_paddingBottom="z_depth2"
         shadow:z_depth_shape="rect">
 
         <RelativeLayout
             android:id="@+id/UserInformation_list"
             android:layout_width="match_parent"
-            android:background="@color/BtnBlue"
-            android:layout_height="76dp">
+            android:layout_height="96dp"
+            android:background="@drawable/actionbarbg">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ivUserIcon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/userhw" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="14dp">
 
-            <TextView
-                android:id="@+id/tvUserName_UserInformationHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/ivUserIcon"
-                android:paddingLeft="10dp"
-                android:text="昵称"
-                android:textColor="#ffffff"
-                android:textSize="15sp" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ivUserIcon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:src="@drawable/userhw" />
+
+                <TextView
+                    android:id="@+id/tvUserName_UserInformationHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/ivUserIcon"
+                    android:paddingLeft="10dp"
+                    android:text="昵称"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+            </RelativeLayout>
         </RelativeLayout>
     </app.mosn.zdepthshadowlayout.ZDepthShadowLayout>
 
@@ -60,7 +65,7 @@
 
             <ImageView
                 android:id="@+id/menu_gamelist_icon"
-                android:layout_width="26dp"
+                android:layout_width="23dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
@@ -91,7 +96,7 @@
 
             <ImageView
                 android:id="@+id/menu_startrun_icon"
-                android:layout_width="26dp"
+                android:layout_width="23dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
@@ -115,6 +120,38 @@
             android:background="@color/divider" />
 
         <RelativeLayout
+            android:id="@+id/menu_message"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/menu_message_icon"
+                android:layout_width="23dp"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/no_message_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@id/menu_message_icon"
+                android:singleLine="true"
+                android:text="我的消息"
+                android:textColor="@color/BtnTextColorWhite"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider" />
+
+        <RelativeLayout
             android:id="@+id/menu_sportgroup"
             android:layout_width="fill_parent"
             android:layout_height="48dp"
@@ -122,7 +159,7 @@
 
             <ImageView
                 android:id="@+id/menu_group_icon"
-                android:layout_width="26dp"
+                android:layout_width="23dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
@@ -153,7 +190,7 @@
 
             <ImageView
                 android:id="@+id/menu_club_icon"
-                android:layout_width="26dp"
+                android:layout_width="23dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
@@ -184,7 +221,7 @@
 
             <ImageView
                 android:id="@+id/menu_personal_icon"
-                android:layout_width="26dp"
+                android:layout_width="23dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
@@ -215,7 +252,7 @@
 
             <ImageView
                 android:id="@+id/menu_news_icon"
-                android:layout_width="26dp"
+                android:layout_width="23dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
@@ -246,7 +283,7 @@
 
             <ImageView
                 android:id="@+id/menu_setting_icon"
-                android:layout_width="26dp"
+                android:layout_width="23dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"

@@ -57,7 +57,7 @@ public class Config {
 	public static final int PAGE_TAG_CONFIG = 5;
 	public static final int PAGE_USER_INFORMATION_HOME = 6;
 	public static final int PAGE_TAG_TEAM = 7;
-	
+	public static final int PAGE_TAG_MESSAGE = 8;
 	
 	//通信所用的键
 	public static final String KEY_UID = "uid";					//用户ID

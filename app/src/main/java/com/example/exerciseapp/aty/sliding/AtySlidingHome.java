@@ -45,6 +45,7 @@ import android.widget.Toast;
 import com.example.exerciseapp.aty.team.CreateMyTeamActivity;
 import com.example.exerciseapp.aty.team.CreateTeamActivity;
 import com.example.exerciseapp.fragment.AllTeamFragment;
+import com.example.exerciseapp.fragment.MessageFragment;
 import com.example.exerciseapp.fragment.TeamFragment;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
@@ -78,7 +79,7 @@ import app.mosn.zdepthshadowlayout.ZDepthShadowLayout;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingCallBack{
+public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingCallBack {
 
     @Bind(R.id.toolbar_text_right)
     TextView mToolbarRight;
@@ -92,13 +93,14 @@ public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingC
     private AllTeamFragment teamFragment = null;
     private PersonalCenterFragment personalCenterFragment = null;
     private StartRunFragment startRunFragment = null;
+    private MessageFragment messageFragment = null;
     public static Activity instance;
     private RequestQueue mRequestQueue;
     private static IWXAPI api;
     private long exitTime = 0;
 
     private Toolbar toolbar;
-    private View menu, item_gamelist, item_run, item_group, item_club, item_person, item_news, item_setting;
+    private View menu, item_gamelist, item_run, item_group, item_club, item_person, item_news, item_setting, item_message;
     protected SlidingMenu slidingMenu;
     private FragmentManager fragmentManager;
 
@@ -201,11 +203,11 @@ public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingC
 
     @Override
     public void onChangeState() {
-        if(slidingMenu.isOpen()){
+        if (slidingMenu.isOpen()) {
             slidingLayout.setShow(true);
             slidingLayout.setPadding();
             slidingLayout.invalidate();
-        }else{
+        } else {
             slidingLayout.setShow(false);
             slidingLayout.setPadding();
             slidingLayout.invalidate();
@@ -216,25 +218,11 @@ public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingC
         slidingMenu.toggle();
     }
 
-    // @Override
-    // public boolean onCreateOptionsMenu(Menu menu) {
-    // getMenuInflater().inflate(R.menu.main_toolbar_items, menu);
-    // return true;
-    // }
-
     private void setTitleBar() {
-        menu.setPadding(0, getDimensionMiss(), 0, 0);
         toolbar.setPadding(0, getDimensionMiss(), 0, 0);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.menubtn);
-//		toolbar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-//			@Override
-//			public boolean onMenuItemClick(MenuItem item) {
-//				showPopupWindow();
-//				return false;
-//			}
-//		});
         toolbar.setNavigationOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -253,6 +241,7 @@ public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingC
         item_person = findViewById(R.id.menu_personal);
         item_news = findViewById(R.id.menu_news);
         item_setting = findViewById(R.id.menu_setting);
+        item_message = findViewById(R.id.menu_message);
         slidingMenu = (SlidingMenu) findViewById(R.id.start_content);
         slidingMenu.setSlidingCallBack(AtySlidingHome.this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -264,6 +253,7 @@ public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingC
         item_news.setOnClickListener(menuItemListener);
         item_setting.setOnClickListener(menuItemListener);
         item_group.setOnClickListener(menuItemListener);
+        item_message.setOnClickListener(menuItemListener);
 
         uNickname = (TextView) findViewById(R.id.tvUserName_UserInformationHome);
         uIcon = (ImageView) findViewById(R.id.ivUserIcon);
@@ -351,6 +341,16 @@ public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingC
                     initActionBar(Config.PAGE_TAG_NEWS);
                     mContent = newsFragment;
                     break;
+                case R.id.menu_message:
+                    if (null == messageFragment) {
+                        messageFragment = new MessageFragment();
+                        transaction.add(R.id.content_frame, messageFragment);
+                    } else {
+                        transaction.show(messageFragment);
+                    }
+                    initActionBar(Config.PAGE_TAG_MESSAGE);
+                    mContent = messageFragment;
+                    break;
                 case R.id.menu_setting:
                     if (null == configFragment) {
                         configFragment = new ConfigFragment();
@@ -361,7 +361,6 @@ public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingC
                     initActionBar(Config.PAGE_TAG_CONFIG);
                     mContent = configFragment;
                     break;
-
                 default:
                     break;
             }
@@ -395,6 +394,9 @@ public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingC
         }
         if (teamFragment != null) {
             transaction.hide(teamFragment);
+        }
+        if (messageFragment != null) {
+            transaction.hide(messageFragment);
         }
     }
 
@@ -492,6 +494,11 @@ public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingC
                 textview.setText("运动团队");
                 mToolbarRight.setVisibility(View.VISIBLE);
                 mToolbarRight.setText("创建团队");
+                break;
+            case Config.PAGE_TAG_MESSAGE:
+                // textview = (TextView)
+                // actionBar.getCustomView().findViewById(R.id.tvPageTitleOfAll);
+                textview.setText("我的消息");
                 break;
             default:
                 break;

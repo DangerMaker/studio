@@ -49,7 +49,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_centerVertical="true"
                 android:singleLine="true"
-                android:text="舞蹈协会会员"
+                android:text=""
                 android:textColor="#ffffff"
                 android:textSize="15sp" />
         </RelativeLayout>
@@ -202,7 +202,7 @@
 
             <ImageView
                 android:id="@+id/tvUserConfigPersonalCenter_image"
-                android:layout_width="22dp"
+                android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
@@ -212,7 +212,7 @@
                 android:id="@+id/tvUserConfigPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_toRightOf="@+id/tvUserConfigPersonalCenter_image"
                 android:gravity="center_vertical"
                 android:text="个人设置"
@@ -233,7 +233,7 @@
 
             <ImageView
                 android:id="@+id/tvMyEntryFormPersonalCenter_image"
-                android:layout_width="22dp"
+                android:layout_width="20dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
@@ -243,7 +243,7 @@
                 android:id="@+id/tvMyEntryFormPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_toRightOf="@+id/tvMyEntryFormPersonalCenter_image"
                 android:gravity="center_vertical"
                 android:text="我的报名"
@@ -265,7 +265,7 @@
 
             <ImageView
                 android:id="@+id/tvMyClubAndAssocPersonalCenter_image"
-                android:layout_width="22dp"
+                android:layout_width="20dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
@@ -275,7 +275,7 @@
                 android:id="@+id/tvMyClubAndAssocPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_toRightOf="@+id/tvMyClubAndAssocPersonalCenter_image"
                 android:gravity="center_vertical"
                 android:text="组织机构"
@@ -296,7 +296,7 @@
 
             <ImageView
                 android:id="@+id/tvMyTeamAndAssocPersonalCenter_image"
-                android:layout_width="22dp"
+                android:layout_width="20dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
@@ -306,7 +306,7 @@
                 android:id="@+id/tvMyTeamAndAssocPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_toRightOf="@+id/tvMyTeamAndAssocPersonalCenter_image"
                 android:gravity="center_vertical"
                 android:text="我的团队"
@@ -328,7 +328,7 @@
 
             <ImageView
                 android:id="@+id/tvMyGradesPersonalCenter_image"
-                android:layout_width="22dp"
+                android:layout_width="20dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
@@ -338,7 +338,7 @@
                 android:id="@+id/tvMyGradesPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_toRightOf="@+id/tvMyGradesPersonalCenter_image"
                 android:gravity="center_vertical"
                 android:text="我的成绩"
@@ -359,7 +359,7 @@
 
             <ImageView
                 android:id="@+id/tvScoresManagerPersonalCenter_image"
-                android:layout_width="22dp"
+                android:layout_width="20dp"
                 android:layout_height="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
@@ -369,7 +369,7 @@
                 android:id="@+id/tvScoresManagerPersonalCenter"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_toRightOf="@+id/tvScoresManagerPersonalCenter_image"
                 android:gravity="center_vertical"
                 android:text="积分管理"
