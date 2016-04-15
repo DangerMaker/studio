@@ -106,6 +106,7 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
     private AlertDialog alertDialog = null;
     private List<Map<String, String>> alertItem = new ArrayList<Map<String, String>>();
     private RequestQueue mRequestQueue;
+    private OnChangeHWCallBack onChangeHWListener;
     Context context;
 
     @Bind(R.id.layout_of_my_favor)
@@ -114,6 +115,10 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
     LinearLayout goMyRecode;
     @Bind(R.id.layout_of_my_points)
     LinearLayout goMyPoint;
+
+    public void setOnChangeHWCallBack(OnChangeHWCallBack onChangeHWListener){
+        this.onChangeHWListener = onChangeHWListener;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -211,7 +216,7 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
                         try {
                             JSONObject jsonObject = new JSONObject(s);
                             jsonObject = jsonObject.getJSONObject("data");
-                            long t = (long) (jsonObject.getDouble("duration") * 3600);
+                            long t = (long) (jsonObject.getDouble("duration"));
                             String unit = t / 3600 == 0 ? "m/s" : "h/m";
                             tvExerciseTimePersonalCenter.setText(SpeedConvert.secToTime(t) + unit);
                             tvExerciseDistancePersonalCenter.setText((float) (Math.round(jsonObject.getDouble("distance") / 1000 * 100)) / 100 + "km");
@@ -470,6 +475,7 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
 
                     Picasso.with(getActivity()).load(upTeamAvatar.getData()).into(ibUserHWPersonalCenter);
                     ScreenUtils.show_msg(context, "上传头像成功!");
+                    onChangeHWListener.onChangeHWCallBack();
                 } else {
                     // 上传 异常
                     Log.e("____aaaaaaaa", "_____111111");
@@ -489,5 +495,8 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
         });
     }
 
+    public interface OnChangeHWCallBack{
+        void onChangeHWCallBack();
+    }
 
 }

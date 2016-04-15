@@ -79,7 +79,7 @@ import app.mosn.zdepthshadowlayout.ZDepthShadowLayout;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingCallBack {
+public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingCallBack, PersonalCenterFragment.OnChangeHWCallBack{
 
     @Bind(R.id.toolbar_text_right)
     TextView mToolbarRight;
@@ -265,6 +265,7 @@ public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingC
         hideFragments(transaction);
         if (null == personalCenterFragment) {
             personalCenterFragment = new PersonalCenterFragment();
+            personalCenterFragment.setOnChangeHWCallBack(AtySlidingHome.this);
             transaction.add(R.id.content_frame, personalCenterFragment);
         } else {
             transaction.show(personalCenterFragment);
@@ -324,6 +325,7 @@ public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingC
                 case R.id.menu_personal:
                     if (null == personalCenterFragment) {
                         personalCenterFragment = new PersonalCenterFragment();
+                        personalCenterFragment.setOnChangeHWCallBack(AtySlidingHome.this);
                         transaction.add(R.id.content_frame, personalCenterFragment);
                     } else {
                         transaction.show(personalCenterFragment);
@@ -537,6 +539,11 @@ public class AtySlidingHome extends BaseActivity implements SlidingMenu.SlidingC
             finish();
             System.exit(0);
         }
+    }
+
+    @Override
+    public void onChangeHWCallBack() {
+        getUserInfo();
     }
 
     class MyTask extends AsyncTask<JSONObject, Integer, Bitmap> {

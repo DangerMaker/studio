@@ -4,9 +4,15 @@ package com.example.exerciseapp.fragment;
  * 赛事列表
  */
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.OnWheelScrollListener;
 import kankan.wheel.widget.WheelView;
@@ -18,9 +24,15 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.format.DateUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -30,11 +42,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.example.exerciseapp.volley.AuthFailureError;
@@ -89,6 +104,27 @@ public class GameListFragment_ extends Fragment {
     private String positionProvince = "不限", positionCity = "不限", positionArea = "不限";
     private long lastTime = 0;
 
+    private ViewPager adViewPager;
+    private List<ImageView> imageViews;// 滑动的图片集合
+    private List<View> dots;
+    private List<View> dotsList;
+    private List<Drawable> adImg;
+    private int currentItem = 0; // 当前图片的索引号
+    // 定义的五个指示点
+    private View dot0;
+    private View dot1;
+    private View dot2;
+    private View dot3;
+    private View dot4;
+    // 定时任务
+    private ScheduledExecutorService scheduledExecutorService;
+
+    private Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            adViewPager.setCurrentItem(currentItem);
+        };
+    };
+
     @SuppressLint("ResourceAsColor")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -120,7 +156,7 @@ public class GameListFragment_ extends Fragment {
 
         final View view = inflater
                 .inflate(R.layout.page_competetion_activities, null);
-        final LinearLayout rootLayout = (LinearLayout) view.findViewById(R.id.rootLayoutPageCompetetion);
+        final RelativeLayout rootLayout = (RelativeLayout) view.findViewById(R.id.rootLayoutPageCompetetion);
 
         // TODO delete 2016/3/16<
         // shaiXuanLinearLayout = (LinearLayout)
@@ -351,9 +387,134 @@ public class GameListFragment_ extends Fragment {
 //		mSwipeLayout.setMode(SwipeRefreshLayout.Mode.PULL_FROM_START);
 //		mSwipeLayout.setLoadNoFull(false);
         mSwipeLayout.setRefreshing(false);
+
+        imageViews = new ArrayList<ImageView>();
+        // 点
+        dots = new ArrayList<View>();
+        dotsList = new ArrayList<>();
+        dot0 = view.findViewById(R.id.v_dot0);
+        dot1 = view.findViewById(R.id.v_dot1);
+        dot2 = view.findViewById(R.id.v_dot2);
+        dot3 = view.findViewById(R.id.v_dot3);
+        dot4 = view.findViewById(R.id.v_dot4);
+        dots.add(dot0);
+        dots.add(dot1);
+        dots.add(dot2);
+        dots.add(dot3);
+        dots.add(dot4);
+        adImg = new ArrayList<Drawable>();
+        adImg.add(ContextCompat.getDrawable(GameListFragment_.this.getActivity(),R.drawable.game_show1));
+        adImg.add(ContextCompat.getDrawable(GameListFragment_.this.getActivity(),R.drawable.game_show));
+        adViewPager = (ViewPager) view.findViewById(R.id.vp);
+        adViewPager.setAdapter(new MyAdapter());// 设置填充ViewPager页面的适配器
+        // 设置一个监听器，当ViewPager中的页面改变时调用
+        adViewPager.addOnPageChangeListener(new MyPageChangeListener());
+        addDynamicView();
+
+        startAd();
         return view;
     }
 
+    private void startAd() {
+        scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+        // 当Activity显示出来后，每两秒切换一次图片显示
+        scheduledExecutorService.scheduleAtFixedRate(new ScrollTask(), 1, 5,
+                TimeUnit.SECONDS);
+    }
+
+    private class ScrollTask implements Runnable {
+        @Override
+        public void run() {
+            synchronized (adViewPager) {
+                currentItem = (currentItem + 1) % imageViews.size();
+                handler.obtainMessage().sendToTarget();
+            }
+        }
+    }
+
+    private void addDynamicView() {
+        // 动态添加图片和下面指示的圆点
+        // 初始化图片资源
+        for (int i = 0; i < adImg.size(); i++) {
+            ImageView imageView = new ImageView(this.getActivity());
+            imageView.setImageDrawable(adImg.get(i));
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageViews.add(imageView);
+            dots.get(i).setVisibility(View.VISIBLE);
+            dotsList.add(dots.get(i));
+        }
+    }
+
+    private class MyPageChangeListener implements ViewPager.OnPageChangeListener {
+        private int oldPosition = 0;
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+        }
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            currentItem = position;
+            dots.get(oldPosition).setBackgroundResource(R.drawable.dot_normal);
+            dots.get(position).setBackgroundResource(R.drawable.dot_focused);
+            oldPosition = position;
+        }
+    }
+
+    private class MyAdapter extends PagerAdapter {
+
+        @Override
+        public int getCount() {
+            return adImg.size();
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            ImageView iv = imageViews.get(position);
+            ((ViewPager) container).addView(iv);
+            // 在这个方法里面设置图片的点击事件
+//            iv.setOnClickListener(new OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    // 处理跳转逻辑
+//                }
+//            });
+            return iv;
+        }
+
+        @Override
+        public void destroyItem(View arg0, int arg1, Object arg2) {
+            ((ViewPager) arg0).removeView((View) arg2);
+        }
+
+        @Override
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            return arg0 == arg1;
+        }
+
+        @Override
+        public void restoreState(Parcelable arg0, ClassLoader arg1) {
+
+        }
+
+        @Override
+        public Parcelable saveState() {
+            return null;
+        }
+
+        @Override
+        public void startUpdate(View arg0) {
+
+        }
+
+        @Override
+        public void finishUpdate(View arg0) {
+
+        }
+
+    }
 
 //	@Override
 //	public void onLoad() {
@@ -371,7 +532,7 @@ public class GameListFragment_ extends Fragment {
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
-//            	
+//
 //            	new GetDataTask().execute();
 ////                mSwipeLayout.setRefreshing(false);
 ////                mListAdapter.notifyDataSetChanged();

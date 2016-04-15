@@ -81,8 +81,8 @@ public class MessageFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Config.STATUS_HAS_MESSAGE = false;
-        StringRequest stringRequestMyEntryForm = new StringRequest(Request.Method.POST,
-                Config.SERVER_URL + "System/sysInfo", new Response.Listener<String>() {
+        StringRequest stringRequestMyEntryForm = new StringRequest(Request.Method.GET,
+                "http://101.200.214.68/py/system?action=get_sysinfo&" + "uid=" + Config.getCachedUserUid(MessageFragment.this.getActivity()), new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 try {
