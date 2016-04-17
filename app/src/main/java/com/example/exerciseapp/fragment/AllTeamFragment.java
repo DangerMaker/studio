@@ -1,6 +1,7 @@
 package com.example.exerciseapp.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.adapter.GroupListAdapter;
+import com.example.exerciseapp.aty.team.SearchActivity;
 import com.example.exerciseapp.aty.team.TeamDetailActivity;
 import com.example.exerciseapp.model.AllGroup;
 import com.example.exerciseapp.model.GroupList;
@@ -82,7 +84,7 @@ public class AllTeamFragment extends BaseFragment implements GroupListAdapter.On
             return;
         }
 
-        initView();
+//        initView();
     }
 
 
@@ -169,7 +171,8 @@ public class AllTeamFragment extends BaseFragment implements GroupListAdapter.On
 
     @OnClick(R.id.team_search)
     public void search() {
-        showWindow();
+//        showWindow();
+        startActivity(new Intent(getActivity(), SearchActivity.class));
     }
 
     PopupWindow popupWindow;

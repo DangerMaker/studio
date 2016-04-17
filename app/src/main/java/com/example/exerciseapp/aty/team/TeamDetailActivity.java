@@ -247,7 +247,15 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
 
     @OnClick(R.id.toolbar_img_right)
     public void rightClick() {
-        startActivity(TeamSettingActivity.getTeamSettingIntent(this,type));
+        startActivityForResult(TeamSettingActivity.getTeamSettingIntent(this,type),1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == 2){
+            finish();
+        }
     }
 
     @OnClick(R.id.detail_team_allMember)
@@ -297,6 +305,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
                     ScreenUtils.show_msg(TeamDetailActivity.this, "加入成功");
                     if (popupWindow != null)
                         popupWindow.dismiss();
+                    load();
                 }
             }
 
@@ -346,6 +355,8 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
                     ScreenUtils.show_msg(TeamDetailActivity.this, "申请成功");
                     if (popupWindow != null)
                         popupWindow.dismiss();
+
+                    load();
                 }
             }
 

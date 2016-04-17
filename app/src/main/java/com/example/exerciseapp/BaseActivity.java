@@ -61,7 +61,7 @@ public class BaseActivity extends AppCompatActivity {
         if(!this.isFinishing()) {
             getSupportFragmentManager().beginTransaction()
                     .add(layoutId, newFragment)
-                    .addToBackStack(null)
+//                    .addToBackStack(null)
                     .commitAllowingStateLoss();
         }
     }

@@ -110,7 +110,9 @@ public class TeamSettingActivity extends BackBaseActivity {
             teamSettingName.setClickable(false);
             teamSettingDes.setClickable(false);
             alterImg.setClickable(false);
-
+            teamSettingDisappear.setText("退出团队");
+        }else{
+            teamSettingDisappear.setText("解散团队");
         }
 //        teamId = intent.getIntExtra("teamId", -1);
 //        name = intent.getStringExtra("name");
@@ -175,7 +177,7 @@ public class TeamSettingActivity extends BackBaseActivity {
                 System.out.println("解散成功");
                 if (errorMsg != null && errorMsg.getResult() == 1) {
                     ScreenUtils.show_msg(TeamSettingActivity.this, "解散成功");
-
+                    setResult(2);
                     finish();
                 } else {
                     ScreenUtils.show_msg(TeamSettingActivity.this, errorMsg.getDesc());
@@ -197,6 +199,7 @@ public class TeamSettingActivity extends BackBaseActivity {
                 System.out.println("退出成功");
                 if (errorMsg != null && errorMsg.getResult() == 1) {
                     ScreenUtils.show_msg(TeamSettingActivity.this, "退出成功");
+                    setResult(2);
                     finish();
                 } else {
                     ScreenUtils.show_msg(TeamSettingActivity.this, errorMsg.getDesc());

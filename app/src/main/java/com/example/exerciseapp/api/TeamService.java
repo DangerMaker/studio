@@ -185,4 +185,5 @@ public interface TeamService {
     void getGroupInfo(@Query("id") String id,
                 @Query("action") String get_group_info,
             Callback<GroupData> callback);
+
 }
