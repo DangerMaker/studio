@@ -17,7 +17,7 @@
 
         <include layout="@layout/main_menu" />
 
-        <app.mosn.zdepthshadowlayout.ZDepthShadowLayout
+        <mosn.zdepthshadowlayout.ZDepthShadowLayout
             android:id="@+id/sliding_layout"
             shadow:z_depth_paddingBottom="z_depth0"
             shadow:z_depth_paddingLeft="z_depth0"
@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"></FrameLayout>
             </LinearLayout>
-        </app.mosn.zdepthshadowlayout.ZDepthShadowLayout>
+        </mosn.zdepthshadowlayout.ZDepthShadowLayout>
     </LinearLayout>
 
 </com.example.exerciseapp.view.SlidingMenu>

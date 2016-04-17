@@ -1,4 +1,4 @@
-package app.mosn.zdepthshadowlayout.utils;
+package mosn.zdepthshadowlayout.utils;
 
 import android.content.Context;
 

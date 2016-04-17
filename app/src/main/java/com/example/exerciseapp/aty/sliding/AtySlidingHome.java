@@ -74,8 +74,8 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.message.PushAgent;
 
-import app.mosn.zdepthshadowlayout.ZDepth;
-import app.mosn.zdepthshadowlayout.ZDepthShadowLayout;
+import mosn.zdepthshadowlayout.ZDepth;
+import mosn.zdepthshadowlayout.ZDepthShadowLayout;
 import butterknife.Bind;
 import butterknife.OnClick;
 

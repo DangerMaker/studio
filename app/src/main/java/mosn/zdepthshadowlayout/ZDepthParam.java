@@ -1,4 +1,4 @@
-package app.mosn.zdepthshadowlayout;
+package mosn.zdepthshadowlayout;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,7 +15,7 @@ public class ZDepthParam {
     public float mBlurTopShadowPx; // px
     public float mBlurBottomShadowPx; // px
 
-    public void initZDepth(Context context, ZDepth zDepth) {
+    public void initZDepth(Context context, mosn.zdepthshadowlayout.ZDepth zDepth) {
         mAlphaTopShadow = zDepth.getAlphaTopShadow();
         mAlphaBottomShadow = zDepth.getAlphaBottomShadow();
         mOffsetYTopShadowPx = zDepth.getOffsetYTopShadowPx(context);

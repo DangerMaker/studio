@@ -1,4 +1,4 @@
-package app.mosn.zdepthshadowlayout;
+package mosn.zdepthshadowlayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import com.example.exerciseapp.R;
 
 
 public class ZDepthShadowLayout extends FrameLayout {

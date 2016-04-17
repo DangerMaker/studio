@@ -1,8 +1,8 @@
-package app.mosn.zdepthshadowlayout.shadow;
+package mosn.zdepthshadowlayout.shadow;
 
 import android.graphics.Canvas;
 
-import app.mosn.zdepthshadowlayout.ZDepthParam;
+import mosn.zdepthshadowlayout.ZDepthParam;
 
 
 public interface Shadow {

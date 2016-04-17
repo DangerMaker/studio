@@ -1,4 +1,4 @@
-package app.mosn.zdepthshadowlayout;
+package mosn.zdepthshadowlayout;
 
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 
-import app.mosn.zdepthshadowlayout.shadow.Shadow;
-import app.mosn.zdepthshadowlayout.shadow.ShadowOval;
-import app.mosn.zdepthshadowlayout.shadow.ShadowRect;
+import mosn.zdepthshadowlayout.shadow.Shadow;
+import mosn.zdepthshadowlayout.shadow.ShadowOval;
+import mosn.zdepthshadowlayout.shadow.ShadowRect;
 
 
 public class ShadowView extends View {

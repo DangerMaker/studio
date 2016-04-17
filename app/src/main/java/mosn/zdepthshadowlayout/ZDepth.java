@@ -1,8 +1,8 @@
-package app.mosn.zdepthshadowlayout;
+package mosn.zdepthshadowlayout;
 
 import android.content.Context;
 
-import app.mosn.zdepthshadowlayout.utils.DisplayUtils;
+import mosn.zdepthshadowlayout.utils.DisplayUtils;
 
 public enum ZDepth {
 
