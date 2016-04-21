@@ -23,7 +23,7 @@ public class CheckInput {
 	//是否是电话号码
 	public static boolean isPhoneNum(String phoneNum){  
 
-		Pattern p = Pattern.compile("^1[3|4|5|7|8]\\d{9}$");  
+		Pattern p = Pattern.compile("((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)");
 		Matcher m = p.matcher(phoneNum);  
 		return m.matches();  
 	}  

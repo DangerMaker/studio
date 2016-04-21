@@ -454,6 +454,10 @@ public class AtyUserInformationConfig extends BaseActivity {
 			showToast("邮箱格式错误！");
             return;
 		}
+		if(!CheckInput.isPhoneNum(etEmergenceContactPhoneUserInformationConfig.getText().toString())){
+			showToast("联系方式格式错误！");
+			return;
+		}
 		// 提交个人信息 通信
 		String area = "";
 		String assoc = "";
