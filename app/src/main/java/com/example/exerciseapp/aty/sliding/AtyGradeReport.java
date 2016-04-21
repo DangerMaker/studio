@@ -69,7 +69,7 @@ public class AtyGradeReport extends BaseActivity {
 					int position, long id) {
 				Intent intent = new Intent(AtyGradeReport.this,AtyGradeDetail.class);
 				try {
-					intent.putExtra("url", list.get(position).getString("content"));
+					intent.putExtra("url", list.get(position).getString(Config.KEY_GAME_GRADE_DETAIL));
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}

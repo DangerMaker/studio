@@ -93,16 +93,17 @@ public class Config {
 	
 	
 	public static final String KEY_GAME_ID = "gid";				//赛事id
-	public static final String KEY_GAME_H5_URL = "gintro";				//赛事id
+	public static final String KEY_GAME_H5_URL = "gintro";				//赛事h5
 	public static final String KEY_GAME_LIST = "gameList";		//赛事列表
 	public static final String KEY_GAME_NAME = "gname";			//赛事名称
+	public static final String KEY_GAME_GRADE_DETAIL = "score_show_url";	//赛事成绩h5
 	public static final String KEY_GAME_TYPE = "gtype";			//赛事类型（如跑步）
 	public static final String KEY_GAME_LEVEL = "glevel";		//赛事级别（例如国家级）
 	public static final String KEY_GAME_STATUS = "gstatus";		//赛事状态（例如接受报名）
 	public static final String KEY_GAME_STATUS_ID = "gstatusid";//赛事状态id(与gstatus相对应）
 	public static final String KEY_GAME_ASSOC = "gassoc";		//举办赛事的协会 
 	public static final String KEY_GAME_POSITION = "gposition";	//赛事举办地点
-	public static final String KEY_GAME_START_TIME = "gstarttime";//赛事开始时间
+	public static final String KEY_GAME_START_TIME = "start_time";//赛事开始时间
 	public static final String KEY_GAME_END_TIME = "gendtime";	//赛事结束时间
 	public static final String KEY_GAME_ACCEPT_START = "gacceptstart";//赛事接受报名时间
 	public static final String KEY_GAME_ACCEPT_START_NEW = "gacceptstartdate";//赛事接受报名时间 new
@@ -121,11 +122,13 @@ public class Config {
 	public static final String KEY_GAME_COUNT_NOW = "countnow";	//已报名人数
 	
 	public static final String KEY_FRONT_PAGE = "frontpage";
+	public static final String KEY_FRONT_PAGE_NEW = "gfrontpage";
 	public static final String KEY_UEID = "ueid";				//报名信息Id
 	public static final String KEY_ATTEND_TIME = "attendtime";	//申请表提交时间
 	public static final String KEY_CHECK_STATUS = "checkstatus";//申请参加的赛事状态标志
 	public static final String KEY_CHECK_STATUS_NAME = "statusname";//申请参加的赛事状态信息
 	public static final String KEY_ATTEND_PERSON = "username";		//参赛人员
+	public static final String KEY_ATTEND_PERSON_SHOW = "attend_show";		//参赛人员
 	
 	public static final String KEY_FILE_URL = "fileurl";			//头像URL
 	
