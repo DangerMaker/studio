@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.RelativeLayout.LayoutParams;
 
+import com.example.exerciseapp.utils.CheckInput;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -74,9 +75,33 @@ public class AtyUserInformationConfig extends BaseActivity {
 	SpotsDialog spotsDialog;
 	private RequestQueue mRequestQueue;
 	private JSONObject json;
-	
+
 	private Toolbar toolbar;
 	private TextView pageTitle;
+
+	private Toast mToast;
+
+	public void showToast(String text) {
+		if(mToast == null) {
+			mToast = Toast.makeText(AtyUserInformationConfig.this, text, Toast.LENGTH_SHORT);
+		} else {
+			mToast.setText(text);
+			mToast.setDuration(Toast.LENGTH_SHORT);
+		}
+		mToast.show();
+	}
+
+	public void cancelToast() {
+		if (mToast != null) {
+			mToast.cancel();
+		}
+	}
+
+	public void onBackPressed() {
+		cancelToast();
+		super.onBackPressed();
+	}
+
 
 	@Override
 	protected void onResume() {
@@ -169,6 +194,7 @@ public class AtyUserInformationConfig extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		PushAgent.getInstance(this).onAppStart();
 		mRequestQueue = Volley.newRequestQueue(this);
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 		setContentView(R.layout.aty_user_information_config);
 
 		// 控件初始化
@@ -372,20 +398,20 @@ public class AtyUserInformationConfig extends BaseActivity {
 							.findViewById(R.id.btnCertainAlertDialogNoCompleteInformation)
 							.setOnClickListener(new OnClickListener() {
 
-						@Override
-						public void onClick(View v) {
-							alertDialogNoCompleteInformation.dismiss();
-						}
-					});
+                                @Override
+                                public void onClick(View v) {
+                                    alertDialogNoCompleteInformation.dismiss();
+                                }
+                            });
 					alertDialogNoCompleteInformation.getWindow()
 							.findViewById(R.id.btnCancelAlertDialogNoCompleteInformation)
 							.setOnClickListener(new OnClickListener() {
 
-						@Override
-						public void onClick(View v) {
-							alertDialogNoCompleteInformation.dismiss();
-						}
-					});
+                                @Override
+                                public void onClick(View v) {
+                                    alertDialogNoCompleteInformation.dismiss();
+                                }
+                            });
 				} else {
 					// 判断输入格式是否正确 TODO
 					try {
@@ -420,45 +446,14 @@ public class AtyUserInformationConfig extends BaseActivity {
 
 	// 验证所有的输入是否正确并提交信息
 	public void correctInputAndSubmit() throws UnsupportedEncodingException {
-		// alertDialogNoCompleteInformation = new
-		// AlertDialog.Builder(AtyUserInformationConfig.this).create();
-		// alertDialogNoCompleteInformation.getWindow().setContentView(R.layout.alert_dialog_no_complete_information);
-		// TextView textView = (TextView)
-		// alertDialogNoCompleteInformation.getWindow().findViewById(R.id.tvAlertDialogContent);
-		// alertDialogNoCompleteInformation.getWindow().findViewById(R.id.btnCertainAlertDialogNoCompleteInformation)
-		// .setOnClickListener(new OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// alertDialogNoCompleteInformation.dismiss();
-		// }
-		// });
-		// alertDialogNoCompleteInformation.getWindow().findViewById(R.id.btnCancelAlertDialogNoCompleteInformation)
-		// .setOnClickListener(new OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// alertDialogNoCompleteInformation.dismiss();
-		// }
-		// });
-		// if(!CheckInput.isBloodType(spUserBloodTypeUserInformationConfig.getSelectedItem().toString())){
-		// spUserBloodTypeUserInformationConfig.clearFocus();
-		// spUserBloodTypeUserInformationConfig.setFocusable(true);
-		// spUserBloodTypeUserInformationConfig.setFocusableInTouchMode(true);
-		// spUserBloodTypeUserInformationConfig.requestFocus();
-		// Toast.makeText(getApplicationContext(), "血型输入错误，请输入A，B，O或AB",
-		// 2).show();
-		// return;
-		// }
-		// if(!CheckInput.isSexInput(spSexUserInformationConfig.getText().toString())){
-		// spSexUserInformationConfig.clearFocus();
-		// spSexUserInformationConfig.setFocusable(true);
-		// spSexUserInformationConfig.setFocusableInTouchMode(true);
-		// spSexUserInformationConfig.requestFocus();
-		// Toast.makeText(getApplicationContext(), "性别输入错误，请输入男或女", 2).show();
-		// return;
-		// }
-
+        if(!CheckInput.isIDCard(etUserIDCardUserInformationConfig.getText().toString())){
+			showToast("身份证格式错误！");
+            return;
+        }
+        if(!CheckInput.isEmail(etUserEmailUserInformationConfig.getText().toString())){
+			showToast("邮箱格式错误！");
+            return;
+		}
 		// 提交个人信息 通信
 		String area = "";
 		String assoc = "";

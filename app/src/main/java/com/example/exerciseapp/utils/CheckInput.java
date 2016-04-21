@@ -5,7 +5,21 @@ import java.util.regex.Pattern;
 
 public class CheckInput {
 
-	
+	/**
+	 * 正则表达式：验证邮箱
+	 */
+	public static final String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+
+	/**
+	 * 校验邮箱
+	 *
+	 * @param email
+	 * @return 校验通过返回true，否则返回false
+	 */
+	public static boolean isEmail(String email) {
+		return Pattern.matches(REGEX_EMAIL, email);
+	}
+
 	//是否是电话号码
 	public static boolean isPhoneNum(String phoneNum){  
 
@@ -21,11 +35,11 @@ public class CheckInput {
 		Matcher m = p.matcher(password);  
 		return m.matches();  
 	}
-	
+
 	//是否是身份证
 	public static boolean isIDCard(String IDCard){
-		 Pattern idNumPattern = Pattern.compile("(\\d{14}[0-9a-zA-Z])|(\\d{17}[0-9a-zA-Z])");  
-         //通过Pattern获得Matcher  
+		 Pattern idNumPattern = Pattern.compile("(^\\d{18}$)|(^\\d{15}$)");
+         //通过Pattern获得Matcher
          Matcher idNumMatcher = idNumPattern.matcher(IDCard);
          return idNumMatcher.matches();
 	}
