@@ -23,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.exerciseapp.MyApplication;
+import com.example.exerciseapp.utils.LocationPro;
 import com.example.exerciseapp.utils.SharedPreferencesHelper;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
@@ -122,10 +123,14 @@ public class AtyLogin extends Activity {
 	                                	Config.cacheUserUid(getApplicationContext(), jsonObject.getJSONObject("data").getString(Config.KEY_UID));
 										Config.cacheUserTel(getApplicationContext(), etPhoneNum.getText().toString());
 										String uid =jsonObject.getJSONObject("data").getString(Config.KEY_UID);
-										SharedPreferencesHelper.getInstance(AtyLogin.this).setValue("uid",uid);
+										SharedPreferencesHelper.getInstance(AtyLogin.this).setValue("uid", uid);
 										((MyApplication)getApplication()).setUid(uid);
 										finish();
-	                                	startActivity(new Intent(AtyLogin.this,AtyAdvertisement.class));
+										if(LocationPro.getInstances(AtyLogin.this).getLocation().equals("房山区")){
+											startActivity(new Intent(AtyLogin.this,AtyAdvertisement.class));
+										}else{
+											startActivity(new Intent(AtyLogin.this,AtySlidingHome.class));
+										}
 	                                	Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
 	                                	Config.STATUS_FINISH_ACTIVITY = 1;
 	                                	Config.TOURIST_MODE = false;

@@ -20,6 +20,7 @@ import android.widget.ImageView;
 
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.utils.LocationPro;
 import com.umeng.message.PushAgent;
 
 public class AtyWelcome extends Activity {
@@ -56,7 +57,7 @@ public class AtyWelcome extends Activity {
 				startActivityForResult(new Intent(AtyWelcome.this, AtyRegisterHomePage.class),0);
 			}
 		});
-
+        LocationPro.getInstances(AtyWelcome.this).getLocal() ;
 	}
 	@SuppressLint("NewApi") private void initData(){
         viewList = new ArrayList<View>();
