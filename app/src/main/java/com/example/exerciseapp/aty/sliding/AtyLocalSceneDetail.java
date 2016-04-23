@@ -56,10 +56,20 @@ public class AtyLocalSceneDetail extends BaseActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        WebSettings settings = webView.getSettings();
-        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        settings.setUseWideViewPort(true);
-        settings.setLoadWithOverviewMode(true);
+        WebSettings s = webView.getSettings();
+        s.setBuiltInZoomControls(true);
+        s.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        s.setUseWideViewPort(true);
+        s.setLoadWithOverviewMode(true);
+        s.setSavePassword(true);
+        s.setSaveFormData(true);
+        s.setJavaScriptEnabled(true);
+        // enable navigator.geolocation
+        s.setGeolocationEnabled(true);
+        s.setGeolocationDatabasePath("/data/data/com.example.exercise.webview/databases/");
+        // enable Web Storage: localStorage, sessionStorage
+        s.setDomStorageEnabled(true);
+        webView.requestFocus();
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
