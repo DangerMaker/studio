@@ -12,19 +12,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,9 +27,6 @@ import com.alipay.sdk.app.PayTask;
 
 import com.example.exerciseapp.alipay.sdk.pay.PayResult;
 import com.example.exerciseapp.alipay.sdk.pay.SignUtils;
-import com.example.exerciseapp.model.ErrorMsg;
-import com.example.exerciseapp.net.rest.RestAdapterUtils;
-import com.example.exerciseapp.utils.ScreenUtils;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -47,9 +39,6 @@ import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
 import com.umeng.message.PushAgent;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-
 public class AtyPay extends BaseActivity {
 
 	public static Activity instance;
@@ -58,7 +47,7 @@ public class AtyPay extends BaseActivity {
 	// 商户收款账号
 	public static final String SELLER = "2088121458287895";
 	// 商户私钥，pkcs8格式
-	public static final String RSA_PRIVATE = 
+	public static final String RSA_PRIVATE =
 		"MIICXgIBAAKBgQC6Uf3+klO2U3/HJDKWcoZTM6p53xhuwcC8nzFrsPqnyXLqzUvM\n"+
 		"w6PKEQZBB1ORSgUO+jLKfUqR+xJZFddcL+Sxa6RuvPjhP6brp7w+75hktSotX1bm\n"+
 		"7qX07TeS2ItL+ckluKPzOHvK7C6CH15GtbXbSC5GNlM8Q0Flt75Ume2rhwIDAQAB\n"+
@@ -76,29 +65,28 @@ public class AtyPay extends BaseActivity {
 	public static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB";
 	private static final int SDK_PAY_FLAG = 1;
 	private static final int SDK_CHECK_FLAG = 2;
-	
-	
+
+
 	private String subject = "名称";	//商品名称
 	private String body = "描述";	//商品描述
 	private String total_fee = "0.01";	//商品价格
-	
+
 	private String out_trade_no;	//编号id
 	private String notify_url;		//回调地址
 	private String paytype = "0";	//支付类型
-	
+
 	private ActionBar actionBar;
-	
+
 	private TextView tvGameNameAtyPay;
 	private TextView tvGameItemAtyPay;
 	private TextView tvPayFeeAtyPay;
 	private ImageView tvZhiFuPayAtyPay;
-	private ImageView tvVaildPayAtyPay;
 	private Intent intent;
-	private RequestQueue mRequestQueue; 
-	
+	private RequestQueue mRequestQueue;
+
 	private Toolbar toolbar;
 	private TextView pageTitle;
-	
+
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -141,13 +129,13 @@ public class AtyPay extends BaseActivity {
 			}
 		};
 	};
-	
+
 	protected void pay() {
 		StringRequest  stringRequest = new StringRequest(
 	              Request.Method.POST,
 	              Config.SERVER_URL+"Users/payInter",
 	              new Response.Listener<String>() {
-	
+
 	                  @Override
 	                  public void onResponse(String s) {
 	                	  try {
@@ -195,7 +183,6 @@ public class AtyPay extends BaseActivity {
 									Thread payThread = new Thread(payRunnable);
 									payThread.start();
 								}
-							  Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
 							} catch (JSONException e) {
 								Toast.makeText(getApplicationContext(), Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
 								e.printStackTrace();
@@ -207,22 +194,19 @@ public class AtyPay extends BaseActivity {
 						Toast.makeText(getApplicationContext(), Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
 					}
 	              }){
-	
+
 	          @Override
 	          protected Map<String, String> getParams() throws AuthFailureError {
 	              Map<String,String> map = new HashMap<String,String>();
-	              map.put("id", intent.getStringExtra("ueid"));
-				  Log.i("id", intent.getStringExtra("ueid"));
+	              map.put("id", intent.getStringExtra("id"));
 	              map.put("type",intent.getStringExtra("type"));
 	              map.put("paytype", paytype);
-				  Log.i("type",intent.getStringExtra("type"));
-				  Log.i("paytype", paytype);
 	              return map;
 	          }
 	      };
 	      mRequestQueue.add(stringRequest);
 	};
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		instance = this;
@@ -234,21 +218,20 @@ public class AtyPay extends BaseActivity {
 		tvGameItemAtyPay = (TextView) findViewById(R.id.tvGameItemAtyPay);
 		tvPayFeeAtyPay = (TextView) findViewById(R.id.tvPayFeeAtyPay);
 		tvZhiFuPayAtyPay = (ImageView) findViewById(R.id.tvZhiFuPayAtyPay);
-		tvVaildPayAtyPay = (ImageView) findViewById(R.id.tvVaildPayAtyPay);
 
 		intent = getIntent();
-		
+
 		tvGameNameAtyPay.setText(intent.getStringExtra(Config.KEY_GAME_NAME));
 		tvGameItemAtyPay.setText("项目："+intent.getStringExtra(Config.KEY_USER_ATTEND_ENAME));
 		tvPayFeeAtyPay.setText("费用："+intent.getStringExtra("apayfee")+"元人民币");
-		
+
 //		subject = intent.getStringExtra(Config.KEY_GAME_NAME);
 //		body = intent.getStringExtra(Config.KEY_USER_ATTEND_ENAME);
 //		total_fee = intent.getStringExtra(Config.KEY_USER_ATTEND_EPAYFEE);
 //		out_trade_no = intent.getStringExtra("out_trade_no");
 //		notify_url = intent.getStringExtra("notify_url");
 		tvZhiFuPayAtyPay.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				if (TextUtils.isEmpty(PARTNER) || TextUtils.isEmpty(RSA_PRIVATE)
@@ -261,67 +244,11 @@ public class AtyPay extends BaseActivity {
 			}
 		});
 
-		tvVaildPayAtyPay.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				showEditDialog();
-			}
-		});
-		
-//		actionBar = getActionBar();  
+//		actionBar = getActionBar();
 //        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 //        actionBar.setCustomView(R.layout.actionbar_pay);//自定义ActionBar布局
 		setTitleBar();
-	
-	}
 
-	private void showEditDialog() {
-		LayoutInflater factory = LayoutInflater.from(AtyPay.this);
-		final View textEntryView = factory.inflate(R.layout.pay_vaild, null);
-		AlertDialog dlg = new AlertDialog.Builder(this)
-				.setTitle("提示")
-				.setView(textEntryView)
-				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						System.out.println("-------------->6");
-						EditText edit = (EditText) textEntryView.findViewById(R.id.edit);
-						if(!edit.getText().toString().trim().equals("")){
-							vaild(edit.getText().toString().trim());
-						}else{
-
-						}
-
-					}
-				})
-				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						System.out.println("-------------->2");
-
-					}
-				})
-				.create();
-		dlg.show();
-	}
-
-	void vaild(String code){
-		RestAdapterUtils.getTeamAPI().checkValid(intent.getStringExtra("ueid"), Config.getCachedUserUid(AtyPay.this.getApplicationContext()),
-				code, new Callback<ErrorMsg>() {
-					@Override
-					public void success(ErrorMsg errorMsg, retrofit.client.Response response) {
-							if(errorMsg != null && errorMsg.getResult() == 1){
-								ScreenUtils.show_msg(AtyPay.this,"支付成功");
-								finish();
-							}else if(errorMsg != null && errorMsg.getDesc() != null){
-								ScreenUtils.show_msg(AtyPay.this,errorMsg.getDesc());
-							}
-					}
-
-					@Override
-					public void failure(RetrofitError error) {
-
-					}
-				});
 	}
 	
 	

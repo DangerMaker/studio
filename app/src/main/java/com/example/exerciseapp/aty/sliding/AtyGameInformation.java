@@ -376,7 +376,7 @@ public class AtyGameInformation extends BaseActivity {
      * @param webPageUrl  需要跳转的链接
      * @param title       分享标题
      * @param description 分享内容
-     * @param imageUrl    图片地址
+     * @param bitmap    图片地址
      * @param flag        分享到朋友还是朋友圈的flag
      */
 
