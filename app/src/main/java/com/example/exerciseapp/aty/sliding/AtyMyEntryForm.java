@@ -2,6 +2,7 @@ package com.example.exerciseapp.aty.sliding;
 /**
  * 我的报名页面
  */
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -36,82 +37,70 @@ import com.umeng.message.PushAgent;
 
 public class AtyMyEntryForm extends BaseActivity {
 
-	private LinkedList<JSONObject> list = new LinkedList<JSONObject>();
-	private MyEntryFormListAdapter mAdapter;
-	private ListView listView;
-	private JSONArray jsonArr;
-	private RequestQueue mRequestQueue; 
-	
-	private Toolbar toolbar;
-	private TextView pageTitle;
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		PushAgent.getInstance(this).onAppStart();
-		setContentView(R.layout.aty_my_entry_form);
-		mRequestQueue =  Volley.newRequestQueue(this);
-		listView = (ListView) findViewById(R.id.lvMyEntryForm);
-		mAdapter = new MyEntryFormListAdapter(this, list);
-		listView.setAdapter(mAdapter);
-		
-		setTitleBar();
-//		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
-//		getActionBar().setCustomView(R.layout.actionbar_start_running);
-//		TextView title = (TextView) getActionBar().getCustomView().findViewById(R.id.tvPageTitleOfAll);
-//		title.setText("我的报名");
-//		getActionBar().getCustomView().findViewById(R.id.ivBackBtnStartRunning).setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				finish();
-//			}
-//		});
-	}
-	
-	private void setTitleBar() {
-		toolbar = (Toolbar) findViewById(R.id.toolbar);
-		pageTitle = (TextView) findViewById(R.id.toolbar_text);
-		toolbar.setPadding(0, getDimensionMiss(), 0, 0);
-		toolbar.setTitle("");
-		pageTitle.setText("我的报名");
-		setSupportActionBar(toolbar);
-		toolbar.setNavigationIcon(R.drawable.backbtn);
-		toolbar.setNavigationOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				AtyMyEntryForm.this.finish();
-			}
-		});
-	}
+    private LinkedList<JSONObject> list = new LinkedList<JSONObject>();
+    private MyEntryFormListAdapter mAdapter;
+    private ListView listView;
+    private JSONArray jsonArr;
+    private RequestQueue mRequestQueue;
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		list.clear();
-		StringRequest  stringRequestMyEntryForm = new StringRequest(
-                Request.Method.POST,
-                Config.SERVER_URL+"Users/myGames",
+    private Toolbar toolbar;
+    private TextView pageTitle;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        PushAgent.getInstance(this).onAppStart();
+        setContentView(R.layout.aty_my_entry_form);
+        mRequestQueue = Volley.newRequestQueue(this);
+        listView = (ListView) findViewById(R.id.lvMyEntryForm);
+        mAdapter = new MyEntryFormListAdapter(this, list);
+        listView.setAdapter(mAdapter);
+        setTitleBar();
+    }
+
+    private void setTitleBar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        pageTitle = (TextView) findViewById(R.id.toolbar_text);
+        toolbar.setPadding(0, getDimensionMiss(), 0, 0);
+        toolbar.setTitle("");
+        pageTitle.setText("我的报名");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.backbtn);
+        toolbar.setNavigationOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AtyMyEntryForm.this.finish();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        list.clear();
+        StringRequest stringRequestMyEntryForm = new StringRequest(
+                Request.Method.GET,
+                "http://101.200.214.68/py/attend?action=get_all_attend&" + Config.KEY_UID + "=" + Config.getCachedUserUid(getApplicationContext()),
                 new Response.Listener<String>() {
 
                     @Override
                     public void onResponse(String s) {
                         try {
                             JSONObject jsonObject = new JSONObject(s);
-                            if(jsonObject.getInt("result") == 1){
-                            	try {
-                        			for (int i = 0; i < jsonObject.getJSONArray("data").length(); i++) {
-                        				list.addFirst(jsonObject.getJSONArray("data").getJSONObject(i));
-                        			}
-                        			mAdapter.notifyDataSetChanged();
-                        		} catch (JSONException e) {
-                        			e.printStackTrace();
-                        		}
-                        		
-                            }else{
-                            	
+                            if (jsonObject.getInt("result") == 1) {
+                                try {
+                                    for (int i = 0; i < jsonObject.getJSONArray("data").length(); i++) {
+                                        list.addFirst(jsonObject.getJSONArray("data").getJSONObject(i));
+                                    }
+                                    mAdapter.notifyDataSetChanged();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            } else {
+
                             }
-                            
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -121,17 +110,17 @@ public class AtyMyEntryForm extends BaseActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                    	Toast.makeText(AtyMyEntryForm.this, Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AtyMyEntryForm.this, Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
                     }
-                }){
+                }) {
 
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> map = new HashMap<String,String>();
-                map.put(Config.KEY_UID,Config.getCachedUserUid(getApplicationContext()));
+                Map<String, String> map = new HashMap<String, String>();
+//                map.put(Config.KEY_UID, Config.getCachedUserUid(getApplicationContext()));
                 return map;
             }
         };
         mRequestQueue.add(stringRequestMyEntryForm);
-	}
+    }
 }

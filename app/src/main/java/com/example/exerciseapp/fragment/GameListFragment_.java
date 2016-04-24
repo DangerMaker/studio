@@ -25,6 +25,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -64,6 +65,7 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 public class GameListFragment_ extends Fragment {
 
@@ -105,10 +107,10 @@ public class GameListFragment_ extends Fragment {
     private long lastTime = 0;
 
     private ViewPager adViewPager;
-    private List<ImageView> imageViews;// 滑动的图片集合
+    private List<SimpleDraweeView> imageViews;// 滑动的图片集合
     private List<View> dots;
     private List<View> dotsList;
-    private List<Drawable> adImg;
+    private List<String> adImg;
     private int currentItem = 0; // 当前图片的索引号
     // 定义的五个指示点
     private View dot0;
@@ -124,6 +126,8 @@ public class GameListFragment_ extends Fragment {
             adViewPager.setCurrentItem(currentItem);
         };
     };
+
+    private MyAdapter myAdapter;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -388,7 +392,7 @@ public class GameListFragment_ extends Fragment {
 //		mSwipeLayout.setLoadNoFull(false);
         mSwipeLayout.setRefreshing(false);
 
-        imageViews = new ArrayList<ImageView>();
+        imageViews = new ArrayList<>();
         // 点
         dots = new ArrayList<View>();
         dotsList = new ArrayList<>();
@@ -402,16 +406,13 @@ public class GameListFragment_ extends Fragment {
         dots.add(dot2);
         dots.add(dot3);
         dots.add(dot4);
-        adImg = new ArrayList<Drawable>();
-        adImg.add(ContextCompat.getDrawable(GameListFragment_.this.getActivity(),R.drawable.game_show1));
-        adImg.add(ContextCompat.getDrawable(GameListFragment_.this.getActivity(),R.drawable.game_show));
+        adImg = new ArrayList<>();
         adViewPager = (ViewPager) view.findViewById(R.id.vp);
-        adViewPager.setAdapter(new MyAdapter());// 设置填充ViewPager页面的适配器
+        myAdapter = new MyAdapter();
+        adViewPager.setAdapter(myAdapter);// 设置填充ViewPager页面的适配器
         // 设置一个监听器，当ViewPager中的页面改变时调用
         adViewPager.addOnPageChangeListener(new MyPageChangeListener());
         addDynamicView();
-
-        startAd();
         return view;
     }
 
@@ -435,14 +436,48 @@ public class GameListFragment_ extends Fragment {
     private void addDynamicView() {
         // 动态添加图片和下面指示的圆点
         // 初始化图片资源
-        for (int i = 0; i < adImg.size(); i++) {
-            ImageView imageView = new ImageView(this.getActivity());
-            imageView.setImageDrawable(adImg.get(i));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageViews.add(imageView);
-            dots.get(i).setVisibility(View.VISIBLE);
-            dotsList.add(dots.get(i));
-        }
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.GET,
+                "http://101.200.214.68/py/system?action=get_ad",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(s);
+                            if (jsonObject.getString("result").equals("1")) {
+                                JSONArray jsonArray = jsonObject.getJSONArray("data");
+                                for(int i=0;i<jsonArray.length();i++){
+                                    adImg.add(jsonArray.getJSONObject(i).getString("pic"));
+                                }
+                                for (int i = 0; i < adImg.size(); i++) {
+                                    SimpleDraweeView imageView = new SimpleDraweeView(GameListFragment_.this.getActivity());
+                                    imageView.setImageURI(Uri.parse(adImg.get(i)));
+                                    imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                                    imageViews.add(imageView);
+                                    dots.get(i).setVisibility(View.VISIBLE);
+                                    dotsList.add(dots.get(i));
+                                }
+                                myAdapter.notifyDataSetChanged();
+                                startAd();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(getActivity(), Config.CONNECTION_ERROR, Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<String, String>();
+                return map;
+            }
+        };
+        mRequestQueue.add(stringRequest);
     }
 
     private class MyPageChangeListener implements ViewPager.OnPageChangeListener {

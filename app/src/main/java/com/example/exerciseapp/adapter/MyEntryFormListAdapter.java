@@ -87,7 +87,7 @@ public class MyEntryFormListAdapter extends BaseAdapter {
 //        ImageView tvFinishEntryFormMyEntryFormList = (ImageView) itemView.findViewById(R.id.tvFinishEntryFormMyEntryFormList);
         
         try {
-			Picasso.with(activity).load(list.get(position).getString(Config.KEY_FRONT_PAGE)).into(frontImageMyEntryFormList);
+			Picasso.with(activity).load(list.get(position).getString(Config.KEY_FRONT_PAGE_NEW)).into(frontImageMyEntryFormList);
 			//赛事状态
 			if(list.get(position).getString(Config.KEY_CHECK_STATUS).equals(Config.CHECK_STATUS_FAILED)){
 				tvModifyInformationMyEntryFormList.setClickable(false);
@@ -153,7 +153,7 @@ public class MyEntryFormListAdapter extends BaseAdapter {
 						          protected Map<String, String> getParams() throws AuthFailureError {
 						              Map<String,String> map = new HashMap<String,String>();
 						              try {
-										map.put(Config.KEY_UEID, list.get(position).getString("id"));
+										map.put(Config.KEY_UEID, list.get(position).getString("ueid"));
 									} catch (JSONException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
@@ -210,7 +210,7 @@ public class MyEntryFormListAdapter extends BaseAdapter {
 					public void onClick(View v) {
 						try {
 							Intent intent = new Intent(activity,AtyPay.class);
-							intent.putExtra(Config.KEY_ID, list.get(position).getString("id"));
+							intent.putExtra("ueid", list.get(position).getString("ueid"));//TODO
 							intent.putExtra(Config.KEY_GAME_NAME, tvGameTitleMyEntryFormList.getText().toString());
 							intent.putExtra(Config.KEY_USER_ATTEND_ENAME, list.get(position).getString("ename"));
 							intent.putExtra("type", "game");
@@ -225,8 +225,8 @@ public class MyEntryFormListAdapter extends BaseAdapter {
 			}
 			
 			tvGameTitleMyEntryFormList.setText(list.get(position).getString(Config.KEY_GAME_NAME));
-			tvParticipantPersonMyEntryFormList.setText("参赛人员："+ list.get(position).getString(Config.KEY_ATTEND_PERSON));
-			tvTimeMyEntryFormList.setText("时间："+ list.get(position).getString(Config.KEY_ATTEND_TIME));
+			tvParticipantPersonMyEntryFormList.setText("参赛人员："+ list.get(position).getString(Config.KEY_ATTEND_PERSON_SHOW));
+			tvTimeMyEntryFormList.setText("时间："+ list.get(position).getString(Config.KEY_GAME_START_TIME));
 			tvLocationMyEntryFormList.setText("地点："+ list.get(position).getString(Config.KEY_GAME_POSITION));
 			itemView.setTag(list.get(position).get(Config.KEY_UEID));
         } catch (JSONException e) {

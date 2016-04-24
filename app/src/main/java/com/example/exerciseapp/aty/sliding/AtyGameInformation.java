@@ -197,10 +197,21 @@ public class AtyGameInformation extends BaseActivity {
 
     private void getInfo() {
         webView.loadUrl(gameH5Url);
-        WebSettings settings = webView.getSettings();
-        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        settings.setUseWideViewPort(true);
-        settings.setLoadWithOverviewMode(true);
+        //重新设置websettings
+        WebSettings s = webView.getSettings();
+        s.setBuiltInZoomControls(true);
+        s.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        s.setUseWideViewPort(true);
+        s.setLoadWithOverviewMode(true);
+        s.setSavePassword(true);
+        s.setSaveFormData(true);
+        s.setJavaScriptEnabled(true);
+        // enable navigator.geolocation
+        s.setGeolocationEnabled(true);
+        s.setGeolocationDatabasePath("/data/data/com.example.exercise.webview/databases/");
+        // enable Web Storage: localStorage, sessionStorage
+        s.setDomStorageEnabled(true);
+        webView.requestFocus();
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -208,7 +219,6 @@ public class AtyGameInformation extends BaseActivity {
                 return true;
             }
         });
-
     }
 
 

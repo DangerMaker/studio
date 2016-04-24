@@ -20,6 +20,7 @@ import android.widget.ImageView;
 
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.utils.LocationPro;
 import com.umeng.message.PushAgent;
 
 public class AtyWelcome extends Activity {
@@ -41,27 +42,27 @@ public class AtyWelcome extends Activity {
 		circleIndicator.setViewPager(viewPager);
 		//现有用户按钮监听事件
 		findViewById(R.id.btnCurrentUser).setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				startActivityForResult(new Intent(AtyWelcome.this, AtyLogin.class),0);
 			}
 		});
-		
+
 		//立即加入按钮监听事件
 		findViewById(R.id.btnJoinNow).setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				startActivityForResult(new Intent(AtyWelcome.this, AtyRegisterHomePage.class),0);
 			}
 		});
-		
+        LocationPro.getInstances(AtyWelcome.this).getLocal() ;
 	}
 	@SuppressLint("NewApi") private void initData(){
         viewList = new ArrayList<View>();
         Random random = new Random();
-        	
+
         ImageView view1 = new ImageView(getApplicationContext());
         view1.setImageDrawable(getResources().getDrawable(R.drawable.welcome1));
         viewList.add(view1);
@@ -77,7 +78,7 @@ public class AtyWelcome extends Activity {
 //            View view = new View(this);
 //            view.setBackgroundColor(0xff000000| random.nextInt(0x00ffffff));
 }
-    
+
     PagerAdapter pagerAdapter = new PagerAdapter() {
 
         @Override
