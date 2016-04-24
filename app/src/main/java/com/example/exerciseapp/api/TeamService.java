@@ -14,6 +14,7 @@ import com.example.exerciseapp.model.OrganizeList;
 import com.example.exerciseapp.model.OrganizeName;
 import com.example.exerciseapp.model.SingleGroup;
 import com.example.exerciseapp.model.UpTeamAvatar;
+import com.squareup.okhttp.Call;
 
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -199,7 +200,7 @@ public interface TeamService {
                        @Query("eusername") String eusername,
                        @Query("org_name") String org_name,
                        @Query("uid") String uid,
-                       Callback<ErrorMsg> callback);
+                       Callback<CreateSuc> callback);
 
     @GET("/py/attend?action=group_attend")
     void applyTeam(@Query("id") String teamId,
@@ -210,7 +211,7 @@ public interface TeamService {
                    @Query("leader_name") String leader_name,
                    @Query("leader_email") String leader_email,
                    @Query("org_name") String org_name,
-                   Callback<ErrorMsg> callback);
+                   Callback<CreateSuc> callback);
 
     @GET("/py/org?action=get_org")
     void getOrganizeName(@Query("gid") String gid,
@@ -236,4 +237,12 @@ public interface TeamService {
     void checkUserInfo(@Query("uid") String uid,
                        @Query("eid") String eid,
                        Callback<ErrorMsg> callback);
+
+    @GET("/py/sn?action=justify_sn_valid")
+    void checkValid(
+            @Query("id") String id,
+            @Query("uid") String uid,
+            @Query("sn") String sn,
+            Callback<ErrorMsg> callback
+    );
 }

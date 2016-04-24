@@ -1,16 +1,22 @@
 package com.example.exerciseapp.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.sliding.AtyPay;
 import com.example.exerciseapp.aty.team.GameSelectActivity;
 import com.example.exerciseapp.aty.team.SearchActivity;
+import com.example.exerciseapp.model.CreateSuc;
 import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.model.GameList;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
@@ -86,6 +92,36 @@ public class ApplyPersonalFragment extends BaseFragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        personalSex.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO 点击出现选择性别
+                new AlertDialog.Builder(getActivity())
+                        .setItems(new String[]{"男", "女"},
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        dialog.dismiss();
+                                        switch (which) {
+                                            case 0:
+                                                personalSex.setText("男");
+                                                break;
+                                            case 1:
+                                                personalSex.setText("女");
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        Toast.makeText(getActivity(),
+                                                "你选择了: " + which, Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }).show();
+
+            }
+        });
     }
 
     @OnClick(R.id.btnCommitPersonalEntry)
@@ -116,15 +152,22 @@ public class ApplyPersonalFragment extends BaseFragment {
             return;
         }
 
-
         RestAdapterUtils.getTeamAPI().applyPersonal(gameId,detailId , personalPhone.getText().toString(),
                 personalSex.getText().toString(), personalCard.getText().toString(), personalName.getText().toString(),
-                organize.getText().toString(), Config.getCachedUserUid(getActivity()), new Callback<ErrorMsg>() {
+                organize.getText().toString(), Config.getCachedUserUid(getActivity()), new Callback<CreateSuc>() {
                     @Override
-                    public void success(ErrorMsg errorMsg, Response response) {
+                    public void success(CreateSuc errorMsg, Response response) {
                         if (errorMsg != null) {
                             if (errorMsg.getResult() == 1) {
                                 ScreenUtils.show_msg(getActivity(), "报名成功");
+                                if(Float.parseFloat(fee) != 0){
+                                    Intent intent = new Intent(getActivity(), AtyPay.class);
+                                    intent.putExtra("ueid", errorMsg.getData().getId() +"");
+                                    intent.putExtra(Config.KEY_USER_ATTEND_ENAME, select.getText().toString());
+                                    intent.putExtra("apayfee", gamePay.getText().toString());
+                                    intent.putExtra("type", "game");
+                                    startActivity(intent);
+                                }
                                 getActivity().finish();
                             } else {
                                 ScreenUtils.show_msg(getActivity(), errorMsg.getDesc());
@@ -155,6 +198,7 @@ public class ApplyPersonalFragment extends BaseFragment {
     }
 
     String detailId;
+    String fee = "0";
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -169,7 +213,7 @@ public class ApplyPersonalFragment extends BaseFragment {
             if (data != null) {
                 String gameDetailId = data.getIntExtra("game_detail_id",-1) + "";
                 String gameDetailName = data.getStringExtra("game_detail_name");
-                String fee = data.getStringExtra("game_fee");
+                fee = data.getStringExtra("game_fee");
                 if (gameDetailId != null) {
                     select.setText(gameDetailName);
                     detailId = gameDetailId;

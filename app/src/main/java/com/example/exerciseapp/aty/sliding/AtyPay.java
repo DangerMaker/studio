@@ -12,14 +12,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +32,9 @@ import com.alipay.sdk.app.PayTask;
 
 import com.example.exerciseapp.alipay.sdk.pay.PayResult;
 import com.example.exerciseapp.alipay.sdk.pay.SignUtils;
+import com.example.exerciseapp.model.ErrorMsg;
+import com.example.exerciseapp.net.rest.RestAdapterUtils;
+import com.example.exerciseapp.utils.ScreenUtils;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -38,6 +46,9 @@ import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
 import com.umeng.message.PushAgent;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
 
 public class AtyPay extends BaseActivity {
 
@@ -81,6 +92,7 @@ public class AtyPay extends BaseActivity {
 	private TextView tvGameItemAtyPay;
 	private TextView tvPayFeeAtyPay;
 	private ImageView tvZhiFuPayAtyPay;
+	private ImageView tvVaildPayAtyPay;
 	private Intent intent;
 	private RequestQueue mRequestQueue; 
 	
@@ -200,8 +212,11 @@ public class AtyPay extends BaseActivity {
 	          protected Map<String, String> getParams() throws AuthFailureError {
 	              Map<String,String> map = new HashMap<String,String>();
 	              map.put("ueid", intent.getStringExtra("ueid"));
+				  Log.i("ueid", intent.getStringExtra("ueid"));
 	              map.put("type",intent.getStringExtra("type"));
 	              map.put("paytype", paytype);
+				  Log.i("type",intent.getStringExtra("type"));
+				  Log.i("paytype", paytype);
 	              return map;
 	          }
 	      };
@@ -219,7 +234,8 @@ public class AtyPay extends BaseActivity {
 		tvGameItemAtyPay = (TextView) findViewById(R.id.tvGameItemAtyPay);
 		tvPayFeeAtyPay = (TextView) findViewById(R.id.tvPayFeeAtyPay);
 		tvZhiFuPayAtyPay = (ImageView) findViewById(R.id.tvZhiFuPayAtyPay);
-		
+		tvVaildPayAtyPay = (ImageView) findViewById(R.id.tvVaildPayAtyPay);
+
 		intent = getIntent();
 		
 		tvGameNameAtyPay.setText(intent.getStringExtra(Config.KEY_GAME_NAME));
@@ -244,12 +260,68 @@ public class AtyPay extends BaseActivity {
 				pay();
 			}
 		});
+
+		tvVaildPayAtyPay.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showEditDialog();
+			}
+		});
 		
 //		actionBar = getActionBar();  
 //        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 //        actionBar.setCustomView(R.layout.actionbar_pay);//自定义ActionBar布局
 		setTitleBar();
 	
+	}
+
+	private void showEditDialog() {
+		LayoutInflater factory = LayoutInflater.from(AtyPay.this);
+		final View textEntryView = factory.inflate(R.layout.pay_vaild, null);
+		AlertDialog dlg = new AlertDialog.Builder(this)
+				.setTitle("提示")
+				.setView(textEntryView)
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						System.out.println("-------------->6");
+						EditText edit = (EditText) textEntryView.findViewById(R.id.edit);
+						if(!edit.getText().toString().trim().equals("")){
+							vaild(edit.getText().toString().trim());
+						}else{
+
+						}
+
+					}
+				})
+				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						System.out.println("-------------->2");
+
+					}
+				})
+				.create();
+		dlg.show();
+	}
+
+	void vaild(String code){
+		RestAdapterUtils.getTeamAPI().checkValid(intent.getStringExtra("ueid"), Config.getCachedUserUid(AtyPay.this.getApplicationContext()),
+				code, new Callback<ErrorMsg>() {
+					@Override
+					public void success(ErrorMsg errorMsg, retrofit.client.Response response) {
+							if(errorMsg != null && errorMsg.getResult() == 1){
+								ScreenUtils.show_msg(AtyPay.this,"支付成功");
+								finish();
+							}else if(errorMsg != null && errorMsg.getDesc() != null){
+								ScreenUtils.show_msg(AtyPay.this,errorMsg.getDesc());
+							}
+					}
+
+					@Override
+					public void failure(RetrofitError error) {
+
+					}
+				});
 	}
 	
 	

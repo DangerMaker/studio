@@ -9,9 +9,11 @@ import android.widget.TextView;
 
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.sliding.AtyPay;
 import com.example.exerciseapp.aty.team.GameSelectActivity;
 import com.example.exerciseapp.aty.team.SearchActivity;
 import com.example.exerciseapp.aty.team.SelectTeamActivity;
+import com.example.exerciseapp.model.CreateSuc;
 import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
@@ -113,12 +115,20 @@ public class ApplyTeamFragment extends BaseFragment {
         }
 
         RestAdapterUtils.getTeamAPI().applyTeam(teamId,uid,gameId,detailId , phone.getText().toString(),
-                leader.getText().toString(), mail.getText().toString(), organize.getText().toString(), new Callback<ErrorMsg>() {
+                leader.getText().toString(), mail.getText().toString(), organize.getText().toString(), new Callback<CreateSuc>() {
                     @Override
-                    public void success(ErrorMsg errorMsg, Response response) {
+                    public void success(CreateSuc errorMsg, Response response) {
                         if (errorMsg != null) {
                             if (errorMsg.getResult() == 1) {
                                 ScreenUtils.show_msg(getActivity(), "报名成功");
+                                if(Float.parseFloat(fee) != 0){
+                                    Intent intent = new Intent(getActivity(), AtyPay.class);
+                                    intent.putExtra("ueid", errorMsg.getData().getId() +"");
+                                    intent.putExtra(Config.KEY_USER_ATTEND_ENAME, select.getText().toString());
+                                    intent.putExtra("apayfee", gamePay.getText().toString());
+                                    intent.putExtra("type", "game");
+                                    startActivity(intent);
+                                }
                                 getActivity().finish();
                             } else {
                                 ScreenUtils.show_msg(getActivity(), errorMsg.getDesc());
