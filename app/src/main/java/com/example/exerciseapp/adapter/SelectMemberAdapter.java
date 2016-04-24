@@ -16,7 +16,6 @@ import com.example.exerciseapp.R;
 import com.example.exerciseapp.aty.team.CheckMembersActivity;
 import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.model.Member;
-import com.example.exerciseapp.model.SingleGroup;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -31,21 +30,19 @@ import retrofit.client.Response;
 /**
  * Created by lyjq on 2016/3/29.
  */
-public class MemberListAdapter extends BaseAdapter {
+public class SelectMemberAdapter extends BaseAdapter {
 
     LayoutInflater layoutInflater;
     List<Member> collection;
     Context context;
     OnListClick listClick;
-    int type;
     String teamId;
 
-    public MemberListAdapter(Context context, OnListClick listClick, int type,String teamId) {
+    public SelectMemberAdapter(Context context, OnListClick listClick, String teamId) {
         this.context = context;
         collection = new ArrayList<>();
         layoutInflater = LayoutInflater.from(context);
         this.listClick = listClick;
-        this.type = type;
         this.teamId = teamId;
     }
 
@@ -88,91 +85,47 @@ public class MemberListAdapter extends BaseAdapter {
         final Member member = collection.get(position);
         ViewHolder holder = null;
         if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.item_member, null);
+            convertView = layoutInflater.inflate(R.layout.item_member_select, null);
             holder = new ViewHolder();
             holder.item_group_img = (SimpleDraweeView) convertView.findViewById(R.id.item_member_img);
             holder.item_group_name = (TextView) convertView.findViewById(R.id.item_member_name);
             holder.item_group_tag = (TextView) convertView.findViewById(R.id.item_member_tag);
-            holder.item_goup_del = (ImageView) convertView.findViewById(R.id.item_member_delete);
-            holder.relativeLayout = (RelativeLayout) convertView.findViewById(R.id.item_root);
+            holder.item_member_select = (ImageView) convertView.findViewById(R.id.item_member_select);
+//            holder.relativeLayout = (RelativeLayout) convertView.findViewById(R.id.item_root);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        if (type == CheckMembersActivity.CHECK) {
-            holder.item_goup_del.setVisibility(View.GONE);
-        } else {
-            holder.item_goup_del.setVisibility(View.VISIBLE);
-        }
-
         if (position == 0) {
             holder.item_group_tag.setVisibility(View.VISIBLE);
-            holder.item_goup_del.setVisibility(View.GONE);
         }
+
+        if(!member.isFlag()){
+            holder.item_member_select.setImageResource(R.drawable.btn_agree_nor);
+        }else{
+            holder.item_member_select.setImageResource(R.drawable.btn_agree_sel);
+        }
+
         holder.item_group_img.setImageURI(Uri.parse(member.getAvatar()));
         holder.item_group_name.setText(member.getUsername());
 //        holder.item_group_tag.setText("");
-        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listClick.click(member);
-            }
-        });
+//        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                listClick.click(member);
+//            }
+//        });
 
-        holder.item_goup_del.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("确认删除该队员吗?");
-                builder.setTitle("提示");
-
-                builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        delete(member);
-                    }
-                });
-                builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                builder.create().show();
-            }
-        });
         return convertView;
     }
 
-    private void delete(final Member member){
-        RestAdapterUtils.getTeamAPI().exitGroup(Integer.parseInt(teamId), member.getUid(), "exit_group", new Callback<ErrorMsg>() {
-            @Override
-            public void success(ErrorMsg errorMsg, Response response) {
-                System.out.println("退出成功");
-                if (errorMsg != null && errorMsg.getResult() == 1) {
-                    ScreenUtils.show_msg(context, "退出成功");
-                    collection.remove(member);
-                    notifyDataSetChanged();
-                } else {
-                    ScreenUtils.show_msg(context, errorMsg.getDesc());
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                System.out.println("退出失败");
-                ScreenUtils.show_msg(context, "退出失败");
-            }
-        });
-    }
 
     static class ViewHolder {
         public RelativeLayout relativeLayout;
         public SimpleDraweeView item_group_img;
         public TextView item_group_name;
-        public ImageView item_goup_del;
+        public ImageView item_member_select;
         public TextView item_group_tag;
     }
 }

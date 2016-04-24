@@ -6,11 +6,15 @@ import com.example.exerciseapp.model.AllRank;
 import com.example.exerciseapp.model.AllTag;
 import com.example.exerciseapp.model.CreateSuc;
 import com.example.exerciseapp.model.ErrorMsg;
+import com.example.exerciseapp.model.GameList;
 import com.example.exerciseapp.model.GroupData;
 import com.example.exerciseapp.model.GroupDetail;
 import com.example.exerciseapp.model.GroupList;
+import com.example.exerciseapp.model.OrganizeList;
+import com.example.exerciseapp.model.OrganizeName;
 import com.example.exerciseapp.model.SingleGroup;
 import com.example.exerciseapp.model.UpTeamAvatar;
+import com.squareup.okhttp.Call;
 
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -38,7 +42,6 @@ public interface TeamService {
                     Callback<CreateSuc> callback);
 
     /**
-     *
      * @param id
      * @param tel
      * @param invite_friends
@@ -94,6 +97,7 @@ public interface TeamService {
 
     /**
      * 自己的group
+     *
      * @param id
      * @param get_all_group
      * @param callback
@@ -121,10 +125,10 @@ public interface TeamService {
     @FormUrlEncoded
     @POST("/py/group")
     void changeTeamDes(@Field("id") String id,
-                        @Field("new_group_intro") String new_group_intro,
-                        @Field("param") String param,
-                        @Field("action") String change_param,
-                        Callback<ErrorMsg> callback);
+                       @Field("new_group_intro") String new_group_intro,
+                       @Field("param") String param,
+                       @Field("action") String change_param,
+                       Callback<ErrorMsg> callback);
 
     @Multipart
     @POST("/index.php/Api/Users/updateHeaderNew")
@@ -137,28 +141,29 @@ public interface TeamService {
 
     @GET("/py/group")
     void showAllMembers(@Query("id") String id,
-                       @Query("action") String show_all_members,
-                       Callback<AllMember> callback);
+                        @Query("action") String show_all_members,
+                        Callback<AllMember> callback);
 
     @GET("/py/group")
     void showAllRank(@Query("id") String id,
-                        @Query("action") String show_all_rank,
-                        Callback<AllRank> callback);
+                     @Query("action") String show_all_rank,
+                     Callback<AllRank> callback);
 
     @GET("/py/group")
     void breakGroup(@Query("id") int id,
-                        @Query("uid") String uid,
-                        @Query("action") String break_group,
-                        Callback<ErrorMsg> callback);
+                    @Query("uid") String uid,
+                    @Query("action") String break_group,
+                    Callback<ErrorMsg> callback);
 
     @GET("/py/group")
     void exitGroup(@Query("id") int id,
-                    @Query("uid") String uid,
-                    @Query("action") String exit_group,
-                    Callback<ErrorMsg> callback);
+                   @Query("uid") String uid,
+                   @Query("action") String exit_group,
+                   Callback<ErrorMsg> callback);
 
     /**
      * 全部
+     *
      * @param callback
      */
     @GET("/py/group?action=get_group_list")
@@ -166,7 +171,7 @@ public interface TeamService {
 
     @GET("/py/group?action=get_group_find")
     void getGroupFind(@Query("find_name") String find_name,
-            Callback<GroupList> callback);
+                      Callback<GroupList> callback);
 
     @GET("/py/apply")
     void passApply(@Query("id") String id,
@@ -175,15 +180,69 @@ public interface TeamService {
 
     @GET("/py/apply")
     void refuseApply(@Query("id") String id,
-                   @Query("action") String refuse_apply,
-                   Callback<ErrorMsg> callback);
+                     @Query("action") String refuse_apply,
+                     Callback<ErrorMsg> callback);
 
     @GET("/py/tag")
     void getTag(Callback<AllTag> callback);
 
     @GET("/py/group")
     void getGroupInfo(@Query("id") String id,
-                @Query("action") String get_group_info,
-            Callback<GroupData> callback);
+                      @Query("action") String get_group_info,
+                      Callback<GroupData> callback);
 
+    @GET("/py/attend?action=person_attend")
+    void applyPersonal(@Query("gid") String gid,
+                       @Query("eid") String eid,
+                       @Query("etel") String etel,
+                       @Query("esex") String esex,
+                       @Query("eidcard") String eidcard,
+                       @Query("eusername") String eusername,
+                       @Query("org_name") String org_name,
+                       @Query("uid") String uid,
+                       Callback<CreateSuc> callback);
+
+    @GET("/py/attend?action=group_attend")
+    void applyTeam(@Query("id") String teamId,
+                   @Query("mem_str") String mem_str,
+                   @Query("gid") String gid,
+                   @Query("eid") String eid,
+                   @Query("leader_tel") String leader_tel,
+                   @Query("leader_name") String leader_name,
+                   @Query("leader_email") String leader_email,
+                   @Query("org_name") String org_name,
+                   Callback<CreateSuc> callback);
+
+    @GET("/py/org?action=get_org")
+    void getOrganizeName(@Query("gid") String gid,
+                         @Query("word") String word,
+                         Callback<OrganizeList> callback);
+
+    @GET("/py/attend?action=get_first_level")
+    void getFirstLevel(@Query("gid") String gid,
+                       @Query("is_group") String is_group,
+                       Callback<GameList> callback);
+
+    @GET("/py/attend?action=get_second_level")
+    void getSecondLevel(@Query("id") String gid,
+                        @Query("is_group") String is_group,
+                        Callback<GameList> callback);
+
+    @GET("/py/attend?action=get_third_level")
+    void getThirdLevel(@Query("id") String gid,
+                       @Query("is_group") String is_group,
+                       Callback<GameList> callback);
+
+    @GET("/py/attend?action=checkUserInfo")
+    void checkUserInfo(@Query("uid") String uid,
+                       @Query("eid") String eid,
+                       Callback<ErrorMsg> callback);
+
+    @GET("/py/sn?action=justify_sn_valid")
+    void checkValid(
+            @Query("id") String id,
+            @Query("uid") String uid,
+            @Query("sn") String sn,
+            Callback<ErrorMsg> callback
+    );
 }

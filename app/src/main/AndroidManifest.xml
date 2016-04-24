@@ -473,7 +473,23 @@
             android:name=".aty.team.SearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".aty.team.ApplyAllActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".aty.team.GameSelectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.team.SelectTeamActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".aty.team.SelectMemberActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
 
     </application>
 
