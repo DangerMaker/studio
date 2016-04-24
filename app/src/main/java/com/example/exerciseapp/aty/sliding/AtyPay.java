@@ -211,8 +211,8 @@ public class AtyPay extends BaseActivity {
 	          @Override
 	          protected Map<String, String> getParams() throws AuthFailureError {
 	              Map<String,String> map = new HashMap<String,String>();
-	              map.put("ueid", intent.getStringExtra("ueid"));
-				  Log.i("ueid", intent.getStringExtra("ueid"));
+	              map.put("id", intent.getStringExtra("ueid"));
+				  Log.i("id", intent.getStringExtra("ueid"));
 	              map.put("type",intent.getStringExtra("type"));
 	              map.put("paytype", paytype);
 				  Log.i("type",intent.getStringExtra("type"));

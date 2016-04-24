@@ -245,6 +245,11 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
         }
     }
 
+    @OnClick(R.id.detail_team_access)
+    public void acess(){
+        ScreenUtils.show_msg(this,"请到首页参加活动");
+    }
+
     @OnClick(R.id.toolbar_img_right)
     public void rightClick() {
         startActivityForResult(TeamSettingActivity.getTeamSettingIntent(this,type),1);
