@@ -207,7 +207,7 @@ public class ApplyTeamFragment extends BaseFragment {
                 teamId = id;
                 if(uid.contains(",")){
                     String temp[] = uid.split(",");
-                    gamePay.setText(Integer.parseInt(fee) * temp.length + "");
+                    gamePay.setText(Float.parseFloat(fee) * temp.length + "");
                 }
             }
         }
