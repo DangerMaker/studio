@@ -31,6 +31,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.Toolbar.OnMenuItemClickListener;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -53,6 +54,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseapp.aty.team.ApplyAllActivity;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -141,7 +143,8 @@ public class AtyGameInformation extends BaseActivity {
                                 JSONObject jsonObject = new JSONObject(s);
                                 if (jsonObject.getInt("result") == 1) {
                                     progressDialog.dismiss();
-                                    Intent intent = new Intent(AtyGameInformation.this, AtyEntryForm.class);
+                                    Intent intent = new Intent(AtyGameInformation.this, ApplyAllActivity.class);
+//                                    Intent intent = new Intent(AtyGameInformation.this, AtyEntryForm.class);
                                     intent.putExtra(Config.KEY_GAME_ID, gameId);
                                     intent.putExtra(Config.KEY_GAME_NAME, gameName);
                                     intent.putExtra("entryInfor", jsonObject.getJSONObject("data").toString());
@@ -168,7 +171,9 @@ public class AtyGameInformation extends BaseActivity {
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String, String> map = new HashMap<String, String>();
                             map.put(Config.KEY_UID, Config.getCachedUserUid(getApplicationContext()));
+                            Log.e("uid",Config.getCachedUserUid(getApplicationContext()));
                             map.put(Config.KEY_GAME_ID, gameId);
+                            Log.e("gameId",gameId);
                             return map;
                         }
                     };

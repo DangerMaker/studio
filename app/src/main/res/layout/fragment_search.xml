@@ -33,6 +33,7 @@
                 android:textColor="@color/Black"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
+                android:hint="请输入关键字"
                 />
 
         </FrameLayout>
@@ -42,6 +43,7 @@
         android:id="@+id/fragment_search_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:divider="@drawable/divder_line"
         ></ListView>
 
 </LinearLayout>

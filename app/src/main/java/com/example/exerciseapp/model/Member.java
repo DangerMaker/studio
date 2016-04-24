@@ -14,6 +14,7 @@ public class Member {
     private String username;
     private String avatar;
     private String uid;
+    private boolean flag = false;
 
     public void setUsername(String username) {
         this.username = username;
@@ -37,5 +38,13 @@ public class Member {
 
     public String getUid() {
         return uid;
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
     }
 }

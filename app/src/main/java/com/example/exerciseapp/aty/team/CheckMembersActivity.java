@@ -29,8 +29,20 @@ public class CheckMembersActivity extends BackBaseActivity implements MemberList
 
     MemberListAdapter adapter;
     String teamId;
+    int type;
+
+    public static final int CHECK = 0;
+    public static final int MANAGER = 1;
+
     public static Intent getCheckMembersIntent(Context context, int teamId) {
         Intent intent = new Intent(context, CheckMembersActivity.class);
+        intent.putExtra("type",CHECK);
+        return intent.putExtra("teamId", teamId);
+    }
+
+    public static Intent getManagerMembersIntent(Context context,int teamId) {
+        Intent intent = new Intent(context, CheckMembersActivity.class);
+        intent.putExtra("type",MANAGER);
         return intent.putExtra("teamId", teamId);
     }
 
@@ -40,7 +52,8 @@ public class CheckMembersActivity extends BackBaseActivity implements MemberList
         setContentView(R.layout.activity_member_list);
         setTitleBar("成员列表");
         teamId = getIntent().getIntExtra("teamId",-1) + "";
-        adapter = new MemberListAdapter(this,this);
+        type = getIntent().getIntExtra("type", -1);
+        adapter = new MemberListAdapter(this,this,type,teamId);
         listView.setAdapter(adapter);
         load();
     }
