@@ -210,7 +210,7 @@ public class MyEntryFormListAdapter extends BaseAdapter {
 					public void onClick(View v) {
 						try {
 							Intent intent = new Intent(activity,AtyPay.class);
-							intent.putExtra("ueid", list.get(position).getString("ueid"));//TODO
+							intent.putExtra("id", list.get(position).getString("ueid"));
 							intent.putExtra(Config.KEY_GAME_NAME, tvGameTitleMyEntryFormList.getText().toString());
 							intent.putExtra(Config.KEY_USER_ATTEND_ENAME, list.get(position).getString("ename"));
 							intent.putExtra("type", "game");

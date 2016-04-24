@@ -183,7 +183,7 @@ public class AtyPay extends BaseActivity {
 									Thread payThread = new Thread(payRunnable);
 									payThread.start();
 								}
-							  Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+//							    Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
 							} catch (JSONException e) {
 								Toast.makeText(getApplicationContext(), Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
 								e.printStackTrace();
@@ -199,7 +199,7 @@ public class AtyPay extends BaseActivity {
 	          @Override
 	          protected Map<String, String> getParams() throws AuthFailureError {
 	              Map<String,String> map = new HashMap<String,String>();
-	              map.put("ueid", intent.getStringExtra("ueid"));
+	              map.put("id", intent.getStringExtra("id"));
 	              map.put("type",intent.getStringExtra("type"));
 	              map.put("paytype", paytype);
 	              return map;
