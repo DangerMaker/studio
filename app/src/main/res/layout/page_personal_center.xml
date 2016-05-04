@@ -386,7 +386,7 @@
         android:layout_marginBottom="24dp"
         android:background="#00000000"
         android:gravity="center"
-        android:text="客服电话：010-8738 1313"
+        android:text="客服电话：010-8638 1313"
         android:textColor="#ffffff"
         android:textSize="16sp" />
 

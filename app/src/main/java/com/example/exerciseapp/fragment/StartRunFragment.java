@@ -22,11 +22,16 @@ import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.aty.sliding.AtySaveRunData;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -303,29 +308,40 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
                 int tag = (Integer) v.getTag();
                 switch (tag) {
                     case kaishiduanlian:
-                        runtag = 1;
-                        juli = 0;
-                        z = 0;
-                        shijian = 0;
-                        polyjing = new double[20000];
-                        polywei = new double[20000];
-                        polyalti = new double[20000];
-                        polylineops = new PolylineOptions();
-                        max_speed = 0;
-                        minSpeed = 0;
-                        minSpeed_onAverage = 0;
-                        flagInitial = true;
-                        btnduanlian.setTag(zantingduanlian);
-                        btnduanlian.setText("暂停锻炼");
-                        btnduanlian.setBackgroundResource(R.drawable.shape_btn_red_radius_5dip);
-                        relativegexiangcanshu.setVisibility(View.VISIBLE);
-                        linear3choose.setVisibility(View.INVISIBLE);
-                        chooseSports.setVisibility(View.INVISIBLE);
-                        chooseMap.setVisibility(View.INVISIBLE);
-                        chooseTarget.setVisibility(View.INVISIBLE);
-                        relativegpsxinhao.setVisibility(View.INVISIBLE);
-                        timecount = new TimeCount(86400000, 1000);
-                        timecount.start();
+                        LocationManager locationManager = (LocationManager) StartRunFragment.this.getActivity().getSystemService(Context.LOCATION_SERVICE);
+                        if (!locationManager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER)) {
+                            new AlertDialog.Builder(StartRunFragment.this.getActivity()).setMessage("请打开GPS以获取位置信息").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                    startActivityForResult(intent, 0); //设置完成后返回到原来的界面
+                                }
+                            }).show();
+                        } else {
+                            runtag = 1;
+                            juli = 0;
+                            z = 0;
+                            shijian = 0;
+                            polyjing = new double[20000];
+                            polywei = new double[20000];
+                            polyalti = new double[20000];
+                            polylineops = new PolylineOptions();
+                            max_speed = 0;
+                            minSpeed = 0;
+                            minSpeed_onAverage = 0;
+                            flagInitial = true;
+                            btnduanlian.setTag(zantingduanlian);
+                            btnduanlian.setText("暂停锻炼");
+                            btnduanlian.setBackgroundResource(R.drawable.shape_btn_red_radius_5dip);
+                            relativegexiangcanshu.setVisibility(View.VISIBLE);
+                            linear3choose.setVisibility(View.INVISIBLE);
+                            chooseSports.setVisibility(View.INVISIBLE);
+                            chooseMap.setVisibility(View.INVISIBLE);
+                            chooseTarget.setVisibility(View.INVISIBLE);
+                            relativegpsxinhao.setVisibility(View.INVISIBLE);
+                            timecount = new TimeCount(86400000, 1000);
+                            timecount.start();
+                        }
                         break;
                     case zantingduanlian:
                         runtag = 2;
@@ -363,6 +379,8 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
                 MyLocationStyle myLocationStyle = new MyLocationStyle();
                 myLocationStyle.myLocationIcon(BitmapDescriptorFactory
                         .fromResource(R.drawable.yuanquan_icon));// 设置小蓝点的图标
+                myLocationStyle.strokeColor(Color.argb(0, 0, 0, 0));// 设置圆形的边框颜色
+                myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));// 设置圆形的填充颜色
                 mMap.setMyLocationStyle(myLocationStyle);
                 if (juli < 10 || polyjing.length < 10) {
                     Toast.makeText(StartRunFragment.this.getActivity(), "运动距离太短，没有数据记录", Toast.LENGTH_SHORT).show();
@@ -493,6 +511,8 @@ public class StartRunFragment extends Fragment implements com.amap.api.maps2d.Lo
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory
                 .fromResource(R.drawable.yuanquan_icon));// 设置小蓝点的图标
+        myLocationStyle.strokeColor(Color.argb(0, 0, 0, 0));// 设置圆形的边框颜色
+        myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));// 设置圆形的填充颜色
         mMap.setMyLocationStyle(myLocationStyle);
         //		myLocationStyle.strokeColor(Color.BLACK);// 设置圆形的边框颜色
         //		myLocationStyle.radiusFillColor(Color.argb(100, 0, 0, 180));// 设置圆形的填充颜色
