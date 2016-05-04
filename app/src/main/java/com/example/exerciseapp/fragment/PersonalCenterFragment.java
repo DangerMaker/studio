@@ -217,9 +217,8 @@ public class PersonalCenterFragment extends Fragment implements OnClickListener 
                             JSONObject jsonObject = new JSONObject(s);
                             jsonObject = jsonObject.getJSONObject("data");
                             long t = (long) (jsonObject.getDouble("duration"));
-                            String unit = t / 3600 == 0 ? "m/s" : "h/m";
-                            tvExerciseTimePersonalCenter.setText(SpeedConvert.secToTime(t) + unit);
-                            tvExerciseDistancePersonalCenter.setText((float) (Math.round(jsonObject.getDouble("distance") / 1000 * 100)) / 100 + "km");
+                            tvExerciseTimePersonalCenter.setText(SpeedConvert.secToDeTime(t) + "h");
+                            tvExerciseDistancePersonalCenter.setText((float) (Math.round(jsonObject.getDouble("distance") / 1000 * 10)) / 10 + "km");
                             spotsDialog.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();

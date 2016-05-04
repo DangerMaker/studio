@@ -96,6 +96,11 @@ public class MessageFragment extends Fragment {
                             }
                             Config.cacheMessage(getActivity().getApplicationContext(), cachedMessage);
                             adapter.notifyDataSetChanged();
+                            if (0 == list.size()) {
+                                message_none_toast.setVisibility(View.VISIBLE);
+                            } else {
+                                message_none_toast.setVisibility(View.GONE);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

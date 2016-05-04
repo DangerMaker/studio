@@ -32,6 +32,14 @@ public class SpeedConvert {
         return SpeedConvert.reForm(charTime);
     }
 
+    /**
+     * float形式，小时为单位的时间
+     */
+    public static String secToDeTime(long time) {
+        double t = time / 3600.0;
+        return (float) (Math.round(t * 10)) / 10 + "";
+    }
+
     public static String reForm(String charTime) {
         String args[] = charTime.split(":");
         if (1 == args[0].length()) {

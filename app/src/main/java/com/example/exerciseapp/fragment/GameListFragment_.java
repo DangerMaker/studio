@@ -602,7 +602,7 @@ public class GameListFragment_ extends Fragment {
                                             }
                                             list.clear();
                                             for (int i = 0; i < jsonArr.length(); i++) {
-                                                list.addFirst(jsonArr.getJSONObject(i));
+                                                list.add(jsonArr.getJSONObject(i));
                                             }
                                             mListAdapter.notifyDataSetChanged();
                                         } else {

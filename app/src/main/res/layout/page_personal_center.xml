@@ -104,6 +104,7 @@
                 android:id="@+id/layout_of_my_recode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="100dp"
                 android:layout_marginTop="18dp"
                 android:clickable="true"
                 android:orientation="vertical">
@@ -136,7 +137,7 @@
                         android:id="@+id/tvExerciseDistancePersonalCenter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="12dp"
                         android:layout_marginTop="10dp"
                         android:layout_toRightOf="@id/tvExerciseTimePersonalCenter"
                         android:text="0Km"
