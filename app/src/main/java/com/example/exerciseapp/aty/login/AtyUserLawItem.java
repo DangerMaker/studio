@@ -18,10 +18,15 @@ public class AtyUserLawItem extends BaseActivity {
     @Bind(R.id.toolbar_text)
     TextView toolBarTitle;
 
+    String title;
+    String url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_user_law_item);
+        title = getIntent().getStringExtra("title");
+        url = getIntent().getStringExtra("url");
         setTitleBar();
         getInfo();
     }
@@ -29,13 +34,13 @@ public class AtyUserLawItem extends BaseActivity {
     private void getInfo(){
         webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
         webView.getSettings().setLoadWithOverviewMode(true);
-        webView.loadUrl("http://101.200.214.68/index.php/Api/System/usingClause");
+        webView.loadUrl(url);
     }
 
     private void setTitleBar() {
         toolbar.setPadding(0, getDimensionMiss(), 0, 0);
         toolbar.setTitle("");
-        toolBarTitle.setText("使用条款");
+        toolBarTitle.setText(title);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.backbtn);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

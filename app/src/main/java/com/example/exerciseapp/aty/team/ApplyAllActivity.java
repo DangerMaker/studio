@@ -46,6 +46,7 @@ public class ApplyAllActivity extends BackBaseActivity {
     private int currIndex = 0;// 当前页卡编号
     String gameId;
     String gameName;
+    String agreement;
     JSONObject jsonObj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class ApplyAllActivity extends BackBaseActivity {
 
         gameId = getIntent().getStringExtra(Config.KEY_GAME_ID);
         gameName = getIntent().getStringExtra(Config.KEY_GAME_NAME);
+        agreement = getIntent().getStringExtra("agreement");
         try {
             jsonObj = new JSONObject(getIntent().getStringExtra("entryInfor"));
         } catch (JSONException e1) {
@@ -156,9 +158,9 @@ public class ApplyAllActivity extends BackBaseActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return ApplyPersonalFragment.newInstance(gameId,gameName,jsonObj);
+                    return ApplyPersonalFragment.newInstance(gameId,gameName,agreement,jsonObj);
                 default:
-                    return ApplyTeamFragment.newInstance(gameId,gameName,jsonObj);
+                    return ApplyTeamFragment.newInstance(gameId,gameName,agreement,jsonObj);
             }
 
         }

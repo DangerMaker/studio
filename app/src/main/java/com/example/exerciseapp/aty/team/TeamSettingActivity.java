@@ -139,7 +139,11 @@ public class TeamSettingActivity extends BackBaseActivity {
                 }
                 break;
             case R.id.team_setting_manager:
-                startActivity(CheckMembersActivity.getManagerMembersIntent(this,teamId));
+                if(type.equals("group_info_return")) {
+                    startActivity(CheckMembersActivity.getCheckMembersIntent(this, teamId));
+                }else{
+                    startActivity(CheckMembersActivity.getManagerMembersIntent(this, teamId));
+                }
                 break;
         }
     }

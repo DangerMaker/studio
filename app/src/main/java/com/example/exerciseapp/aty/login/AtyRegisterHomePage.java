@@ -190,7 +190,10 @@ public class AtyRegisterHomePage extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				startActivity(new Intent(AtyRegisterHomePage.this,AtyUserLawItem.class));
+				Intent intent = new Intent(AtyRegisterHomePage.this,AtyUserLawItem.class);
+				intent.putExtra("title","使用条款");
+				intent.putExtra("url","http://101.200.214.68/index.php/Api/System/usingClause");
+				startActivity(intent);
 //				final AlertDialog alertDialog = new AlertDialog.Builder(AtyRegisterHomePage.this).create();
 //				alertDialog.show();
 //				alertDialog.getWindow().setContentView(R.layout.alert_dialog_show_web_view);

@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.login.AtyUserLawItem;
 import com.example.exerciseapp.aty.sliding.AtyPay;
 import com.example.exerciseapp.aty.team.GameSelectActivity;
 import com.example.exerciseapp.aty.team.SearchActivity;
@@ -45,7 +49,7 @@ public class ApplyPersonalFragment extends BaseFragment {
     EditText personalName;
     @Bind(R.id.personal_sex)
     TextView personalSex;
-//    @Bind(R.id.personal_age)
+    //    @Bind(R.id.personal_age)
 //    EditText personalAge;
     @Bind(R.id.personal_phone)
     EditText personalPhone;
@@ -58,18 +62,24 @@ public class ApplyPersonalFragment extends BaseFragment {
     TextView select;
     @Bind(R.id.game_pay)
     TextView gamePay;
+    @Bind(R.id.cbAgreeRulesAssocEntryForm)
+    CheckBox cbAgreeRulesAssocEntryForm;
+    @Bind(R.id.btnCommitPersonalEntry)
+    Button commit;
 
     String gameId;
     String gameName;
+    String agreement;
     JSONObject jsonObject;
 
     String org_name = "北京海淀体育组织";
 
-    public static ApplyPersonalFragment newInstance(String gameId, String gameName, JSONObject jsonObject) {
+    public static ApplyPersonalFragment newInstance(String gameId, String gameName, String agreement, JSONObject jsonObject) {
         ApplyPersonalFragment fragment = new ApplyPersonalFragment();
         fragment.gameId = gameId;
         fragment.gameName = gameName;
         fragment.jsonObject = jsonObject;
+        fragment.agreement = agreement;
         return fragment;
     }
 
@@ -122,37 +132,66 @@ public class ApplyPersonalFragment extends BaseFragment {
 
             }
         });
+
+        cbAgreeRulesAssocEntryForm.setChecked(true);
+        cbAgreeRulesAssocEntryForm.setClickable(true);
+        cbAgreeRulesAssocEntryForm.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (!cbAgreeRulesAssocEntryForm.isChecked()) {
+                    cbAgreeRulesAssocEntryForm.setButtonDrawable(android.R.drawable.checkbox_on_background);
+                } else {
+                    cbAgreeRulesAssocEntryForm.setButtonDrawable(android.R.drawable.checkbox_off_background);
+                }
+            }
+        });
+        cbAgreeRulesAssocEntryForm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO 勾选和不勾选的动作分别是？？？？
+                if (isChecked) {
+                    commit.setClickable(false);
+                    Toast.makeText(getActivity(), "请阅读协议", Toast.LENGTH_SHORT).show();
+                } else {
+                    commit.setClickable(true);
+                }
+
+
+            }
+        });
     }
 
     @OnClick(R.id.btnCommitPersonalEntry)
     public void commit() {
 
-        if(detailId ==null || detailId.trim().equals("")){
-            ScreenUtils.show_msg(getActivity(),"请选择项目");
+        if (detailId == null || detailId.trim().equals("")) {
+            ScreenUtils.show_msg(getActivity(), "请选择项目");
             return;
         }
 
-        if(TextUtils.isEmpty(personalPhone.getText().toString())){
-            ScreenUtils.show_msg(getActivity(),"请输入手机号");
+        if (TextUtils.isEmpty(personalPhone.getText().toString())) {
+            ScreenUtils.show_msg(getActivity(), "请输入手机号");
             return;
         }
 
-        if(TextUtils.isEmpty( personalCard.getText().toString())){
-            ScreenUtils.show_msg(getActivity(),"请输入身份证");
+        if (TextUtils.isEmpty(personalCard.getText().toString())) {
+            ScreenUtils.show_msg(getActivity(), "请输入身份证");
             return;
         }
 
-        if(TextUtils.isEmpty( personalName.getText().toString())){
-            ScreenUtils.show_msg(getActivity(),"请输入名字");
+        if (TextUtils.isEmpty(personalName.getText().toString())) {
+            ScreenUtils.show_msg(getActivity(), "请输入名字");
             return;
         }
 
-        if(TextUtils.isEmpty( organize.getText().toString()) || organize.getText().toString().equals("点击选择 >")){
-            ScreenUtils.show_msg(getActivity(),"请输入组织名字");
+        if (TextUtils.isEmpty(organize.getText().toString()) || organize.getText().toString().equals("点击选择 >")) {
+            ScreenUtils.show_msg(getActivity(), "请输入组织名字");
             return;
         }
 
-        RestAdapterUtils.getTeamAPI().applyPersonal(gameId,detailId , personalPhone.getText().toString(),
+        RestAdapterUtils.getTeamAPI().applyPersonal(gameId, detailId, personalPhone.getText().toString(),
                 personalSex.getText().toString(), personalCard.getText().toString(), personalName.getText().toString(),
                 organize.getText().toString(), Config.getCachedUserUid(getActivity()), new Callback<CreateSuc>() {
                     @Override
@@ -160,9 +199,9 @@ public class ApplyPersonalFragment extends BaseFragment {
                         if (errorMsg != null) {
                             if (errorMsg.getResult() == 1) {
                                 ScreenUtils.show_msg(getActivity(), "报名成功");
-                                if(Float.parseFloat(fee) != 0){
+                                if (Float.parseFloat(fee) != 0) {
                                     Intent intent = new Intent(getActivity(), AtyPay.class);
-                                    intent.putExtra("ueid", errorMsg.getData().getId() +"");
+                                    intent.putExtra("ueid", errorMsg.getData().getId() + "");
                                     intent.putExtra(Config.KEY_USER_ATTEND_ENAME, select.getText().toString());
                                     intent.putExtra("apayfee", gamePay.getText().toString());
                                     intent.putExtra("type", "game");
@@ -197,8 +236,17 @@ public class ApplyPersonalFragment extends BaseFragment {
         startActivityForResult(intent, 24);
     }
 
+    @OnClick(R.id.tvRules)
+    public void enterAgreement() {
+        Intent intent = new Intent(getActivity(),AtyUserLawItem.class);
+        intent.putExtra("title","报名须知");
+        intent.putExtra("url",agreement);
+        startActivity(intent);
+    }
+
     String detailId;
     String fee = "0";
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -211,7 +259,7 @@ public class ApplyPersonalFragment extends BaseFragment {
             }
         } else if (resultCode == 21) {
             if (data != null) {
-                String gameDetailId = data.getIntExtra("game_detail_id",-1) + "";
+                String gameDetailId = data.getIntExtra("game_detail_id", -1) + "";
                 String gameDetailName = data.getStringExtra("game_detail_name");
                 fee = data.getStringExtra("game_fee");
                 if (gameDetailId != null) {

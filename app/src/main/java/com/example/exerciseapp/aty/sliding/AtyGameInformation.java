@@ -81,6 +81,7 @@ public class AtyGameInformation extends BaseActivity {
     private String gameId = null;
     private String gameH5Url = null;
     private String gameStat = null;
+    private String agreement = null;
     @Bind(R.id.game_info_ht5)
     WebView webView;
 
@@ -112,6 +113,7 @@ public class AtyGameInformation extends BaseActivity {
         gameH5Url = getIntent().getStringExtra(Config.KEY_GAME_H5_URL);
         gameStat = getIntent().getStringExtra(Config.KEY_GAME_STATUS_ID);
         gameName = getIntent().getStringExtra(Config.KEY_GAME_NAME);
+        agreement = getIntent().getStringExtra("agreement");
         setContentView(R.layout.aty_game_information);
 
         btnIWannaJoin = (Button) findViewById(R.id.btnIWannaJoinGameInformation);
@@ -147,6 +149,7 @@ public class AtyGameInformation extends BaseActivity {
 //                                    Intent intent = new Intent(AtyGameInformation.this, AtyEntryForm.class);
                                     intent.putExtra(Config.KEY_GAME_ID, gameId);
                                     intent.putExtra(Config.KEY_GAME_NAME, gameName);
+                                    intent.putExtra("agreement",agreement);
                                     intent.putExtra("entryInfor", jsonObject.getJSONObject("data").toString());
                                     startActivity(intent);
                                 } else {

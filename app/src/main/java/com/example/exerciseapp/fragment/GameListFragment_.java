@@ -374,6 +374,7 @@ public class GameListFragment_ extends Fragment {
                     intent.putExtra(Config.KEY_GAME_H5_URL, list.get(position - 1).getString("gintro"));
                     intent.putExtra(Config.KEY_GAME_NAME, list.get(position - 1).getString("gname"));
                     intent.putExtra(Config.KEY_GAME_STATUS_ID, list.get(position - 1).getString("gstatusid"));
+                    intent.putExtra("agreement",list.get(position - 1).getString("agreement"));
                     startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();

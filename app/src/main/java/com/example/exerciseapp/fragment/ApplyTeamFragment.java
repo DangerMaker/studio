@@ -4,11 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.login.AtyUserLawItem;
 import com.example.exerciseapp.aty.sliding.AtyPay;
 import com.example.exerciseapp.aty.team.GameSelectActivity;
 import com.example.exerciseapp.aty.team.SearchActivity;
@@ -54,12 +60,18 @@ public class ApplyTeamFragment extends BaseFragment {
     String gameId;
     String gameName;
     String uid;
+    String agreement;
     JSONObject jsonObject;
+    @Bind(R.id.cbAgreeRulesAssocEntryForm)
+    CheckBox cbAgreeRulesAssocEntryForm;
+    @Bind(R.id.btnCommitPersonalEntry)
+    Button commit;
 
-    public static ApplyTeamFragment newInstance(String gameId, String gameName, JSONObject jsonObject) {
+    public static ApplyTeamFragment newInstance(String gameId, String gameName, String agreement,JSONObject jsonObject) {
         ApplyTeamFragment fragment = new ApplyTeamFragment();
         fragment.gameId = gameId;
         fragment.gameName = gameName;
+        fragment.agreement = agreement;
         fragment.jsonObject = jsonObject;
         return fragment;
     }
@@ -80,6 +92,35 @@ public class ApplyTeamFragment extends BaseFragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        cbAgreeRulesAssocEntryForm.setChecked(true);
+        cbAgreeRulesAssocEntryForm.setClickable(true);
+        cbAgreeRulesAssocEntryForm.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (!cbAgreeRulesAssocEntryForm.isChecked()) {
+                    cbAgreeRulesAssocEntryForm.setButtonDrawable(android.R.drawable.checkbox_on_background);
+                } else {
+                    cbAgreeRulesAssocEntryForm.setButtonDrawable(android.R.drawable.checkbox_off_background);
+                }
+            }
+        });
+        cbAgreeRulesAssocEntryForm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO 勾选和不勾选的动作分别是？？？？
+                if (isChecked) {
+                    commit.setClickable(false);
+                    Toast.makeText(getActivity(), "请阅读协议", Toast.LENGTH_SHORT).show();
+                } else {
+                    commit.setClickable(true);
+                }
+
+
+            }
+        });
     }
 
     @OnClick(R.id.btnCommitPersonalEntry)
@@ -141,6 +182,14 @@ public class ApplyTeamFragment extends BaseFragment {
 
                     }
                 });
+    }
+
+    @OnClick(R.id.tvRules)
+    public void enterAgreement() {
+        Intent intent = new Intent(getActivity(),AtyUserLawItem.class);
+        intent.putExtra("title","报名须知");
+        intent.putExtra("url",agreement);
+        startActivity(intent);
     }
 
     @OnClick(R.id.game_organize)
