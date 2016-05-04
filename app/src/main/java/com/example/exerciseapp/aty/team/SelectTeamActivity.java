@@ -70,14 +70,14 @@ public class SelectTeamActivity extends BackBaseActivity implements GroupListAda
             @Override
             public void success(AllGroup allGroup, Response response) {
                 if (allGroup != null && allGroup.getResult() == 1) {
-//                    if (allGroup.getData().getGroup_info_return() != null) {
-//                        for (int i = 0; i < allGroup.getData().getGroup_info_return().size(); i++) {
-//                            SingleGroup singleGroup = allGroup.getData().getGroup_info_return().get(i);
-//                            singleGroup.setType("group_info_return");
-//                            allGroup.getData().getGroup_info_return().set(i, singleGroup);
-//                        }
-//                        adapter.addItems(allGroup.getData().getGroup_info_return());
-//                    }
+                    if (allGroup.getData().getGroup_info_return() != null) {
+                        for (int i = 0; i < allGroup.getData().getGroup_info_return().size(); i++) {
+                            SingleGroup singleGroup = allGroup.getData().getGroup_info_return().get(i);
+                            singleGroup.setType("group_info_return");
+                            allGroup.getData().getGroup_info_return().set(i, singleGroup);
+                        }
+                        adapter.addItems(allGroup.getData().getGroup_info_return());
+                    }
 
                     if (allGroup.getData().getLeader_group_info_return() != null) {
                         for (int i = 0; i < allGroup.getData().getLeader_group_info_return().size(); i++) {

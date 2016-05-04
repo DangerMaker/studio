@@ -307,10 +307,13 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
                     if (isFinishing()) {
                         return;
                     }
-                    ScreenUtils.show_msg(TeamDetailActivity.this, "加入成功");
+                    ScreenUtils.show_msg(TeamDetailActivity.this, errorMsg.getDesc());
                     if (popupWindow != null)
                         popupWindow.dismiss();
                     load();
+                }
+                else{
+                    ScreenUtils.show_msg(TeamDetailActivity.this, errorMsg.getDesc());
                 }
             }
 

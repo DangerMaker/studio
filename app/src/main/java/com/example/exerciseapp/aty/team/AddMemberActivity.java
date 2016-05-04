@@ -69,7 +69,7 @@ public class AddMemberActivity extends BackBaseActivity {
             public void success(ErrorMsg errorMsg, Response response) {
                 System.out.println("添加成功");
                 if (errorMsg != null && errorMsg.getResult() == 1) {
-                    ScreenUtils.show_msg(AddMemberActivity.this, "添加成功");
+                    ScreenUtils.show_msg(AddMemberActivity.this, errorMsg.getDesc());
                 }else {
                     ScreenUtils.show_msg(AddMemberActivity.this, errorMsg.getDesc());
                 }
