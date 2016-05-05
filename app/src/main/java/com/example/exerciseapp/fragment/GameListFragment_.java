@@ -18,9 +18,11 @@ import kankan.wheel.widget.OnWheelScrollListener;
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
 import kankan.wheel.widget.adapters.ArrayWheelAdapter;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -124,7 +126,9 @@ public class GameListFragment_ extends Fragment {
     private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             adViewPager.setCurrentItem(currentItem);
-        };
+        }
+
+        ;
     };
 
     private MyAdapter myAdapter;
@@ -374,7 +378,7 @@ public class GameListFragment_ extends Fragment {
                     intent.putExtra(Config.KEY_GAME_H5_URL, list.get(position - 1).getString("gintro"));
                     intent.putExtra(Config.KEY_GAME_NAME, list.get(position - 1).getString("gname"));
                     intent.putExtra(Config.KEY_GAME_STATUS_ID, list.get(position - 1).getString("gstatusid"));
-                    intent.putExtra("agreement",list.get(position - 1).getString("agreement"));
+                    intent.putExtra("agreement", list.get(position - 1).getString("agreement"));
                     startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -447,7 +451,7 @@ public class GameListFragment_ extends Fragment {
                             JSONObject jsonObject = new JSONObject(s);
                             if (jsonObject.getString("result").equals("1")) {
                                 JSONArray jsonArray = jsonObject.getJSONArray("data");
-                                for(int i=0;i<jsonArray.length();i++){
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                     adImg.add(jsonArray.getJSONObject(i).getString("pic"));
                                 }
                                 for (int i = 0; i < adImg.size(); i++) {
@@ -483,9 +487,11 @@ public class GameListFragment_ extends Fragment {
 
     private class MyPageChangeListener implements ViewPager.OnPageChangeListener {
         private int oldPosition = 0;
+
         @Override
         public void onPageScrollStateChanged(int arg0) {
         }
+
         @Override
         public void onPageScrolled(int arg0, float arg1, int arg2) {
         }
@@ -585,9 +591,15 @@ public class GameListFragment_ extends Fragment {
             try {
                 Thread.sleep(1000);
                 if (aId == null) {
+                    String front_page_url = "http://101.200.214.68/py/game?action=front_page";
+                    if (Config.TOURIST_MODE) {
+                        front_page_url = front_page_url + "&uid=0";
+                    } else {
+                        front_page_url = front_page_url + "&uid="+Config.getCachedUserUid(GameListFragment_.this.getActivity());
+                    }
                     StringRequest stringRequest = new StringRequest(
                             Request.Method.GET,
-                            "http://101.200.214.68/py/game?action=front_page",
+                            front_page_url,
                             new Response.Listener<String>() {
 
                                 @Override
