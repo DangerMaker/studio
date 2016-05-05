@@ -201,7 +201,7 @@ public class ApplyPersonalFragment extends BaseFragment {
                                 ScreenUtils.show_msg(getActivity(), "报名成功");
                                 if (Float.parseFloat(fee) != 0) {
                                     Intent intent = new Intent(getActivity(), AtyPay.class);
-                                    intent.putExtra("ueid", errorMsg.getData().getId() + "");
+                                    intent.putExtra("id", errorMsg.getData().getId() + "");
                                     intent.putExtra(Config.KEY_USER_ATTEND_ENAME, select.getText().toString());
                                     intent.putExtra("apayfee", gamePay.getText().toString());
                                     intent.putExtra("type", "game");
