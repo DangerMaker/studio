@@ -117,18 +117,35 @@ public class AtyChangePassw extends BaseActivity {
                         WindowManager wm = AtyChangePassw.this.getWindowManager();
                         int width = wm.getDefaultDisplay().getWidth();
                         int height = wm.getDefaultDisplay().getHeight();
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "修改成功", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.getView().setMinimumWidth(width/2);
-                        LinearLayout toastView = (LinearLayout) toast.getView();
-                        ImageView imageCodeProject = new ImageView(getApplicationContext());
-                        imageCodeProject.setImageResource(R.drawable.toast_success);
-                        toastView.addView(imageCodeProject, 0);
-                        toast.show();
-                        uPrePassw.setText("");
-                        uNewPassw.setText("");
-                        uNewPasswAgain.setText("");
+                        try {
+                            JSONObject jsonObject=new JSONObject(response);
+                            if(jsonObject.getInt("result")==0){
+                                Toast toast = Toast.makeText(getApplicationContext(),
+                                        "旧密码有误！", Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.getView().setMinimumWidth(width/2);
+                                LinearLayout toastView = (LinearLayout) toast.getView();
+                                ImageView imageCodeProject = new ImageView(getApplicationContext());
+                                imageCodeProject.setImageResource(R.drawable.toast_success);
+                                toastView.addView(imageCodeProject, 0);
+                                toast.show();
+                            }else if(jsonObject.getInt("result")==1){
+                                Toast toast = Toast.makeText(getApplicationContext(),
+                                        "修改成功", Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.getView().setMinimumWidth(width/2);
+                                LinearLayout toastView = (LinearLayout) toast.getView();
+                                ImageView imageCodeProject = new ImageView(getApplicationContext());
+                                imageCodeProject.setImageResource(R.drawable.toast_success);
+                                toastView.addView(imageCodeProject, 0);
+                                toast.show();
+                                uPrePassw.setText("");
+                                uNewPassw.setText("");
+                                uNewPasswAgain.setText("");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
                     @Override
