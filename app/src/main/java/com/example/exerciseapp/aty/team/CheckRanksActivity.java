@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.exerciseapp.R;
-import com.example.exerciseapp.adapter.MemberListAdapter;
 import com.example.exerciseapp.adapter.MemberRankListAdapter;
-import com.example.exerciseapp.model.AllMember;
 import com.example.exerciseapp.model.AllRank;
-import com.example.exerciseapp.model.Member;
 import com.example.exerciseapp.model.Rank;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
@@ -23,13 +20,14 @@ import retrofit.client.Response;
 /**
  * Created by lyjq on 2016/4/3.
  */
-public class CheckRanksActivity extends BackBaseActivity implements MemberRankListAdapter.OnListClick{
+public class CheckRanksActivity extends BackBaseActivity implements MemberRankListAdapter.OnListClick {
 
     @Bind(R.id.pull_to_refresh_team)
     PullToRefreshListView listView;
 
     MemberRankListAdapter adapter;
     String teamId;
+
     public static Intent getCheckRanksIntent(Context context, int teamId) {
         Intent intent = new Intent(context, CheckRanksActivity.class);
         return intent.putExtra("teamId", teamId);
@@ -40,8 +38,8 @@ public class CheckRanksActivity extends BackBaseActivity implements MemberRankLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank_list);
         setTitleBar("排行列表");
-        teamId = getIntent().getIntExtra("teamId",-1) + "";
-        adapter = new MemberRankListAdapter(this,this);
+        teamId = getIntent().getIntExtra("teamId", -1) + "";
+        adapter = new MemberRankListAdapter(this, this);
         listView.setAdapter(adapter);
         load();
     }

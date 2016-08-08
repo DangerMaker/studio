@@ -36,7 +36,7 @@ public class UploadImageUtils {
         int scale = (int) (newOpts.outHeight / (float) 92);
         if (scale <= 0)
             scale = 1;
-        newOpts.inSampleSize = scale;//设置缩放比例
+        newOpts.inSampleSize = 5;//设置缩放比例
         //重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了
         bitmap = BitmapFactory.decodeFile(srcPath, newOpts);
         return compressImage(bitmap);//压缩好比例大小后再进行质量压缩
@@ -44,7 +44,7 @@ public class UploadImageUtils {
 
     private static Bitmap compressImage(Bitmap image) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 80, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        image.compress(Bitmap.CompressFormat.JPEG, 40, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
         Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
         return bitmap;
@@ -54,6 +54,7 @@ public class UploadImageUtils {
     public static String writeUriToSDcard(Context context,Uri uriPath) throws IOException {
         Bitmap bitmap = getimage(context, getPath(context, uriPath));
         return writhToSDcard(context,bitmap);
+//        return getPath(context,uriPath);
     }
 
     public static String writeStringToSDcard(Context context,String path) throws IOException {
@@ -63,7 +64,7 @@ public class UploadImageUtils {
 
     private static String writhToSDcard(Context context,Bitmap bitmap)throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);//png类型
+        bitmap.compress(Bitmap.CompressFormat.PNG, 40, baos);//png类型
         String path = getAvatarPath(context);
         if(!TextUtils.isEmpty(path)){
             FileOutputStream out=new FileOutputStream(new File(path));

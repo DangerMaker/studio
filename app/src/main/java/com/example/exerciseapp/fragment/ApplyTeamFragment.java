@@ -13,14 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.exerciseapp.Config;
+import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.activityrun.ActivityPay;
 import com.example.exerciseapp.aty.login.AtyUserLawItem;
-import com.example.exerciseapp.aty.sliding.AtyPay;
 import com.example.exerciseapp.aty.team.GameSelectActivity;
 import com.example.exerciseapp.aty.team.SearchActivity;
 import com.example.exerciseapp.aty.team.SelectTeamActivity;
 import com.example.exerciseapp.model.CreateSuc;
-import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
 
@@ -59,15 +59,17 @@ public class ApplyTeamFragment extends BaseFragment {
 
     String gameId;
     String gameName;
-    String uid;
     String agreement;
+    String token = MyApplication.getInstance().getToken();
+    String uid;
+    String version = "3.0";
     JSONObject jsonObject;
     @Bind(R.id.cbAgreeRulesAssocEntryForm)
     CheckBox cbAgreeRulesAssocEntryForm;
     @Bind(R.id.btnCommitPersonalEntry)
     Button commit;
 
-    public static ApplyTeamFragment newInstance(String gameId, String gameName, String agreement,JSONObject jsonObject) {
+    public static ApplyTeamFragment newInstance(String gameId, String gameName, String agreement, JSONObject jsonObject) {
         ApplyTeamFragment fragment = new ApplyTeamFragment();
         fragment.gameId = gameId;
         fragment.gameName = gameName;
@@ -126,45 +128,45 @@ public class ApplyTeamFragment extends BaseFragment {
     @OnClick(R.id.btnCommitPersonalEntry)
     public void commit() {
 
-        if(detailId ==null || detailId.trim().equals("")){
-            ScreenUtils.show_msg(getActivity(),"请选择项目");
+        if (detailId == null || detailId.trim().equals("")) {
+            ScreenUtils.show_msg(getActivity(), "请选择项目");
             return;
         }
 
-        if(TextUtils.isEmpty(phone.getText().toString())){
-            ScreenUtils.show_msg(getActivity(),"请输入手机号");
+        if (TextUtils.isEmpty(phone.getText().toString())) {
+            ScreenUtils.show_msg(getActivity(), "请输入手机号");
             return;
         }
 
-        if(TextUtils.isEmpty(leader.getText().toString())){
-            ScreenUtils.show_msg(getActivity(),"请输入领队");
+        if (TextUtils.isEmpty(leader.getText().toString())) {
+            ScreenUtils.show_msg(getActivity(), "请输入领队");
             return;
         }
-        if(TextUtils.isEmpty(mail.getText().toString())){
-            ScreenUtils.show_msg(getActivity(),"请输入邮箱");
-            return;
-        }
-
-        if(uid != null && uid.trim().equals("")){
-            ScreenUtils.show_msg(getActivity(),"请选择队员");
+        if (TextUtils.isEmpty(mail.getText().toString())) {
+            ScreenUtils.show_msg(getActivity(), "请输入邮箱");
             return;
         }
 
-        if(TextUtils.isEmpty( organize.getText().toString()) || organize.getText().toString().equals("点击选择 >")){
-            ScreenUtils.show_msg(getActivity(),"请输入组织名字");
+        if (uid != null && uid.trim().equals("")) {
+            ScreenUtils.show_msg(getActivity(), "请选择队员");
             return;
         }
 
-        RestAdapterUtils.getTeamAPI().applyTeam(teamId,uid,gameId,detailId , phone.getText().toString(),
-                leader.getText().toString(), mail.getText().toString(), organize.getText().toString(), new Callback<CreateSuc>() {
+        if (TextUtils.isEmpty(organize.getText().toString()) || organize.getText().toString().equals("点击选择 >")) {
+            ScreenUtils.show_msg(getActivity(), "请输入组织名字");
+            return;
+        }
+
+        RestAdapterUtils.getTeamAPI().applyTeam(teamId, uid, gameId, detailId, phone.getText().toString(),
+                leader.getText().toString(), mail.getText().toString(), organize.getText().toString(), token, version, new Callback<CreateSuc>() {
                     @Override
                     public void success(CreateSuc errorMsg, Response response) {
                         if (errorMsg != null) {
                             if (errorMsg.getResult() == 1) {
                                 ScreenUtils.show_msg(getActivity(), "报名成功");
-                                if(Float.parseFloat(fee) != 0){
-                                    Intent intent = new Intent(getActivity(), AtyPay.class);
-                                    intent.putExtra("id", errorMsg.getData().getId() +"");
+                                if (Float.parseFloat(fee) != 0) {
+                                    Intent intent = new Intent(getActivity(), ActivityPay.class);
+                                    intent.putExtra("id", errorMsg.getData().getId() + "");
                                     intent.putExtra(Config.KEY_USER_ATTEND_ENAME, select.getText().toString());
                                     intent.putExtra("apayfee", gamePay.getText().toString());
                                     intent.putExtra("type", "game");
@@ -186,9 +188,9 @@ public class ApplyTeamFragment extends BaseFragment {
 
     @OnClick(R.id.tvRules)
     public void enterAgreement() {
-        Intent intent = new Intent(getActivity(),AtyUserLawItem.class);
-        intent.putExtra("title","报名须知");
-        intent.putExtra("url",agreement);
+        Intent intent = new Intent(getActivity(), AtyUserLawItem.class);
+        intent.putExtra("title", "报名须知");
+        intent.putExtra("url", agreement);
         startActivity(intent);
     }
 
@@ -208,9 +210,9 @@ public class ApplyTeamFragment extends BaseFragment {
     }
 
     @OnClick(R.id.organize_member)
-    public void setMember(){
-        if(detailId == null){
-            ScreenUtils.show_msg(getActivity(),"请先选择项目");
+    public void setMember() {
+        if (detailId == null) {
+            ScreenUtils.show_msg(getActivity(), "请先选择项目");
             return;
         }
         Intent intent = new Intent(getActivity(), SelectTeamActivity.class);
@@ -221,6 +223,7 @@ public class ApplyTeamFragment extends BaseFragment {
     String detailId;
     String teamId;
     String fee;
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -233,7 +236,7 @@ public class ApplyTeamFragment extends BaseFragment {
             }
         } else if (resultCode == 21) {
             if (data != null) {
-                String gameDetailId = data.getIntExtra("game_detail_id",-1) + "";
+                String gameDetailId = data.getIntExtra("game_detail_id", -1) + "";
                 String gameDetailName = data.getStringExtra("game_detail_name");
                 fee = data.getStringExtra("game_fee");
                 if (gameDetailId != null) {
@@ -246,15 +249,15 @@ public class ApplyTeamFragment extends BaseFragment {
                 member.setText("去选择");
                 uid = "";
             }
-        } else if(resultCode == 29){
-            if(data != null){
+        } else if (resultCode == 29) {
+            if (data != null) {
                 String uids = data.getStringExtra("uids");
                 String uidsName = data.getStringExtra("uidsName");
                 String id = data.getStringExtra("teamId");
                 member.setText(uidsName);
                 uid = uids;
                 teamId = id;
-                if(uid.contains(",")){
+                if (uid.contains(",")) {
                     String temp[] = uid.split(",");
                     gamePay.setText(Float.parseFloat(fee) * temp.length + "");
                 }

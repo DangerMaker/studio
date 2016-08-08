@@ -4,11 +4,11 @@ package com.example.exerciseapp.net;
  * 用戶信息簡介
  */
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class BriefUserInformaitonConnection {
 	

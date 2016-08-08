@@ -6,8 +6,7 @@
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:paddingBottom="5dp"
-    android:paddingTop="5dp"
-    >
+    android:paddingTop="5dp">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/item_some_img"
@@ -15,7 +14,7 @@
         android:layout_height="35dp"
         fresco:roundAsCircle="true"
         fresco:placeholderImage="@drawable/defult_avatar"
-        fresco:placeholderImageScaleType="fitCenter"  />
+        fresco:placeholderImageScaleType="fitCenter" />
 
     <TextView
         android:layout_toRightOf="@id/item_some_img"

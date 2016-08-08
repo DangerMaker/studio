@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
+    android:layout_height="match_parent"
     android:background="@drawable/welcomebackgroud">
 
     <RelativeLayout
         android:id="@+id/layoutbottom"
         android:layout_width="fill_parent"
         android:layout_height="290dp"
-        android:layout_alignParentBottom="true" 
+        android:layout_alignParentBottom="true"
         android:background="@color/BtnTextColorWhite">
 
         <View
@@ -30,7 +30,7 @@
             android:gravity="center"
             android:text="@string/PersonalScore"
             android:textSize="@dimen/TextSize_20dp" />
-         
+
         <TextView
             android:id="@+id/PersonalScore_UserInformationHome"
             android:layout_width="fill_parent"
@@ -183,8 +183,7 @@
             android:layout_marginRight="@dimen/line_margin_right_20dp"
             android:layout_marginTop="10dp"
             android:background="#000000" />
-        
-       
+
 
         <TextView
             android:id="@+id/tvLoveProjectText_UserInformationHome"
@@ -196,15 +195,15 @@
             android:gravity="bottom"
             android:text="@string/PreferredProject"
             android:textSize="@dimen/TextSize_20dp" />
+
         <TextView
             android:id="@+id/gdLovedProject"
-            
+
             android:layout_below="@id/tvLoveProjectText_UserInformationHome"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#000000"
-            >
-            
+            android:background="#000000">
+
         </TextView>
 
         <Button
@@ -224,7 +223,7 @@
         android:layout_height="140dp"
         android:layout_above="@id/layoutbottom"
         android:layout_alignParentTop="false"
-        android:background="@drawable/shape_btn_blue_radius_5dip" >
+        android:background="@drawable/shape_btn_blue_radius_5dip">
 
         <TextView
             android:id="@+id/tvHeight_UserInformationHome"
@@ -379,10 +378,9 @@
             android:layout_marginLeft="100dp"
             android:layout_marginRight="10dp"
             android:layout_toRightOf="@id/tvUserBirthday_UserInformationHome"
-            android:background="#00000000" 
+            android:background="#00000000"
             android:text="@string/BtnMoveText"
-            android:textSize="@dimen/TextSize_20dp"
-            />
+            android:textSize="@dimen/TextSize_20dp" />
     </RelativeLayout>
 
 </RelativeLayout>

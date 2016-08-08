@@ -5,12 +5,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
-import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+
 import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.R;
+
 import butterknife.Bind;
 
 public class AtyGradeDetail extends BaseActivity {

@@ -1,17 +1,16 @@
 package com.example.exerciseapp.view;
 
-import com.example.exerciseapp.R;
-import com.example.exerciseapp.utils.ScreenUtils;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.utils.ScreenUtils;
 
 /**
  * author cherie date 2015/10/19

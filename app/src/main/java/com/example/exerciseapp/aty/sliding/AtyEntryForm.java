@@ -3,15 +3,6 @@ package com.example.exerciseapp.aty.sliding;
  * 报名主界面
  */
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,6 +25,7 @@ import android.widget.Toast;
 import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.activityrun.ActivityPay;
 import com.example.exerciseapp.aty.login.AtyRegisterHomePage;
 import com.example.exerciseapp.aty.login.AtyUserLawItem;
 import com.example.exerciseapp.listener.TextClickSpan;
@@ -48,6 +40,15 @@ import com.umeng.message.PushAgent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.Bind;
 
@@ -211,7 +212,7 @@ public class AtyEntryForm extends BaseActivity {
                                                                 Toast.makeText(AtyEntryForm.this.getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
                                                                 if (tvPayFeePersonalEntryForm.getText().toString().equals("0") || tvPayFeePersonalEntryForm.getText().toString().equals("免费")) {
                                                                 } else {
-                                                                    Intent intent = new Intent(AtyEntryForm.this, AtyPay.class);
+                                                                    Intent intent = new Intent(AtyEntryForm.this, ActivityPay.class);
                                                                     intent.putExtra(Config.KEY_ID, jsonObject.getJSONObject("data").getString("id"));
                                                                     intent.putExtra(Config.KEY_USER_ATTEND_EPAYFEE, tvPayFeePersonalEntryForm.getText().toString());
                                                                     intent.putExtra(Config.KEY_USER_ATTEND_ENAME, tvGameItemPersonalEntryForm.getText().toString());

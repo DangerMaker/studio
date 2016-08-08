@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
+import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.model.GroupInstance;
@@ -15,7 +15,6 @@ import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnEditorAction;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -29,6 +28,9 @@ public class AlterTeamNameActivity extends BackBaseActivity {
     String text;
     String teamId;
     String name;
+    String token = MyApplication.getInstance().getToken();
+    String uid = MyApplication.getInstance().getUid();
+    String version = "3.0";
     @Bind(R.id.team_alter_name)
     EditText teamAlterName;
 
@@ -44,7 +46,7 @@ public class AlterTeamNameActivity extends BackBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_alter_name);
         setTitleBar("更改名称");
-        teamId = getIntent().getIntExtra("teamId",-1) + "";
+        teamId = getIntent().getIntExtra("teamId", -1) + "";
         name = getIntent().getStringExtra("name");
         teamAlterName.setText(name);
     }
@@ -52,7 +54,6 @@ public class AlterTeamNameActivity extends BackBaseActivity {
     @OnEditorAction(R.id.team_alter_name)
     protected boolean onEditorAction(int actionID) {
         if (actionID == EditorInfo.IME_ACTION_SEND) {
-            Log.e("name","fsfd");
             onClickSend();
         }
         return true;
@@ -60,12 +61,12 @@ public class AlterTeamNameActivity extends BackBaseActivity {
 
     private void onClickSend() {
         text = teamAlterName.getText().toString();
-        if(TextUtils.isEmpty(text)){
+        if (TextUtils.isEmpty(text)) {
             System.out.println("输入内容不能为空");
             return;
         }
 
-        RestAdapterUtils.getTeamAPI().changeTeamName(teamId, text, "groupname","change_param", new Callback<ErrorMsg>() {
+        RestAdapterUtils.getTeamAPI().changeTeamName(teamId, text, "groupname", "change_param", token, version, uid, new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {
                 System.out.println("修改成功");
@@ -77,7 +78,7 @@ public class AlterTeamNameActivity extends BackBaseActivity {
             @Override
             public void failure(RetrofitError error) {
                 System.out.println("修改失败");
-                ScreenUtils.show_msg(AlterTeamNameActivity.this,"修改失败");
+                ScreenUtils.show_msg(AlterTeamNameActivity.this, "修改失败");
             }
         });
 

@@ -15,13 +15,13 @@
  *******************************************************************************/
 package com.example.exerciseapp.view.handmark.pulltorefresh.library.extras;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.webkit.WebView;
 
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshWebView;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * An advanced version of {@link PullToRefreshWebView} which delegates the

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e0e2ee"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <include layout="@layout/main_toolbar" />
 
@@ -25,7 +25,7 @@
         android:background="#ffffff"
         android:padding="18dp"
         android:gravity="center_vertical"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvGameItemAtyPay"
@@ -46,16 +46,47 @@
             android:textSize="18dp" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/tvWeiXinPayAtyPay"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/weixinpay"
-        android:visibility="gone" />
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:id="@+id/tvWeiXinPayAtyPay">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:minWidth="150dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/icon_wx_logo"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/imagewx" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/imagewx"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:textColor="#868485"
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="微信支付" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/tvZhiFuPayAtyPay"

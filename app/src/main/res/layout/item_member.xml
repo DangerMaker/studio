@@ -14,8 +14,7 @@
         android:layout_marginLeft="10dp"
         fresco:roundAsCircle="true"
         fresco:placeholderImage="@drawable/defult_avatar"
-        fresco:placeholderImageScaleType="fitCenter"
-        />
+        fresco:placeholderImageScaleType="fitCenter" />
 
     <TextView
         android:id="@+id/item_member_name"
@@ -26,8 +25,7 @@
         android:textColor="@color/Black"
         android:text="名字"
         android:textSize="15sp"
-        android:layout_marginLeft="10dp"
-        />
+        android:layout_marginLeft="10dp" />
 
     <TextView
         android:id="@+id/item_member_tag"
@@ -42,8 +40,7 @@
         android:paddingRight="8dp"
         android:background="@drawable/shape_btn_orange_radius_10dip"
         android:layout_centerVertical="true"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/item_member_delete"
@@ -52,6 +49,5 @@
         android:src="@drawable/btn_edit_nor"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 </RelativeLayout>

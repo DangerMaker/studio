@@ -2,11 +2,6 @@ package com.example.exerciseapp.aty.login;
 /*
  * *登录界面
  */
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -22,23 +17,25 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.MainActivity;
 import com.example.exerciseapp.MyApplication;
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.TabMainActivity;
+import com.example.exerciseapp.utils.CheckInput;
 import com.example.exerciseapp.utils.LocationPro;
 import com.example.exerciseapp.utils.SharedPreferencesHelper;
-import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
 import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.MainActivity;
-import com.example.exerciseapp.R;
-import com.example.exerciseapp.aty.sliding.AtySlidingHome;
-import com.example.exerciseapp.utils.CheckInput;
 import com.umeng.message.PushAgent;
 import com.umeng.message.proguard.aa.e;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import dmax.dialog.SpotsDialog;
 
@@ -101,35 +98,40 @@ public class AtyLogin extends Activity {
 					Toast.makeText(getApplicationContext(), "密码格式错误", Toast.LENGTH_SHORT).show();
 					return;
 				}
-				
-				//根据返回状态，输出相关信息，并保存用户uid
-//				progressDialog = new ProgressDialog(AtyLogin.this);
-//				progressDialog.setCanceledOnTouchOutside(false);
-//				progressDialog.setMessage("登录中……");
-//				progressDialog.show();
+
 				spotsDialog = new SpotsDialog(AtyLogin.this);
 				spotsDialog.show();
+
+				String url = "http://101.200.214.68/py/login?version=3.0&tel=" + etPhoneNum.getText().toString()
+						+ "&password=" + etPassword.getText().toString();
 				StringRequest  stringRequest = new StringRequest(
-	                    Request.Method.POST,
-	                    Config.SERVER_URL+"Users/loginNew",
-	                    new Response.Listener<String>() {
+						Request.Method.GET, url,
+						new Response.Listener<String>() {
 	 
 	                        @Override
 	                        public void onResponse(String s) {
 	                            try {
-//	                            	progressDialog.dismiss();
-	                                JSONObject jsonObject = new JSONObject(s);
-	                                if(jsonObject.getString("result").equals("1")){
-	                                	Config.cacheUserUid(getApplicationContext(), jsonObject.getJSONObject("data").getString(Config.KEY_UID));
+									JSONObject jsonObject = new JSONObject(s);
+									if (jsonObject.getString("result").equals("1")) {
+										Config.cacheUserUid(getApplicationContext(), jsonObject.getJSONObject("data").getString(Config.KEY_UID));
+										Config.cacheUserToken(getApplicationContext(), jsonObject.getJSONObject("data").getString(Config.KEY_TOKEN));
+
 										Config.cacheUserTel(getApplicationContext(), etPhoneNum.getText().toString());
 										String uid =jsonObject.getJSONObject("data").getString(Config.KEY_UID);
+										String token = jsonObject.getJSONObject("data").getString(Config.KEY_TOKEN);
+										MyApplication.getInstance().setUid(uid);
+										MyApplication.getInstance().setToken(token);
 										SharedPreferencesHelper.getInstance(AtyLogin.this).setValue("uid", uid);
+										SharedPreferencesHelper.getInstance(AtyLogin.this).setValue("token", token);
 										((MyApplication)getApplication()).setUid(uid);
+										((MyApplication) getApplication()).setToken(token);
 										finish();
 										if(LocationPro.getInstances(AtyLogin.this).getLocation().equals("房山区")){
 											startActivity(new Intent(AtyLogin.this,AtyAdvertisement.class));
+											AtyLogin.this.finish();
 										}else{
-											startActivity(new Intent(AtyLogin.this,AtySlidingHome.class));
+											startActivity(new Intent(AtyLogin.this, TabMainActivity.class));
+											AtyLogin.this.finish();
 										}
 	                                	Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
 	                                	Config.STATUS_FINISH_ACTIVITY = 1;
@@ -140,7 +142,6 @@ public class AtyLogin extends Activity {
 	                                }
 	                                spotsDialog.dismiss();
 	                            } catch (JSONException e) {
-//	                            	progressDialog.dismiss();
 	                            	spotsDialog.dismiss();
 	                                e.printStackTrace();
 	                            } catch (e e) {
@@ -161,38 +162,9 @@ public class AtyLogin extends Activity {
 	                        	Toast.makeText(getApplicationContext(), Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
 	                        }
 	                    }){
-	 
-	                @Override
-	                protected Map<String, String> getParams() throws AuthFailureError {
-	                    Map<String,String> map = new HashMap<String,String>();
-	                    map.put(Config.KEY_TEL,etPhoneNum.getText().toString());
-	                    map.put(Config.KEY_PASSWORD,etPassword.getText().toString());
-	                    return map;
-	                }
 	            };
 	            mRequestQueue.add(stringRequest);
-				
-//				new RegisterConnection(Config.SERVER_URL+"Users/loginNew", "POST", new RegisterConnection.SuccessCallBack() {
-//					
-//					@Override
-//					public void onSuccess(String uid, String result) {
-//						//缓存用户uid并跳转到个性化界面
-//						Config.cacheUserUid(getApplicationContext(), uid);
-//						Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
-//						startActivity(new Intent(AtyLogin.this,AtyPersonalize.class));
-//						setResult(Config.STATUS_FINISH_ACTIVITY);
-//						finish();
-//						return;
-//					}
-//				}, new RegisterConnection.FailCallBack() {
-//					
-//					@Override
-//					public void onFail(String result) {
-//						Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
-//						return;
-//					}
-//				}, Config.KEY_TEL,etPhoneNum.getText().toString(),Config.KEY_PASSWORD,etPassword.getText().toString());
-//				
+
 			}
 		});
 		

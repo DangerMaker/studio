@@ -1,12 +1,5 @@
 package com.example.exerciseapp.aty.sliding;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +11,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseapp.BaseActivity;
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.adapter.GradeReportListAdapter;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -25,13 +22,17 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.BaseActivity;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
-import com.example.exerciseapp.adapter.GradeReportListAdapter;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.message.PushAgent;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class AtyGradeReport extends BaseActivity {
 	private TextView tvGameTitleGradeReport;
@@ -39,8 +40,6 @@ public class AtyGradeReport extends BaseActivity {
 	private LinkedList<JSONObject> list = new LinkedList<JSONObject>();
 	private GradeReportListAdapter mAdapter;
 	private String gameName = null;
-	private String time = null;
-	private String gid = null;
 	private RequestQueue mRequestQueue;
 	private static IWXAPI api;
 	private Toolbar toolbar;
@@ -58,7 +57,6 @@ public class AtyGradeReport extends BaseActivity {
 		initView();
 		setTitleBar();
 
-//		tvTimeGradeReport.setText(time);
 		getInfo();
 		mAdapter = new GradeReportListAdapter(this, list);
 		listView.setAdapter(mAdapter);
@@ -133,7 +131,6 @@ public class AtyGradeReport extends BaseActivity {
 	}
 	private void initView(){
 		tvGameTitleGradeReport = (TextView) findViewById(R.id.tvGameTitleGradeReport);
-//		tvTimeGradeReport = (TextView) findViewById(R.id.tvTimeGradeReport);
 		listView = (ListView) findViewById(R.id.listViewGradeReport);
 	}
 }

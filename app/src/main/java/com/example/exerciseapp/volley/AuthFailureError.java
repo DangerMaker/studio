@@ -18,9 +18,6 @@ package com.example.exerciseapp.volley;
 
 import android.content.Intent;
 
-import com.example.exerciseapp.volley.NetworkResponse;
-import com.example.exerciseapp.volley.VolleyError;
-
 /**
  * Error indicating that there was an authentication failure when performing a Request.
  */

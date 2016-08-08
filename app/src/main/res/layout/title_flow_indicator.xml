@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
      Copyright (C) 2008 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +20,7 @@
     android:layout_marginLeft="-3dip"
     android:layout_marginRight="-3dip"
     android:layout_weight="1"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tab_title"
@@ -45,8 +44,7 @@
         android:gravity="center"
         android:textSize="12sp"
         android:textColor="@color/common_white"
-        android:visibility="gone" >
-    </TextView>
+        android:visibility="gone"></TextView>
 
     <ImageView
         android:id="@+id/tab_title_tips"

@@ -10,11 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.exerciseapp.R;
-import com.example.exerciseapp.model.Member;
 import com.example.exerciseapp.model.Rank;
 import com.facebook.drawee.view.SimpleDraweeView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +25,7 @@ public class MemberRankListAdapter extends BaseAdapter {
     List<Rank> collection;
     Context context;
     OnListClick listClick;
+
     public MemberRankListAdapter(Context context, OnListClick listClick) {
         this.context = context;
         collection = new ArrayList<>();
@@ -35,7 +33,7 @@ public class MemberRankListAdapter extends BaseAdapter {
         this.listClick = listClick;
     }
 
-    public interface OnListClick{
+    public interface OnListClick {
         void click(Rank rank);
     }
 
@@ -54,18 +52,18 @@ public class MemberRankListAdapter extends BaseAdapter {
         return position;
     }
 
-    public void addItems(List<Rank> list){
+    public void addItems(List<Rank> list) {
         collection.addAll(list);
         notifyDataSetChanged();
     }
 
-    public void updateItems(List<Rank> list){
+    public void updateItems(List<Rank> list) {
         collection.clear();
         collection.addAll(list);
         notifyDataSetChanged();
     }
 
-    public void clear(){
+    public void clear() {
         collection.clear();
     }
 
@@ -73,17 +71,17 @@ public class MemberRankListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final Rank rank = collection.get(position);
         ViewHolder holder = null;
-        if(convertView == null){
-            convertView = layoutInflater.inflate(R.layout.item_rank,null);
+        if (convertView == null) {
+            convertView = layoutInflater.inflate(R.layout.item_rank, null);
             holder = new ViewHolder();
-            holder.rank_img = (SimpleDraweeView)convertView.findViewById(R.id.item_some_img);
-            holder.rank_position = (TextView)convertView.findViewById(R.id.item_rank_position);
-            holder.rank_username = (TextView)convertView.findViewById(R.id.item_some_name);
-            holder.rank_score = (TextView)convertView.findViewById(R.id.item_some_score);
-            holder.relativeLayout = (RelativeLayout)convertView.findViewById(R.id.item_root);
+            holder.rank_img = (SimpleDraweeView) convertView.findViewById(R.id.item_some_img);
+            holder.rank_position = (TextView) convertView.findViewById(R.id.item_rank_position);
+            holder.rank_username = (TextView) convertView.findViewById(R.id.item_some_name);
+            holder.rank_score = (TextView) convertView.findViewById(R.id.item_some_score);
+            holder.relativeLayout = (RelativeLayout) convertView.findViewById(R.id.item_root);
             convertView.setTag(holder);
-        }else {
-            holder = (ViewHolder)convertView.getTag();
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
         holder.rank_img.setImageURI(Uri.parse(rank.getAvatar()));

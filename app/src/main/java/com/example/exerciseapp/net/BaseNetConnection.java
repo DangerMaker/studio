@@ -1,5 +1,9 @@
 package com.example.exerciseapp.net;
 
+import android.os.AsyncTask;
+
+import com.example.exerciseapp.Config;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -8,10 +12,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import android.os.AsyncTask;
-
-import com.example.exerciseapp.Config;
 
 public class BaseNetConnection {
 	

@@ -3,7 +3,6 @@ package com.example.exerciseapp.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -15,7 +14,6 @@ import com.example.exerciseapp.model.GroupList;
 import com.example.exerciseapp.model.SingleGroup;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
-import com.ta.utdid2.android.utils.SystemUtils;
 
 import butterknife.Bind;
 import butterknife.OnEditorAction;
@@ -26,7 +24,7 @@ import retrofit.client.Response;
 /**
  * Created by lyjq on 2016/4/7.
  */
-public class SearchFragment extends BaseFragment implements GroupListAdapter.OnListClick{
+public class SearchFragment extends BaseFragment implements GroupListAdapter.OnListClick {
 
     @Bind(R.id.fragment_search_list)
     ListView listView;
@@ -43,7 +41,7 @@ public class SearchFragment extends BaseFragment implements GroupListAdapter.OnL
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        adapter = new GroupListAdapter(getActivity(),this);
+        adapter = new GroupListAdapter(getActivity(), this);
         listView.setAdapter(adapter);
     }
 
@@ -55,7 +53,6 @@ public class SearchFragment extends BaseFragment implements GroupListAdapter.OnL
     @OnEditorAction(R.id.fragment_search_edit)
     protected boolean onEditorAction(int actionID) {
         if (actionID == EditorInfo.IME_ACTION_SEARCH) {
-            Log.e("des", "fsfd");
             onClickSend();
         }
         return true;
@@ -65,20 +62,20 @@ public class SearchFragment extends BaseFragment implements GroupListAdapter.OnL
         loadFind();
     }
 
-    private void loadFind(){
+    private void loadFind() {
         String find = editText.getText().toString();
-        if(TextUtils.isEmpty(find)){
+        if (TextUtils.isEmpty(find)) {
             return;
         }
 
         adapter.clear();
-        RestAdapterUtils.getTeamAPI().getGroupFind(find,new Callback<GroupList>() {
+        RestAdapterUtils.getTeamAPI().getGroupFind(find, new Callback<GroupList>() {
             @Override
             public void success(GroupList allGroup, Response response) {
                 if (allGroup != null && allGroup.getResult() == 1) {
                     if (allGroup.getData() != null) {
-                        if(allGroup.getData().size() == 0){
-                            ScreenUtils.show_msg(getActivity(),"搜索结果为空");
+                        if (allGroup.getData().size() == 0) {
+                            ScreenUtils.show_msg(getActivity(), "搜索结果为空");
                         }
                         for (int i = 0; i < allGroup.getData().size(); i++) {
                             SingleGroup singleGroup = allGroup.getData().get(i);
@@ -86,8 +83,8 @@ public class SearchFragment extends BaseFragment implements GroupListAdapter.OnL
                             allGroup.getData().set(i, singleGroup);
                         }
                         adapter.addItems(allGroup.getData());
-                    }else{
-                        ScreenUtils.show_msg(getActivity(),"搜索结果为空");
+                    } else {
+                        ScreenUtils.show_msg(getActivity(), "搜索结果为空");
                     }
 
                 }

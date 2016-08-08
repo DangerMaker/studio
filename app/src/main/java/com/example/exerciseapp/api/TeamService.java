@@ -11,13 +11,10 @@ import com.example.exerciseapp.model.GroupData;
 import com.example.exerciseapp.model.GroupDetail;
 import com.example.exerciseapp.model.GroupList;
 import com.example.exerciseapp.model.OrganizeList;
-import com.example.exerciseapp.model.OrganizeName;
-import com.example.exerciseapp.model.SingleGroup;
 import com.example.exerciseapp.model.UpTeamAvatar;
-import com.squareup.okhttp.Call;
+import com.example.exerciseapp.model.UploadInteraction;
 
 import retrofit.Callback;
-import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
@@ -39,6 +36,8 @@ public interface TeamService {
                     @Field("group_intro") String group_intro,
                     @Field("group_tag_id") String group_tag_id,
                     @Field("action") String create_group,
+                    @Field("token") String token,
+                    @Field("version") String version,
                     Callback<CreateSuc> callback);
 
     /**
@@ -53,6 +52,8 @@ public interface TeamService {
     void inviteFriends(@Field("id") String id,
                        @Field("tel") String tel,
                        @Field("action") String invite_friends,
+                       @Field("token") String token,
+                       @Field("version") String version,
                        Callback<ErrorMsg> callback);
 
     /**
@@ -70,6 +71,9 @@ public interface TeamService {
     @GET("/py/invite")
     void passInvite(@Query("id") String id,
                     @Query("action") String pass_invite,
+                    @Query("token") String token,
+                    @Query("version") String version,
+                    @Query("uid") String uid,
                     Callback<ErrorMsg> callback);
 
     /**
@@ -79,6 +83,9 @@ public interface TeamService {
     @GET("/py/invite")
     void refuseInvite(@Query("id") String id,
                       @Query("action") String refuse_invite,
+                      @Query("token") String token,
+                      @Query("version") String version,
+                      @Query("uid") String uid,
                       Callback<ErrorMsg> callback);
 
     /**
@@ -120,6 +127,9 @@ public interface TeamService {
                         @Field("new_groupname") String new_groupname,
                         @Field("param") String param,
                         @Field("action") String change_param,
+                        @Query("token") String token,
+                        @Query("version") String version,
+                        @Query("uid") String uid,
                         Callback<ErrorMsg> callback);
 
     @FormUrlEncoded
@@ -128,11 +138,24 @@ public interface TeamService {
                        @Field("new_group_intro") String new_group_intro,
                        @Field("param") String param,
                        @Field("action") String change_param,
+                       @Query("token") String token,
+                       @Query("version") String version,
+                       @Query("uid") String uid,
                        Callback<ErrorMsg> callback);
 
     @Multipart
     @POST("/index.php/Api/Users/updateHeaderNew")
     void uploadAvatar(@Part("myAvatar") TypedFile avatar, @Part("uid") String uid, Callback<UpTeamAvatar> callback);
+
+    @Multipart
+    @POST("/index.php/Api/Users/uploadPostPic")
+    void uploadPicture(@Part("postPic") TypedFile avatar, Callback<UploadInteraction> callback);
+
+    @Multipart
+    @POST("/index.php/Api/Users/uploadCirBack")
+    void uploadbgPicture(@Part("pic") TypedFile avatar, @Part("token") String token,
+                         @Part("version") String version,
+                         @Part("uid") String uid, Callback<ErrorMsg> callback);
 
     @Multipart
     @POST("/index.php/Api/Users/updateGroupAvatarAnd")
@@ -153,12 +176,16 @@ public interface TeamService {
     void breakGroup(@Query("id") int id,
                     @Query("uid") String uid,
                     @Query("action") String break_group,
+                    @Query("token") String token,
+                    @Query("version") String version,
                     Callback<ErrorMsg> callback);
 
     @GET("/py/group")
     void exitGroup(@Query("id") int id,
                    @Query("uid") String uid,
                    @Query("action") String exit_group,
+                   @Query("token") String token,
+                   @Query("version") String version,
                    Callback<ErrorMsg> callback);
 
     /**
@@ -167,12 +194,18 @@ public interface TeamService {
      * @param callback
      */
     @GET("/py/group?action=get_group_list")
-    void getGroupList(Callback<GroupList> callback);
+    void getGroupList(@Query("action") String get_group_list,
+                      Callback<GroupList> callback);
 
     @GET("/py/group?action=get_group_find")
     void getGroupFind(@Query("find_name") String find_name,
                       Callback<GroupList> callback);
 
+    @GET("/py/group?action=get_group_list")
+    void getGrouplists(@Query("action") String get_group_list,
+                       @Query("page") int page,
+                       @Query("version") String version,
+                       Callback<GroupList> callback);
     @GET("/py/apply")
     void passApply(@Query("id") String id,
                    @Query("action") String pass_apply,
@@ -200,6 +233,8 @@ public interface TeamService {
                        @Query("eusername") String eusername,
                        @Query("org_name") String org_name,
                        @Query("uid") String uid,
+                       @Query("token") String token,
+                       @Query("version") String version,
                        Callback<CreateSuc> callback);
 
     @GET("/py/attend?action=group_attend")
@@ -211,6 +246,8 @@ public interface TeamService {
                    @Query("leader_name") String leader_name,
                    @Query("leader_email") String leader_email,
                    @Query("org_name") String org_name,
+                   @Query("token") String token,
+                   @Query("version") String version,
                    Callback<CreateSuc> callback);
 
     @GET("/py/org?action=get_org")

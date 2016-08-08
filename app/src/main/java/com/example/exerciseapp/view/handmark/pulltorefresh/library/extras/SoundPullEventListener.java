@@ -15,8 +15,6 @@
  *******************************************************************************/
 package com.example.exerciseapp.view.handmark.pulltorefresh.library.extras;
 
-import java.util.HashMap;
-
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.view.View;
@@ -24,6 +22,8 @@ import android.view.View;
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshBase.State;
+
+import java.util.HashMap;
 
 public class SoundPullEventListener<V extends View> implements PullToRefreshBase.OnPullEventListener<V> {
 

@@ -16,9 +16,6 @@
 
 package com.example.exerciseapp.volley;
 
-import com.example.exerciseapp.volley.NetworkResponse;
-import com.example.exerciseapp.volley.VolleyError;
-
 /**
  * Indicates that the error responded with an error response.
  */

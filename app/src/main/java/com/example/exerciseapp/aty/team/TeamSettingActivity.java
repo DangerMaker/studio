@@ -10,18 +10,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.model.ErrorMsg;
-import com.example.exerciseapp.model.GroupDetail;
 import com.example.exerciseapp.model.GroupInstance;
 import com.example.exerciseapp.model.UpTeamAvatar;
-import com.example.exerciseapp.myutils.SelectPopupWindow;
 import com.example.exerciseapp.myutils.UploadImageUtils;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
@@ -31,7 +29,6 @@ import java.io.File;
 import java.io.IOException;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -71,10 +68,12 @@ public class TeamSettingActivity extends BackBaseActivity {
     private String name;
     private String des;
     private String avatar;
-
+    String token = MyApplication.getInstance().getToken();
+    String uid = MyApplication.getInstance().getUid();
+    String version = "3.0";
     String type;
 
-    public static Intent getTeamSettingIntent(Context context,String type) {
+    public static Intent getTeamSettingIntent(Context context, String type) {
         Intent intent = new Intent(context, TeamSettingActivity.class);
         intent.putExtra("type", type);
         return intent;
@@ -106,12 +105,12 @@ public class TeamSettingActivity extends BackBaseActivity {
 
         intent = getIntent();
         type = intent.getStringExtra("type");
-        if(type.equals("group_info_return")){
+        if (type.equals("group_info_return")) {
             teamSettingName.setClickable(false);
             teamSettingDes.setClickable(false);
             alterImg.setClickable(false);
             teamSettingDisappear.setText("退出团队");
-        }else{
+        } else {
             teamSettingDisappear.setText("解散团队");
         }
 //        teamId = intent.getIntExtra("teamId", -1);
@@ -119,7 +118,7 @@ public class TeamSettingActivity extends BackBaseActivity {
 //        des = intent.getStringExtra("des");
     }
 
-    @OnClick({R.id.team_setting_name, R.id.team_setting_des, R.id.team_setting_invate, R.id.team_setting_disappear,R.id.team_setting_manager})
+    @OnClick({R.id.team_setting_name, R.id.team_setting_des, R.id.team_setting_invate, R.id.team_setting_disappear, R.id.team_setting_manager})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.team_setting_name:
@@ -132,16 +131,16 @@ public class TeamSettingActivity extends BackBaseActivity {
                 startActivity(AddMemberActivity.getAddMemberIntent(this, teamId));
                 break;
             case R.id.team_setting_disappear:
-                if(type.equals("group_info_return")) {
+                if (type.equals("group_info_return")) {
                     exitGroup();
-                }else{
+                } else {
                     breakGroup();
                 }
                 break;
             case R.id.team_setting_manager:
-                if(type.equals("group_info_return")) {
+                if (type.equals("group_info_return")) {
                     startActivity(CheckMembersActivity.getCheckMembersIntent(this, teamId));
-                }else{
+                } else {
                     startActivity(CheckMembersActivity.getManagerMembersIntent(this, teamId));
                 }
                 break;
@@ -175,7 +174,7 @@ public class TeamSettingActivity extends BackBaseActivity {
     }
 
     private void breakGroup() {
-        RestAdapterUtils.getTeamAPI().breakGroup(teamId, getUid(), "break_group", new Callback<ErrorMsg>() {
+        RestAdapterUtils.getTeamAPI().breakGroup(teamId, getUid(), "break_group", token, version, new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {
                 System.out.println("解散成功");
@@ -197,7 +196,7 @@ public class TeamSettingActivity extends BackBaseActivity {
     }
 
     private void exitGroup() {
-        RestAdapterUtils.getTeamAPI().exitGroup(teamId, getUid(), "exit_group", new Callback<ErrorMsg>() {
+        RestAdapterUtils.getTeamAPI().exitGroup(teamId, getUid(), "exit_group", token, version, new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {
                 System.out.println("退出成功");
@@ -295,8 +294,8 @@ public class TeamSettingActivity extends BackBaseActivity {
         }
     }
 
-    public void submitUserIcon(File file){
-        TypedFile typedFile = new TypedFile("application/octet-stream",file);
+    public void submitUserIcon(File file) {
+        TypedFile typedFile = new TypedFile("application/octet-stream", file);
         RestAdapterUtils.getTeamAPI().uploadTeamAvatar(typedFile, teamId + "", new Callback<UpTeamAvatar>() {
             @Override
             public void success(UpTeamAvatar upTeamAvatar, Response response) {
@@ -312,8 +311,6 @@ public class TeamSettingActivity extends BackBaseActivity {
 //                    if (userService != null) userService.updateAccountAvatar(avatar);
                 } else {
                     // 上传 异常
-                    Log.e("____aaaaaaaa", "_____111111");
-                    Log.e("____aaaaaaaa", response.getUrl());
                     ScreenUtils.show_msg(TeamSettingActivity.this, "上传头像失败!");
                 }
                 closeDialog();
@@ -322,8 +319,6 @@ public class TeamSettingActivity extends BackBaseActivity {
             @Override
             public void failure(RetrofitError error) {
                 closeDialog();
-                Log.e("____aaaaaaaa", "2222222222");
-                Log.e("____aaaaaaaa", error.getMessage());
                 ScreenUtils.show_msg(TeamSettingActivity.this, "上传头像失败!");
             }
         });

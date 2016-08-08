@@ -16,16 +16,16 @@
 
 package com.example.exerciseapp.volley.toolbox;
 
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+
 import com.example.exerciseapp.volley.DefaultRetryPolicy;
 import com.example.exerciseapp.volley.NetworkResponse;
 import com.example.exerciseapp.volley.ParseError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyLog;
-
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.BitmapFactory;
 
 /**
  * A canned request for getting an image at a given URL and calling

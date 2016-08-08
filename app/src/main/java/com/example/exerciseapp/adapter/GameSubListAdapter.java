@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.model.GameModel;
-import com.example.exerciseapp.model.OrganizeName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,8 +75,8 @@ public class GameSubListAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.item_oragnize, null);
             holder = new ViewHolder();
             holder.item_group_name = (TextView) convertView.findViewById(R.id.item_name);
-            holder.relativeLayout = (RelativeLayout)convertView.findViewById(R.id.item_root);
-            holder.item_select =  (ImageView) convertView.findViewById(R.id.img);
+            holder.relativeLayout = (RelativeLayout) convertView.findViewById(R.id.item_root);
+            holder.item_select = (ImageView) convertView.findViewById(R.id.img);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

@@ -8,7 +8,6 @@ import android.widget.ListView;
 import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.adapter.GroupListAdapter;
-import com.example.exerciseapp.adapter.SelectMemberAdapter;
 import com.example.exerciseapp.model.AllGroup;
 import com.example.exerciseapp.model.SingleGroup;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
@@ -25,7 +24,7 @@ import retrofit.client.Response;
  * User: lyjq(1752095474)
  * Date: 2016-04-23
  */
-public class SelectTeamActivity extends BackBaseActivity implements GroupListAdapter.OnListClick{
+public class SelectTeamActivity extends BackBaseActivity implements GroupListAdapter.OnListClick {
 
     @Bind(R.id.pull_to_refresh_team)
     PullToRefreshListView listView;
@@ -33,6 +32,7 @@ public class SelectTeamActivity extends BackBaseActivity implements GroupListAda
     String uid;
     String eid;
     GroupListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,14 +120,14 @@ public class SelectTeamActivity extends BackBaseActivity implements GroupListAda
 
     @Override
     public void click(SingleGroup group) {
-        startActivityForResult(SelectMemberActivity.getManagerMembersIntent(this,group.getId(),eid),25);
+        startActivityForResult(SelectMemberActivity.getManagerMembersIntent(this, group.getId(), eid), 25);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == 28){
-            setResult(29,data);
+        if (resultCode == 28) {
+            setResult(29, data);
             finish();
         }
     }

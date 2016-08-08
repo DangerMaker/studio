@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
 import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.R;
-import com.example.exerciseapp.aty.sliding.AtySlidingHome;
+import com.example.exerciseapp.TabMainActivity;
 
 /**
  * Created by Cherie_No.47 on 2016/4/4 17:55.
@@ -16,11 +17,13 @@ import com.example.exerciseapp.aty.sliding.AtySlidingHome;
 public class AtyAdvertisement extends BaseActivity {
     private ImageView backgroundImage;
     private Animation animation;
-
+    public String bind_layer_show;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad);
+        Intent intent = getIntent();
+        bind_layer_show = intent.getStringExtra("bind_layer_show");
         initView();
     }
 
@@ -46,7 +49,8 @@ public class AtyAdvertisement extends BaseActivity {
 
     public void next() {
         Intent intent = new Intent();
-        intent.setClass(AtyAdvertisement.this, AtySlidingHome.class);
+        intent.putExtra("bind_layer_show", "" + bind_layer_show);
+        intent.setClass(AtyAdvertisement.this, TabMainActivity.class);
         startActivity(intent);
         finish();
     }

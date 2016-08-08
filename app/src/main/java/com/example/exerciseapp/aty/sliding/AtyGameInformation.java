@@ -1,22 +1,7 @@
 package com.example.exerciseapp.aty.sliding;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,20 +10,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.Toolbar.OnMenuItemClickListener;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -46,15 +23,20 @@ import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.MyApplication;
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.login.AtyWelcome;
 import com.example.exerciseapp.aty.team.ApplyAllActivity;
+import com.example.exerciseapp.myutils.HintDialog;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -62,12 +44,6 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.BaseActivity;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
-import com.example.exerciseapp.R.color;
-import com.example.exerciseapp.aty.sliding.AtyAssocOrClubInformation.MyTask;
-import com.squareup.picasso.Picasso;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
@@ -75,19 +51,24 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.message.PushAgent;
 
-import butterknife.Bind;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class AtyGameInformation extends BaseActivity {
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class AtyGameInformation extends Activity {
     private String gameId = null;
     private String gameH5Url = null;
     private String gameStat = null;
     private String agreement = null;
-    @Bind(R.id.game_info_ht5)
-    WebView webView;
-
-    private JSONObject jsonObj = null;
+    public WebView webView;
     private String gameName = null;
-    private String time = null;
     private Button btnIWannaJoin; // 我要报名按钮
     private PopupWindow popTitleMenu;
     private View layoutTitle;
@@ -96,10 +77,12 @@ public class AtyGameInformation extends BaseActivity {
     private RequestQueue mRequestQueue;
     private static IWXAPI api;
     private ProgressDialog progressDialog;
-    private Toolbar toolbar;
-    private TextView pageTitle;
-    private Drawable arrowUp;
-    private Drawable arrowDown;
+    private RelativeLayout toolbar;
+
+    public ImageView arrowdown;
+    public ImageView arrowup;
+    public ImageView wxshare;
+    public TextView toolbar_text;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -134,53 +117,54 @@ public class AtyGameInformation extends BaseActivity {
                 @SuppressWarnings("deprecation")
                 @Override
                 public void onClick(View v) {
-                    progressDialog = new ProgressDialog(AtyGameInformation.this);
-                    progressDialog.setCanceledOnTouchOutside(false);
-                    progressDialog.show();
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                            Config.SERVER_URL + "Game/getEventNew", new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String s) {
-                            try {
-                                JSONObject jsonObject = new JSONObject(s);
-                                if (jsonObject.getInt("result") == 1) {
+                    if ("0".equals(MyApplication.getInstance().getUid())) {
+                        hintLogin();
+                    } else {
+                        progressDialog = new ProgressDialog(AtyGameInformation.this);
+                        progressDialog.setCanceledOnTouchOutside(false);
+                        progressDialog.show();
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                                Config.SERVER_URL + "Game/getEventNew", new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String s) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(s);
+                                    if (jsonObject.getInt("result") == 1) {
+                                        progressDialog.dismiss();
+                                        Intent intent = new Intent(AtyGameInformation.this, ApplyAllActivity.class);
+                                        intent.putExtra(Config.KEY_GAME_ID, gameId);
+                                        intent.putExtra(Config.KEY_GAME_NAME, gameName);
+                                        intent.putExtra("agreement", agreement);
+                                        intent.putExtra("entryInfor", jsonObject.getJSONObject("data").toString());
+                                        startActivity(intent);
+                                    } else {
+                                        progressDialog.dismiss();
+                                    }
+
+                                } catch (JSONException e) {
                                     progressDialog.dismiss();
-                                    Intent intent = new Intent(AtyGameInformation.this, ApplyAllActivity.class);
-//                                    Intent intent = new Intent(AtyGameInformation.this, AtyEntryForm.class);
-                                    intent.putExtra(Config.KEY_GAME_ID, gameId);
-                                    intent.putExtra(Config.KEY_GAME_NAME, gameName);
-                                    intent.putExtra("agreement",agreement);
-                                    intent.putExtra("entryInfor", jsonObject.getJSONObject("data").toString());
-                                    startActivity(intent);
-                                } else {
-                                    progressDialog.dismiss();
+                                    e.printStackTrace();
                                 }
-
-                            } catch (JSONException e) {
-                                progressDialog.dismiss();
-                                e.printStackTrace();
                             }
-                        }
-                    }, new Response.ErrorListener() {
+                        }, new Response.ErrorListener() {
 
-                        @Override
-                        public void onErrorResponse(VolleyError volleyError) {
-                            progressDialog.dismiss();
-                            Toast.makeText(AtyGameInformation.this, Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
-                        }
-                    }) {
+                            @Override
+                            public void onErrorResponse(VolleyError volleyError) {
+                                progressDialog.dismiss();
+                                Toast.makeText(AtyGameInformation.this, Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
+                            }
+                        }) {
 
-                        @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String, String> map = new HashMap<String, String>();
-                            map.put(Config.KEY_UID, Config.getCachedUserUid(getApplicationContext()));
-                            Log.e("uid",Config.getCachedUserUid(getApplicationContext()));
-                            map.put(Config.KEY_GAME_ID, gameId);
-                            Log.e("gameId",gameId);
-                            return map;
-                        }
-                    };
-                    mRequestQueue.add(stringRequest);
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String, String> map = new HashMap<String, String>();
+                                map.put(Config.KEY_UID, Config.getCachedUserUid(getApplicationContext()));
+                                map.put(Config.KEY_GAME_ID, gameId);
+                                return map;
+                            }
+                        };
+                        mRequestQueue.add(stringRequest);
+                    }
                 }
             });
         }
@@ -194,13 +178,14 @@ public class AtyGameInformation extends BaseActivity {
                 btnIWannaJoin.setText("报名结束");
             }
         }
-        setTitleBar();
+        initview();
         getInfo();
     }
 
     private void getInfo() {
+        webView = (WebView) findViewById(R.id.game_info_ht5);
+
         webView.loadUrl(gameH5Url);
-        //重新设置websettings
         WebSettings s = webView.getSettings();
         s.setBuiltInZoomControls(true);
         s.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
@@ -215,64 +200,76 @@ public class AtyGameInformation extends BaseActivity {
         // enable Web Storage: localStorage, sessionStorage
         s.setDomStorageEnabled(true);
         webView.requestFocus();
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
-        });
+        webView.setWebViewClient(new myWebViewClient());
     }
 
+    class myWebViewClient extends WebViewClient {
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_toolbar_items, menu);
-        return true;
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            // TODO Auto-generated method stub
+            super.onPageFinished(view, url);
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            // TODO Auto-generated method stub
+            super.onPageStarted(view, url, favicon);
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            // TODO Auto-generated method stub
+            view.loadUrl(url);
+            return true;
+        }
     }
 
-    private void setTitleBar() {
-        arrowUp = ContextCompat.getDrawable(AtyGameInformation.this.getBaseContext(), R.drawable.arrowup);
-        arrowUp.setBounds(0, 0, 32, 32);
-        arrowDown = ContextCompat.getDrawable(AtyGameInformation.this.getBaseContext(), R.drawable.arrowdown);
-        arrowDown.setBounds(0, 0, 32, 32);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar_withpopwin);
-        pageTitle = (TextView) findViewById(R.id.toolbar_withpopwin_text);
-        toolbar.setPadding(0, getDimensionMiss(), 0, 0);
-        toolbar.setTitle("");
-        pageTitle.setText("赛事活动信息");
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.backbtn);
-        pageTitle.setCompoundDrawables(null, null, arrowDown, null);
-
-        toolbar.setNavigationOnClickListener(new OnClickListener() {
+    private void initview() {
+        ImageView mygoback = (ImageView) findViewById(R.id.goback);
+        toolbar = (RelativeLayout) findViewById(R.id.toolbar);
+        arrowdown = (ImageView) findViewById(R.id.arrowdown);
+        arrowup = (ImageView) findViewById(R.id.arrowup);
+        wxshare = (ImageView) findViewById(R.id.wxshare);
+        toolbar_text = (TextView) findViewById(R.id.toolbar_text);
+        mygoback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AtyGameInformation.this.finish();
+                if (webView.canGoBack()) {
+                    if (webView.getUrl().equals(gameH5Url)) {
+                        AtyGameInformation.this.finish();
+                    } else {
+                        webView.goBack();
+                    }
+                } else {
+                    AtyGameInformation.this.finish();
+                }
             }
         });
-        toolbar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                showPopupWindow();
-                return false;
-            }
-        });
-        pageTitle.setOnClickListener(new OnClickListener() {
+        arrowdown.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                arrowdown.setVisibility(View.GONE);
+                arrowup.setVisibility(View.VISIBLE);
                 showPopMenu();
+
             }
         });
+        wxshare.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupWindow();
+            }
+        });
+
     }
 
     private void showPopMenu() {
         if (popTitleMenu != null && popTitleMenu.isShowing()) {
-            pageTitle.setCompoundDrawables(null, null, arrowDown, null);
+            arrowdown.setVisibility(View.VISIBLE);
+            arrowup.setVisibility(View.GONE);
             popTitleMenu.dismiss();
         } else {
-            pageTitle.setCompoundDrawables(null, null, arrowUp, null);
             layoutTitle = getLayoutInflater().inflate(R.layout.game_information_title_menu_list, null);
             lvMenuListTitle = (ListView) layoutTitle.findViewById(R.id.titleMenuListGameInformation);
             SimpleAdapter listAdapter = new SimpleAdapter(AtyGameInformation.this, listMenuTitle,
@@ -280,14 +277,10 @@ public class AtyGameInformation extends BaseActivity {
                     new int[]{R.id.titleMenuItemGameInformation});
             lvMenuListTitle.setAdapter(listAdapter);
 
-            // 点击listview中item的处理
             lvMenuListTitle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @Override
                 public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                    // String strItem = listMenuTitle.get(arg2).get(
-                    // "item");
-                    // tvTitle.setText(strItem);
                     Intent intent;
                     switch (arg2) {
                         case 0:
@@ -306,16 +299,21 @@ public class AtyGameInformation extends BaseActivity {
                             startActivity(intent);
                             break;
                         default:
+                            arrowdown.setVisibility(View.VISIBLE);
+                            arrowup.setVisibility(View.GONE);
+                            popTitleMenu.dismiss();
                             break;
                     }
                     if (popTitleMenu != null && popTitleMenu.isShowing()) {
-                        pageTitle.setCompoundDrawables(null, null, arrowDown, null);
+
+                        arrowdown.setVisibility(View.VISIBLE);
+                        arrowup.setVisibility(View.GONE);
                         popTitleMenu.dismiss();
                     }
                 }
             });
 
-            popTitleMenu = new PopupWindow(layoutTitle, pageTitle.getWidth(),
+            popTitleMenu = new PopupWindow(layoutTitle, toolbar_text.getWidth(),
                     LayoutParams.WRAP_CONTENT);
             ColorDrawable cd = new ColorDrawable(0x000000);
             popTitleMenu.setBackgroundDrawable(cd);
@@ -327,16 +325,19 @@ public class AtyGameInformation extends BaseActivity {
             popTitleMenu.setFocusable(true); // 获取焦点
             // 设置popupwindow的位置
             int topBarHeight = toolbar.getBottom();
-            popTitleMenu.showAsDropDown(pageTitle, 0,
-                    (topBarHeight - pageTitle.getHeight()) / 2);
+            popTitleMenu.showAsDropDown(toolbar_text, 0,
+                    (topBarHeight - toolbar_text.getHeight()) / 2);
 
             popTitleMenu.setTouchInterceptor(new View.OnTouchListener() {
 
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     // 如果点击了popupwindow的外部，popupwindow也会消失
-                    pageTitle.setCompoundDrawables(null, null, arrowDown, null);
+                    arrowdown.setVisibility(View.VISIBLE);
+                    arrowup.setVisibility(View.GONE);
+
                     if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+
                         popTitleMenu.dismiss();
                         return true;
                     }
@@ -379,31 +380,20 @@ public class AtyGameInformation extends BaseActivity {
      * @param webPageUrl  需要跳转的链接
      * @param title       分享标题
      * @param description 分享内容
-     * @param bitmap    图片地址
+     * @param bitmap      图片地址
      * @param flag        分享到朋友还是朋友圈的flag
      */
 
     public void wechatShare(String webPageUrl, String title, String description, Bitmap bitmap, int flag)
-            throws MalformedURLException, IOException {
+            throws IOException {
         // api.openWXApp();
         WXWebpageObject webpage = new WXWebpageObject();
         webpage.webpageUrl = webPageUrl;
         WXMediaMessage msg = new WXMediaMessage(webpage);
         msg.title = title;
         msg.description = description;
-        // bmp = BitmapFactory.decodeStream(new URL(imageUrl).openStream());
-        // Bitmap bitmap = null;
-        // try {
-        // //加载一个网络图片
-        // InputStream is = new URL(imageUrl).openStream();
-        // bitmap = BitmapFactory.decodeStream(is);
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // }
+
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bitmap, 150, 150, true);
-        // Bitmap thumb =
-        // BitmapFactory.decodeResource(AtyGameInformation.this.getResources(),
-        // R.drawable.addphoto);
         msg.setThumbImage(thumbBmp);
         thumbBmp.recycle();
 
@@ -437,10 +427,6 @@ public class AtyGameInformation extends BaseActivity {
                                 JSONObject jsonObject = new JSONObject(s);
                                 if (jsonObject.getString("result").equals("1")) {
                                     JSONObject json = jsonObject.getJSONObject("data");
-                                    // wechatShare(json.getString("url"),
-                                    // json.getString("title"),
-                                    // json.getString("content"),
-                                    // json.getString("image"), 0);
                                     json.put("flag", 1);
                                     new MyTask().execute(json);
                                 } else {
@@ -484,10 +470,6 @@ public class AtyGameInformation extends BaseActivity {
                                 JSONObject jsonObject = new JSONObject(s);
                                 if (jsonObject.getString("result").equals("1")) {
                                     JSONObject json = jsonObject.getJSONObject("data");
-                                    // wechatShare(json.getString("url"),
-                                    // json.getString("title"),
-                                    // json.getString("content"),
-                                    // json.getString("image"), 0);
                                     json.put("flag", 0);
                                     new MyTask().execute(json);
                                 } else {
@@ -526,5 +508,40 @@ public class AtyGameInformation extends BaseActivity {
         // getSystemService(Context.WINDOW_SERVICE);
         popupWindow.showAtLocation(findViewById(R.id.game_info_content), Gravity.RIGHT | Gravity.BOTTOM, 0, 0);
 
+    }
+
+    public void hintLogin() {
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        final View dialogView = inflater.inflate(R.layout.dialog_show_gotologin, null);
+        final HintDialog dialog = new HintDialog(this, dialogView,
+                R.style.MyDialogStyle);
+        dialog.setCancelable(true);
+        TextView tvHintDialogMessage = (TextView) dialogView
+                .findViewById(R.id.tvHintDialogMessage);
+        TextView btnCancel = (TextView) dialogView
+                .findViewById(R.id.btnHintDialogNo);
+        TextView btnToLogin = (TextView) dialogView
+                .findViewById(R.id.btnHintDialogYes);
+        tvHintDialogMessage.setText(this.getString(
+                R.string.hintLoginMessage));
+        btnCancel.setText(this.getString(R.string.cancel));
+        btnToLogin.setText(this.getString(R.string.toLogin));
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent();
+                intent.setClass(AtyGameInformation.this, AtyWelcome.class);
+                startActivity(intent);
+            }
+        });
+        dialog.show();
     }
 }

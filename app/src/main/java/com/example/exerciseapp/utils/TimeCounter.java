@@ -1,9 +1,9 @@
 package com.example.exerciseapp.utils;
 
+import android.widget.Button;
+
 import java.util.Timer;
 import java.util.TimerTask;
-
-import android.widget.Button;
 
 public class TimeCounter {
 

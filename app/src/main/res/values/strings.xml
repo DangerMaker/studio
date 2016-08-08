@@ -11,14 +11,26 @@
 	<string name="updated_at">上次更新于%1$s前</string>
 	<string name="updated_just_now">刚刚更新</string>
 	<string name="time_error">时间有问题</string>
-	 <string name="pull_to_refresh_pull_label">Pull to refresh…</string>
-    <string name="pull_to_refresh_release_label">Release to refresh…</string>
-    <string name="pull_to_refresh_refreshing_label">Loading…</string>
+    <string name="reget">重新获取</string>
 
+    <string name="hintLoginMessage">您需要登录或注册后才能进行接下来的操作</string>
+    <string name="cancel">取消</string>
+    <string name="toLogin">去登录</string>
+    <string name="getphonecode">获取验证码</string>
+    <string name="pull_to_refresh_pull_label">Pull to refresh…</string>
+    <string name="pull_to_refresh_refreshing_label">Loading…</string>
+    <!-- 下拉刷新 -->
+    <string name="pull_to_refresh_pull_down_label">滑动刷新</string>
+    <string name="pull_to_refresh_release_label">释放刷新</string>
+    <string name="pull_to_refresh_tap_label">点击刷新</string>
     <!-- Just use standard Pull Down String when pulling up. These can be set for languages which require it -->
     <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
     <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
     <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+    <string name="show_from_wx_tip">这个界面用于显示微信向第三方app请求显示的信息</string>
+
+
     <string name="contact_us_content">
           合作：\r\n 
         【线上】\r\n活动推广传播、活动线上报名、活动线上直播、活动参与人员数据管理、活动后期影响传播。\r\n

@@ -31,8 +31,7 @@
                 fresco:placeholderImageScaleType="fitCenter"
                 android:contentDescription="@null"
                 fresco:roundAsCircle="true"
-                fresco:roundBottomRight="true"
-                />
+                fresco:roundBottomRight="true" />
 
 
             <TextView

@@ -1,16 +1,4 @@
-package com.example.exerciseapp.aty.sliding;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Random;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+package com.example.exerciseapp.aty.activityrun;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -27,11 +15,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
-
+import com.example.exerciseapp.BaseActivity;
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.MyApplication;
+import com.example.exerciseapp.R;
 import com.example.exerciseapp.alipay.sdk.pay.PayResult;
 import com.example.exerciseapp.alipay.sdk.pay.SignUtils;
 import com.example.exerciseapp.model.ErrorMsg;
@@ -44,15 +36,28 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.BaseActivity;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
+import com.example.exerciseapp.wxapi.Constants;
+import com.tencent.mm.sdk.modelpay.PayReq;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.message.PushAgent;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 
-public class AtyPay extends BaseActivity {
+public class ActivityPay extends BaseActivity {
 
     public static Activity instance;
     // 商户PID
@@ -90,6 +95,9 @@ public class AtyPay extends BaseActivity {
 
     private ActionBar actionBar;
 
+    private IWXAPI api;
+
+
     private TextView tvGameNameAtyPay;
     private TextView tvGameItemAtyPay;
     private TextView tvPayFeeAtyPay;
@@ -97,6 +105,7 @@ public class AtyPay extends BaseActivity {
     private Intent intent;
     private RequestQueue mRequestQueue;
     private ImageView tvVaildPayAtyPay;
+    private RelativeLayout reWeiXinPayAtyPay;
 
     private Toolbar toolbar;
     private TextView pageTitle;
@@ -114,27 +123,26 @@ public class AtyPay extends BaseActivity {
 
                     // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        Toast.makeText(AtyPay.this, "支付成功",
+                        Toast.makeText(ActivityPay.this, "支付成功",
                                 Toast.LENGTH_SHORT).show();
                         instance.finish();
                     } else {
                         // 判断resultStatus 为非“9000”则代表可能支付失败
                         // “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
                         if (TextUtils.equals(resultStatus, "8000")) {
-                            Toast.makeText(AtyPay.this, "支付结果确认中",
+                            Toast.makeText(ActivityPay.this, "支付结果确认中",
                                     Toast.LENGTH_SHORT).show();
 
                         } else {
                             // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-                            Toast.makeText(AtyPay.this, "支付失败",
+                            Toast.makeText(ActivityPay.this, "支付失败",
                                     Toast.LENGTH_SHORT).show();
-
                         }
                     }
                     break;
                 }
                 case SDK_CHECK_FLAG: {
-                    Toast.makeText(AtyPay.this, "检查结果为：" + msg.obj,
+                    Toast.makeText(ActivityPay.this, "检查结果为：" + msg.obj,
                             Toast.LENGTH_SHORT).show();
                     break;
                 }
@@ -143,7 +151,6 @@ public class AtyPay extends BaseActivity {
             }
         }
 
-        ;
     };
 
     protected void pay() {
@@ -184,7 +191,7 @@ public class AtyPay extends BaseActivity {
                                     @Override
                                     public void run() {
                                         // 构造PayTask 对象
-                                        PayTask alipay = new PayTask(AtyPay.this);
+                                        PayTask alipay = new PayTask(ActivityPay.this);
                                         // 调用支付接口，获取支付结果
                                         String result = alipay.pay(payInfo);
 
@@ -218,13 +225,53 @@ public class AtyPay extends BaseActivity {
                 map.put("id", intent.getStringExtra("id"));
                 map.put("type", intent.getStringExtra("type"));
                 map.put("paytype", paytype);
+
                 return map;
             }
         };
         mRequestQueue.add(stringRequest);
     }
 
-    ;
+    protected void mypay() {
+        String url = "http://101.200.214.68/index.php/Api/Users/payInter?id=" + intent.getStringExtra("id") + "&type="
+                + intent.getStringExtra("type") + "&paytype=" + paytype;
+        MyApplication.getInstance().addmyActivity(instance);
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.GET, url,
+                new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String s) {
+                        try {
+                            JSONObject jsonObj = new JSONObject(s);
+                            if (jsonObj.getInt("result") == 1) {
+                                JSONObject json = jsonObj.getJSONObject("data");
+                                PayReq req = new PayReq();
+                                req.appId = json.getString("appid");
+                                req.partnerId = json.getString("partnerid");
+                                req.prepayId = json.getString("prepayid");
+                                req.nonceStr = json.getString("noncestr");
+                                req.timeStamp = json.getString("timestamp");
+                                req.packageValue = json.getString("package");
+                                req.sign = json.getString("sign");
+                                api = WXAPIFactory.createWXAPI(ActivityPay.this, Constants.APP_ID);
+                                api.sendReq(req);
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+        };
+        mRequestQueue.add(stringRequest);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -238,18 +285,13 @@ public class AtyPay extends BaseActivity {
         tvPayFeeAtyPay = (TextView) findViewById(R.id.tvPayFeeAtyPay);
         tvZhiFuPayAtyPay = (ImageView) findViewById(R.id.tvZhiFuPayAtyPay);
         tvVaildPayAtyPay = (ImageView) findViewById(R.id.tvVaildPayAtyPay);
-
+        reWeiXinPayAtyPay = (RelativeLayout) findViewById(R.id.tvWeiXinPayAtyPay);
         intent = getIntent();
 
         tvGameNameAtyPay.setText(intent.getStringExtra(Config.KEY_GAME_NAME));
         tvGameItemAtyPay.setText("项目：" + intent.getStringExtra(Config.KEY_USER_ATTEND_ENAME));
         tvPayFeeAtyPay.setText("费用：" + intent.getStringExtra("apayfee") + "元人民币");
 
-//		subject = intent.getStringExtra(Config.KEY_GAME_NAME);
-//		body = intent.getStringExtra(Config.KEY_USER_ATTEND_ENAME);
-//		total_fee = intent.getStringExtra(Config.KEY_USER_ATTEND_EPAYFEE);
-//		out_trade_no = intent.getStringExtra("out_trade_no");
-//		notify_url = intent.getStringExtra("notify_url");
         tvZhiFuPayAtyPay.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -263,6 +305,18 @@ public class AtyPay extends BaseActivity {
                 pay();
             }
         });
+        reWeiXinPayAtyPay.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (TextUtils.isEmpty(PARTNER) || TextUtils.isEmpty(RSA_PRIVATE)
+                        || TextUtils.isEmpty(SELLER)) {
+                    return;
+                }
+                //微信支付
+                paytype = "1";
+                mypay();
+            }
+        });
         tvVaildPayAtyPay.setOnClickListener(new OnClickListener() {
             @Override
 
@@ -274,9 +328,6 @@ public class AtyPay extends BaseActivity {
 
         });
 
-//		actionBar = getActionBar();
-//        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-//        actionBar.setCustomView(R.layout.actionbar_pay);//自定义ActionBar布局
         setTitleBar();
 
     }
@@ -293,7 +344,7 @@ public class AtyPay extends BaseActivity {
         toolbar.setNavigationOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                AtyPay.this.finish();
+                ActivityPay.this.finish();
             }
         });
     }
@@ -395,7 +446,7 @@ public class AtyPay extends BaseActivity {
 
     private void showEditDialog() {
 
-        LayoutInflater factory = LayoutInflater.from(AtyPay.this);
+        LayoutInflater factory = LayoutInflater.from(ActivityPay.this);
 
         final View textEntryView = factory.inflate(R.layout.pay_vaild, null);
 
@@ -447,7 +498,7 @@ public class AtyPay extends BaseActivity {
 
     void vaild(String code) {
 
-        RestAdapterUtils.getTeamAPI().checkValid(intent.getStringExtra("id"), Config.getCachedUserUid(AtyPay.this.getApplicationContext()),
+        RestAdapterUtils.getTeamAPI().checkValid(intent.getStringExtra("id"), Config.getCachedUserUid(ActivityPay.this.getApplicationContext()),
 
                 code, new Callback<ErrorMsg>() {
 
@@ -457,13 +508,13 @@ public class AtyPay extends BaseActivity {
 
                         if (errorMsg != null && errorMsg.getResult() == 1) {
 
-                            ScreenUtils.show_msg(AtyPay.this, "支付成功");
+                            ScreenUtils.show_msg(ActivityPay.this, "支付成功");
 
                             finish();
 
                         } else if (errorMsg != null && errorMsg.getDesc() != null) {
 
-                            ScreenUtils.show_msg(AtyPay.this, errorMsg.getDesc());
+                            ScreenUtils.show_msg(ActivityPay.this, errorMsg.getDesc());
 
                         }
 

@@ -2,11 +2,7 @@ package com.example.exerciseapp.aty.login;
 /*
  * 欢迎界面
  */
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
-import pers.medusa.circleindicator.widget.CircleIndicator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -21,45 +17,74 @@ import android.widget.ImageView;
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.utils.LocationPro;
+import com.example.exerciseapp.wxapi.Constants;
+import com.tencent.mm.sdk.modelmsg.SendAuth;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.message.PushAgent;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import pers.medusa.circleindicator.widget.CircleIndicator;
 
 public class AtyWelcome extends Activity {
 
-	 private List<View> viewList;
-	 private ViewPager viewPager;
-	 private CircleIndicator circleIndicator;
-	 public static Activity instance;
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		PushAgent.getInstance(this).onAppStart();
-		setContentView(R.layout.aty_welcome);
-		instance = this;
-		initData();
-		viewPager = (ViewPager) findViewById(R.id.viewPagerWelcome);
-		viewPager.setAdapter(pagerAdapter);
-		circleIndicator = (CircleIndicator) findViewById(R.id.indicatorWelcome);
-		circleIndicator.setViewPager(viewPager);
-		//现有用户按钮监听事件
-		findViewById(R.id.btnCurrentUser).setOnClickListener(new OnClickListener() {
+    private List<View> viewList;
+    private ViewPager viewPager;
+    private CircleIndicator circleIndicator;
+    public static Activity instance;
+    IWXAPI api;
+    private SendAuth.Req req;
+    ImageView wxLogin;
 
-			@Override
-			public void onClick(View arg0) {
-				startActivityForResult(new Intent(AtyWelcome.this, AtyLogin.class),0);
-			}
-		});
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        PushAgent.getInstance(this).onAppStart();
+        setContentView(R.layout.aty_welcome);
+        instance = this;
+        initData();
+        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, true);
+        api.registerApp(Constants.APP_ID);
+        viewPager = (ViewPager) findViewById(R.id.viewPagerWelcome);
+        viewPager.setAdapter(pagerAdapter);
+        circleIndicator = (CircleIndicator) findViewById(R.id.indicatorWelcome);
+        circleIndicator.setViewPager(viewPager);
+        wxLogin = (ImageView) findViewById(R.id.btnWxLogin);
+        wxLogin.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // send oauth request
+                req = new SendAuth.Req();
+                req.scope = "snsapi_userinfo";
+                req.state = "myapp_for_readygo";
+                api.sendReq(req);
+            }
+        });
+        //现有用户按钮监听事件
+        findViewById(R.id.btnCurrentUser).setOnClickListener(new OnClickListener() {
 
-		//立即加入按钮监听事件
-		findViewById(R.id.btnJoinNow).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                startActivityForResult(new Intent(AtyWelcome.this, AtyLogin.class), 0);
+            }
+        });
 
-			@Override
-			public void onClick(View arg0) {
-				startActivityForResult(new Intent(AtyWelcome.this, AtyRegisterHomePage.class),0);
-			}
-		});
-        LocationPro.getInstances(AtyWelcome.this).getLocal() ;
-	}
-	@SuppressLint("NewApi") private void initData(){
+        //立即加入按钮监听事件
+        findViewById(R.id.btnJoinNow).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                startActivityForResult(new Intent(AtyWelcome.this, AtyRegisterHomePage.class), 0);
+            }
+        });
+        LocationPro.getInstances(AtyWelcome.this).getLocal();
+    }
+
+    @SuppressLint("NewApi")
+    private void initData() {
         viewList = new ArrayList<View>();
         Random random = new Random();
 
@@ -75,9 +100,7 @@ public class AtyWelcome extends Activity {
         ImageView view4 = new ImageView(getApplicationContext());
         view4.setImageDrawable(getResources().getDrawable(R.drawable.welcome4));
         viewList.add(view4);
-//            View view = new View(this);
-//            view.setBackgroundColor(0xff000000| random.nextInt(0x00ffffff));
-}
+    }
 
     PagerAdapter pagerAdapter = new PagerAdapter() {
 
@@ -120,20 +143,13 @@ public class AtyWelcome extends Activity {
         }
 
     };
-//	@Override
-//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//		if(Config.STATUS_FINISH_ACTIVITY == 1){
-//			finish();
-//			Config.STATUS_FINISH_ACTIVITY = 0;
-//		}
-//	}
 
-	 @Override
-	protected void onResume() {
-		super.onResume();
-		if(Config.STATUS_FINISH_ACTIVITY == 1){
-			finish();
-			Config.STATUS_FINISH_ACTIVITY = 0;
-		}
-	}
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Config.STATUS_FINISH_ACTIVITY == 1) {
+            finish();
+            Config.STATUS_FINISH_ACTIVITY = 0;
+        }
+    }
 }

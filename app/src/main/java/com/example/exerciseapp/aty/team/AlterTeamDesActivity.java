@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
+import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.model.GroupInstance;
@@ -29,7 +29,9 @@ public class AlterTeamDesActivity extends BackBaseActivity {
     String text;
     String teamId;
     String des;
-
+    String token = MyApplication.getInstance().getToken();
+    String uid = MyApplication.getInstance().getUid();
+    String version = "3.0";
     @Bind(R.id.team_alter_des)
     EditText teamAlterDes;
 
@@ -54,7 +56,6 @@ public class AlterTeamDesActivity extends BackBaseActivity {
     @OnEditorAction(R.id.team_alter_des)
     protected boolean onEditorAction(int actionID) {
         if (actionID == EditorInfo.IME_ACTION_SEND) {
-            Log.e("des", "fsfd");
             onClickSend();
         }
         return true;
@@ -62,12 +63,12 @@ public class AlterTeamDesActivity extends BackBaseActivity {
 
     private void onClickSend() {
         text = teamAlterDes.getText().toString();
-        if(TextUtils.isEmpty(text)){
+        if (TextUtils.isEmpty(text)) {
             System.out.println("输入内容不能为空");
             return;
         }
 
-        RestAdapterUtils.getTeamAPI().changeTeamDes(teamId, text, "group_intro", "change_param", new Callback<ErrorMsg>() {
+        RestAdapterUtils.getTeamAPI().changeTeamDes(teamId, text, "group_intro", "change_param", token, version, uid, new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {
                 System.out.println("修改成功");

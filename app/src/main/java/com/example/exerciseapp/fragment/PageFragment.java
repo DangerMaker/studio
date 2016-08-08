@@ -9,43 +9,44 @@ import android.view.ViewGroup;
 
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
-import com.example.exerciseapp.aty.sliding.AtySlidingHome;
 
 public class PageFragment extends Fragment {
 
-	private int pageTag = Config.PAGE_TAG_START_RUNNING;
+    private int pageTag = Config.PAGE_TAG_START_RUNNING;
 
-	public PageFragment() {
-		this(Config.PAGE_TAG_START_RUNNING);
-	}
+    public PageFragment() {
+        this(Config.PAGE_TAG_START_RUNNING);
+    }
 
-	public PageFragment(int pageTag) {
-		this.pageTag = pageTag;
-		setRetainInstance(true);
-	}
+    @SuppressLint("ValidFragment")
+    public PageFragment(int pageTag) {
+        this.pageTag = pageTag;
+        setRetainInstance(true);
+    }
 
-	
-	@SuppressLint("InflateParams") @Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		if (savedInstanceState != null)
-			pageTag = savedInstanceState.getInt("pageTag");
-		switch (pageTag) {
-		case Config.PAGE_TAG_COMPETETION_ACTIVIES:
-			return inflater.inflate(R.layout.page_competetion_activities, null);
-		case Config.PAGE_TAG_START_RUNNING:
-			return inflater.inflate(R.layout.page_start_running, null);
+
+    @SuppressLint("InflateParams")
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        if (savedInstanceState != null)
+            pageTag = savedInstanceState.getInt("pageTag");
+        switch (pageTag) {
+            case Config.PAGE_TAG_COMPETETION_ACTIVIES:
+                return inflater.inflate(R.layout.page_competetion_activities, null);
+            case Config.PAGE_TAG_START_RUNNING:
+                return inflater.inflate(R.layout.page_start_running, null);
 //		case Config.PAGE_TAG_MY_LIST:
 //			return inflater.inflate(R.layout.page_my_list, null);
-		case Config.PAGE_TAG_CLUB:
-			return inflater.inflate(R.layout.page_club, null);
-		case Config.PAGE_TAG_PERSONAL_CENTER:
-			return inflater.inflate(R.layout.page_personal_center, null);
-		case Config.PAGE_TAG_NEWS:
-			return inflater.inflate(R.layout.page_news, null);
-		case Config.PAGE_TAG_CONFIG:
-			return inflater.inflate(R.layout.page_config, null);
-			
+            case Config.PAGE_TAG_CLUB:
+                return inflater.inflate(R.layout.page_club, null);
+            case Config.PAGE_TAG_PERSONAL_CENTER:
+                return inflater.inflate(R.layout.page_personal_center, null);
+            case Config.PAGE_TAG_NEWS:
+                return inflater.inflate(R.layout.page_news, null);
+            case Config.PAGE_TAG_CONFIG:
+                return inflater.inflate(R.layout.page_config, null);
+
 //		case Config.PAGE_TAG_ABOUT_US:
 //			return inflater.inflate(R.layout.page_about_us, null);
 //		case Config.PAGE_TAG_EXERCISE_EQUIPMENT:
@@ -66,20 +67,20 @@ public class PageFragment extends Fragment {
 //				}
 //			});
 //			return view;
-		default:
-			return inflater.inflate(R.layout.page_start_running, null);
-		}
-		
-
-	}
+            default:
+                return inflater.inflate(R.layout.page_start_running, null);
+        }
 
 
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		outState.putInt("pageTag", pageTag);
-	}
-	
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("pageTag", pageTag);
+    }
+
 //	public void switchFragment(Fragment fragment){
 //		if (getActivity() == null)
 //			return;

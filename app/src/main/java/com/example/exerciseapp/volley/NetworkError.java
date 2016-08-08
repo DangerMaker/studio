@@ -16,9 +16,6 @@
 
 package com.example.exerciseapp.volley;
 
-import com.example.exerciseapp.volley.NetworkResponse;
-import com.example.exerciseapp.volley.VolleyError;
-
 /**
  * Indicates that there was a network error when performing a Volley request.
  */

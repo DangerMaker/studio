@@ -3,15 +3,6 @@ package com.example.exerciseapp.aty.sliding;
  * 现场实况界面
  */
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +13,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseapp.BaseActivity;
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.adapter.LocalSceneListAdapter;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -29,13 +24,17 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.BaseActivity;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
-import com.example.exerciseapp.adapter.LocalSceneListAdapter;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.message.PushAgent;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class AtyLocalScene extends BaseActivity {
     private ListView listView;

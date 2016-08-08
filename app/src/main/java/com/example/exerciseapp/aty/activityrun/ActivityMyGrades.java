@@ -1,15 +1,8 @@
-package com.example.exerciseapp.aty.sliding;
+package com.example.exerciseapp.aty.activityrun;
 
 /**
  * 我的成绩页面
  */
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -21,6 +14,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseapp.BaseActivity;
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.adapter.MyGradeAdapter;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -28,15 +25,18 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.BaseActivity;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
-import com.example.exerciseapp.adapter.MyGradeAdapter;
 import com.umeng.message.PushAgent;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 import dmax.dialog.SpotsDialog;
 
-public class AtyMyGrades extends BaseActivity {
+public class ActivityMyGrades extends BaseActivity {
 
     private LinkedList<JSONObject> list = new LinkedList<JSONObject>();
     private MyGradeAdapter mAdapter;
@@ -79,7 +79,7 @@ public class AtyMyGrades extends BaseActivity {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 spotsDialog.dismiss();
-                Toast.makeText(AtyMyGrades.this, Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityMyGrades.this, Config.CONNECTION_ERROR, Toast.LENGTH_SHORT).show();
             }
         }) {
 
@@ -120,7 +120,7 @@ public class AtyMyGrades extends BaseActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AtyMyGrades.this.finish();
+                ActivityMyGrades.this.finish();
             }
         });
     }

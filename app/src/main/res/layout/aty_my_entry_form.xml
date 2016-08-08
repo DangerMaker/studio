@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <include layout="@layout/main_toolbar" />
 
@@ -15,7 +15,6 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
         android:divider="#ffffff"
-        android:dividerHeight="5dp" >
-    </ListView>
+        android:dividerHeight="5dp"></ListView>
 
 </LinearLayout>

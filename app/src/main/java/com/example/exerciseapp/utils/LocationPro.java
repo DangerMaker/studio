@@ -3,7 +3,7 @@ package com.example.exerciseapp.utils;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
-import android.widget.Toast;
+
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.LocationManagerProxy;

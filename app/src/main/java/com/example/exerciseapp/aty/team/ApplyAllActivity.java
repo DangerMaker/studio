@@ -3,6 +3,7 @@ package com.example.exerciseapp.aty.team;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -20,43 +21,48 @@ import com.example.exerciseapp.fragment.ApplyTeamFragment;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
  * User: lyjq(1752095474)
  * Date: 2016-04-20
  */
-public class ApplyAllActivity extends BackBaseActivity {
+public class ApplyAllActivity extends FragmentActivity {
 
-    @Bind(R.id.cursorOneAtyAboutUs)
     ImageView cursorOneAtyAboutUs;
-    @Bind(R.id.cursorTwoAtyAboutUs)
     ImageView cursorTwoAtyAboutUs;
-    @Bind(R.id.tvAssociationTitleAtyAboutUs)
-    TextView t1;
-    @Bind(R.id.tvClubTitleAtyAboutUs)
-    TextView t2;
-
-    @Bind(R.id.vPagerAtyAboutUs)
+    TextView tvAssociationTitleAtyAboutUs;
+    TextView tvClubTitleAtyAboutUs;
     ViewPager mPager;
     ViewPagerAdapter adapter;
-
     private int offset = 0;// 动画图片偏移量
     private int currIndex = 0;// 当前页卡编号
     String gameId;
     String gameName;
     String agreement;
     JSONObject jsonObj;
+    ImageView goback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply);
-        setTitleBar("报名表");
+//        setTitleBar("报名表");
+        cursorTwoAtyAboutUs = (ImageView) findViewById(R.id.cursorTwoAtyAboutUs);
+        cursorOneAtyAboutUs = (ImageView) findViewById(R.id.cursorOneAtyAboutUs);
+        tvAssociationTitleAtyAboutUs = (TextView) findViewById(R.id.tvAssociationTitleAtyAboutUs);
+        tvClubTitleAtyAboutUs = (TextView) findViewById(R.id.tvClubTitleAtyAboutUs);
+        mPager = (ViewPager) findViewById(R.id.vPagerAtyAboutUs);
 
         gameId = getIntent().getStringExtra(Config.KEY_GAME_ID);
         gameName = getIntent().getStringExtra(Config.KEY_GAME_NAME);
         agreement = getIntent().getStringExtra("agreement");
+        goback = (ImageView) findViewById(R.id.goback);
+        goback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         try {
             jsonObj = new JSONObject(getIntent().getStringExtra("entryInfor"));
         } catch (JSONException e1) {
@@ -65,11 +71,9 @@ public class ApplyAllActivity extends BackBaseActivity {
         if (jsonObj == null) {
             return;
         }
-
-
-        cursorTwoAtyAboutUs.setVisibility(View.INVISIBLE);
-        t1.setBackgroundColor(Color.rgb(40, 144, 178));
-        t2.setBackgroundColor(Color.rgb(104, 177, 201));
+        cursorTwoAtyAboutUs.setVisibility(ImageView.INVISIBLE);
+        tvAssociationTitleAtyAboutUs.setBackgroundColor(Color.rgb(40, 144, 178));
+        tvClubTitleAtyAboutUs.setBackgroundColor(Color.rgb(104, 177, 201));
 
         if (mPager == null) return;
 
@@ -80,12 +84,12 @@ public class ApplyAllActivity extends BackBaseActivity {
     }
 
     @OnClick(R.id.tvAssociationTitleAtyAboutUs)
-    public void t1(){
+    public void t1() {
         mPager.setCurrentItem(0);
     }
 
     @OnClick(R.id.tvClubTitleAtyAboutUs)
-    public void t2(){
+    public void t2() {
         mPager.setCurrentItem(1);
     }
 
@@ -102,8 +106,8 @@ public class ApplyAllActivity extends BackBaseActivity {
                     if (!cursorOneAtyAboutUs.isShown()) {
                         cursorOneAtyAboutUs.setVisibility(ImageView.VISIBLE);
                     }
-                    t1.setBackgroundColor(Color.rgb(40, 144, 178));
-                    t2.setBackgroundColor(Color.rgb(104, 177, 201));
+                    tvAssociationTitleAtyAboutUs.setBackgroundColor(Color.rgb(40, 144, 178));
+                    tvClubTitleAtyAboutUs.setBackgroundColor(Color.rgb(104, 177, 201));
                     cursorTwoAtyAboutUs.setVisibility(ImageView.INVISIBLE);
                     if (currIndex == 1) {
                         animation = new TranslateAnimation(one, 0, 0, 0);
@@ -112,8 +116,8 @@ public class ApplyAllActivity extends BackBaseActivity {
                     }
                     break;
                 case 1:
-                    t2.setBackgroundColor(Color.rgb(40, 144, 178));
-                    t1.setBackgroundColor(Color.rgb(104, 177, 201));
+                    tvClubTitleAtyAboutUs.setBackgroundColor(Color.rgb(40, 144, 178));
+                    tvAssociationTitleAtyAboutUs.setBackgroundColor(Color.rgb(104, 177, 201));
                     if (!cursorTwoAtyAboutUs.isShown()) {
                         cursorTwoAtyAboutUs.setVisibility(ImageView.VISIBLE);
                     }
@@ -124,13 +128,7 @@ public class ApplyAllActivity extends BackBaseActivity {
                         animation = new TranslateAnimation(two, one, 0, 0);
                     }
                     break;
-                // case 2:
-                // if (currIndex == 0) {
-                // animation = new TranslateAnimation(offset, two, 0, 0);
-                // } else if (currIndex == 1) {
-                // animation = new TranslateAnimation(one, two, 0, 0);
-                // }
-                // break;
+
             }
             currIndex = arg0;
             animation.setFillAfter(true);// True:图片停在动画结束位置
@@ -158,9 +156,9 @@ public class ApplyAllActivity extends BackBaseActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return ApplyPersonalFragment.newInstance(gameId,gameName,agreement,jsonObj);
+                    return ApplyPersonalFragment.newInstance(gameId, gameName, agreement, jsonObj);
                 default:
-                    return ApplyTeamFragment.newInstance(gameId,gameName,agreement,jsonObj);
+                    return ApplyTeamFragment.newInstance(gameId, gameName, agreement, jsonObj);
             }
 
         }

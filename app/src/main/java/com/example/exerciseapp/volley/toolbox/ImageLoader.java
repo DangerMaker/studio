@@ -26,7 +26,6 @@ import com.example.exerciseapp.volley.RequestQueue;
 import com.example.exerciseapp.volley.Response.ErrorListener;
 import com.example.exerciseapp.volley.Response.Listener;
 import com.example.exerciseapp.volley.VolleyError;
-import com.example.exerciseapp.volley.toolbox.ImageRequest;
 
 import java.util.HashMap;
 import java.util.LinkedList;

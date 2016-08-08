@@ -1,28 +1,18 @@
 package com.example.exerciseapp.adapter;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.net.Uri;
-import android.os.Build;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.exerciseapp.R;
-import com.example.exerciseapp.model.SingleGroup;
 import com.example.exerciseapp.model.TagModel;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +23,7 @@ public class TagGridAdapter extends BaseAdapter {
     private List<TagModel> list;
     private Context context;
 
-    public TagGridAdapter(Context context,List<TagModel> list) {
+    public TagGridAdapter(Context context, List<TagModel> list) {
         this.list = list;
         this.context = context;
     }

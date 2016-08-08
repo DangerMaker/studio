@@ -45,6 +45,7 @@ public class GameSelectActivity extends BackBaseActivity implements GameSubListA
 
     String temp1;
     String temp2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +82,7 @@ public class GameSelectActivity extends BackBaseActivity implements GameSubListA
                 } else {
                     Intent intent = new Intent();
                     intent.putExtra("game_detail_id", model.getId());
-                    intent.putExtra("game_detail_name",model.getName());
+                    intent.putExtra("game_detail_name", model.getName());
                     intent.putExtra("game_fee", model.getEpayfee());
                     setResult(21, intent);
                     finish();
@@ -107,7 +108,7 @@ public class GameSelectActivity extends BackBaseActivity implements GameSubListA
                 } else {
                     Intent intent = new Intent();
                     intent.putExtra("game_detail_id", model.getId());
-                    intent.putExtra("game_detail_name",temp1 + "-" +model.getName());
+                    intent.putExtra("game_detail_name", temp1 + "-" + model.getName());
                     intent.putExtra("game_fee", model.getEpayfee());
                     setResult(21, intent);
                     finish();
@@ -121,7 +122,7 @@ public class GameSelectActivity extends BackBaseActivity implements GameSubListA
                 GameModel model = list3.get(i);
                 Intent intent = new Intent();
                 intent.putExtra("game_detail_id", model.getId());
-                intent.putExtra("game_detail_name",temp1 + "-" + temp2 +"-" + model.getName());
+                intent.putExtra("game_detail_name", temp1 + "-" + temp2 + "-" + model.getName());
                 intent.putExtra("game_fee", model.getEpayfee());
                 setResult(21, intent);
                 finish();

@@ -18,14 +18,14 @@ package com.example.exerciseapp.view.nineoldandroids.animation;
 
 import android.util.Log;
 
+import com.example.exerciseapp.view.nineoldandroids.util.FloatProperty;
+import com.example.exerciseapp.view.nineoldandroids.util.IntProperty;
+import com.example.exerciseapp.view.nineoldandroids.util.Property;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-import com.example.exerciseapp.view.nineoldandroids.util.FloatProperty;
-import com.example.exerciseapp.view.nineoldandroids.util.IntProperty;
-import com.example.exerciseapp.view.nineoldandroids.util.Property;
 
 /**
  * This class holds information about a property and the values that that property

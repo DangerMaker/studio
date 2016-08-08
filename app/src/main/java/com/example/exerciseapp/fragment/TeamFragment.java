@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.format.DateUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
@@ -20,6 +18,9 @@ import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import retrofit.Callback;
@@ -99,12 +100,17 @@ public class TeamFragment extends BaseFragment implements GroupListAdapter.OnLis
                     }
 
                     if (allGroup.getData().getInvite_list_return() != null) {
+                        List<SingleGroup> mySingleGroup = new ArrayList<SingleGroup>();
                         for (int i = 0; i < allGroup.getData().getInvite_list_return().size(); i++) {
                             SingleGroup singleGroup = allGroup.getData().getInvite_list_return().get(i);
-                            singleGroup.setType("invite_list_return");
-                            allGroup.getData().getInvite_list_return().set(i, singleGroup);
+                            if (singleGroup.getAvatar() != null) {
+                                singleGroup.setType("invite_list_return");
+                                allGroup.getData().getInvite_list_return().set(i, singleGroup);
+                                mySingleGroup.add(singleGroup);
+                            }
                         }
-                        adapter.addItems(allGroup.getData().getInvite_list_return());
+                        if (mySingleGroup != null)
+                            adapter.addItems(mySingleGroup);
                     }
 
                     if (allGroup.getData().getApply_list_return() != null) {
@@ -148,8 +154,8 @@ public class TeamFragment extends BaseFragment implements GroupListAdapter.OnLis
         }
     }
 
-    private void dialog(final SingleGroup singleGroup){
-        AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());  //先得到构造器
+    private void dialog(final SingleGroup singleGroup) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());  //先得到构造器
         builder.setTitle("提示"); //设置标题
         builder.setMessage("是否接收申请？"); //设置内容
         builder.setIcon(R.drawable.run_icon);//设置图标，图片id即可
@@ -172,8 +178,8 @@ public class TeamFragment extends BaseFragment implements GroupListAdapter.OnLis
         builder.create().show();
     }
 
-    private void agree(SingleGroup group){
-        RestAdapterUtils.getTeamAPI().passApply(group.getId()+"", "pass_apply", new Callback<ErrorMsg>() {
+    private void agree(SingleGroup group) {
+        RestAdapterUtils.getTeamAPI().passApply(group.getId() + "", "pass_apply", new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {
                 if (errorMsg != null && errorMsg.getResult() == 1) {
@@ -188,7 +194,8 @@ public class TeamFragment extends BaseFragment implements GroupListAdapter.OnLis
             }
         });
     }
-    private void disagree(SingleGroup group){
+
+    private void disagree(SingleGroup group) {
         RestAdapterUtils.getTeamAPI().refuseApply(group.getId() + "", "refuse_apply", new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {

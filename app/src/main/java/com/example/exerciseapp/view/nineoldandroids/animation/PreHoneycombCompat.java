@@ -1,6 +1,7 @@
 package com.example.exerciseapp.view.nineoldandroids.animation;
 
 import android.view.View;
+
 import com.example.exerciseapp.view.nineoldandroids.util.FloatProperty;
 import com.example.exerciseapp.view.nineoldandroids.util.IntProperty;
 import com.example.exerciseapp.view.nineoldandroids.util.Property;

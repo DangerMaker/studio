@@ -2,29 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" 
+    android:orientation="horizontal"
     android:background="@drawable/actionbarbg"
     android:gravity="center_vertical">
-    <ImageView android:id="@+id/ivBackBtnConfig"
+
+    <ImageView
+        android:id="@+id/ivBackBtnConfig"
         android:layout_width="60dp"
         android:layout_height="20dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/backbtn"
-        />
-    <TextView android:layout_width="0dp"
+        android:src="@drawable/backbtn" />
+
+    <TextView
+        android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="fill_parent"
         android:gravity="center"
         android:text="设置"
         android:textSize="25dp"
-        android:textColor="#ffffff"
-        />
-    <ImageView android:id="@+id/ivMessageBtnConfig"
+        android:textColor="#ffffff" />
+
+    <ImageView
+        android:id="@+id/ivMessageBtnConfig"
         android:layout_width="60dp"
         android:layout_height="20dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/messagebtn"
-        />
-    
+        android:src="@drawable/messagebtn" />
+
 
 </LinearLayout>

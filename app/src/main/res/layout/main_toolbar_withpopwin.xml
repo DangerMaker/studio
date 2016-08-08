@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar_withpopwin"
     android:layout_width="match_parent"
@@ -10,7 +9,7 @@
     android:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
     android:minHeight="?attr/actionBarSize"
     tools:ignore="NewApi">
-    
+
     <TextView
         android:id="@+id/toolbar_withpopwin_text"
         android:layout_width="wrap_content"
@@ -23,5 +22,5 @@
         android:drawableRight="@drawable/arrowdown"
         android:clickable="true"
         android:gravity="center" />
-    
+
 </android.support.v7.widget.Toolbar>

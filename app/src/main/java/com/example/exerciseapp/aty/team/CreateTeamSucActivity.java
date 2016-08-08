@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.exerciseapp.R;
-import com.example.exerciseapp.model.CreateSuc;
 import com.example.exerciseapp.model.GroupData;
-import com.example.exerciseapp.model.SingleGroup;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -61,7 +59,7 @@ public class CreateTeamSucActivity extends BackBaseActivity {
                     teamName.setText(data.getData().getGroup_name());
                     // TODO: 2016/3/27
                 } else {
-                    ScreenUtils.show_msg(CreateTeamSucActivity.this,data.getDesc());
+                    ScreenUtils.show_msg(CreateTeamSucActivity.this, data.getDesc());
                 }
             }
 

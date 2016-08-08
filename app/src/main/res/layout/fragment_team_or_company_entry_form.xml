@@ -2,39 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
+    android:orientation="vertical"
     android:background="#e0e3ee">
-    <TextView android:id="@+id/tvGameNameTeamEntryForm"
+
+    <TextView
+        android:id="@+id/tvGameNameTeamEntryForm"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:gravity="center"
         android:textSize="20dp"
         android:background="@color/BtnGrey"
         android:textColor="#ffffff"
-        android:text="赛事名字"/>
-    <LinearLayout 
+        android:text="赛事名字" />
+
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:background="#ffffff"
-        >
-        <TextView android:layout_width="wrap_content"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:gravity="center_vertical|right"
             android:layout_marginLeft="20dp"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp"
-            ></TextView>
-        <TextView android:layout_width="100dp"
+            android:textSize="20dp"></TextView>
+
+        <TextView
+            android:layout_width="100dp"
             android:layout_height="fill_parent"
             android:text="团队/单位名称："
             android:gravity="center_vertical|left"
             android:singleLine="true"
             android:textSize="20dp"
-            android:textColor="#6f6d6d"
-            />
-        <TextView android:id="@+id/tvTeamNameTeamEntryForm"
+            android:textColor="#6f6d6d" />
+
+        <TextView
+            android:id="@+id/tvTeamNameTeamEntryForm"
             android:layout_marginLeft="20dp"
             android:layout_width="0dp"
             android:textSize="20dp"
@@ -43,36 +49,40 @@
             android:gravity="center_vertical"
             android:text=""
             android:textColor="#6f6d6d"
-            android:paddingLeft="10dp"
-            />
+            android:paddingLeft="10dp" />
     </LinearLayout>
-     <View android:layout_height="1px" 
-			    android:background="#000000" 
-			    android:layout_width="fill_parent"
-			    />
-     <LinearLayout 
+
+    <View
+        android:layout_height="1px"
+        android:background="#000000"
+        android:layout_width="fill_parent" />
+
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:background="#ffffff"
-        >
-         <TextView android:layout_width="wrap_content"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:gravity="center_vertical|right"
             android:layout_marginLeft="20dp"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp"
-            ></TextView>
-        <TextView android:layout_width="100dp"
+            android:textSize="20dp"></TextView>
+
+        <TextView
+            android:layout_width="100dp"
             android:layout_height="fill_parent"
             android:text="类型/组别"
             android:gravity="center_vertical|left"
             android:singleLine="true"
             android:textSize="20dp"
-            android:textColor="#6f6d6d"
-            />
-        <TextView android:id="@+id/tvGameItemTeamEntryForm"
+            android:textColor="#6f6d6d" />
+
+        <TextView
+            android:id="@+id/tvGameItemTeamEntryForm"
             android:layout_marginLeft="20dp"
             android:layout_width="0dp"
             android:textSize="20dp"
@@ -81,37 +91,40 @@
             android:gravity="center_vertical"
             android:text="选择"
             android:textColor="#6f6d6d"
-            android:paddingLeft="10dp"
-            />
+            android:paddingLeft="10dp" />
     </LinearLayout>
-     <View android:layout_height="1px" 
-			    android:background="#000000" 
-			    android:layout_width="fill_parent"
-			    />
-     
-      <LinearLayout 
+
+    <View
+        android:layout_height="1px"
+        android:background="#000000"
+        android:layout_width="fill_parent" />
+
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:background="#ffffff"
-        >
-        <TextView android:layout_width="wrap_content"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:gravity="center_vertical|right"
             android:layout_marginLeft="20dp"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp"
-            ></TextView>
-        <TextView android:layout_width="100dp"
+            android:textSize="20dp"></TextView>
+
+        <TextView
+            android:layout_width="100dp"
             android:layout_height="fill_parent"
             android:text="领队"
             android:gravity="center_vertical|left"
             android:singleLine="true"
             android:textSize="20dp"
-            android:textColor="#6f6d6d"
-            />
-        <EditText android:id="@+id/etLeaderNameTeamEntryForm"
+            android:textColor="#6f6d6d" />
+
+        <EditText
+            android:id="@+id/etLeaderNameTeamEntryForm"
             android:layout_width="0dp"
             android:layout_marginLeft="20dp"
             android:textSize="20dp"
@@ -120,36 +133,40 @@
             android:gravity="center_vertical"
             android:text=""
             android:textColor="#6f6d6d"
-            android:singleLine="true"
-            />
+            android:singleLine="true" />
     </LinearLayout>
-     <View android:layout_height="1px" 
-			    android:background="#000000" 
-			    android:layout_width="fill_parent"
-			    />
-      <LinearLayout 
-		android:background="#ffffff"
+
+    <View
+        android:layout_height="1px"
+        android:background="#000000"
+        android:layout_width="fill_parent" />
+
+    <LinearLayout
+        android:background="#ffffff"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        >
-        <TextView android:layout_width="wrap_content"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:gravity="center_vertical|right"
             android:layout_marginLeft="20dp"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp"
-            ></TextView>
-        <TextView android:layout_width="100dp"
+            android:textSize="20dp"></TextView>
+
+        <TextView
+            android:layout_width="100dp"
             android:layout_height="fill_parent"
             android:text="联系电话"
             android:gravity="center_vertical|left"
             android:singleLine="true"
             android:textSize="20dp"
-            android:textColor="#6f6d6d"
-            />
-        <TextView android:id="@+id/tvLeaderPhoneTeamEntryForm"
+            android:textColor="#6f6d6d" />
+
+        <TextView
+            android:id="@+id/tvLeaderPhoneTeamEntryForm"
             android:layout_width="0dp"
             android:layout_marginLeft="20dp"
             android:textSize="20dp"
@@ -158,47 +175,56 @@
             android:gravity="center_vertical"
             android:text=""
             android:textColor="#6f6d6d"
-            android:paddingLeft="10dp"
-            />
+            android:paddingLeft="10dp" />
     </LinearLayout>
-     <View android:layout_height="1px" 
-			    android:background="#000000" 
-			    android:layout_width="fill_parent"
-			    />
-    <View android:layout_height="1px" 
-			    android:background="#000000" 
-			    android:layout_width="fill_parent"
-			    />
-     <LinearLayout
-         
-         android:orientation="horizontal"
-         android:layout_width="fill_parent"
-         android:layout_height="0dp"
-         android:layout_weight="1"
-         android:background="@color/BtnGrey">
-     <CheckBox android:id="@+id/cbAgreeRulesTeamEntryForm"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginLeft="20dp"
-         android:layout_marginTop="20dp"
-         android:button="@android:drawable/checkbox_on_background"
-         android:checked="true"/>
-        <TextView android:text="已阅读并同意规程"
-         android:id="@+id/tvRules"
-         android:layout_marginTop="20dp"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         />
-     <Button android:id="@+id/btnSubmitImages"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="20dp"
-         android:layout_marginLeft="60dp"
-         android:text="图片上传"
-         android:background="@drawable/shape_btn_blue_radius_10dip"/>
-     
+
+    <View
+        android:layout_height="1px"
+        android:background="#000000"
+        android:layout_width="fill_parent" />
+
+    <View
+        android:layout_height="1px"
+        android:background="#000000"
+        android:layout_width="fill_parent" />
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/BtnGrey">
+
+        <CheckBox
+            android:id="@+id/cbAgreeRulesTeamEntryForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:button="@android:drawable/checkbox_on_background"
+            android:checked="true" />
+
+        <TextView
+            android:text="已阅读并同意规程"
+            android:id="@+id/tvRules"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnSubmitImages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="60dp"
+            android:text="图片上传"
+            android:background="@drawable/shape_btn_blue_radius_10dip" />
+
     </LinearLayout>
-    <Button android:id="@+id/btnCommitTeamEntry"
+
+    <Button
+        android:id="@+id/btnCommitTeamEntry"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="提  交"
@@ -207,7 +233,6 @@
         android:layout_gravity="bottom"
         android:layout_margin="0dp"
         android:background="#1f83ac"
-        android:textColor="#ffffff"
-        />
+        android:textColor="#ffffff" />
 
 </LinearLayout>

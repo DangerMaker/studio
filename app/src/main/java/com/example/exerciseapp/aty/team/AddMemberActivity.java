@@ -8,13 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -27,6 +27,9 @@ public class AddMemberActivity extends BackBaseActivity {
 
     String text;
     String teamId;
+    String token = MyApplication.getInstance().getToken();
+    String uid = MyApplication.getInstance().getUid();
+    String version = "3.0";
     @Bind(R.id.team_add_member)
     EditText teamAddMember;
     @Bind(R.id.team_add_btn)
@@ -44,33 +47,33 @@ public class AddMemberActivity extends BackBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_member);
         setTitleBar("添加成员");
-        teamId = getIntent().getIntExtra("teamId",-1) + "";
+        teamId = getIntent().getIntExtra("teamId", -1) + "";
     }
 
     @OnClick(R.id.team_add_btn)
-    public void teamAddBtn(){
+    public void teamAddBtn() {
         onClickSend();
     }
 
     @OnClick(R.id.add_member_submit)
-    public void out(){
+    public void out() {
         finish();
     }
 
     private void onClickSend() {
         text = teamAddMember.getText().toString();
-        if(TextUtils.isEmpty(text)){
+        if (TextUtils.isEmpty(text)) {
             System.out.println("输入内容不能为空");
             return;
         }
 
-        RestAdapterUtils.getTeamAPI().inviteFriends(teamId, text, "invite_friends",new Callback<ErrorMsg>() {
+        RestAdapterUtils.getTeamAPI().inviteFriends(teamId, text, "invite_friends", token, version, new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {
                 System.out.println("添加成功");
                 if (errorMsg != null && errorMsg.getResult() == 1) {
                     ScreenUtils.show_msg(AddMemberActivity.this, errorMsg.getDesc());
-                }else {
+                } else {
                     ScreenUtils.show_msg(AddMemberActivity.this, errorMsg.getDesc());
                 }
                 teamAddMember.setText("");

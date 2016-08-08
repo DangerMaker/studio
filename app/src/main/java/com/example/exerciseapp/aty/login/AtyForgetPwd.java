@@ -1,11 +1,5 @@
 package com.example.exerciseapp.aty.login;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -25,6 +19,9 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.utils.CheckInput;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -32,10 +29,13 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
-import com.example.exerciseapp.utils.CheckInput;
 import com.umeng.message.PushAgent;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AtyForgetPwd extends Activity {
 	private EditText etPhoneNum;
@@ -79,10 +79,6 @@ public class AtyForgetPwd extends Activity {
 					Toast.makeText(getApplicationContext(), "电话号码格式错误", Toast.LENGTH_SHORT).show();
 					return;
 				}
-//				TimeCountUtils timeCountUtil = new TimeCountUtils(AtyForgetPwd.this, 60000, 1000, btnGetCode);
-//				timeCountUtil.start();
-//				btnGetCode.setText("已点击");
-//				controlKeyboardLayout(root, btnCertain);
 				Toast.makeText(getApplicationContext(), "正在发送验证码", Toast.LENGTH_SHORT).show();
 				StringRequest  stringRequest = new StringRequest(
 	                    Request.Method.POST,
@@ -169,7 +165,6 @@ public class AtyForgetPwd extends Activity {
 	                                JSONObject jsonObject = new JSONObject(s);
 	                                if(jsonObject.getString("result").equals("1")){
 	                                	finish();
-//	                                	startActivity(new Intent(AtyForgetPwd.this,AtyLogin.class));
 	                                	Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
 	                                }else{
 	                                	Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();

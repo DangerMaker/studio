@@ -1,21 +1,5 @@
-package com.example.exerciseapp.aty.sliding;
+package com.example.exerciseapp.aty.activityrun;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
-import java.math.BigDecimal;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -34,21 +18,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.AMapUtils;
 import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.MapView;
+import com.amap.api.maps2d.model.BitmapDescriptorFactory;
 import com.amap.api.maps2d.model.LatLng;
+import com.amap.api.maps2d.model.Marker;
+import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.PolylineOptions;
+import com.example.exerciseapp.BaseActivity;
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.TabMainActivity;
 import com.example.exerciseapp.utils.SpeedConvert;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
@@ -58,9 +48,6 @@ import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.HttpClientUploadManager;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.BaseActivity;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
@@ -68,10 +55,21 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.message.PushAgent;
 
-import butterknife.Bind;
-//import com.tencent.mm.sdk.openapi.WXTextObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class AtySaveRunData extends BaseActivity {
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+import butterknife.Bind;
+
+public class ActivitySaveRunData extends BaseActivity {
 
     MapView mMapView;
     AMap mMap;
@@ -81,16 +79,16 @@ public class AtySaveRunData extends BaseActivity {
     int z;
     private RequestQueue mRequestQueue;
     private static IWXAPI api;
-    RelativeLayout relativeshowmap, relativeshowsudu, relativeshowpingjunsudu, relativeshowkaluli, linearshowjuli, linearshowshijian;
+    RelativeLayout relativeshowmap, relativeshowpingjunsudu, relativeshowkaluli, linearshowjuli, linearshowshijian;
     LinearLayout linearshowjulishijian, linearshowsuduhepingjunsudu,
-            linearshowsudu1, linearshowsudu2, linearshowpingjunsudu1, linearshowpingjunsudu2,
+            linearshowpingjunsudu1, linearshowpingjunsudu2,
             linearshowhaibahekaluli, linearshowkaluli1, linearshowkaluli2;
-    TextView textshowjuli, textshowjulidanwei, textshowshijian, textshowshijiandanwei, textshowzuigaosudu,
+    TextView textshowjuli, textshowjulidanwei, textshowshijian, textshowshijiandanwei,
             textshowpingjunsudu, textshowkaluli;
     Button btnsave, btnfangqi;
     EditText edittextbeizhu;
     long shijian;
-    float juli;
+    Double juli;
     int speed;
     float kaluli;
     static String filename_;
@@ -130,21 +128,15 @@ public class AtySaveRunData extends BaseActivity {
         setTitleBar();
         mRequestQueue = Volley.newRequestQueue(this);
         Intent i = getIntent();
-//        BigDecimal b = new BigDecimal(i.getFloatExtra("intentjuli", 0) / 1000.0);//重要 距离
-        juli = i.getFloatExtra("intentjuli",0);
-//		juli=i.getFloatExtra("intentjuli", 0);
-//		 juli=Math.round((i.getFloatExtra("intentjuli", -1)/1000)*100)/100;//Math.round((i.getFloatExtra("intentjuli", -1)/1000)*100))/100
+        juli = i.getDoubleExtra("intentjuli", 0);
         shijian = i.getLongExtra("intentshijian", -1);//重要 时间
-//		int speed;
-//		PolylineOptions pol=i.getParcelableExtra("intentpolyline");
         polyjing = i.getDoubleArrayExtra("intentpolyjing");//重要
         polywei = i.getDoubleArrayExtra("intentpolywei");//重要
         polyalti = i.getDoubleArrayExtra("intentpolyalti");//重要
         sport_type = i.getIntExtra("sport_type", 0);//重要
         max_speed = i.getDoubleExtra("max_speed", 0);//重要
         minSpeed_onAverage = i.getDoubleExtra("minSpeed_onAverage", 0);//重要
-        z = i.getIntExtra("z", -1);
-        PolylineOptions polys = new PolylineOptions();
+        z = polywei.length;
         if (juli == 0) speed = 0;
         else speed = (int) (shijian / juli);
         kaluli = i.getFloatExtra("intentkaluli", -1);
@@ -154,12 +146,13 @@ public class AtySaveRunData extends BaseActivity {
         mMapView.onCreate(savedInstanceState);
         setUpMapIfNeeded();
         init();
-        if (z > 1) {
-            for (int m = 0; m < z; m++) {
-                polys.add(new LatLng(polyjing[m], polywei[m]));
+        new Thread() {
+            @Override
+            public void run() {
+                if (z > 1)
+                    drawmyline();
             }
-            mMap.addPolyline(polys);
-        }
+        }.start();
         relativeshowmap = (RelativeLayout) findViewById(R.id.relativeshowmap);
         linearshowjulishijian = (LinearLayout) findViewById(R.id.linearshowjulishijian);
         linearshowjuli = (RelativeLayout) findViewById(R.id.linearshowjuli);
@@ -180,7 +173,7 @@ public class AtySaveRunData extends BaseActivity {
         edittextbeizhu = (EditText) findViewById(R.id.edittextbeizhu);
         if (minSpeed_onAverage == 0) textshowpingjunsudu.setText("0");
 
-        textshowpingjunsudu.setText((Math.round(SpeedConvert.oriToShow(minSpeed_onAverage)* 100)) / 100 + "");//速度
+        textshowpingjunsudu.setText((Math.round(SpeedConvert.oriToShow(minSpeed_onAverage) * 100)) / 100 + "");//速度
         textshowpingjunsudu.setTypeface(fontFace);
         linearshowpingjunsudu2 = (LinearLayout) findViewById(R.id.linearshowpingjunsudu2);
         linearshowhaibahekaluli = (LinearLayout) findViewById(R.id.linearshowhaibahekaluli);
@@ -190,7 +183,7 @@ public class AtySaveRunData extends BaseActivity {
         textshowkaluli.setText(kaluli + " ");//卡路里
         textshowkaluli.setTypeface(fontFace);
         setUpSportData();
-        textSpeed.setText((Math.round(SpeedConvert.oriToShow(max_speed)* 100)) / 100 + "");
+        textSpeed.setText((Math.round(SpeedConvert.oriToShow(max_speed) * 100)) / 100 + "");
         textSpeed.setTypeface(fontFace);
         linearshowkaluli2 = (LinearLayout) findViewById(R.id.linearshowkaluli2);
         btnsave = (Button) findViewById(R.id.btnsave);
@@ -202,18 +195,14 @@ public class AtySaveRunData extends BaseActivity {
 
             private void initData() {
                 String filePath = "/sdcard/Test/";
-//			    String fileName = "log.txt";            //要改成以时间为名        
                 long time = System.currentTimeMillis();
                 String fileName = time + ".txt";
                 filename_ = fileName;
                 if (z > 1) {
                     for (int m = 0; m < z; m++) {
-//					polys.add(new LatLng(polyjing[m], polywei[m]));
-//					Toast.makeText(getApplicationContext(), "polyjing", Toast.LENGTH_SHORT).show();
-                        writeTxtToFile(polyjing[m] + " " + polywei[m] + polyalti[m] + "\n", filePath, fileName);//写入点数据，包括经度纬度海拔
+                        writeTxtToFile(polyjing[m] + " " + polywei[m] + " " + polyalti[m] + "\n", filePath, fileName);//写入点数据，包括经度纬度海拔
                     }
                 }
-//			    writeTxtToFile("txt content", filePath, fileName);
             }
 
             // 将字符串写入到文本文件中
@@ -274,93 +263,11 @@ public class AtySaveRunData extends BaseActivity {
                     initData();
                 // TODO Auto-generated method stub
                 note = edittextbeizhu.getText().toString();
-                //保存按钮的内容
-
-//				StringRequest  stringRequest = new StringRequest(
-//	                    Request.Method.POST,
-//	                    Config.SERVER_URL+"Users/submitRunData",
-//	                    new Response.Listener<String>() {
-//	 
-//	                        @Override
-//	                        public void onResponse(String s) {
-//	                            try {
-////	                            	progressDialog.dismiss();
-//	                                JSONObject jsonObject = new JSONObject(s);
-//	                                if(jsonObject.getString("result").equals("1")){
-////	                                	Toast.makeText(getApplicationContext(), "上传成功", 2).show();
-//shangchuanyijianDialog dl=new shangchuanyijianDialog(AtySaveRunData.this, "提示", new shangchuanyijianDialog.OnCustomDialogListener() {
-//	                    					
-//	                    					@Override
-//	                    					public void back(String name) {
-//	                    						// TODO Auto-generated method stub
-//	                    						
-//	                    					}
-//	                    				});
-//	                    				dl.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//	                    				dl.show();
-////	                                	new  AlertDialog.Builder(AtySaveRunData.this)    
-////	                    				.setTitle("                          提示" )  
-////	                    				
-////	                    				.setMessage("                     保存完成" )  
-////	                    				.setPositiveButton("确定" ,  new DialogInterface.OnClickListener() {
-////	                    					
-////	                    					@Override
-////	                    					public void onClick(DialogInterface dialog, int which) {
-////	                    						// TODO Auto-generated method stub
-////	                    						Intent i=new Intent(getApplicationContext(),AtySlidingHome.class);
-////	                    						startActivity(i);
-////	                    					}
-////	                    				} )  
-////	                    				.show();
-////	                                	Config.cacheUserUid(getApplicationContext(), jsonObject.getJSONObject("data").getString(Config.KEY_UID));
-////	                                	startActivity(new Intent(AtyLogin.this,AtyPersonalize.class));
-////	                                	Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), 2).show();
-////	                                	Config.STATUS_FINISH_ACTIVITY = 1;
-////	                                	finish();
-//	                                }else{
-//	                                	Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), 2).show();
-//	                                }
-//	                                
-//	                            } catch (JSONException e) {
-////	                            	progressDialog.dismiss();
-//	                                e.printStackTrace();
-//	                            }
-//	                        }
-//	                    },
-//	                    new Response.ErrorListener() {
-//	 
-//	                        @Override
-//	                        public void onErrorResponse(VolleyError volleyError) {
-////	                        	progressDialog.dismiss();
-//	                        	Toast.makeText(getApplicationContext(), "error", 2).show();
-//	                        }
-//	                    }){
-//	 
-//	                @Override
-//	                protected Map<String, String> getParams() throws AuthFailureError {
-//	                    Map<String,String> map = new HashMap<String,String>();
-//	                    map.put(Config.KEY_UID, "1");
-//	                    map.put(Config.KEY_DURATION,Long.toString(shijian));
-//	                    //  (float)(Math.round((3.6*juli/shijian)*100))/100
-//	                    map.put(Config.KEY_AVERAGESPEED,Float.toString((float)(Math.round((3.6*juli*1000/shijian)*100))/100) );
-//	                    map.put(Config.KEY_CALORIE, Integer.toString((int)kaluli));
-//	                    map.put(Config.KEY_DISTANCE, Float.toString(juli));
-//	                    map.put(Config.KEY_REMARK, edittextbeizhu.getText().toString());
-//
-////	                    map.put(Config.KEY_TEL,etPhoneNum.getText().toString());
-////	                    map.put(Config.KEY_PASSWORD,etPassword.getText().toString());
-//	                    return map;
-//	                }
-//	            };
-//	            mRequestQueue.add(stringRequest);
-//				
-
-
                 new AsyncTask<String, Void, String>() {
                     ProgressDialog progressDialog;
 
                     protected void onPreExecute() {
-                        progressDialog = new ProgressDialog(AtySaveRunData.this);
+                        progressDialog = new ProgressDialog(ActivitySaveRunData.this);
                         progressDialog.setCanceledOnTouchOutside(false);
                         progressDialog.setMessage("上传中……");
                         progressDialog.show();
@@ -369,12 +276,11 @@ public class AtySaveRunData extends BaseActivity {
                     @Override
                     protected String doInBackground(String... params) {
                         HashMap<String, String> map = new HashMap<String, String>();
-                        map.put(Config.KEY_UID, Config.getCachedUserUid(AtySaveRunData.this.getApplicationContext()));
+                        map.put(Config.KEY_UID, Config.getCachedUserUid(ActivitySaveRunData.this.getApplicationContext()));
                         map.put(Config.KEY_DURATION, Long.toString(shijian));
-                        //  (float)(Math.round((3.6*juli/shijian)*100))/100
-                        map.put(Config.KEY_AVERAGESPEED, minSpeed_onAverage+"");
+                        map.put(Config.KEY_AVERAGESPEED, minSpeed_onAverage + "");
                         map.put(Config.KEY_CALORIE, Integer.toString((int) kaluli));
-                        map.put(Config.KEY_DISTANCE, Float.toString(juli));
+                        map.put(Config.KEY_DISTANCE, Double.toString(juli));
                         map.put(Config.KEY_REMARK, note);
                         int alit = (int) (polyalti[z - 1] - polyalti[0]);
                         if (alit == 0) {
@@ -400,20 +306,21 @@ public class AtySaveRunData extends BaseActivity {
                                 JSONObject jsonObject = new JSONObject(result);
                                 if (null != jsonObject
                                         && "1".equals(jsonObject.getString("result"))) {// 上传成功
-//									JSONArray jsonArray = jsonObject.getJSONArray("data");
-//									JSONObject json1 = (JSONObject) jsonArray.get(0);
-                                    Toast.makeText(AtySaveRunData.this, "上传成功",
+                                    Toast.makeText(ActivitySaveRunData.this, "上传成功",
                                             Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent();
+                                    intent.setClass(ActivitySaveRunData.this, TabMainActivity.class);
+                                    startActivity(intent);
                                     finish();
-//									Config.cacheUserHwURL(getActivity().getApplicationContext(), jsonObject.getString(Config.KEY_FILE_URL));
                                 }
-                                Toast.makeText(AtySaveRunData.this.getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_LONG).show();
+                                Toast.makeText(ActivitySaveRunData.this.getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_LONG).show();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         } else {
-                            Toast.makeText(AtySaveRunData.this, "上传失败",
+                            Toast.makeText(ActivitySaveRunData.this, "上传失败",
                                     Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 }.execute("");
@@ -425,7 +332,7 @@ public class AtySaveRunData extends BaseActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent i = new Intent(getApplicationContext(), AtySlidingHome.class);
+                Intent i = new Intent(getApplicationContext(), TabMainActivity.class);
                 startActivity(i);
             }
         });
@@ -470,7 +377,7 @@ public class AtySaveRunData extends BaseActivity {
         if (mMap == null) {
             setUpMapIfNeeded();
         }
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(17));
         if (z > 1)
             mMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(polyjing[z - 1], polywei[z - 1])));
     }
@@ -528,7 +435,7 @@ public class AtySaveRunData extends BaseActivity {
         toolbar.setNavigationOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                AtySaveRunData.this.finish();
+                ActivitySaveRunData.this.finish();
             }
         });
         toolbar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -577,22 +484,13 @@ public class AtySaveRunData extends BaseActivity {
      * @param flag        分享到朋友还是朋友圈的flag
      */
 
-    public void wechatShare(String webPageUrl, String title, String description, Bitmap bitmap, int flag) throws MalformedURLException, IOException {
-//		    	api.openWXApp();
+    public void wechatShare(String webPageUrl, String title, String description, Bitmap bitmap, int flag) throws IOException {
         WXWebpageObject webpage = new WXWebpageObject();
         webpage.webpageUrl = webPageUrl;
         WXMediaMessage msg = new WXMediaMessage(webpage);
         msg.title = title;
         msg.description = description;
-        //				bmp = BitmapFactory.decodeStream(new URL(imageUrl).openStream());
-//			    Bitmap bitmap = null;  
-//		        try {  
-//		            //加载一个网络图片  
-//		            InputStream is = new URL(imageUrl).openStream();  
-//		            bitmap = BitmapFactory.decodeStream(is);  
-//		        } catch (Exception e) {  
-//		            e.printStackTrace();  
-//		        }  
+
         Bitmap thumbBmp = null;
         if (bitmap == null) {
             thumbBmp = BitmapFactory.decodeResource(getResources(), R.drawable.icon_of_app);
@@ -720,6 +618,51 @@ public class AtySaveRunData extends BaseActivity {
 //		            WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);  
         popupWindow.showAtLocation(findViewById(R.id.save_content), Gravity.RIGHT | Gravity.BOTTOM, 0, 0);
 
+
+    }
+
+    public void drawmyline() {
+
+        LinkedList<PolylineOptions> mypolys = new LinkedList<PolylineOptions>();
+        double expected = 15.0;
+        int k = 0;
+        double temp = 0.0;
+
+        LatLng firstm = new LatLng(polyjing[0], polywei[0]);
+        for (int m = 0; m < z; m++) {
+            LatLng secondm = new LatLng(polyjing[m], polywei[m]);
+            double temp1 = temp;
+            if (m == 0) {
+                PolylineOptions polys = new PolylineOptions();
+                mypolys.add(polys);
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(secondm)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.goscc))
+                        .draggable(false));
+                marker.showInfoWindow();
+            }
+            if (m == z - 1) {
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(secondm)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.endscc))
+                        .draggable(false));
+                marker.showInfoWindow();
+            }
+            temp = AMapUtils.calculateLineDistance(firstm, secondm);
+            if (m == 0 || temp < expected
+                    || ((temp - temp1) < expected && (temp1 - temp) < expected)) {
+
+                mypolys.get(k).add(secondm);
+                firstm = secondm;
+            } else {
+                PolylineOptions polys = new PolylineOptions();
+                mypolys.add(polys);
+                k++;
+
+            }
+        }
+        for (int j = 0; j < mypolys.size(); j++)
+            mMap.addPolyline(mypolys.get(j));
 
     }
 }

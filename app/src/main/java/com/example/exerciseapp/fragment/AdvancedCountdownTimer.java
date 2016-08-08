@@ -5,88 +5,88 @@ import android.os.Message;
 
 public abstract class AdvancedCountdownTimer {
 
-	private final long mCountdownInterval;
+    private final long mCountdownInterval;
 
-	private long mTotalTime;
+    private long mTotalTime;
 
-	private long mRemainTime;
+    private long mRemainTime;
 
-	
-	public AdvancedCountdownTimer(long millisInFuture, long countDownInterval) {
-		mTotalTime = millisInFuture;
-		mCountdownInterval = countDownInterval;
 
-		mRemainTime = millisInFuture;
-	}
+    public AdvancedCountdownTimer(long millisInFuture, long countDownInterval) {
+        mTotalTime = millisInFuture;
+        mCountdownInterval = countDownInterval;
 
-	public final void seek(int value) {
-		synchronized (AdvancedCountdownTimer.this) {
-			mRemainTime = ((100 - value) * mTotalTime) / 100;
-		}
-	}
+        mRemainTime = millisInFuture;
+    }
 
-	
-	public final void cancel() {
-		mHandler.removeMessages(MSG_RUN);
-		mHandler.removeMessages(MSG_PAUSE);
-	}
+    public final void seek(int value) {
+        synchronized (AdvancedCountdownTimer.this) {
+            mRemainTime = ((100 - value) * mTotalTime) / 100;
+        }
+    }
 
-	public final void resume() {
-		mHandler.removeMessages(MSG_PAUSE);
-		mHandler.sendMessageAtFrontOfQueue(mHandler.obtainMessage(MSG_RUN));
-	}
 
-	public final void pause() {
-		mHandler.removeMessages(MSG_RUN);
-		mHandler.sendMessageAtFrontOfQueue(mHandler.obtainMessage(MSG_PAUSE));
-	}
+    public final void cancel() {
+        mHandler.removeMessages(MSG_RUN);
+        mHandler.removeMessages(MSG_PAUSE);
+    }
 
-	
-	public synchronized final AdvancedCountdownTimer start() {
-		if (mRemainTime <= 0) {
-			onFinish();
-			return this;
-		}
-		mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_RUN),
-				mCountdownInterval);
-		return this;
-	}
+    public final void resume() {
+        mHandler.removeMessages(MSG_PAUSE);
+        mHandler.sendMessageAtFrontOfQueue(mHandler.obtainMessage(MSG_RUN));
+    }
 
-	public abstract void onTick(long millisUntilFinished, int percent);
+    public final void pause() {
+        mHandler.removeMessages(MSG_RUN);
+        mHandler.sendMessageAtFrontOfQueue(mHandler.obtainMessage(MSG_PAUSE));
+    }
 
-	
-	public abstract void onFinish();
 
-	private static final int MSG_RUN = 1;
-	private static final int MSG_PAUSE = 2;
+    public synchronized final AdvancedCountdownTimer start() {
+        if (mRemainTime <= 0) {
+            onFinish();
+            return this;
+        }
+        mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_RUN),
+                mCountdownInterval);
+        return this;
+    }
 
-	private Handler mHandler = new Handler() {
+    public abstract void onTick(long millisUntilFinished, int percent);
 
-		@Override
-		public void handleMessage(Message msg) {
 
-			synchronized (AdvancedCountdownTimer.this) {
-				if (msg.what == MSG_RUN) {
-					mRemainTime = mRemainTime - mCountdownInterval;
+    public abstract void onFinish();
 
-					if (mRemainTime <= 0) {
-						onFinish();
-					} else if (mRemainTime < mCountdownInterval) {
-						sendMessageDelayed(obtainMessage(MSG_RUN), mRemainTime);
-					} else {
+    private static final int MSG_RUN = 1;
+    private static final int MSG_PAUSE = 2;
 
-						onTick(mRemainTime, new Long(100
-								* (mTotalTime - mRemainTime) / mTotalTime)
-								.intValue());
+    private Handler mHandler = new Handler() {
 
-					
-						sendMessageDelayed(obtainMessage(MSG_RUN),
-								mCountdownInterval);
-					}
-				} else if (msg.what == MSG_PAUSE) {
+        @Override
+        public void handleMessage(Message msg) {
 
-				}
-			}
-		}
-	};
+            synchronized (AdvancedCountdownTimer.this) {
+                if (msg.what == MSG_RUN) {
+                    mRemainTime = mRemainTime - mCountdownInterval;
+
+                    if (mRemainTime <= 0) {
+                        onFinish();
+                    } else if (mRemainTime < mCountdownInterval) {
+                        sendMessageDelayed(obtainMessage(MSG_RUN), mRemainTime);
+                    } else {
+
+                        onTick(mRemainTime, new Long(100
+                                * (mTotalTime - mRemainTime) / mTotalTime)
+                                .intValue());
+
+
+                        sendMessageDelayed(obtainMessage(MSG_RUN),
+                                mCountdownInterval);
+                    }
+                } else if (msg.what == MSG_PAUSE) {
+
+                }
+            }
+        }
+    };
 }

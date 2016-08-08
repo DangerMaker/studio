@@ -2,7 +2,6 @@ package com.example.exerciseapp.aty.team;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayout;
@@ -17,6 +16,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.aty.login.AtyLogin;
 import com.example.exerciseapp.model.ErrorMsg;
@@ -27,7 +27,6 @@ import com.example.exerciseapp.utils.ScreenUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -70,6 +69,9 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
 
     int screenWidth;
     String invite_id;
+    String token = MyApplication.getInstance().getToken();
+    String uid = MyApplication.getInstance().getUid();
+    String version = "3.0";
 
     public static Intent getTeamDetailIntent(Context context, int teamId, String type, String invite_id) {
         Intent intent = new Intent(context, TeamDetailActivity.class);
@@ -165,16 +167,16 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
 
         detailTeamIcon.setImageURI(Uri.parse(entity.getGroup_info().getAvatar()));
         detailTeamName.setText(entity.getGroup_info().getGroup_name());
-        detailTeamNum.setText("团队成员：" + entity.getGroup_info().getMembernum()+"人");
+        detailTeamNum.setText("团队成员：" + entity.getGroup_info().getMembernum() + "人");
         detailTeamDes.setText(entity.getGroup_info().getIntro());
 
 //        if (entity.getUser_info_some_return().size() == 0) {
 //            detailTeamAllMember.setText("去邀请新成员");
 //        }
         int someSize = 0;
-        if(entity.getUser_info_some_return().size() > 6){
+        if (entity.getUser_info_some_return().size() > 6) {
             someSize = 6;
-        }else{
+        } else {
             someSize = entity.getUser_info_some_return().size();
         }
 
@@ -198,9 +200,9 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
 //            detailTeamRank.setVisibility(View.GONE);
 //        }
         int rankSize = 0;
-        if(entity.getUser_info_some_return().size() > 3){
+        if (entity.getUser_info_some_return().size() > 3) {
             rankSize = 3;
-        }else{
+        } else {
             rankSize = entity.getUser_info_point_some_return().size();
         }
 
@@ -246,19 +248,19 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
     }
 
     @OnClick(R.id.detail_team_access)
-    public void acess(){
-        ScreenUtils.show_msg(this,"请到首页参加活动");
+    public void acess() {
+        ScreenUtils.show_msg(this, "请到首页参加活动");
     }
 
     @OnClick(R.id.toolbar_img_right)
     public void rightClick() {
-        startActivityForResult(TeamSettingActivity.getTeamSettingIntent(this,type),1);
+        startActivityForResult(TeamSettingActivity.getTeamSettingIntent(this, type), 1);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == 2){
+        if (resultCode == 2) {
             finish();
         }
     }
@@ -270,7 +272,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
 
     @OnClick(R.id.detail_team_allRank)
     public void allRank() {
-        startActivity(CheckRanksActivity.getCheckRanksIntent(this,teamId));
+        startActivity(CheckRanksActivity.getCheckRanksIntent(this, teamId));
     }
 
     PopupWindow popupWindow;
@@ -300,7 +302,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
 
 
     private void agree() {
-        RestAdapterUtils.getTeamAPI().passInvite(invite_id, "pass_invite", new Callback<ErrorMsg>() {
+        RestAdapterUtils.getTeamAPI().passInvite(invite_id, "pass_invite", token, version, uid, new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {
                 if (errorMsg != null && errorMsg.getResult() == 1) {
@@ -311,8 +313,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
                     if (popupWindow != null)
                         popupWindow.dismiss();
                     load();
-                }
-                else{
+                } else {
                     ScreenUtils.show_msg(TeamDetailActivity.this, errorMsg.getDesc());
                 }
             }
@@ -325,7 +326,7 @@ public class TeamDetailActivity extends BackBaseActivity implements View.OnClick
     }
 
     private void disagree() {
-        RestAdapterUtils.getTeamAPI().refuseInvite(invite_id, "refuse_invite", new Callback<ErrorMsg>() {
+        RestAdapterUtils.getTeamAPI().refuseInvite(invite_id, "refuse_invite", token, version, uid, new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {
                 if (errorMsg != null && errorMsg.getResult() == 1) {

@@ -1,11 +1,11 @@
 package com.example.exerciseapp.view.handmark.pulltorefresh.library;
 
-import java.util.HashSet;
-
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.internal.LoadingLayout;
+
+import java.util.HashSet;
 
 public class LoadingLayoutProxy implements ILoadingLayout {
 

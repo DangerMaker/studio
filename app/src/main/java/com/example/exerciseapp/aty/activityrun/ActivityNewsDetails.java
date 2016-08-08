@@ -1,19 +1,13 @@
-package com.example.exerciseapp.aty.sliding;
+package com.example.exerciseapp.aty.activityrun;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.exerciseapp.volley.RequestQueue;
-import com.example.exerciseapp.volley.toolbox.Volley;
 import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
@@ -21,13 +15,16 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.message.PushAgent;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.Bind;
 
 /**
  * Created by Cherie_No.47 on 2016/4/2 11:05.
  * Email jascal@163.com
  */
-public class AtyNewsDetails extends BaseActivity {
+public class ActivityNewsDetails extends BaseActivity {
     private JSONObject jsonObj;
     private static IWXAPI api;
     @Bind(R.id.local_news_ht5)
@@ -95,7 +92,7 @@ public class AtyNewsDetails extends BaseActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AtyNewsDetails.this.finish();
+                ActivityNewsDetails.this.finish();
             }
         });
     }

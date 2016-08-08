@@ -16,14 +16,16 @@
 
 package com.example.exerciseapp.view.nineoldandroids.view;
 
+import android.view.View;
+import android.view.animation.Interpolator;
+
+import com.example.exerciseapp.view.nineoldandroids.animation.Animator;
+import com.example.exerciseapp.view.nineoldandroids.animation.ValueAnimator;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
-import android.view.View;
-import android.view.animation.Interpolator;
-import com.example.exerciseapp.view.nineoldandroids.animation.Animator;
-import com.example.exerciseapp.view.nineoldandroids.animation.ValueAnimator;
 
 class ViewPropertyAnimatorHC extends ViewPropertyAnimator {
 

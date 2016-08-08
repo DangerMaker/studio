@@ -12,11 +12,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.aty.team.CheckMembersActivity;
 import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.model.Member;
-import com.example.exerciseapp.model.SingleGroup;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -39,8 +39,10 @@ public class MemberListAdapter extends BaseAdapter {
     OnListClick listClick;
     int type;
     String teamId;
+    String token = MyApplication.getInstance().getToken();
+    String version = "0.3";
 
-    public MemberListAdapter(Context context, OnListClick listClick, int type,String teamId) {
+    public MemberListAdapter(Context context, OnListClick listClick, int type, String teamId) {
         this.context = context;
         collection = new ArrayList<>();
         layoutInflater = LayoutInflater.from(context);
@@ -146,8 +148,8 @@ public class MemberListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private void delete(final Member member){
-        RestAdapterUtils.getTeamAPI().exitGroup(Integer.parseInt(teamId), member.getUid(), "exit_group", new Callback<ErrorMsg>() {
+    private void delete(final Member member) {
+        RestAdapterUtils.getTeamAPI().exitGroup(Integer.parseInt(teamId), member.getUid(), "exit_group", token, version, new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {
                 System.out.println("退出成功");

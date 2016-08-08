@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.activityrun.ActivityUserInformation;
 import com.umeng.message.PushAgent;
 
 public class AtyUserInformationHome extends Activity {
@@ -21,7 +22,7 @@ public class AtyUserInformationHome extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(AtyUserInformationHome.this,AtyUserInformationConfig.class));
+				startActivity(new Intent(AtyUserInformationHome.this, ActivityUserInformation.class));
 			}
 		});
 	}

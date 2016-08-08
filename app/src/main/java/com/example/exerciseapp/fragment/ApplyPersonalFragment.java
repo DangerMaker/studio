@@ -15,18 +15,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.exerciseapp.Config;
+import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.activityrun.ActivityPay;
 import com.example.exerciseapp.aty.login.AtyUserLawItem;
-import com.example.exerciseapp.aty.sliding.AtyPay;
 import com.example.exerciseapp.aty.team.GameSelectActivity;
 import com.example.exerciseapp.aty.team.SearchActivity;
 import com.example.exerciseapp.model.CreateSuc;
-import com.example.exerciseapp.model.ErrorMsg;
-import com.example.exerciseapp.model.GameList;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
-import com.example.exerciseapp.volley.Cache;
-import com.ta.utdid2.android.utils.SystemUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,8 +46,6 @@ public class ApplyPersonalFragment extends BaseFragment {
     EditText personalName;
     @Bind(R.id.personal_sex)
     TextView personalSex;
-    //    @Bind(R.id.personal_age)
-//    EditText personalAge;
     @Bind(R.id.personal_phone)
     EditText personalPhone;
     @Bind(R.id.personal_card)
@@ -70,6 +65,8 @@ public class ApplyPersonalFragment extends BaseFragment {
     String gameId;
     String gameName;
     String agreement;
+    String token = MyApplication.getInstance().getToken();
+    String version = "3.0";
     JSONObject jsonObject;
 
     String org_name = "北京海淀体育组织";
@@ -96,7 +93,6 @@ public class ApplyPersonalFragment extends BaseFragment {
             JSONObject userInfo = (JSONObject) jsonObject.get("userInfo");
             personalName.setText(userInfo.getString("username"));
             personalSex.setText(userInfo.getString("sex"));
-//            personalAge.setText(userInfo.getString("age"));
             personalPhone.setText(userInfo.getString("tel"));
             personalCard.setText(userInfo.getString("idcard"));
         } catch (JSONException e) {
@@ -193,14 +189,14 @@ public class ApplyPersonalFragment extends BaseFragment {
 
         RestAdapterUtils.getTeamAPI().applyPersonal(gameId, detailId, personalPhone.getText().toString(),
                 personalSex.getText().toString(), personalCard.getText().toString(), personalName.getText().toString(),
-                organize.getText().toString(), Config.getCachedUserUid(getActivity()), new Callback<CreateSuc>() {
+                organize.getText().toString(), Config.getCachedUserUid(getActivity()), token, version, new Callback<CreateSuc>() {
                     @Override
                     public void success(CreateSuc errorMsg, Response response) {
                         if (errorMsg != null) {
                             if (errorMsg.getResult() == 1) {
                                 ScreenUtils.show_msg(getActivity(), "报名成功");
                                 if (Float.parseFloat(fee) != 0) {
-                                    Intent intent = new Intent(getActivity(), AtyPay.class);
+                                    Intent intent = new Intent(getActivity(), ActivityPay.class);
                                     intent.putExtra("id", errorMsg.getData().getId() + "");
                                     intent.putExtra(Config.KEY_USER_ATTEND_ENAME, select.getText().toString());
                                     intent.putExtra("apayfee", gamePay.getText().toString());
@@ -238,9 +234,9 @@ public class ApplyPersonalFragment extends BaseFragment {
 
     @OnClick(R.id.tvRules)
     public void enterAgreement() {
-        Intent intent = new Intent(getActivity(),AtyUserLawItem.class);
-        intent.putExtra("title","报名须知");
-        intent.putExtra("url",agreement);
+        Intent intent = new Intent(getActivity(), AtyUserLawItem.class);
+        intent.putExtra("title", "报名须知");
+        intent.putExtra("url", agreement);
         startActivity(intent);
     }
 

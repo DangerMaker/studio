@@ -1,11 +1,5 @@
 package com.example.exerciseapp.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,8 +7,10 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
-import android.widget.Toast;
 
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.TabMainActivity;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -22,10 +18,12 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
-import com.example.exerciseapp.aty.sliding.AtyMessage;
-import com.example.exerciseapp.aty.sliding.AtySlidingHome;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MessageService extends Service {  
     
@@ -51,11 +49,11 @@ public class MessageService extends Service {
     	mRequestQueue =  Volley.newRequestQueue(this);
         messageNotification = new Notification();  
         messageNotification.icon = R.drawable.addphoto;  
-        messageNotification.tickerText = "新消息";  
-        messageNotification.defaults = Notification.DEFAULT_SOUND;  
-        messageNotificatioManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);  
-   
-        messageIntent = new Intent(this, AtySlidingHome.class);  
+        messageNotification.tickerText = "新消息";
+        messageNotification.defaults = Notification.DEFAULT_SOUND;
+        messageNotificatioManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        messageIntent = new Intent(this, TabMainActivity.class);
         messagePendingIntent = PendingIntent.getActivity(this,0,messageIntent,0);  
    
         //开启线程  

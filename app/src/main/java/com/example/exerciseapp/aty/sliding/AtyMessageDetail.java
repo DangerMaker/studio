@@ -1,8 +1,5 @@
 package com.example.exerciseapp.aty.sliding;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +10,10 @@ import android.widget.TextView;
 
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.activityrun.ActivityMessage;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class AtyMessageDetail extends Activity {
 
@@ -43,7 +44,7 @@ public class AtyMessageDetail extends Activity {
 				@Override
 				public void onClick(View v) {
 					finish();
-					startActivity(new Intent(AtyMessageDetail.this,AtyMessage.class));
+					startActivity(new Intent(AtyMessageDetail.this, ActivityMessage.class));
 				}
 			});
 	}

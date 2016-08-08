@@ -1,6 +1,5 @@
 package com.example.exerciseapp.aty.team;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -8,7 +7,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.exerciseapp.R;
-import com.example.exerciseapp.aty.sliding.AtyRunningRecord;
 import com.example.exerciseapp.fragment.TeamFragment;
 
 import butterknife.Bind;

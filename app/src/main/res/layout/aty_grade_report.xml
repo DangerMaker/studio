@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:id="@+id/grade_report_content"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <include layout="@layout/main_toolbar" />
 
@@ -18,6 +18,7 @@
         android:gravity="center"
         android:textColor="#222222"
         android:textSize="17dp" />
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"

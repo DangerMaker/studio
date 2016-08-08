@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e0e3ee"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <include layout="@layout/main_toolbar" />
 
@@ -21,7 +21,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="#ffffff"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,8 +30,7 @@
             android:gravity="center_vertical|right"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp" >
-        </TextView>
+            android:textSize="20dp"></TextView>
 
         <TextView
             android:layout_width="100dp"
@@ -64,7 +63,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="#ffffff"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,8 +72,7 @@
             android:gravity="center_vertical|right"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp" >
-        </TextView>
+            android:textSize="20dp"></TextView>
 
         <TextView
             android:layout_width="100dp"
@@ -107,7 +105,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="#ffffff"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -116,8 +114,7 @@
             android:gravity="center_vertical|right"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp" >
-        </TextView>
+            android:textSize="20dp"></TextView>
 
         <TextView
             android:layout_width="100dp"
@@ -150,7 +147,7 @@
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:background="#ffffff"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -159,8 +156,7 @@
             android:gravity="center_vertical|right"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp" >
-        </TextView>
+            android:textSize="20dp"></TextView>
 
         <TextView
             android:layout_width="100dp"
@@ -193,7 +189,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="#ffffff"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -202,8 +198,7 @@
             android:gravity="center_vertical|right"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp" >
-        </TextView>
+            android:textSize="20dp"></TextView>
 
         <TextView
             android:layout_width="100dp"
@@ -236,7 +231,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="#ffffff"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -245,8 +240,7 @@
             android:gravity="center_vertical|right"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp" >
-        </TextView>
+            android:textSize="20dp"></TextView>
 
         <TextView
             android:layout_width="100dp"
@@ -279,7 +273,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="#ffffff"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -288,8 +282,7 @@
             android:gravity="center_vertical|right"
             android:text="*"
             android:textColor="#ff0000"
-            android:textSize="20dp" >
-        </TextView>
+            android:textSize="20dp"></TextView>
 
         <TextView
             android:layout_width="100dp"
@@ -323,7 +316,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/BtnGrey"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <CheckBox
             android:id="@+id/cbAgreeRulesAssocEntryForm"

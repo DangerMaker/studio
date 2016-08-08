@@ -16,7 +16,6 @@
 
 package com.example.exerciseapp.volley;
 
-import android.R.integer;
 import android.net.TrafficStats;
 import android.net.Uri;
 import android.os.Handler;

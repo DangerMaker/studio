@@ -12,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewTreeObserver;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.PopupWindow;
 

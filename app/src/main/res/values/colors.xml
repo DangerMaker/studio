@@ -9,7 +9,14 @@
     <color name="light_gray">#a0a0a0</color>
     <color name="texttag_choosed">#5caec4</color>
     <color name="azure">#F0FFFF</color><!--天蓝色 -->
-    
+    <color name="navpage">#FFE1E8EB</color>
+
+    <color name="soncolorblue">#057496</color>
+    <color name="soncolordark">#595757</color>
+    <color name="soncolorgrey">#898989</color>
+    <color name="line">#dcdcdc</color>
+    <color name="blackfont">#333333</color>
+
     <color name="BtnBlue">#0082a4</color>
     <color name="BtnGrey">#CCCCCC</color>
     <color name="CharacterGrey">#888888</color>
@@ -19,7 +26,8 @@
     <color name="BackgroudDarkGrey">#8d8d8d</color>
     <color name="BtnTextColorWhite">#FFFFFF</color>
        <drawable name="transparent">#00000000</drawable>
-
+    <color name="backgroundorange">#f88d23</color>
+    <color name="gray">#8e8e8e</color>
     <color name="common_white">#ffffff</color>
     <color name="common_white_shadow">#414141</color>
     <color name="common_white_disabled">#e7e7e7</color>
@@ -45,12 +53,16 @@
     <color name="btnzantingduanlian">#B9B22602</color>
     <color name="BackgroundBlue">#5caec4</color>
     <color name="BackgroundBrown">#493b3a</color>
+    <color name="son_bg_color">#ffffff</color>
+    <color name="cutoffrule">#DCDCDC</color>
     <color name="Black">#000000</color>
     <color name="White">#FFFFFF</color>
     <color name="spots_dialog_color">@android:color/holo_blue_dark</color>
 
     <color name="light_green">#f8feff</color>
     <color name="green">#61d3af</color>
+
+    <color name="tab_blue">#25A2C7</color>
     <color name="color_transparent_black">#2F0F0F0F</color>
     <color name="text_color_grey">#727171</color>
     <color name="edit_color_grey">#dcdcdc</color>

@@ -1,11 +1,11 @@
 package com.example.exerciseapp.volley.toolbox;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.graphics.Bitmap;
 
 import com.example.exerciseapp.volley.Request;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UploadApi {
 

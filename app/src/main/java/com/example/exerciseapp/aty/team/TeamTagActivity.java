@@ -7,18 +7,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.example.exerciseapp.R;
-import com.example.exerciseapp.adapter.PreGridAdapter;
 import com.example.exerciseapp.adapter.TagGridAdapter;
 import com.example.exerciseapp.model.AllTag;
-import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.model.TagModel;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
 import com.example.exerciseapp.utils.ScreenUtils;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,9 +49,9 @@ public class TeamTagActivity extends BackBaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent data = new Intent();
-                data.putExtra("tagName",list.get(position).getName());
-                data.putExtra("tagId",list.get(position).getId() + "");
-                setResult(10,data);
+                data.putExtra("tagName", list.get(position).getName());
+                data.putExtra("tagId", list.get(position).getId() + "");
+                setResult(10, data);
                 finish();
             }
         });

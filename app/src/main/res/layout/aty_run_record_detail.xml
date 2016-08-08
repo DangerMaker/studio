@@ -4,41 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/White"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical" >
-
-        <include layout="@layout/main_toolbar" />
-
-        <RelativeLayout
-            android:id="@+id/relativeshowmap"
-            android:layout_width="fill_parent"
-            android:layout_height="400dp" >
-
-            <com.amap.api.maps2d.MapView
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/mapViewshow"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-            </com.amap.api.maps2d.MapView>
-        </RelativeLayout>
-    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
+        android:layout_weight="2"
+        android:id="@+id/mytest"
+        android:layout_alignParentBottom="true">
 
         <LinearLayout
             android:id="@+id/linearshowjulishijian"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/White"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/linearshowjuli"
@@ -46,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="100"
                 android:background="@color/BackgroundBrown"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textshowjuli"
@@ -83,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="100"
                 android:background="@color/BackgroundBrown"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textshowshijian"
@@ -116,7 +97,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearshowjulishijian"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
+
             <RelativeLayout
                 android:id="@+id/relativeshowsudu"
                 android:layout_width="0dp"
@@ -174,27 +156,29 @@
                         android:text="min/km"
                         android:textColor="#606060"
                         android:textSize="16sp"
-                        android:textStyle="bold"  />
+                        android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@color/BtnGrey" />
+
             <RelativeLayout
                 android:id="@+id/relativeshowpingjunsudu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="100"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/linearshowpingjunsudu1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="0dp"
@@ -221,7 +205,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/linearshowpingjunsudu1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
@@ -257,7 +241,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/viewline1"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
+
             <RelativeLayout
                 android:id="@+id/relativeshowDesc"
                 android:layout_width="0dp"
@@ -316,7 +301,7 @@
                         android:text="km"
                         android:textColor="#606060"
                         android:textSize="16sp"
-                        android:textStyle="bold"  />
+                        android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -378,7 +363,7 @@
                         android:text="num"
                         android:textColor="#606060"
                         android:textSize="16sp"
-                        android:textStyle="bold"  />
+                        android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -440,27 +425,29 @@
                         android:text="m"
                         android:textColor="#606060"
                         android:textSize="16sp"
-                        android:textStyle="bold"  />
+                        android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@color/BtnGrey" />
+
             <RelativeLayout
                 android:id="@+id/relativeshowkaluli"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="100"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/linearshowkaluli1"
                     android:layout_width="fill_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="0dp"
@@ -487,7 +474,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/linearshowkaluli1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
@@ -535,7 +522,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
-            android:visibility="gone" >
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/btnfangqi"
@@ -566,5 +553,26 @@
                 android:textSize="18dp" />
         </LinearLayout>
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:layout_above="@id/mytest">
+
+        <include layout="@layout/main_toolbar" />
+
+        <RelativeLayout
+            android:id="@+id/relativeshowmap"
+            android:layout_width="fill_parent"
+            android:layout_height="400dp">
+
+            <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/mapViewshow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.amap.api.maps2d.MapView>
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

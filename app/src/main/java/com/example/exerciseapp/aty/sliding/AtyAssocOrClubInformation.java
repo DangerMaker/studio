@@ -1,17 +1,5 @@
 package com.example.exerciseapp.aty.sliding;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -38,11 +26,14 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.Toast;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.exerciseapp.BaseActivity;
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.R;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -50,15 +41,23 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.BaseActivity;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.message.PushAgent;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 
@@ -220,10 +219,6 @@ public class AtyAssocOrClubInformation extends BaseActivity {
                         @Override
                         public void onItemClick(AdapterView<?> arg0,
                                                 View arg1, int arg2, long arg3) {
-//									String strItem = listMenuTitle.get(arg2).get(
-//										"item");
-//									tvTitle.setText(strItem);
-//								
                             switch (arg2) {
                                 case 0:
                                     Toast.makeText(AtyAssocOrClubInformation.this, "暂无赛事信息", Toast.LENGTH_SHORT).show();
@@ -312,22 +307,13 @@ public class AtyAssocOrClubInformation extends BaseActivity {
      * @param flag        分享到朋友还是朋友圈的flag
      */
 
-    public void wechatShare(String webPageUrl, String title, String description, Bitmap bitmap, int flag) throws MalformedURLException, IOException {
+    public void wechatShare(String webPageUrl, String title, String description, Bitmap bitmap, int flag) throws IOException {
 //	    	api.openWXApp();
         WXWebpageObject webpage = new WXWebpageObject();
         webpage.webpageUrl = webPageUrl;
         WXMediaMessage msg = new WXMediaMessage(webpage);
         msg.title = title;
         msg.description = description;
-        //				bmp = BitmapFactory.decodeStream(new URL(imageUrl).openStream());
-//		    Bitmap bitmap = null;  
-//	        try {  
-//	            //加载一个网络图片  
-//	            InputStream is = new URL(imageUrl).openStream();  
-//	            bitmap = BitmapFactory.decodeStream(is);  
-//	        } catch (Exception e) {  
-//	            e.printStackTrace();  
-//	        }  
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bitmap, 150, 150, true);
         //		    Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.drawable.addphoto);
         msg.setThumbImage(thumbBmp);

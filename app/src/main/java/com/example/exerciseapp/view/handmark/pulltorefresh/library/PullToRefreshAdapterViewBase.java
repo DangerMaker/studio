@@ -29,7 +29,6 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 
 import com.example.exerciseapp.R;

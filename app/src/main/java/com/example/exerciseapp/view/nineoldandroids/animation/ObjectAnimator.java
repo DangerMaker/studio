@@ -16,15 +16,15 @@
 
 package com.example.exerciseapp.view.nineoldandroids.animation;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.util.Log;
 import android.view.View;
 
 import com.example.exerciseapp.view.nineoldandroids.util.Property;
 import com.example.exerciseapp.view.nineoldandroids.view.animation.AnimatorProxy;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This subclass of {@link ValueAnimator} provides support for animating properties on target objects.

@@ -3,7 +3,6 @@ package com.example.exerciseapp.volley.toolbox;
 import android.content.Context;
 
 import com.example.exerciseapp.volley.RequestQueue;
-import com.example.exerciseapp.volley.toolbox.Volley;
 
 /**
  * Created by gyzhong on 15/3/1.

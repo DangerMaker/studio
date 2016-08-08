@@ -16,11 +16,13 @@
 
 package com.example.exerciseapp.view.nineoldandroids.view;
 
-import java.util.WeakHashMap;
 import android.os.Build;
 import android.view.View;
 import android.view.animation.Interpolator;
+
 import com.example.exerciseapp.view.nineoldandroids.animation.Animator;
+
+import java.util.WeakHashMap;
 
 /**
  * This class enables automatic and optimized animation of select properties on View objects.

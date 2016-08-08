@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.exerciseapp.R;
-import com.example.exerciseapp.adapter.MemberListAdapter;
 import com.example.exerciseapp.adapter.SelectMemberAdapter;
 import com.example.exerciseapp.model.AllMember;
 import com.example.exerciseapp.model.ErrorMsg;
@@ -29,7 +28,7 @@ import retrofit.client.Response;
 /**
  * Created by lyjq on 2016/4/3.
  */
-public class SelectMemberActivity extends BackBaseActivity implements SelectMemberAdapter.OnListClick{
+public class SelectMemberActivity extends BackBaseActivity implements SelectMemberAdapter.OnListClick {
 
     @Bind(R.id.pull_to_refresh_team)
     PullToRefreshListView listView;
@@ -40,9 +39,10 @@ public class SelectMemberActivity extends BackBaseActivity implements SelectMemb
     String teamId;
     String eid;
     List<Member> list;
-    public static Intent getManagerMembersIntent(Context context,int teamId,String eid) {
+
+    public static Intent getManagerMembersIntent(Context context, int teamId, String eid) {
         Intent intent = new Intent(context, SelectMemberActivity.class);
-        intent.putExtra("eid",eid);
+        intent.putExtra("eid", eid);
         return intent.putExtra("teamId", teamId);
     }
 
@@ -51,9 +51,9 @@ public class SelectMemberActivity extends BackBaseActivity implements SelectMemb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_list);
         setTitleBar("成员列表");
-        teamId = getIntent().getIntExtra("teamId",-1) + "";
+        teamId = getIntent().getIntExtra("teamId", -1) + "";
         eid = getIntent().getStringExtra("eid");
-        adapter = new SelectMemberAdapter(this,this,teamId);
+        adapter = new SelectMemberAdapter(this, this, teamId);
         right.setVisibility(View.VISIBLE);
         right.setText("确定");
         listView.setAdapter(adapter);
@@ -61,9 +61,9 @@ public class SelectMemberActivity extends BackBaseActivity implements SelectMemb
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Member member = list.get(i - 1);
-                if(!member.isFlag()) {
+                if (!member.isFlag()) {
                     check(member);
-                }else {
+                } else {
                     member.setFlag(!member.isFlag());
                     adapter.updateItems(list);
                 }
@@ -74,7 +74,7 @@ public class SelectMemberActivity extends BackBaseActivity implements SelectMemb
     }
 
     private void load() {
-        RestAdapterUtils.getTeamAPI().showAllMembers(teamId,"show_all_members",new Callback<AllMember>() {
+        RestAdapterUtils.getTeamAPI().showAllMembers(teamId, "show_all_members", new Callback<AllMember>() {
             @Override
             public void success(AllMember allMember, Response response) {
                 if (allMember != null && allMember.getResult() == 1) {
@@ -95,13 +95,13 @@ public class SelectMemberActivity extends BackBaseActivity implements SelectMemb
     }
 
     private void check(final Member member) {
-        RestAdapterUtils.getTeamAPI().checkUserInfo(member.getUid(),eid,new Callback<ErrorMsg>() {
+        RestAdapterUtils.getTeamAPI().checkUserInfo(member.getUid(), eid, new Callback<ErrorMsg>() {
             @Override
             public void success(ErrorMsg errorMsg, Response response) {
                 if (errorMsg != null && errorMsg.getResult() == 1) {
                     member.setFlag(!member.isFlag());
                     adapter.updateItems(list);
-                }else{
+                } else {
                     ScreenUtils.show_msg(SelectMemberActivity.this, errorMsg.getDesc());
                 }
             }
@@ -115,28 +115,28 @@ public class SelectMemberActivity extends BackBaseActivity implements SelectMemb
     }
 
     @OnClick(R.id.toolbar_text_right)
-    public void right(){
+    public void right() {
         StringBuilder uids = new StringBuilder();
         StringBuilder uidsName = new StringBuilder();
         Iterator iterator = list.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Member member = (Member) iterator.next();
-            if(member.isFlag()) {
+            if (member.isFlag()) {
                 uids.append(member.getUid() + ",");
                 uidsName.append(member.getUsername() + ",");
             }
         }
 
-        if(uids.toString().trim().equals("")){
+        if (uids.toString().trim().equals("")) {
             finish();
             return;
         }
 
         Intent intent = new Intent();
-        intent.putExtra("uids",uids.delete(uids.length() - 1,uids.length()).toString());
-        intent.putExtra("uidsName",uidsName.delete(uidsName.length() - 1,uidsName.length()).toString());
-        intent.putExtra("teamId",teamId);
-        setResult(28,intent);
+        intent.putExtra("uids", uids.delete(uids.length() - 1, uids.length()).toString());
+        intent.putExtra("uidsName", uidsName.delete(uidsName.length() - 1, uidsName.length()).toString());
+        intent.putExtra("teamId", teamId);
+        setResult(28, intent);
         finish();
     }
 

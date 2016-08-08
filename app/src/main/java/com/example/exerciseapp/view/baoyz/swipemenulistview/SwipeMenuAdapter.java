@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.WrapperListAdapter;
+
 import com.example.exerciseapp.view.baoyz.swipemenulistview.SwipeMenuView.OnSwipeItemClickListener;
 
 /**

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.widget.ScrollerCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -329,7 +328,6 @@ public class SwipeMenuLayout extends FrameLayout {
 	}
 
 	public void setMenuHeight(int measuredHeight) {
-		Log.i("byz", "pos = " + position + ", height = " + measuredHeight);
 		LayoutParams params = (LayoutParams) mMenuView.getLayoutParams();
 		if (params.height != measuredHeight) {
 			params.height = measuredHeight;

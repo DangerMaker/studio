@@ -16,9 +16,6 @@
 
 package com.example.exerciseapp.volley;
 
-import com.example.exerciseapp.volley.NetworkResponse;
-import com.example.exerciseapp.volley.VolleyError;
-
 /**
  * Indicates that the server's response could not be parsed.
  */

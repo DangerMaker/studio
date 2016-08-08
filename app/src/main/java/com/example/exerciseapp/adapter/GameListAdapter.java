@@ -1,13 +1,5 @@
 package com.example.exerciseapp.adapter;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -16,13 +8,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.volley.RequestQueue;
 import com.example.exerciseapp.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.LinkedList;
 
 public class GameListAdapter extends BaseAdapter {
     private Activity context;
@@ -120,7 +116,7 @@ public class GameListAdapter extends BaseAdapter {
             // }
             tvPersonNum.setText(list.get(position).getString(Config.KEY_GAME_ATTEND));
             String startAttendT = list.get(position).getString(Config.KEY_GAME_ACCEPT_START_NEW);
-            tvGameTimeGameList.setText(startAttendT.replace("-","."));
+            tvGameTimeGameList.setText(startAttendT.replace("-", "."));
             String endAttendT = list.get(position).getString(Config.KEY_GAME_ACCEPT_END_NEW);
             tvGameTimeEndGameList.setText(endAttendT);
 

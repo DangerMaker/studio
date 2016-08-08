@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:umadsdk="http://schemas.android.com/apk/res/com.LoveBus"
+
+
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <include layout="@layout/main_toolbar" />
 
@@ -12,7 +13,7 @@
         android:layout_width="fill_parent"
         android:layout_height="30dip"
         android:background="#aaaaaa"
-        android:visibility="gone" >
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tvAssociationTitlePageClub"
@@ -40,7 +41,7 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:orientation="horizontal"
-        android:visibility="gone" >
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/cursorOnePageClub"

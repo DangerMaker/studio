@@ -1,10 +1,5 @@
 package com.example.exerciseapp.volley.toolbox;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.List;
-
 import android.util.Log;
 
 import com.example.exerciseapp.volley.AuthFailureError;
@@ -12,8 +7,12 @@ import com.example.exerciseapp.volley.DefaultRetryPolicy;
 import com.example.exerciseapp.volley.NetworkResponse;
 import com.example.exerciseapp.volley.ParseError;
 import com.example.exerciseapp.volley.Request;
-import com.example.exerciseapp.volley.Request.Method;
 import com.example.exerciseapp.volley.Response;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 public class PostUploadRequest extends Request<String> {
 

@@ -4,6 +4,53 @@ package com.example.exerciseapp.fragment;
  * 赛事列表
  */
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Parcelable;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.text.format.DateUtils;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.exerciseapp.AddressData;
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.adapter.GameListAdapter;
+import com.example.exerciseapp.aty.sliding.AtyGameInformation;
+import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.example.exerciseapp.volley.AuthFailureError;
+import com.example.exerciseapp.volley.Request;
+import com.example.exerciseapp.volley.RequestQueue;
+import com.example.exerciseapp.volley.Response;
+import com.example.exerciseapp.volley.VolleyError;
+import com.example.exerciseapp.volley.toolbox.StringRequest;
+import com.example.exerciseapp.volley.toolbox.Volley;
+import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -19,56 +66,6 @@ import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
 import kankan.wheel.widget.adapters.ArrayWheelAdapter;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Parcelable;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.text.format.DateUtils;
-import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.example.exerciseapp.volley.AuthFailureError;
-import com.example.exerciseapp.AddressData;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
-import com.example.exerciseapp.adapter.GameListAdapter;
-import com.example.exerciseapp.aty.sliding.AtyGameInformation;
-import com.example.exerciseapp.volley.Request;
-import com.example.exerciseapp.volley.RequestQueue;
-import com.example.exerciseapp.volley.Response;
-import com.example.exerciseapp.volley.VolleyError;
-import com.example.exerciseapp.volley.toolbox.StringRequest;
-import com.example.exerciseapp.volley.toolbox.Volley;
-import com.facebook.drawee.view.SimpleDraweeView;
-
 public class GameListFragment_ extends Fragment {
 
     protected ListView mListView;
@@ -78,14 +75,6 @@ public class GameListFragment_ extends Fragment {
     private Button button, button_ok;
     private boolean scrolling = false;
     private TextView tv;
-    // TODO delete 2016/3/16<
-    // private TextView tvCitiesListPageCompetetion;
-    // private TextView tvGameCatalogoPageCompetetion;
-    // private TextView tvGameLevelPageCompetetion;
-    // private TextView tvGameNeedPayPageCompetetion;
-    // private LinearLayout shaiXuanLinearLayout;
-    // >
-    // *********************************
     private LinkedList<JSONObject> list = new LinkedList<JSONObject>();
     private LinkedList<JSONObject> tmpList, changeList;
     private JSONArray jsonArr = new JSONArray();
@@ -128,7 +117,6 @@ public class GameListFragment_ extends Fragment {
             adViewPager.setCurrentItem(currentItem);
         }
 
-        ;
     };
 
     private MyAdapter myAdapter;
@@ -166,172 +154,6 @@ public class GameListFragment_ extends Fragment {
                 .inflate(R.layout.page_competetion_activities, null);
         final RelativeLayout rootLayout = (RelativeLayout) view.findViewById(R.id.rootLayoutPageCompetetion);
 
-        // TODO delete 2016/3/16<
-        // shaiXuanLinearLayout = (LinearLayout)
-        // view.findViewById(R.id.shaiXuanLinearLayout);
-        // tvCitiesListPageCompetetion = (TextView)
-        // view.findViewById(R.id.tvCitiesListPageCompetetionGames);
-        // tvGameCatalogoPageCompetetion = (TextView)
-        // view.findViewById(R.id.tvGameCatalogoPageCompetetion);
-        // tvGameLevelPageCompetetion = (TextView)
-        // view.findViewById(R.id.tvGameLevelPageCompetetion);
-        // tvGameNeedPayPageCompetetion = (TextView)
-        // view.findViewById(R.id.tvGameNeedPayPageCompetetion);
-        // // 城市列表滚轮实现
-        // tvCitiesListPageCompetetion.setOnClickListener(new OnClickListener()
-        // {
-        //
-        // @Override
-        // public void onClick(View v) {
-        // PopupWindow popupWindow = makePopupWindow(getActivity());
-        // int[] xy = new int[2];
-        // rootLayout.getLocationOnScreen(xy);
-        // popupWindow.showAtLocation(rootLayout, Gravity.CENTER, 0, 0);
-        // }
-        // });
-        //
-        // // 项目 级别 费用弹出框
-        // tvGameCatalogoPageCompetetion.setOnClickListener(new
-        // OnClickListener() {
-        //
-        // @Override
-        // public void onClick(View v) {
-        // new AlertDialog.Builder(getActivity())
-        // .setItems(
-        // new String[] { Config.DEFAULT_PROJECT, Config.BALL, Config.RUN,
-        // Config.ICEWATER,
-        // Config.BICYCLE, Config.PUBLIC, Config.EXTRA },
-        // new DialogInterface.OnClickListener() {
-        // public void onClick(DialogInterface dialog, int which) {
-        // projectFlag = which;
-        // switch (which) {
-        // case Config.FLAG_GAME_PROJECT_DEFAULT:
-        // tvGameCatalogoPageCompetetion.setText(Config.DEFAULT_PROJECT);
-        // break;
-        // case Config.FLAG_GAME_PROJECT_BALL:
-        // tvGameCatalogoPageCompetetion.setText(Config.BALL);
-        // break;
-        // case Config.FLAG_GAME_PROJECT_BICYCLE:
-        // tvGameCatalogoPageCompetetion.setText(Config.BICYCLE);
-        // break;
-        // case Config.FLAG_GAME_PROJECT_EXTRA:
-        // tvGameCatalogoPageCompetetion.setText(Config.EXTRA);
-        // break;
-        // case Config.FLAG_GAME_PROJECT_ICE:
-        // tvGameCatalogoPageCompetetion.setText(Config.ICEWATER);
-        // break;
-        // case Config.FLAG_GAME_PROJECT_PUBLIC:
-        // tvGameCatalogoPageCompetetion.setText("大众");
-        // break;
-        // case Config.FLAG_GAME_PROJECT_RUN:
-        // tvGameCatalogoPageCompetetion.setText("跑步");
-        // break;
-        // default:
-        // tvGameCatalogoPageCompetetion.setText(Config.DEFAULT_PROJECT);
-        // break;
-        // }
-        // try {
-        // changeList();
-        // } catch (JSONException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
-        // dialog.dismiss();
-        // }
-        //
-        // }).show();
-        //
-        // }
-        // });
-        //
-        // tvGameLevelPageCompetetion.setOnClickListener(new OnClickListener() {
-        //
-        // @Override
-        // public void onClick(View v) {
-        // new AlertDialog.Builder(getActivity())
-        // .setItems(
-        // new String[] { Config.DEFAULT_LEVEL, Config.INTERNATIONAL,
-        // Config.NATIONAL,
-        // Config.PROVINCE, Config.CITY, Config.AREA },
-        // new DialogInterface.OnClickListener() {
-        // public void onClick(DialogInterface dialog, int which) {
-        // switch (which) {
-        // case Config.FLAG_GAME_LEVEL_DEFAULT:
-        // tvGameLevelPageCompetetion.setText(Config.DEFAULT_LEVEL);
-        // break;
-        // case Config.FLAG_GAME_LEVEL_AREA:
-        // tvGameLevelPageCompetetion.setText(Config.AREA);
-        // break;
-        // case Config.FLAG_GAME_LEVEL_CITY:
-        // tvGameLevelPageCompetetion.setText(Config.CITY);
-        // break;
-        // case Config.FLAG_GAME_LEVEL_INTERNATIONAL:
-        // tvGameLevelPageCompetetion.setText(Config.INTERNATIONAL);
-        // break;
-        // case Config.FLAG_GAME_LEVEL_NATIONAL:
-        // tvGameLevelPageCompetetion.setText(Config.NATIONAL);
-        // break;
-        // case Config.FLAG_GAME_LEVEL_PROVINCE:
-        // tvGameLevelPageCompetetion.setText(Config.PROVINCE);
-        // break;
-        // default:
-        // tvGameLevelPageCompetetion.setText(Config.DEFAULT_LEVEL);
-        // break;
-        // }
-        // levelFlag = which;
-        // try {
-        // changeList();
-        // } catch (JSONException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
-        // dialog.dismiss();
-        // }
-        //
-        // }).show();
-        // }
-        // });
-        //
-        // tvGameNeedPayPageCompetetion.setOnClickListener(new OnClickListener()
-        // {
-        //
-        // @Override
-        // public void onClick(View v) {
-        // new AlertDialog.Builder(getActivity())
-        // .setItems(new String[] { Config.DEFAULT_FEE, Config.FREE_PAY,
-        // Config.NEED_PAY },
-        // new DialogInterface.OnClickListener() {
-        // public void onClick(DialogInterface dialog, int which) {
-        // switch (which) {
-        // case Config.FLAG_GAME_PAY_DEFAULT:
-        // tvGameNeedPayPageCompetetion.setText(Config.DEFAULT_FEE);
-        // break;
-        // case Config.FLAG_GAME_PAY_FREE:
-        // tvGameNeedPayPageCompetetion.setText(Config.FREE_PAY);
-        // break;
-        // case Config.FLAG_GAME_PAY_NEED_PAY:
-        // tvGameNeedPayPageCompetetion.setText(Config.NEED_PAY);
-        // break;
-        //
-        // default:
-        // break;
-        // }
-        // payFlag = which;
-        // try {
-        // changeList();
-        // } catch (JSONException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
-        // dialog.dismiss();
-        // }
-        //
-        // }).show();
-        //
-        // }
-        // });
-        // >
-
         mSwipeLayout = (PullToRefreshListView) view.findViewById(R.id.swipe_container);
         mSwipeLayout.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
@@ -340,30 +162,11 @@ public class GameListFragment_ extends Fragment {
                         System.currentTimeMillis(),
                         DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
 
-                // Update the LastUpdatedLabel
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                // 每次刷新初始化筛选列表
-
-                // TODO delete 2016/3/16<
-                // projectFlag = Config.FLAG_GAME_PROJECT_DEFAULT;
-                // levelFlag = Config.FLAG_GAME_LEVEL_DEFAULT;
-                // payFlag = Config.FLAG_GAME_PAY_DEFAULT;
-                // positionProvince = "不限";
-                // positionCity = "不限";
-                // positionArea = "不限";
-                //
-                // tvCitiesListPageCompetetion.setText("地区");
-                // tvGameCatalogoPageCompetetion.setText("项目");
-                // tvGameLevelPageCompetetion.setText("级别");
-                // tvGameNeedPayPageCompetetion.setText("费用");
-                // >
-
-                // // Do work to refresh the list here.
                 new GetDataTask().execute();
             }
 
         });
-//		mListView = (ListView) view.findViewById(R.id.listGame);
         mListView = mSwipeLayout.getRefreshableView();
         mListAdapter = new GameListAdapter(getActivity(), list);
         mListView.setAdapter(mListAdapter);
@@ -386,15 +189,7 @@ public class GameListFragment_ extends Fragment {
                 return;
             }
         });
-//		mListView.setFocusableInTouchMode(true);
-//		mSwipeLayout.setOnRefreshListener(this);
-//		mSwipeLayout.setOnLoadListener(this);
-//		mSwipeLayout.setColor(android.R.color.holo_blue_bright,
-//				android.R.color.holo_green_light,
-//				android.R.color.holo_orange_light,
-//				android.R.color.holo_red_light);
-//		mSwipeLayout.setMode(SwipeRefreshLayout.Mode.PULL_FROM_START);
-//		mSwipeLayout.setLoadNoFull(false);
+
         mSwipeLayout.setRefreshing(false);
 
         imageViews = new ArrayList<>();
@@ -515,7 +310,7 @@ public class GameListFragment_ extends Fragment {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             ImageView iv = imageViews.get(position);
-            ((ViewPager) container).addView(iv);
+            container.addView(iv);
             // 在这个方法里面设置图片的点击事件
 //            iv.setOnClickListener(new OnClickListener() {
 //                @Override
@@ -558,30 +353,6 @@ public class GameListFragment_ extends Fragment {
 
     }
 
-//	@Override
-//	public void onLoad() {
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                mSwipeLayout.setLoading(false);
-//                mListAdapter.notifyDataSetChanged();
-//            }
-//        }, 1000);
-//	}
-//
-//	@Override
-//	public void onRefresh() {
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            	new GetDataTask().execute();
-////                mSwipeLayout.setRefreshing(false);
-////                mListAdapter.notifyDataSetChanged();
-//            }
-//        }, 2000);
-//	}
-
     private class GetDataTask extends AsyncTask<Void, Void, String[]> {
 
         @Override
@@ -595,7 +366,7 @@ public class GameListFragment_ extends Fragment {
                     if (Config.TOURIST_MODE) {
                         front_page_url = front_page_url + "&uid=0";
                     } else {
-                        front_page_url = front_page_url + "&uid="+Config.getCachedUserUid(GameListFragment_.this.getActivity());
+                        front_page_url = front_page_url + "&uid=" + Config.getCachedUserUid(GameListFragment_.this.getActivity());
                     }
                     StringRequest stringRequest = new StringRequest(
                             Request.Method.GET,
@@ -690,46 +461,10 @@ public class GameListFragment_ extends Fragment {
             return null;
         }
 
-//		private boolean isExistedJSONObjectInJSONArray(JSONArray jsonArr,JSONObject jsonObj){
-//			for (int i = 0; i < jsonArr.length(); i++) {
-//				try {
-//					if(jsonArr.getJSONObject(i).getString(Config.KEY_GAME_ID).equals(jsonObj.getString(Config.KEY_GAME_ID))){
-//						return true;
-//					}
-//				} catch (JSONException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
-//			return false;
-//		}
-
         @Override
         protected void onPostExecute(String[] result) {
-
-            // if(tmpList == null){
-            // tmpList = new LinkedList<JSONObject>();
-            // }
-            // tmpList.clear();
-            // tmpList.addAll(list);
-            // try {
-            // changeList();
-            // } catch (JSONException e) {
-            // // TODO Auto-generated catch block
-            // e.printStackTrace();
-            // }
-
-            // TODO delete 2016/3/16<
-            // if (list.size() >= 4) {
-            // shaiXuanLinearLayout.setVisibility(View.VISIBLE);
-            // } else {
-            // shaiXuanLinearLayout.setVisibility(View.GONE);
-            // }
-            // >
             mListAdapter.notifyDataSetChanged();
-            // Call onRefreshComplete when the list has been refreshed.
             mSwipeLayout.onRefreshComplete();
-
             super.onPostExecute(result);
         }
     }
@@ -776,15 +511,11 @@ public class GameListFragment_ extends Fragment {
             }
         });
 
-        // 地区选择
-//	        final WheelView ccity = (WheelView) contentView.findViewById(R.id.ccity);
-//	        ccity.setVisibleItems(0);
 
         city.addChangingListener(new OnWheelChangedListener() {
             public void onChanged(WheelView wheel, int oldValue, int newValue) {
                 if (!scrolling) {
-                    // updatecCities(ccity, ccities,
-                    // country.getCurrentItem(),newValue);
+
                 }
             }
         });
@@ -796,30 +527,13 @@ public class GameListFragment_ extends Fragment {
 
             public void onScrollingFinished(WheelView wheel) {
                 scrolling = false;
-                // updatecCities(ccity, ccities, country.getCurrentItem(),
-                // city.getCurrentItem());
+
 
                 tv.setText(AddressData.PROVINCES[country.getCurrentItem()] + "-"
                         + AddressData.CITIES[country.getCurrentItem()][city.getCurrentItem()]);
 
             }
         });
-
-        // ccity.addScrollingListener( new OnWheelScrollListener() {
-        // public void onScrollingStarted(WheelView wheel) {
-        // scrolling = true;
-        // }
-        // public void onScrollingFinished(WheelView wheel) {
-        // scrolling = false;
-        //
-        // tv.setText(
-        // AddressData.PROVINCES[country.getCurrentItem()] + "-" +
-        // AddressData.CITIES[country.getCurrentItem()][city.getCurrentItem()]
-        //// + "-" +
-        //// AddressData.COUNTIES[country.getCurrentItem()][city.getCurrentItem()][ccity.getCurrentItem()]
-        // );
-        // }
-        // });
 
         country.setCurrentItem(1);
 
@@ -828,30 +542,6 @@ public class GameListFragment_ extends Fragment {
         button_ok.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO delete 2016/3/16<
-                // positionProvince =
-                // AddressData.PROVINCES[country.getCurrentItem()];
-                // positionCity =
-                // AddressData.CITIES[country.getCurrentItem()][city.getCurrentItem()];
-                // // positionArea =
-                // //
-                // AddressData.COUNTIES[country.getCurrentItem()][city.getCurrentItem()][ccity.getCurrentItem()];
-                // tvCitiesListPageCompetetion.setText(AddressData.PROVINCES[country.getCurrentItem()]
-                // + "-"
-                // +
-                // AddressData.CITIES[country.getCurrentItem()][city.getCurrentItem()]
-                // // + "-" +
-                // //
-                // AddressData.COUNTIES[country.getCurrentItem()][city.getCurrentItem()][ccity.getCurrentItem()]
-                // );
-                // window.dismiss(); // 隐藏
-                // try {
-                // changeList();
-                // } catch (JSONException e) {
-                // // TODO Auto-generated catch block
-                // e.printStackTrace();
-                // }
-                // >
 
             }
         });
@@ -1924,21 +1614,6 @@ public class GameListFragment_ extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//	    	if(list.size()>=4){
-//	    		shaiXuanLinearLayout.setVisibility(View.VISIBLE);
-//	    	}else{
-//	    		shaiXuanLinearLayout.setVisibility(View.GONE);
-//	    	}
-//	    	long currentTime = System.currentTimeMillis();
-//	    	if(lastTime == 0){
-//	    		lastTime  = currentTime;
-////	    		mSwipeLayout.startRefresh();
-//	    	}else{
-//	    		if(currentTime-lastTime>100000){
-////	    			mSwipeLayout.startRefresh();
-//	    		}
-//	    	}
-//	    	lastTime = currentTime;
         if (Config.aId != null) {
             list.clear();
             mListAdapter.notifyDataSetChanged();

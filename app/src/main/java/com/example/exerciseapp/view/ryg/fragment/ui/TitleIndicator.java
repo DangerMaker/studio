@@ -3,8 +3,6 @@
  */
 package com.example.exerciseapp.view.ryg.fragment.ui;
 
-import java.util.List;
-
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -24,6 +22,8 @@ import android.widget.TextView;
 
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.view.ryg.fragment.ui.IndicatorFragmentActivity.TabInfo;
+
+import java.util.List;
 
 /**
  *这是个选项卡式的控件，会随着viewpager的滑动而滑动

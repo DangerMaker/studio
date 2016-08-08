@@ -2,12 +2,10 @@ package com.example.exerciseapp.view.wang.avi.indicator;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.View;
 
 import com.example.exerciseapp.view.nineoldandroids.animation.Animator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

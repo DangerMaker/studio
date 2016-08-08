@@ -3,21 +3,22 @@ package com.example.exerciseapp;
 /**
  * 配置函数
  */
+
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.content.Context;
-import android.content.res.AssetManager;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 
 public class Config {
 	
@@ -61,6 +62,7 @@ public class Config {
 	
 	//通信所用的键
 	public static final String KEY_UID = "uid";					//用户ID
+	public static final String KEY_TOKEN = "token";                //用户token
 	public static final String KEY_USER_NAME = "username";		//用户名
 	public static final String KEY_NICK_NAME = "nickname";		//昵称
 	public static final String KEY_USER_BIRTHDAY = "birthday";	//出生日期 （xxxx-xx-xx)
@@ -287,6 +289,21 @@ public class Config {
 	public static String getCachedUserUid(Context context){
 		mCache = ACache.get(context,"Uid");
 		return mCache.getAsString(KEY_UID);
+	}
+
+	//缓存用户token
+	public static void cacheUserToken(Context context, String token) {
+		mCache = ACache.get(context, "token");
+		if (mCache.getAsString(KEY_TOKEN) != null) {
+			mCache.remove(KEY_TOKEN);
+		}
+		mCache.put(KEY_TOKEN, token, CACHE_TIME);
+	}
+
+
+	public static String getCachedUserToken(Context context) {
+		mCache = ACache.get(context, "token");
+		return mCache.getAsString(KEY_TOKEN);
 	}
 
 	//缓存用户tel
@@ -631,6 +648,8 @@ public class Config {
 	public static void quitCurrentUser(Context context){
 		mCache = ACache.get(context,getCachedUserUid(context));
 		mCache.remove(KEY_UID);
+		mCache.remove(KEY_TOKEN);
+
 		clearAllCache(context);
 		
 	}

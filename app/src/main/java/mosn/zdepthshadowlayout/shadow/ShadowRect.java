@@ -55,5 +55,6 @@ public class ShadowRect implements Shadow {
     public void onDraw(Canvas canvas) {
         canvas.drawRect(mRectBottomShadow, mBottomShadow.getPaint());
         canvas.drawRect(mRectTopShadow, mTopShadow.getPaint());
+
     }
 }

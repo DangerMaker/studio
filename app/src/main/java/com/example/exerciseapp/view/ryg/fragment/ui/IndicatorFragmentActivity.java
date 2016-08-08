@@ -7,10 +7,6 @@ package com.example.exerciseapp.view.ryg.fragment.ui;
  * 报名主界面
  */
 
-import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,13 +19,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 
 import com.example.exerciseapp.R;
-import com.example.exerciseapp.aty.sliding.AtyMyGrades;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @SuppressWarnings("static-access")

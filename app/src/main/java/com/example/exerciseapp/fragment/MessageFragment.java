@@ -2,7 +2,6 @@ package com.example.exerciseapp.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.umeng.message.PushAgent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,8 +79,9 @@ public class MessageFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Config.STATUS_HAS_MESSAGE = false;
-        StringRequest stringRequestMyEntryForm = new StringRequest(Request.Method.POST,
-                Config.SERVER_URL + "System/sysInfo", new Response.Listener<String>() {
+        String url = "" + "http://101.200.214.68/py/system?action=get_sysinfo&uid=";
+        StringRequest stringRequestMyEntryForm = new StringRequest(Request.Method.GET,
+                url + Config.getCachedUserUid(getActivity().getApplicationContext()), new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 try {

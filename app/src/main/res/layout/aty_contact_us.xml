@@ -3,62 +3,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/about_us_bg"
-    android:orientation="vertical" >
-    <View 
+    android:orientation="vertical">
+
+    <View
         android:layout_marginTop="20dp"
         android:background="@color/BtnGrey"
         android:layout_height="1dp"
-        android:layout_width="fill_parent"/>
-    <LinearLayout 
+        android:layout_width="fill_parent" />
+
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/White">
-    <LinearLayout 
-        android:id="@+id/lineartel"
-        android:background="@color/White"
-        android:layout_height="45dp"
-        android:layout_width="fill_parent">
-        <TextView 
-            android:text="电话/传真："
-            android:layout_height="fill_parent"
-            android:layout_width="wrap_content"
-            android:textColor="@color/texttag"
+
+        <LinearLayout
+            android:id="@+id/lineartel"
+            android:background="@color/White"
+            android:layout_height="45dp"
+            android:layout_width="fill_parent">
+
+            <TextView
+                android:text="电话/传真："
+                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:textColor="@color/texttag"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp" />
+
+            <TextView
+                android:id="@+id/texttel"
+                android:text="010-86381313"
+                android:textColor="@color/BtnBlue"
+                android:gravity="center_vertical"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent" />
+        </LinearLayout>
+
+        <View
+            android:background="@color/BtnGrey"
+            android:layout_height="1dp"
+            android:layout_width="340dp"
+            android:layout_gravity="right" />
+
+        <TextView
+            android:text="邮箱：feiaowenhua@163.com"
             android:gravity="center_vertical"
-            android:paddingLeft="24dp"/>
-        <TextView 
-        android:id="@+id/texttel"
-        android:text="010-86381313"
-        android:textColor="@color/BtnBlue"
-        android:gravity="center_vertical"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"/>
+            android:textColor="@color/texttag"
+            android:paddingLeft="24dp"
+            android:background="@color/White"
+            android:layout_height="45dp"
+            android:layout_width="fill_parent" />
+
+        <View
+            android:background="@color/BtnGrey"
+            android:layout_height="1dp"
+            android:layout_width="fill_parent" />
     </LinearLayout>
-    
-    <View 
-        android:background="@color/BtnGrey"
-        android:layout_height="1dp"
-        android:layout_width="340dp"
-        android:layout_gravity="right"/>
-    <TextView 
-        android:text="邮箱：feiaowenhua@163.com"
-        android:gravity="center_vertical"
-        android:textColor="@color/texttag"
-        android:paddingLeft="24dp"
-        android:background="@color/White"
-        android:layout_height="45dp"
-        android:layout_width="fill_parent"/>
-    <View 
-        android:background="@color/BtnGrey"
-        android:layout_height="1dp"
-        android:layout_width="fill_parent"/>
-    </LinearLayout>
-    <View 
+
+    <View
         android:layout_marginTop="30dp"
         android:background="@color/BtnGrey"
         android:layout_height="1dp"
-        android:layout_width="fill_parent"/>
-    <TextView 
+        android:layout_width="fill_parent" />
+
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/texttag"
@@ -67,10 +76,11 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"/>
-    <View 
+        android:paddingBottom="10dp" />
+
+    <View
         android:background="@color/BtnGrey"
         android:layout_height="1dp"
-        android:layout_width="fill_parent"/>
+        android:layout_width="fill_parent" />
 
 </LinearLayout>

@@ -52,7 +52,7 @@
             android:layout_height="fill_parent"
             android:background="@color/BtnGrey"
             android:layout_marginTop="11dp"
-            android:layout_marginBottom="11dp"/>
+            android:layout_marginBottom="11dp" />
 
         <LinearLayout
             android:id="@+id/linearchoosetargeticon"
@@ -93,7 +93,7 @@
             android:layout_height="fill_parent"
             android:background="@color/BtnGrey"
             android:layout_marginTop="11dp"
-            android:layout_marginBottom="11dp"/>
+            android:layout_marginBottom="11dp" />
 
         <LinearLayout
             android:id="@+id/linearchoosemapicon"
@@ -151,7 +151,7 @@
             android:layout_centerInParent="true"
             android:src="@drawable/xiangxia_icon" />
     </RelativeLayout>
-
+    <!-- modify by sonchcng-->
     <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/mapView"
         android:layout_width="match_parent"
@@ -253,11 +253,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/viewlinecanshu1"
             android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -267,6 +269,7 @@
                     android:text="速度"
                     android:textColor="@color/CharacterGrey"
                     android:textSize="13sp" />
+
                 <TextView
                     android:id="@+id/text_speed"
                     android:layout_width="fill_parent"
@@ -288,17 +291,20 @@
                     android:textColor="@color/CharacterGrey"
                     android:textSize="13sp" />
             </LinearLayout>
+
             <View
                 android:layout_width="0.5dp"
                 android:layout_height="fill_parent"
                 android:layout_marginBottom="11dp"
                 android:layout_marginTop="11dp"
                 android:background="@color/BtnGrey" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -330,17 +336,20 @@
                     android:textColor="@color/CharacterGrey"
                     android:textSize="13sp" />
             </LinearLayout>
+
             <View
                 android:layout_width="0.5dp"
                 android:layout_height="fill_parent"
                 android:layout_marginBottom="11dp"
                 android:layout_marginTop="11dp"
                 android:background="@color/BtnGrey" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
@@ -350,6 +359,7 @@
                     android:text="卡里路"
                     android:textColor="@color/CharacterGrey"
                     android:textSize="13sp" />
+
                 <TextView
                     android:id="@+id/textkaluli"
                     android:layout_width="fill_parent"

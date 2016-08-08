@@ -3,7 +3,6 @@ package com.example.exerciseapp.aty.sliding;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -14,6 +13,7 @@ import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.adapter.NewsListAdapter;
+import com.example.exerciseapp.aty.activityrun.ActivityNewsDetails;
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.example.exerciseapp.volley.AuthFailureError;
@@ -90,7 +90,7 @@ public class AtyTheAssocNews extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
-                intent.setClass(AtyTheAssocNews.this, AtyNewsDetails.class);
+                intent.setClass(AtyTheAssocNews.this, ActivityNewsDetails.class);
                 intent.putExtra("newsDetails", mNewsListItems.get(position - 1).toString());
                 startActivity(intent);
                 return;

@@ -177,7 +177,7 @@
                         android:text="min/km"
                         android:textColor="#606060"
                         android:textSize="16sp"
-                        android:textStyle="bold"  />
+                        android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -323,7 +323,7 @@
                         android:text="km"
                         android:textColor="#606060"
                         android:textSize="16sp"
-                        android:textStyle="bold"  />
+                        android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -385,7 +385,7 @@
                         android:text="num"
                         android:textColor="#606060"
                         android:textSize="16sp"
-                        android:textStyle="bold"  />
+                        android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -447,7 +447,7 @@
                         android:text="m"
                         android:textColor="#606060"
                         android:textSize="16sp"
-                        android:textStyle="bold"  />
+                        android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>
 

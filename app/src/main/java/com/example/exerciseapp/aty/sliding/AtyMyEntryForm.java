@@ -3,25 +3,21 @@ package com.example.exerciseapp.aty.sliding;
  * 我的报名页面
  */
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseapp.BaseActivity;
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.adapter.MyEntryFormListAdapter;
+import com.example.exerciseapp.aty.activityrun.ActivityMyEntryGameDetail;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -29,11 +25,15 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.BaseActivity;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
-import com.example.exerciseapp.adapter.MyEntryFormListAdapter;
 import com.umeng.message.PushAgent;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class AtyMyEntryForm extends BaseActivity {
 
@@ -56,6 +56,19 @@ public class AtyMyEntryForm extends BaseActivity {
         mAdapter = new MyEntryFormListAdapter(this, list);
         listView.setAdapter(mAdapter);
         setTitleBar();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    String url = list.get(position).getString("click_brief");
+                    Intent intent = new Intent(AtyMyEntryForm.this, ActivityMyEntryGameDetail.class);
+                    intent.putExtra("click_brief", url);
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void setTitleBar() {
@@ -97,10 +110,7 @@ public class AtyMyEntryForm extends BaseActivity {
                                     e.printStackTrace();
                                 }
 
-                            } else {
-
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -117,7 +127,6 @@ public class AtyMyEntryForm extends BaseActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<String, String>();
-//                map.put(Config.KEY_UID, Config.getCachedUserUid(getApplicationContext()));
                 return map;
             }
         };

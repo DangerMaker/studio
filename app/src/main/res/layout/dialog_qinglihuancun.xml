@@ -2,38 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
+    android:orientation="vertical"
     android:background="@drawable/shape_btn_white_radius_10dip">
-    <TextView 
+
+    <TextView
         android:text="提 示"
         android:textColor="@color/common_red"
         android:layout_height="35dp"
         android:layout_width="300dp"
         android:textSize="20dp"
-        android:gravity="center"
-        />
-    <View 
+        android:gravity="center" />
+
+    <View
         android:background="@color/BackgroudLightGrey"
         android:layout_height="1dp"
-        android:layout_width="fill_parent"/>
-    <TextView 
+        android:layout_width="fill_parent" />
+
+    <TextView
         android:id="@+id/texthcqlwb"
         android:text="缓存清除完毕"
         android:textColor="@color/Black"
         android:gravity="center"
         android:layout_height="50dp"
-        android:layout_width="fill_parent"/>
-    <View 
+        android:layout_width="fill_parent" />
+
+    <View
         android:background="@color/BackgroudLightGrey"
         android:layout_height="1dp"
-        android:layout_width="fill_parent"/>
-    <Button 
+        android:layout_width="fill_parent" />
+
+    <Button
         android:id="@+id/btntijiao"
         android:background="@color/White"
         android:text="确 定"
         android:textColor="@color/BtnBlue"
         android:layout_gravity="center"
         android:layout_height="35dp"
-        android:layout_width="wrap_content"/>
+        android:layout_width="wrap_content" />
 
 </LinearLayout>

@@ -1,19 +1,5 @@
 package com.example.exerciseapp.aty.sliding;
 
-import com.example.exerciseapp.BaseActivity;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.MyApplication;
-import com.example.exerciseapp.R;
-import com.example.exerciseapp.utils.CheckInput;
-import com.example.exerciseapp.volley.AuthFailureError;
-import com.example.exerciseapp.volley.Request;
-import com.example.exerciseapp.volley.RequestQueue;
-import com.example.exerciseapp.volley.Response;
-import com.example.exerciseapp.volley.VolleyError;
-import com.example.exerciseapp.volley.toolbox.StringRequest;
-import com.example.exerciseapp.volley.toolbox.Volley;
-import com.umeng.message.PushAgent;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +13,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.exerciseapp.BaseActivity;
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.MyApplication;
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.utils.CheckInput;
+import com.example.exerciseapp.volley.AuthFailureError;
+import com.example.exerciseapp.volley.Request;
+import com.example.exerciseapp.volley.RequestQueue;
+import com.example.exerciseapp.volley.Response;
+import com.example.exerciseapp.volley.VolleyError;
+import com.example.exerciseapp.volley.toolbox.StringRequest;
+import com.example.exerciseapp.volley.toolbox.Volley;
+import com.umeng.message.PushAgent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,6 +44,8 @@ public class AtyChangePassw extends BaseActivity {
     private Button confirm;
     private RequestQueue mRequestQueue;
     private ProgressDialog progressDialog;
+    String token = MyApplication.getInstance().getToken();
+    String uid = MyApplication.getInstance().getUid();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -118,22 +120,23 @@ public class AtyChangePassw extends BaseActivity {
                         int width = wm.getDefaultDisplay().getWidth();
                         int height = wm.getDefaultDisplay().getHeight();
                         try {
-                            JSONObject jsonObject=new JSONObject(response);
-                            if(jsonObject.getInt("result")==0){
+                            JSONObject jsonObject = new JSONObject(response);
+                            String reason = jsonObject.getString("desc");
+                            if (jsonObject.getInt("result") == 0) {
                                 Toast toast = Toast.makeText(getApplicationContext(),
-                                        "旧密码有误！", Toast.LENGTH_LONG);
+                                        reason, Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER, 0, 0);
-                                toast.getView().setMinimumWidth(width/2);
+                                toast.getView().setMinimumWidth(width / 2);
                                 LinearLayout toastView = (LinearLayout) toast.getView();
                                 ImageView imageCodeProject = new ImageView(getApplicationContext());
                                 imageCodeProject.setImageResource(R.drawable.toast_success);
                                 toastView.addView(imageCodeProject, 0);
                                 toast.show();
-                            }else if(jsonObject.getInt("result")==1){
+                            } else if (jsonObject.getInt("result") == 1) {
                                 Toast toast = Toast.makeText(getApplicationContext(),
-                                        "修改成功", Toast.LENGTH_LONG);
+                                        reason, Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER, 0, 0);
-                                toast.getView().setMinimumWidth(width/2);
+                                toast.getView().setMinimumWidth(width / 2);
                                 LinearLayout toastView = (LinearLayout) toast.getView();
                                 ImageView imageCodeProject = new ImageView(getApplicationContext());
                                 imageCodeProject.setImageResource(R.drawable.toast_success);
@@ -156,9 +159,11 @@ public class AtyChangePassw extends BaseActivity {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> map = new HashMap<String, String>();
-                        map.put(Config.KEY_UID, Config.getCachedUserUid(AtyChangePassw.this));
+                        map.put(Config.KEY_UID, uid);
                         map.put(Config.KEY_ORI_PASSWORD, uPrePassw.getText().toString());
                         map.put(Config.KEY_NEW_PASSWORD, uNewPassw.getText().toString());
+                        map.put("token", token);
+                        map.put("version", "3.0");
                         map.put("action", "change_password");
                         return map;
                     }

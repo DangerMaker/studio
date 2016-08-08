@@ -1,8 +1,8 @@
 package com.example.exerciseapp.volley.toolbox;
 
-import java.io.ByteArrayOutputStream;
-
 import android.graphics.Bitmap;
+
+import java.io.ByteArrayOutputStream;
 
 public class FormImage {
     //参数的名称

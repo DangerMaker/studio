@@ -1,11 +1,5 @@
 package com.example.exerciseapp.adapter;
 
-import java.util.LinkedList;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +7,19 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.LinkedList;
 
 public class LocalSceneListAdapter extends BaseAdapter {
     private Activity activity;
     private LinkedList<JSONObject> list;
+
     public LocalSceneListAdapter(Activity activity, LinkedList<JSONObject> list) {
         this.activity = activity;
         this.list = list;

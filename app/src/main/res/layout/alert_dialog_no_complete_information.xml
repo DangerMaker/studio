@@ -3,17 +3,19 @@
     android:layout_width="300dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/alert_dialog_bg" 
-    android:layout_gravity="center"
-    >
-    <TextView android:layout_width="fill_parent"
+    android:background="@drawable/alert_dialog_bg"
+    android:layout_gravity="center">
+
+    <TextView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="提示"
         android:textSize="20dp"
         android:textColor="#000000"
-        android:gravity="center"/>
-    <TextView 
+        android:gravity="center" />
+
+    <TextView
         android:id="@+id/tvAlertDialogContent"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -21,18 +23,21 @@
         android:text="报名信息未填写完整，请继续填写"
         android:textColor="#222222"
         android:textSize="12dp"
-        android:gravity="center"/>
-    
-    <View android:layout_width="fill_parent"
-    	android:layout_marginTop="30dp"
-        android:layout_height="1dp"
-        android:background="#b0b0b2"
-        />
-    <LinearLayout android:orientation="horizontal"
+        android:gravity="center" />
+
+    <View
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        >
-        <Button android:id="@+id/btnCertainAlertDialogNoCompleteInformation"
+        android:layout_marginTop="30dp"
+        android:layout_height="1dp"
+        android:background="#b0b0b2" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnCertainAlertDialogNoCompleteInformation"
             android:layout_width="0dp"
             android:layout_height="35dp"
             android:layout_weight="1"
@@ -40,12 +45,15 @@
             android:gravity="center"
             android:textSize="19dp"
             android:textColor="#268ba9"
-            android:background="#00000000"
-            />
-        <View android:layout_width="1dp"
+            android:background="#00000000" />
+
+        <View
+            android:layout_width="1dp"
             android:layout_height="fill_parent"
-            android:background="#b0b0b2"/>
-        <Button android:id="@+id/btnCancelAlertDialogNoCompleteInformation"
+            android:background="#b0b0b2" />
+
+        <Button
+            android:id="@+id/btnCancelAlertDialogNoCompleteInformation"
             android:layout_width="0dp"
             android:layout_height="35dp"
             android:text="取消"
@@ -53,7 +61,7 @@
             android:gravity="center"
             android:textSize="19dp"
             android:textColor="#268ba9"
-            android:background="#00000000"/>
+            android:background="#00000000" />
     </LinearLayout>
 
 </LinearLayout>

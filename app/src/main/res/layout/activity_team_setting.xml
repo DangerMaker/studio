@@ -31,18 +31,17 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/edit_color_grey"/>
+        android:background="@color/edit_color_grey" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:background="@color/divder_color_grey"
-        />
+        android:background="@color/divder_color_grey" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/edit_color_grey"/>
+        android:background="@color/edit_color_grey" />
 
 
     <RelativeLayout
@@ -75,7 +74,7 @@
             android:gravity="center|left"
             fresco:roundAsCircle="true"
             fresco:placeholderImage="@drawable/defult_avatar"
-            fresco:placeholderImageScaleType="fitCenter"  />
+            fresco:placeholderImageScaleType="fitCenter" />
 
     </RelativeLayout>
 
@@ -83,8 +82,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/edit_color_grey"
-        />
+        android:background="@color/edit_color_grey" />
 
 
     <RelativeLayout
@@ -116,16 +114,14 @@
             android:layout_marginTop="5dp"
             android:gravity="center|left"
             style="@style/CreateTeamText"
-            android:text="奥菲>"
-            />
+            android:text="奥菲>" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/edit_color_grey"
-        />
+        android:background="@color/edit_color_grey" />
 
     <RelativeLayout
         android:id="@+id/team_setting_des"
@@ -157,27 +153,25 @@
             android:singleLine="true"
             android:gravity="center|right"
             style="@style/CreateTeamText"
-            android:text="奥菲法师打发士大夫士大夫撒地方的萨芬撒>"
-            />
+            android:text="奥菲法师打发士大夫士大夫撒地方的萨芬撒>" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/edit_color_grey"/>
+        android:background="@color/edit_color_grey" />
 
 
     <View
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:background="@color/divder_color_grey"
-        />
+        android:background="@color/divder_color_grey" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/edit_color_grey"/>
+        android:background="@color/edit_color_grey" />
 
 
     <RelativeLayout
@@ -195,16 +189,16 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
             android:gravity="center|left"
-            android:text="团队成员管理：" />
+            android:text="团队成员管理" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/edit_color_grey"
-        />
+        android:background="@color/edit_color_grey" />
 
 
     <RelativeLayout
@@ -221,34 +215,33 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
-            android:gravity="center|left"
-            android:text="邀请好友加入团队：" />
+            android:gravity="center_vertical"
+            android:text="邀请好友加入团队" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/edit_color_grey"/>
+        android:background="@color/edit_color_grey" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:background="@color/divder_color_grey"
-        />
+        android:background="@color/divder_color_grey" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/edit_color_grey"/>
+        android:background="@color/edit_color_grey" />
 
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/team_setting_disappear"

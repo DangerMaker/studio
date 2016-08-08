@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:minHeight="40dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/dialog_sport_shape"
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            android:id="@+id/tyepone"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/light_gray"
+            android:layout_gravity="center"
+            android:text="跑步" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/cutoffrule" />
+
+        <TextView
+            android:id="@+id/typetwo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/light_gray"
+            android:layout_gravity="center"
+            android:text="健步走"
+            android:background="@color/son_bg_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/cutoffrule" />
+
+        <TextView
+            android:id="@+id/typethree"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:textColor="@color/light_gray"
+            android:text="骑行"
+            android:background="@color/son_bg_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/cutoffrule" />
+
+        <TextView
+            android:id="@+id/typefour"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:textColor="@color/light_gray"
+            android:text="登山"
+            android:background="@color/son_bg_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/cutoffrule" />
+
+        <TextView
+            android:id="@+id/typefive"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textColor="@color/light_gray"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:text="自由模式"
+            android:background="@color/son_bg_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/cutoffrule" />
+
+        <TextView
+            android:id="@+id/cancel"
+            android:text="取消"
+            android:textColor="@color/light_gray"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="center" />
+    </LinearLayout>
+</LinearLayout>

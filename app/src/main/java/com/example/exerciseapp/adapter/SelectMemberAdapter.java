@@ -1,9 +1,7 @@
 package com.example.exerciseapp.adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.Uri;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +11,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.exerciseapp.R;
-import com.example.exerciseapp.aty.team.CheckMembersActivity;
-import com.example.exerciseapp.model.ErrorMsg;
 import com.example.exerciseapp.model.Member;
-import com.example.exerciseapp.net.rest.RestAdapterUtils;
-import com.example.exerciseapp.utils.ScreenUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 /**
  * Created by lyjq on 2016/3/29.
@@ -101,9 +91,9 @@ public class SelectMemberAdapter extends BaseAdapter {
             holder.item_group_tag.setVisibility(View.VISIBLE);
         }
 
-        if(!member.isFlag()){
+        if (!member.isFlag()) {
             holder.item_member_select.setImageResource(R.drawable.btn_agree_nor);
-        }else{
+        } else {
             holder.item_member_select.setImageResource(R.drawable.btn_agree_sel);
         }
 

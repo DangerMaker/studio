@@ -9,8 +9,8 @@ android {
         applicationId "com.example.exerciseapp"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 3
-        versionName "2.1"
+        versionCode 8
+        versionName "3.1"
     }
     buildTypes {
         release {
@@ -39,8 +39,8 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.android.support:design:22.2.1'
     compile 'com.android.support:gridlayout-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
     compile files('libs/alipaySdk-20151103.jar')
     compile files('libs/AMap_2DMap_v2.6.0_20150916.jar')
     compile files('libs/AMap_Android_3DMapSDK_V3.1.0_20151124.jar')
@@ -53,8 +53,8 @@ dependencies {
     compile files('libs/umeng-update-v2.6.0.1.jar')
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.orhanobut:logger:1.10'
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp:2.7.5'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.facebook.fresco:fresco:0.7.0'
     compile 'com.facebook.fresco:imagepipeline-okhttp:0.7.0'
     compile files('libs/httpmime-4.0.jar')

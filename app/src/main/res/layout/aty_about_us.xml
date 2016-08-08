@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BackgroudLightGrey"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <include layout="@layout/main_toolbar" />
 
@@ -11,7 +11,7 @@
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="35dp"
-        android:background="#aaaaaa" >
+        android:background="#aaaaaa">
 
         <TextView
             android:id="@+id/tvAssociationTitleAtyAboutUs"
@@ -38,7 +38,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#e0e3ee"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/cursorOneAtyAboutUs"

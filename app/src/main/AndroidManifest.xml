@@ -3,8 +3,8 @@
     package="com.example.exerciseapp">
 
     <uses-sdk
-        android:minSdkVersion="15"
-        android:targetSdkVersion="21" />
+        android:minSdkVersion="11"
+        android:targetSdkVersion="22" />
     <!-- 必选 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
@@ -29,24 +30,19 @@
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     ;
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <!--   <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />-->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
 
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@drawable/icon_of_app">
+        android:icon="@drawable/icon_of_app"
+        android:label="全民健身Ready Go">
 
         <!-- 监听通知点击或者忽略处理的广播 -->
         <receiver
@@ -207,6 +203,7 @@
             android:name=".MainActivity"
             android:label="全民健身"
             android:screenOrientation="portrait"
+
             android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -224,6 +221,90 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:label="提示："
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".TabMainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".aty.activityrun.ActivityRunCircle"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".aty.activityrun.ActivityHotcard"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".aty.activityrun.ActivityInteraction"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".aty.activityrun.ActivityHybrid"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name="com.example.exerciseapp.aty.activityrun.ActivityBindphone"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name="com.example.exerciseapp.aty.activityrun.ActivityConfig"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+
+        <activity
+            android:name="com.example.exerciseapp.aty.activityrun.ActivityBind"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name="com.example.exerciseapp.aty.activityrun.ActivityMessage"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name="com.example.exerciseapp.aty.activityrun.ActivityNews"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name="com.example.exerciseapp.aty.activityrun.ActivityAllteam"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name="com.example.exerciseapp.aty.activityrun.ActivityOrganize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name="com.example.exerciseapp.aty.activityrun.ActivityCity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name="com.example.exerciseapp.aty.activityrun.CreditActivity"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".aty.activityrun.ActivityScoreManager"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+
+        </activity>
         <activity
             android:name=".aty.login.AtyLogin"
             android:launchMode="singleTask"
@@ -258,17 +339,12 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
-            android:name=".aty.sliding.AtySlidingHome"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-        <activity
             android:name=".aty.sliding.AtyUserInformationHome"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
-            android:name=".aty.sliding.AtyUserInformationConfig"
+            android:name=".aty.activityrun.ActivityUserInformation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
@@ -288,7 +364,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
         <activity
-            android:name=".aty.sliding.AtyPay"
+            android:name=".aty.activityrun.ActivityPay"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
@@ -303,27 +379,27 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
         <activity
-            android:name=".aty.sliding.AtyMyClubAndAssociation"
+            android:name=".aty.activityrun.ActivityMyClubAndAssociation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
         <activity
-            android:name=".aty.sliding.AtyMyGrades"
+            android:name=".aty.activityrun.ActivityMyGrades"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
         <activity
-            android:name=".aty.sliding.AtyScoresManager"
+            android:name=".aty.activityrun.ActivityMypoints"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".aty.activityrun.ActivityMyEntryGameDetail"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".aty.sliding.AtyMyFocus"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-        <activity
-            android:name=".aty.sliding.AtyMessage"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
@@ -363,7 +439,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
         <activity
-            android:name=".aty.sliding.AtySaveRunData"
+            android:name=".aty.activityrun.ActivitySaveRunData"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
@@ -373,13 +449,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
         <activity
-            android:name=".aty.sliding.AtyNewsDetails"
+            android:name=".aty.activityrun.ActivityNewsDetails"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
         <activity android:name=".aty.sliding.AtyMessageDetail"></activity>
         <activity
-            android:name=".aty.sliding.AtyRunningRecord"
+            android:name=".aty.activityrun.ActivityRunningRecord"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
@@ -394,7 +470,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
         <activity
-            android:name=".aty.sliding.AtyRunRecordDetail"
+            android:name=".aty.activityrun.ActivityRunRecordDetail"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>

@@ -1,27 +1,8 @@
-package com.example.exerciseapp.aty.sliding;
+package com.example.exerciseapp.aty.activityrun;
 
 /**
  * 跑步历史记录
  */
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -40,8 +21,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -50,6 +31,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseapp.BaseActivity;
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.R;
 import com.example.exerciseapp.utils.SpeedConvert;
 import com.example.exerciseapp.view.se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import com.example.exerciseapp.view.se.emilsjolander.stickylistheaders.StickyListHeadersListView;
@@ -60,26 +44,38 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.BaseActivity;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
-public class AtyRunningRecord extends BaseActivity {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+public class ActivityRunningRecord extends BaseActivity {
     private RequestQueue mRequestQueue;
     private static IWXAPI api;
     static String result = "结果：";
     static String[] countryyy = new String[10000];
     static int intcountry = 0;
-    // private TextView t1;
     MyAdapter adapter;
     private LinkedList<JSONObject> list = new LinkedList<JSONObject>();
-    // private LinkedList<JSONObject> listItem = new LinkedList<JSONObject>();
-
     private Toolbar toolbar;
     private TextView pageTitle;
 
@@ -96,9 +92,6 @@ public class AtyRunningRecord extends BaseActivity {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
-            // urlDownload = "http://192.168.3.39/text.txt";
-            // urlDownload = "http://www.baidu.com/img/baidu_sylogo1.gif";
-            // 获得存储卡路径，构成 保存文件的目标路径
             String dirName = "";
             dirName = Environment.getExternalStorageDirectory() + "/MyDownload/";
             File f = new File(dirName);
@@ -186,23 +179,11 @@ public class AtyRunningRecord extends BaseActivity {
         protected void onPostExecute(JSONObject result) {
             super.onPostExecute(result);
             try {
-                // String data[] = result.getString("data").split(" ");
-                // double []polyjing = new double[1000];
-                // double []polywei = new double[1000];;
-                // int z = 0;
-                // for(int i=0;i<data.length;i++){
-                // if(i%2 == 0){
-                // polyjing[z] = Double.valueOf(data[i]);
-                // }else{
-                // polywei[z] = Double.valueOf(data[i]);
-                // z++;
-                // }
-                // }
                 if (result == null) {
                     Toast.makeText(getApplicationContext(), "因轨迹太少或跑步时间太短或文件不存在，无详细记录", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Intent intent = new Intent(AtyRunningRecord.this, AtyRunRecordDetail.class);
+                Intent intent = new Intent(ActivityRunningRecord.this, ActivityRunRecordDetail.class);
                 intent.putExtra("distance", Float.valueOf(result.getString("distance")));
                 intent.putExtra("duration", Long.valueOf(result.getString(("duration"))));
                 intent.putExtra("calorie", Float.valueOf(result.getString("calorie")));
@@ -213,9 +194,6 @@ public class AtyRunningRecord extends BaseActivity {
                 intent.putExtra("sport_type", result.getString("sport_type"));
                 intent.putExtra("max_speed", Double.parseDouble(result.getString("max_speed")));
                 intent.putExtra("averagespeed", Double.parseDouble(result.getString("averagespeed")));
-                // intent.putExtra("z", z);
-                // intent.putExtra("intentpolyjing", polyjing);
-                // intent.putExtra("intentpolywei",polywei);
                 intent.putExtra("isRecord", true);
                 startActivity(intent);
             } catch (JSONException e) {
@@ -246,13 +224,10 @@ public class AtyRunningRecord extends BaseActivity {
 
     public class MyAdapter extends BaseAdapter implements StickyListHeadersAdapter {
 
-        // private String[] countries;
         private LayoutInflater inflater;
 
         public MyAdapter(Context context) {
             inflater = LayoutInflater.from(context);
-            // countries =
-            // context.getResources().getStringArray(R.array.countries);
         }
 
         @Override
@@ -332,22 +307,19 @@ public class AtyRunningRecord extends BaseActivity {
                 holder.tvMonth = (TextView) convertView.findViewById(R.id.tvMonth);
                 holder.tvDistance = (TextView) convertView.findViewById(R.id.tvDistanceHeader);
                 holder.tvTime = (TextView) convertView.findViewById(R.id.tvTime);
-                // holder.img1=(ImageView) convertView.findViewById(R.id.img1);
-                // holder.img2=(ImageView) convertView.findViewById(R.id.img2);
                 convertView.setTag(holder);
             } else {
                 holder = (HeaderViewHolder) convertView.getTag();
             }
-            // set header text as first char in name
             String headerText;
             try {
                 headerText = list.get(position).getString("month");
                 holder.tvMonth.setText(list.get(position).getString("month"));
                 holder.tvDistance.setText("公里" + (float) (Math.round(Float.parseFloat(list.get(position).getString("sumdistance")) / 1000 * 100)) / 100 + "");
                 long t = list.get(position).getLong("sumduration");
-                if(0==t/3600){
+                if (0 == t / 3600) {
                     holder.tvTime.setText("分钟" + SpeedConvert.secToTime(t));// holder.img1.setImageURI(uri)
-                }else{
+                } else {
                     holder.tvTime.setText("小时" + SpeedConvert.secToTime(t));// holder.img1.setImageURI(uri)
                 }
             } catch (JSONException e) {
@@ -399,7 +371,6 @@ public class AtyRunningRecord extends BaseActivity {
             @Override
             public void onResponse(String s) {
                 try {
-                    // progressDialog.dismiss();
                     jsonObject = new JSONObject(s);
                     JSONObject json = new JSONObject();
                     if (jsonObject.getString("result").equals("1")) {
@@ -416,57 +387,6 @@ public class AtyRunningRecord extends BaseActivity {
                             }
                         }
                         adapter.notifyDataSetChanged();
-                        // int t=jsonArray.length();
-                        //// s=t+s;
-                        // List<String> list = new ArrayList<String>();
-                        // for (int i=0; i<t; i++) {
-                        // list.add( jsonArray.getString(i) );
-                        // }
-                        // String[] stringArray = list.toArray(new
-                        // String[list.size()]);
-                        //
-                        // //设置list里面的参数
-                        //// final int sectionsNumber = to - from + 1;
-                        //
-                        //
-                        //// int sectionPosition = 0, listPosition = 0;
-                        // for(int
-                        // i=0;i<t;i++){//result+=stringArray[i];
-                        // JSONObject json1 =
-                        // jsonArray.getJSONObject(i);//月份的
-                        // String month=(String)
-                        // json1.get("month");result+="月份："+month+" ";
-                        // String sumduration=(String)
-                        // json1.get("sumduration");result+="总时间："+sumduration+"
-                        // ";
-                        // float sumdistance =
-                        // json1.getLong("sumdistance");result+="总距离："+sumdistance+"
-                        // ";
-                        // JSONArray jsonArray_ =
-                        // json1.getJSONArray("rundata");result+="具体数据:\r\n";
-                        // String listtext=month+" 公里"+sumduration+"
-                        // 时长"+sumdistance;
-                        // for(int j=0;j<jsonArray_.length();j++){
-                        // JSONObject json2 =
-                        // jsonArray_.getJSONObject(j);//具体每次的
-                        // int id =
-                        // json2.getInt("id");result+="id:"+id+" ";
-                        // String rundatetime=(String)
-                        // json2.get("rundatetime");result+="总时间："+rundatetime+"
-                        // ";
-                        // String averagespeed=(String)
-                        // json2.get("averagespeed");result+="平均速度："+averagespeed+"
-                        // ";
-                        // String calorie=(String)
-                        // json2.get("calorie");result+="卡路里："+calorie+"
-                        // ";
-                        // String distance=(String)
-                        // json2.get("distance");result+="距离："+distance+"\r\n";
-                        // }
-                        // }
-                        // Toast.makeText(getApplicationContext(),
-                        // "下载成功", 2).show();
-
                     } else {
                         Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
                     }
@@ -487,8 +407,6 @@ public class AtyRunningRecord extends BaseActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put(Config.KEY_UID, Config.getCachedUserUid(getApplicationContext()));
-                // map.put(Config.KEY_UID,
-                // Config.getCachedUserUid(AtyRunningRecord.this.getApplicationContext()));
                 return map;
             }
         };
@@ -507,7 +425,7 @@ public class AtyRunningRecord extends BaseActivity {
         toolbar.setNavigationOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                AtyRunningRecord.this.finish();
+                ActivityRunningRecord.this.finish();
             }
         });
         toolbar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -557,25 +475,14 @@ public class AtyRunningRecord extends BaseActivity {
      */
 
     public void wechatShare(String webPageUrl, String title, String description, Bitmap bitmap, int flag)
-            throws MalformedURLException, IOException {
+            throws IOException {
         // api.openWXApp();
         WXWebpageObject webpage = new WXWebpageObject();
         webpage.webpageUrl = webPageUrl;
         WXMediaMessage msg = new WXMediaMessage(webpage);
         msg.title = title;
         msg.description = description;
-        // bmp = BitmapFactory.decodeStream(new URL(imageUrl).openStream());
-        // Bitmap bitmap = null;
-        // try {
-        // //加载一个网络图片
-        // InputStream is = new URL(imageUrl).openStream();
-        // bitmap = BitmapFactory.decodeStream(is);
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // }
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bitmap, 150, 150, true);
-        // Bitmap thumb = BitmapFactory.decodeResource(getResources(),
-        // R.drawable.addphoto);
         msg.setThumbImage(thumbBmp);
         thumbBmp.recycle();
 
@@ -656,10 +563,6 @@ public class AtyRunningRecord extends BaseActivity {
                                 JSONObject jsonObject = new JSONObject(s);
                                 if (jsonObject.getString("result").equals("1")) {
                                     JSONObject json = jsonObject.getJSONObject("data");
-                                    // wechatShare(json.getString("url"),
-                                    // json.getString("title"),
-                                    // json.getString("content"),
-                                    // json.getString("image"), 0);
                                     json.put("flag", 0);
                                     new MyTask().execute(json);
                                 } else {

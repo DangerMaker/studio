@@ -13,39 +13,39 @@
         android:layout_margin="10dp"
         android:orientation="horizontal">
 
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@color/White"
-        android:cacheColorHint="@color/White"
-        android:divider="#dcdcdc"
-        android:dividerHeight="1px"
-        android:paddingLeft="4dp"
-        android:scrollbars="none"></ListView>
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:cacheColorHint="@color/White"
+            android:divider="#dcdcdc"
+            android:dividerHeight="1px"
+            android:paddingLeft="4dp"
+            android:scrollbars="none"></ListView>
 
-    <ListView
-        android:id="@+id/listView2"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@color/White"
-        android:cacheColorHint="@color/White"
-        android:divider="#dcdcdc"
-        android:dividerHeight="1px"
-        android:paddingLeft="4dp"
-        android:scrollbars="none"></ListView>
+        <ListView
+            android:id="@+id/listView2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:cacheColorHint="@color/White"
+            android:divider="#dcdcdc"
+            android:dividerHeight="1px"
+            android:paddingLeft="4dp"
+            android:scrollbars="none"></ListView>
 
-    <ListView
-        android:id="@+id/listView3"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@color/White"
-        android:cacheColorHint="@color/White"
-        android:divider="#dcdcdc"
-        android:dividerHeight="1px"
-        android:paddingRight="4dp"></ListView>
+        <ListView
+            android:id="@+id/listView3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:cacheColorHint="@color/White"
+            android:divider="#dcdcdc"
+            android:dividerHeight="1px"
+            android:paddingRight="4dp"></ListView>
     </LinearLayout>
 </LinearLayout>

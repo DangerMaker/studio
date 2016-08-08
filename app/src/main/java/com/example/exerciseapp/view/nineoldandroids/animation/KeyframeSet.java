@@ -16,14 +16,14 @@
 
 package com.example.exerciseapp.view.nineoldandroids.animation;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import android.view.animation.Interpolator;
 
 import com.example.exerciseapp.view.nineoldandroids.animation.Keyframe.FloatKeyframe;
 import com.example.exerciseapp.view.nineoldandroids.animation.Keyframe.IntKeyframe;
 import com.example.exerciseapp.view.nineoldandroids.animation.Keyframe.ObjectKeyframe;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * This class holds a collection of Keyframe objects and is called by ValueAnimator to calculate

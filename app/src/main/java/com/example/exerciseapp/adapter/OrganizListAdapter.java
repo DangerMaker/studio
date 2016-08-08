@@ -1,7 +1,6 @@
 package com.example.exerciseapp.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,6 @@ import android.widget.TextView;
 
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.model.OrganizeName;
-import com.example.exerciseapp.model.SingleGroup;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +23,7 @@ public class OrganizListAdapter extends BaseAdapter {
     List<OrganizeName> collection;
     Context context;
     OnListClick listClick;
+
     public OrganizListAdapter(Context context, OnListClick listClick) {
         this.context = context;
         collection = new ArrayList<>();
@@ -33,7 +31,7 @@ public class OrganizListAdapter extends BaseAdapter {
         this.listClick = listClick;
     }
 
-    public interface OnListClick{
+    public interface OnListClick {
         void click(OrganizeName group);
     }
 
@@ -52,18 +50,18 @@ public class OrganizListAdapter extends BaseAdapter {
         return position;
     }
 
-    public void addItems(List<OrganizeName> list){
+    public void addItems(List<OrganizeName> list) {
         collection.addAll(list);
         notifyDataSetChanged();
     }
 
-    public void updateItems(List<OrganizeName> list){
+    public void updateItems(List<OrganizeName> list) {
         collection.clear();
         collection.addAll(list);
         notifyDataSetChanged();
     }
 
-    public void clear(){
+    public void clear() {
         collection.clear();
     }
 
@@ -71,15 +69,15 @@ public class OrganizListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final OrganizeName singleGroup = collection.get(position);
         ViewHolder holder = null;
-        if(convertView == null){
-            convertView = layoutInflater.inflate(R.layout.item_oragnize,null);
+        if (convertView == null) {
+            convertView = layoutInflater.inflate(R.layout.item_oragnize, null);
             holder = new ViewHolder();
-            holder.item_group_name = (TextView)convertView.findViewById(R.id.item_name);
-            holder.relativeLayout = (RelativeLayout)convertView.findViewById(R.id.item_root);
+            holder.item_group_name = (TextView) convertView.findViewById(R.id.item_name);
+            holder.relativeLayout = (RelativeLayout) convertView.findViewById(R.id.item_root);
 
             convertView.setTag(holder);
-        }else {
-            holder = (ViewHolder)convertView.getTag();
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
         holder.item_group_name.setText(singleGroup.getName());

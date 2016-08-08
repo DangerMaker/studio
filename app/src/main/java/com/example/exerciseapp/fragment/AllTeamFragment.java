@@ -6,16 +6,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -27,7 +24,6 @@ import com.example.exerciseapp.R;
 import com.example.exerciseapp.adapter.GroupListAdapter;
 import com.example.exerciseapp.aty.team.SearchActivity;
 import com.example.exerciseapp.aty.team.TeamDetailActivity;
-import com.example.exerciseapp.model.AllGroup;
 import com.example.exerciseapp.model.GroupList;
 import com.example.exerciseapp.model.SingleGroup;
 import com.example.exerciseapp.net.rest.RestAdapterUtils;
@@ -37,9 +33,7 @@ import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefresh
 import com.example.exerciseapp.view.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnEditorAction;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -51,7 +45,7 @@ public class AllTeamFragment extends BaseFragment implements GroupListAdapter.On
 
     @Bind(R.id.pull_to_refresh_team)
     PullToRefreshListView listView;
-    String uid;
+    public String uid;
     GroupListAdapter adapter;
 
     public static AllTeamFragment newInstance() {
@@ -72,6 +66,7 @@ public class AllTeamFragment extends BaseFragment implements GroupListAdapter.On
                 // Update the LastUpdatedLabel
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 load();
+
             }
 
         });
@@ -83,8 +78,6 @@ public class AllTeamFragment extends BaseFragment implements GroupListAdapter.On
             ScreenUtils.show_msg(getActivity(), "没有用户id,请登录");
             return;
         }
-
-//        initView();
     }
 
 
@@ -95,8 +88,7 @@ public class AllTeamFragment extends BaseFragment implements GroupListAdapter.On
     }
 
     private void load() {
-        adapter.clear();
-        RestAdapterUtils.getTeamAPI().getGroupList(new Callback<GroupList>() {
+        RestAdapterUtils.getTeamAPI().getGroupList("get_group_list", new Callback<GroupList>() {
             @Override
             public void success(GroupList allGroup, Response response) {
                 if (allGroup != null && allGroup.getResult() == 1) {
@@ -121,14 +113,14 @@ public class AllTeamFragment extends BaseFragment implements GroupListAdapter.On
         });
     }
 
-    private void loadFind(){
+    private void loadFind() {
         String find = editText1.getText().toString();
-        if(TextUtils.isEmpty(find)){
+        if (TextUtils.isEmpty(find)) {
             return;
         }
 
         adapter1.clear();
-        RestAdapterUtils.getTeamAPI().getGroupFind(find,new Callback<GroupList>() {
+        RestAdapterUtils.getTeamAPI().getGroupFind(find, new Callback<GroupList>() {
             @Override
             public void success(GroupList allGroup, Response response) {
                 if (allGroup != null && allGroup.getResult() == 1) {
@@ -183,8 +175,8 @@ public class AllTeamFragment extends BaseFragment implements GroupListAdapter.On
 
     private void initView() {
         convertView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_search, null);
-        editText1 = (EditText)convertView.findViewById(R.id.fragment_search_edit);
-        listView1 = (ListView)convertView.findViewById(R.id.fragment_search_list);
+        editText1 = (EditText) convertView.findViewById(R.id.fragment_search_edit);
+        listView1 = (ListView) convertView.findViewById(R.id.fragment_search_list);
         editText1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -195,7 +187,6 @@ public class AllTeamFragment extends BaseFragment implements GroupListAdapter.On
             }
         });
     }
-
 
 
     private void showWindow() {

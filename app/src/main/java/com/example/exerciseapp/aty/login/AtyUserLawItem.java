@@ -6,8 +6,10 @@ import android.view.View;
 import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebView;
 import android.widget.TextView;
+
 import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.R;
+
 import butterknife.Bind;
 
 public class AtyUserLawItem extends BaseActivity {
@@ -31,7 +33,7 @@ public class AtyUserLawItem extends BaseActivity {
         getInfo();
     }
 
-    private void getInfo(){
+    private void getInfo() {
         webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.loadUrl(url);

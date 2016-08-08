@@ -1,6 +1,5 @@
 package com.example.exerciseapp.aty.team;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,7 +11,7 @@ import com.example.exerciseapp.R;
 /**
  * Created by lyjq on 2016/3/28.
  */
-public abstract class BackBaseActivity extends BaseActivity{
+public abstract class BackBaseActivity extends BaseActivity {
     Toolbar toolbar;
     TextView pageTitle;
 

@@ -1,44 +1,33 @@
 package com.example.exerciseapp.aty.sliding;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.exerciseapp.BaseActivity;
+import com.example.exerciseapp.Config;
+import com.example.exerciseapp.R;
+import com.example.exerciseapp.aty.activityrun.ActivityPay;
+import com.example.exerciseapp.aty.login.AtyRegisterHomePage.OnTextViewClickListener;
 import com.example.exerciseapp.aty.login.AtyUserLawItem;
+import com.example.exerciseapp.listener.TextClickSpan;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -46,20 +35,23 @@ import com.example.exerciseapp.volley.Response;
 import com.example.exerciseapp.volley.VolleyError;
 import com.example.exerciseapp.volley.toolbox.StringRequest;
 import com.example.exerciseapp.volley.toolbox.Volley;
-import com.example.exerciseapp.Config;
-import com.example.exerciseapp.R;
-import com.example.exerciseapp.aty.login.AtyRegisterHomePage.OnTextViewClickListener;
-import com.example.exerciseapp.listener.TextClickSpan;
 import com.umeng.message.PushAgent;
 
-import butterknife.Bind;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * 协会报名表
  */
 
-public class AtyAssocEntryForm extends BaseActivity {
-
-    private ActionBar actionBar;
+public class AtyAssocEntryForm extends Activity {
 
     private TextView tvGameNameAssocEntryForm;
     private TextView etApplyUserNameAssocEntryForm;
@@ -84,12 +76,17 @@ public class AtyAssocEntryForm extends BaseActivity {
     private String aId = new String();
     private JSONObject info;
 
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-    @Bind(R.id.toolbar_text)
-    TextView toolBarTitle;
+    private ImageView goback;
 
     private void initView() {
+
+        goback = (ImageView) findViewById(R.id.goback);
+        goback.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         tvGameNameAssocEntryForm = (TextView) findViewById(R.id.tvGameNameAssocEntryForm);
         tvPayFeeAssocEntryForm = (TextView) findViewById(R.id.tvPayFeeAssocEntryForm);
         try {
@@ -252,7 +249,7 @@ public class AtyAssocEntryForm extends BaseActivity {
                                                             if (jsonObject.getString("result").equals("1")) {
                                                                 Toast.makeText(getApplicationContext(), jsonObject.getString("desc"), Toast.LENGTH_SHORT).show();
                                                                 if (!tvPayFeeAssocEntryForm.getText().toString().equals("0")) {
-                                                                    Intent intent = new Intent(AtyAssocEntryForm.this, AtyPay.class);
+                                                                    Intent intent = new Intent(AtyAssocEntryForm.this, ActivityPay.class);
                                                                     intent.putExtra("id", String.valueOf(jsonObject.getJSONObject("data").getInt("id")));
                                                                     intent.putExtra("apayfee", tvPayFeeAssocEntryForm.getText().toString());
                                                                     intent.putExtra(Config.KEY_USER_ATTEND_ENAME, tvGameNameAssocEntryForm.getText().toString());
@@ -287,14 +284,7 @@ public class AtyAssocEntryForm extends BaseActivity {
                                     } catch (UnsupportedEncodingException e1) {
                                         e1.printStackTrace();
                                     }
-//								
-//							if(tvPayFeeAssocEntryForm.getText().toString().equals("0")){
-//								Intent intent = new Intent(AtyAssocEntryForm.this,AtyPay.class);
-//								intent.putExtra(Config.KEY_USER_ATTEND_EPAYFEE, tvPayFeeAssocEntryForm.getText().toString());
-//								intent.putExtra(Config.KEY_USER_ATTEND_ENAME, tvGameNameAssocEntryForm.getText().toString());
-//								intent.putExtra(Config.KEY_GAME_NAME, tvGameNameAssocEntryForm.getText().toString());
-//								startActivity(intent);
-//							}
+
                                     finish();
                                 }
                             });
@@ -322,40 +312,8 @@ public class AtyAssocEntryForm extends BaseActivity {
         aId = getIntent().getStringExtra(Config.KEY_AID);
         agreement = getIntent().getStringExtra("agreement");
         initView();
-        setTitleBar();
     }
 
-    public void setTitleBar() {
-        toolbar.setPadding(0, getDimensionMiss(), 0, 0);
-        toolbar.setTitle("");
-        toolBarTitle.setText("申请表");
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.backbtn);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AtyAssocEntryForm.this.finish();
-            }
-        });
-    }
-
-
-    //	private void initActionBar(){
-//		actionBar = getActionBar();  
-//        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-//        LayoutInflater inflater = getLayoutInflater();
-//        View view = inflater.inflate(R.layout.actionbar_start_running, null);
-//        TextView text = (TextView) view.findViewById(R.id.tvPageTitleOfAll);
-//        text.setText("申请表");
-//        view.findViewById(R.id.ivBackBtnStartRunning).setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				finish();
-//			}
-//		});
-//        actionBar.setCustomView(view);
-//	}
     public void setClickTextView(TextView textview, SpannableString ss, int start, int end, ClickableSpan cs) {
         ss.setSpan(cs, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         textview.setText(ss);

@@ -7,6 +7,7 @@
 
 
     <include layout="@layout/main_toolbar" />
+
     <GridView
         android:id="@+id/team_tag_gridview"
         android:layout_width="match_parent"

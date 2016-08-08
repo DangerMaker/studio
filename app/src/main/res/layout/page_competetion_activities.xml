@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootLayoutPageCompetetion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,73 +11,6 @@
         android:orientation="vertical">
 
         <include layout="@layout/banner" />
-
-        <!--
-        <LinearLayout
-            android:id="@+id/shaiXuanLinearLayout"
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="32dp"
-            android:gravity="bottom"
-            android:background="#fefefe"
-            >
-            <TextView android:id="@+id/tvCitiesListPageCompetetionGames"
-                android:layout_width="0dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical|right"
-                android:singleLine="true"
-                android:textColor="@color/texttag"
-                android:textSize="15sp"
-                android:text="地区"/>
-            <ImageView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/xiala_icon"/>
-            <TextView android:id="@+id/tvGameCatalogoPageCompetetion"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical|right"
-                android:layout_gravity="center_vertical"
-                android:textSize="15sp"
-                android:textColor="@color/texttag"
-                android:text="项目"/>
-            <ImageView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/xiala_icon"/>
-            <TextView android:id="@+id/tvGameLevelPageCompetetion"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical|right"
-                android:layout_gravity="center_vertical"
-                android:textColor="@color/texttag"
-                android:textSize="15sp"
-                android:text="级别"/>
-            <ImageView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/xiala_icon"/>
-            <TextView android:id="@+id/tvGameNeedPayPageCompetetion"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical|right"
-                android:layout_gravity="center_vertical"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:textColor="@color/texttag"
-                android:textSize="15sp"
-                android:text="费用"/>
-            <ImageView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/xiala_icon"
-                android:layout_marginRight="30dp"/>
-        </LinearLayout>
-        -->
 
         <View
             android:layout_width="fill_parent"
@@ -92,20 +24,6 @@
             android:divider="#00000000"
             android:paddingTop="5dp"
             android:scrollbars="none" />
-        <!--
-        <ListView
-                android:id="@+id/listGame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:cacheColorHint="@android:color/transparent"
-                android:dividerHeight="5dp"
-                android:overScrollFooter="@null"
-                android:background="#ffffff"
-                android:scrollbars="none"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                />
-        </com.whos.swiperefreshandload.view.SwipeRefreshLayout>
-        -->
+
     </LinearLayout>
 </RelativeLayout>

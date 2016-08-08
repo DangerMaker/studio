@@ -1,10 +1,11 @@
 package com.example.exerciseapp.view.nineoldandroids.view;
 
-import java.lang.ref.WeakReference;
-
 import android.view.View;
 import android.view.animation.Interpolator;
+
 import com.example.exerciseapp.view.nineoldandroids.animation.Animator.AnimatorListener;
+
+import java.lang.ref.WeakReference;
 
 class ViewPropertyAnimatorICS extends ViewPropertyAnimator {
     /**

@@ -1,17 +1,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/MyClubAndAssocListItemLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:background="@drawable/linear_bg"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <RelativeLayout
         android:layout_width="160dp"
         android:layout_height="110dp"
         android:layout_marginBottom="7dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="3dp" >
+        android:layout_marginTop="3dp">
 
         <ImageView
             android:id="@+id/frontImageMyClubAndAssocList"
@@ -35,7 +34,7 @@
         android:layout_marginBottom="7dp"
         android:layout_marginTop="3dp"
         android:layout_marginRight="5dp"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvClubOrAssocNameMyClubAndAssocList"
@@ -44,7 +43,9 @@
             android:layout_marginTop="8dp"
             android:text="示例"
             android:textColor="#000000"
-            android:textSize="17sp" />
+            android:textSize="13sp"
+            android:singleLine="true"
+            android:ellipsize="end" />
 
         <TextView
             android:id="@+id/tvParticipantPersonMyClubAndAssocList"
@@ -54,7 +55,7 @@
             android:layout_marginTop="8dp"
             android:text="参赛人员："
             android:textColor="#5f5b5b"
-            android:textSize="13dp" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/tvTimeMyClubAndAssocList"
@@ -65,7 +66,7 @@
             android:singleLine="true"
             android:text="时间:"
             android:textColor="#5f5b5b"
-            android:textSize="13dp" />
+            android:textSize="13sp" />
 
         <ImageView
             android:id="@+id/ivModifyInformationMyClubAndAssocList"

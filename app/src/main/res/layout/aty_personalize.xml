@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loginback"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/backgroud_round_corner_grey"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TableLayout
             android:layout_width="fill_parent"
@@ -31,13 +31,13 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/backgroud_round_corner_white"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp" >
+                android:layout_marginTop="10dp">
 
                 <EditText
                     android:id="@+id/etWeightPersonalize"
@@ -49,16 +49,16 @@
                     android:inputType="number"
                     android:paddingLeft="10dp"
                     android:singleLine="true"
-                    android:textSize="@dimen/edit_text_size_15sp" 
-                    android:textColor="#c3c3c9"/>
+                    android:textSize="@dimen/edit_text_size_15sp"
+                    android:textColor="#c3c3c9" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="10dp"
                     android:text="@string/Kilogram"
-                    android:textSize="@dimen/edit_text_size_15sp" 
-                    android:textColor="#898989"/>
+                    android:textSize="@dimen/edit_text_size_15sp"
+                    android:textColor="#898989" />
 
                 <View
                     android:layout_width="1dip"
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp" >
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     android:id="@+id/ivUserHwPersonalize"
@@ -106,8 +106,7 @@
                     android:layout_height="110dp"
                     android:background="@drawable/addphoto"
                     android:paddingBottom="10dp"
-                    android:scaleType="centerCrop"
-                     />
+                    android:scaleType="centerCrop" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -126,7 +125,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnDropPersonalize"

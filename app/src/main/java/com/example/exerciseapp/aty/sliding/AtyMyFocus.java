@@ -3,10 +3,12 @@ package com.example.exerciseapp.aty.sliding;
 /**
  * 我的关注页面
  */
+
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+
 import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.R;
 import com.umeng.message.PushAgent;

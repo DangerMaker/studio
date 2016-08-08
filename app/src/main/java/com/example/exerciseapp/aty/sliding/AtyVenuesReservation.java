@@ -2,13 +2,14 @@ package com.example.exerciseapp.aty.sliding;
 /**
  * 场馆预约页面
  */
-import com.example.exerciseapp.R;
-import com.umeng.message.PushAgent;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.exerciseapp.R;
+import com.umeng.message.PushAgent;
 
 public class AtyVenuesReservation extends Activity {
 

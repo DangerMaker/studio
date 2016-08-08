@@ -1,12 +1,12 @@
 package com.example.exerciseapp.view.liangfeizc.flowlayout;
 
-import com.example.exerciseapp.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.exerciseapp.R;
 
 /**
  * FlowLayout is much more like a {@link android.widget.LinearLayout}, but it can automatically

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e2e4ec"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <include layout="@layout/main_toolbar" />
 
@@ -13,7 +13,7 @@
         android:layout_marginLeft="23dp"
         android:layout_marginRight="23dp"
         android:layout_marginTop="23dp"
-        android:background="@drawable/shape_view_group" >
+        android:background="@drawable/shape_view_group">
 
         <LinearLayout
             android:id="@+id/change_passw_editarea"
@@ -25,7 +25,7 @@
             android:layout_marginRight="13dp"
             android:layout_marginTop="13dp"
             android:background="@drawable/shape_view_group_white"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/change_passw_phone"

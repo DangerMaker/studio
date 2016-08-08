@@ -90,7 +90,7 @@ public class PreGridAdapter extends BaseAdapter {
         try {
             if (choiced.size() != 0 && choiced.contains(list.get(position).getInt("id"))) {
                 holder.item_Layout.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_oval));
-            }else{
+            } else {
                 holder.item_Layout.setBackground(ContextCompat.getDrawable(context, R.color.common_white));
             }
         } catch (JSONException e) {
