@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/son_bg_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/actionbarbg">
+
+        <ImageView
+            android:id="@+id/goback"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:src="@drawable/backbtn" />
+
+        <TextView
+            android:id="@+id/pagetitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="运动圈"
+            android:textColor="@color/BtnTextColorWhite"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/hotcardcommit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:text="发布"
+            android:textColor="@color/BtnTextColorWhite"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/girdview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="1dp"
+        android:minHeight="80dp">
+
+        <com.example.exerciseapp.view.SportFriendGirdView
+            android:id="@+id/noScrollgridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:horizontalSpacing="3dp"
+            android:minHeight="80dp"
+            android:numColumns="6"
+            android:paddingTop="5dp"
+            android:scrollbars="none"
+            android:verticalSpacing="5dp"></com.example.exerciseapp.view.SportFriendGirdView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/contentrelat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/girdview">
+
+        <EditText
+            android:id="@+id/etAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:gravity="top|left"
+            android:hint="输入你想说的..."
+            android:minHeight="100dp"
+            android:paddingLeft="10dp"
+            android:textColor="@color/blackfont"
+            android:textColorHint="@color/blackfont"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linerlocation"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/contentrelat"
+        android:layout_marginLeft="150dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/backgroud_round_corner_address"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/sportfriend_address" />
+
+        <TextView
+            android:id="@+id/sportlocation"
+            android:layout_width="match_parent"
+            android:layout_marginRight="15dp"
+
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center|left"
+            android:paddingLeft="2dp"
+            android:singleLine="true"
+            android:text="所在位置"
+            android:textColor="#b7bac1"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/gonext"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/linerlocation"
+        android:layout_marginTop="10dp"
+        android:background="#f0f0f0" />
+
+    <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"></com.amap.api.maps2d.MapView>
+
+</RelativeLayout>

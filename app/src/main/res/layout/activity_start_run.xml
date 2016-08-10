@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/run_record_content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/White"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/actionbarbg"
+        android:minHeight="40dp"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:src="@drawable/backbtn"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:id="@+id/goback"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/toolbar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/BtnTextColorWhite"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:text="开始运动"
+            android:gravity="center" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/myreletest"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="400dp"
+            android:id="@+id/myrunbig"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/startrun_backg">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="120dp"
+                android:orientation="vertical"
+                android:id="@+id/runLinL">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/startrunbigdistance"
+                    android:text="0.00 KM"
+                    android:textSize="40sp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/soncolordark" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:text="距离"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:textColor="#898989" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/startrunbigtime"
+                    android:text="00:00:00"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:gravity="center"
+                    android:textColor="@color/soncolordark" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/runLinL"
+                android:id="@+id/runLinLfirst"
+                android:background="@color/cutoffrule" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/runLinLfirst"
+                android:id="@+id/runLsecond"
+                android:layout_marginTop="10dp"
+                android:background="@color/son_bg_color"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:id="@+id/startrunspeed"
+                        android:textColor="@color/soncolordark"
+                        android:text="00'00" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/soncolorgrey"
+                        android:text="配速：分钟/公里" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:id="@+id/startruncal"
+                        android:textColor="@color/soncolordark"
+                        android:text="0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/soncolorgrey"
+                        android:text="消耗：大卡" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:background="@color/son_bg_color"
+                android:layout_below="@id/runLsecond"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:id="@+id/startrunaltitude"
+                        android:textColor="@color/soncolordark"
+                        android:text="0米"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/soncolorgrey"
+                        android:text="海拔：米" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:id="@+id/startrunheartrate"
+                        android:textColor="@color/soncolordark"
+                        android:text="--" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/soncolorgrey"
+                        android:text="心率：次/分钟" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:id="@+id/startrun_pause"
+                android:src="@drawable/startrun_pause"
+
+                android:scaleX="0.98"
+                android:scaleY="0.98"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:id="@+id/startrun_continue"
+                android:src="@drawable/startruncontinue"
+                android:visibility="invisible"
+                android:scaleX="0.98"
+                android:scaleY="0.98"
+
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:id="@+id/startrun_lock"
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/startrun_lock"
+                android:layout_alignParentBottom="true" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/startrun_unlock"
+                android:src="@drawable/startrununlock"
+                android:visibility="invisible"
+                android:layout_alignParentBottom="true" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:id="@+id/startrun_end"
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/startrun_end"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:background="#057496"
+            android:visibility="gone"
+            android:layout_below="@id/myrunbig"
+            android:layout_marginBottom="50dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/myrunsmall">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:id="@+id/startrunsmalldistance"
+                android:text="0.00 KM"
+                android:textStyle="bold"
+                android:textSize="40sp"
+                android:gravity="center"
+                android:textColor="@color/common_white" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:text="距离"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="#C4C4C4" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:id="@+id/startrunsmalltime"
+                android:text="00:00:00"
+                android:textStyle="bold"
+                android:textSize="40sp"
+                android:gravity="center"
+                android:textColor="@color/common_white" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:id="@+id/myshowmap"
+        android:layout_above="@id/myreletest"
+        android:layout_below="@id/toolbar">
+
+        <RelativeLayout
+            android:id="@+id/relativeshowmap"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.amap.api.maps2d.MapView>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/myshowmap"
+        android:background="@color/light_gray"></View>
+</RelativeLayout>

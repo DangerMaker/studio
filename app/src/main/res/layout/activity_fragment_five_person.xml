@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/loginback"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/actionbarbg"
+        android:minHeight="40dp"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:text="消息"
+            android:textColor="@color/BtnTextColorWhite"
+            android:textSize="18sp"
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/gotomessage" />
+
+        <TextView
+            android:id="@+id/toolbar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/BtnTextColorWhite"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:text="个人中心"
+            android:gravity="center" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/fiveconfig"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/gotoconfig"
+
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/firstLayoutPersonalCenter"
+        android:layout_width="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ibUserHWPersonalCenter"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/userhw"
+            app:border_color="#00000000"
+            app:border_width="0dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ibUserHWPersonalCenter"
+            android:layout_alignTop="@id/ibUserHWPersonalCenter"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/ibUserHWPersonalCenter">
+
+            <TextView
+                android:id="@+id/tvUserNamePersonalCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:singleLine="true"
+                android:text="昵称"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvUserAttrPersonalCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_centerVertical="true"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ibUserHWPersonalCenter"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_of_my_favor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_marginTop="18dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvUserPreferProjectPersonalCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="项目爱好 ⊕"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvSelectUserPreferProjectPersonalCenter"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvUserPreferProjectPersonalCenter"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:maxWidth="120dp"
+                    android:singleLine="true"
+                    android:text="无"
+                    android:textColor="#ffffff"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/verticalLinePersonalCenter"
+                android:layout_width="1px"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="18dp"
+                android:background="@color/BackgroudLightGrey" />
+
+            <LinearLayout
+                android:id="@+id/layout_of_my_recode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="100dp"
+                android:layout_marginTop="18dp"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvExerciseRecordPersonalCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="运动记录 >"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvExerciseTimePersonalCenter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="0h"
+                        android:textColor="#ffffff"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/tvExerciseDistancePersonalCenter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@id/tvExerciseTimePersonalCenter"
+                        android:text="0Km"
+                        android:textColor="#ffffff"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="18dp"
+                android:background="@color/BackgroudLightGrey" />
+
+            <LinearLayout
+                android:id="@+id/layout_of_my_points"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="18dp"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:singleLine="true"
+                    android:text="个人积分 >"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvUserPointPersonalCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="#ffffff"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/secondLayoutPersonalCenter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firstLayoutPersonalCenter"
+        android:layout_marginTop="9dp"
+        android:background="#88ffffff"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/UserConfigPersonalCenter"
+            android:layout_width="fill_parent"
+            android:layout_height="39dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/tvUserConfigPersonalCenter_image"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:src="@drawable/person_config_icon" />
+
+            <TextView
+                android:id="@+id/tvUserConfigPersonalCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="18dp"
+                android:layout_toRightOf="@+id/tvUserConfigPersonalCenter_image"
+                android:gravity="center_vertical"
+                android:text="个人设置"
+                android:textColor="#292121"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#88cccccc" />
+
+        <RelativeLayout
+            android:id="@+id/MyEntryFormPersonalCenter"
+            android:layout_width="fill_parent"
+            android:layout_height="39dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/tvMyEntryFormPersonalCenter_image"
+                android:layout_width="20dp"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:src="@drawable/my_entry_icon" />
+
+            <TextView
+                android:id="@+id/tvMyEntryFormPersonalCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="18dp"
+                android:layout_toRightOf="@+id/tvMyEntryFormPersonalCenter_image"
+                android:gravity="center_vertical"
+                android:text="我的报名"
+                android:textColor="#292121"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#88cccccc" />
+
+
+        <RelativeLayout
+            android:id="@+id/MyClubAndAssocPersonalCenter"
+            android:layout_width="fill_parent"
+            android:layout_height="39dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/tvMyClubAndAssocPersonalCenter_image"
+                android:layout_width="20dp"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:src="@drawable/my_club_icon" />
+
+            <TextView
+                android:id="@+id/tvMyClubAndAssocPersonalCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="18dp"
+                android:layout_toRightOf="@+id/tvMyClubAndAssocPersonalCenter_image"
+                android:gravity="center_vertical"
+                android:text="组织机构"
+                android:textColor="#292121"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#88cccccc" />
+
+        <RelativeLayout
+            android:id="@+id/MyTeamAndAssocPersonalCenter"
+            android:layout_width="fill_parent"
+            android:layout_height="39dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/tvMyTeamAndAssocPersonalCenter_image"
+                android:layout_width="20dp"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:src="@drawable/my_team_icon_f" />
+
+            <TextView
+                android:id="@+id/tvMyTeamAndAssocPersonalCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="18dp"
+                android:layout_toRightOf="@+id/tvMyTeamAndAssocPersonalCenter_image"
+                android:gravity="center_vertical"
+                android:text="我的团队"
+                android:textColor="#292121"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#88cccccc" />
+
+
+        <RelativeLayout
+            android:id="@+id/MyGradesPersonalCenter"
+            android:layout_width="fill_parent"
+            android:layout_height="39dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/tvMyGradesPersonalCenter_image"
+                android:layout_width="20dp"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:src="@drawable/my_grade_icon" />
+
+            <TextView
+                android:id="@+id/tvMyGradesPersonalCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="18dp"
+                android:layout_toRightOf="@+id/tvMyGradesPersonalCenter_image"
+                android:gravity="center_vertical"
+                android:text="我的成绩"
+                android:textColor="#292121"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#88cccccc" />
+
+        <RelativeLayout
+            android:id="@+id/ScoresManagerPersonalCenter"
+            android:layout_width="fill_parent"
+            android:layout_height="39dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/tvScoresManagerPersonalCenter_image"
+                android:layout_width="20dp"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:src="@drawable/score_manager_icon" />
+
+            <TextView
+                android:id="@+id/tvScoresManagerPersonalCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="18dp"
+                android:layout_toRightOf="@+id/tvScoresManagerPersonalCenter_image"
+                android:gravity="center_vertical"
+                android:text="积分管理"
+                android:textColor="#292121"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent"
+        android:layout_below="@id/secondLayoutPersonalCenter">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_below="@id/secondLayoutPersonalCenter"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#00000000"
+            android:gravity="center"
+            android:text="客服电话：010-8638 1313"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+    </ScrollView>
+
+</RelativeLayout>

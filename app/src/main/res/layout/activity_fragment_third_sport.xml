@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lrun_record_content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/White"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/actionbarbg"
+        android:minHeight="40dp"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:src="@drawable/backbtn"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:id="@+id/goback"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/toolbar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/BtnTextColorWhite"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:text="开始运动"
+            android:gravity="center" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/mytest"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/sport_go_first">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:id="@+id/startsport"
+            android:src="@drawable/sport_first_2"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/gpshigh">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="GPS"
+                    android:gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:textColor="@color/common_white" />
+
+                <RatingBar
+                    android:id="@+id/myrat"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:isIndicator="true"
+                    android:gravity="center"
+                    android:layout_marginTop="18dp"
+                    android:layout_height="20dp"
+                    style="@style/roomRatingBar"
+                    android:rating="4"
+                    android:numStars="5" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:id="@+id/choosesportmode"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gpshigh"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="模式：跑步"
+                android:id="@+id/sports_mode"
+                android:gravity="center"
+                android:textColor="@color/common_white"
+                android:background="@drawable/mysportmode" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/press_right"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_above="@id/mytest"
+        android:layout_below="@id/toolbar">
+
+        <RelativeLayout
+            android:id="@+id/relativeshowmap"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.amap.api.maps2d.MapView>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

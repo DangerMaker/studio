@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/pageliner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        android:background="@drawable/actionbarbg"
+        android:orientation="horizontal"
+        android:minHeight="40dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:src="@drawable/backbtn"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:id="@+id/goback" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/BtnTextColorWhite"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:id="@+id/pagetitle"
+            android:gravity="center" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/actionbarbg"
+        android:orientation="horizontal"
+        android:minHeight="40dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/sportfriend_person"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/sportperson" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/BtnTextColorWhite"
+            android:textSize="18sp"
+            android:text="互动"
+            android:layout_weight="1"
+            android:id="@+id/sportfriendinter"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/sportfriendhotcard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/BtnTextColorWhite"
+            android:textSize="18sp"
+            android:text="热帖"
+            android:gravity="center"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/BtnTextColorWhite"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="找好友"
+            android:id="@+id/sportfriendfind"
+            android:gravity="center" />
+
+        <ImageView
+            android:layout_weight="1"
+            android:id="@+id/sportfriendcommintcard"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/sportfriend_card"
+            android:layout_gravity="center"
+            android:visibility="gone"
+
+            />
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/sportfriendcommitinter"
+            android:src="@drawable/sportfriend_interaction"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:flipInterval="30"
+        android:persistentDrawingCache="animation" />
+
+</LinearLayout>
