@@ -559,7 +559,7 @@ public class SportFriendHotCardFragment extends Fragment {
     public void onResume() {
 
         isfirst = true;
-        webView.loadUrl("JavaScript:doReretie()");
+//        webView.loadUrl("JavaScript:doReretie()");
         super.onResume();
 
     }

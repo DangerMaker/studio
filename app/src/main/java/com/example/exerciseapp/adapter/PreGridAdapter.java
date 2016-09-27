@@ -41,6 +41,31 @@ public class PreGridAdapter extends BaseAdapter {
         return choiced;
     }
 
+    public String getChoiceString() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < getChoiced().size(); i++) {
+            builder.append(findNameById(choiced.get(i)));
+            if (i != getChoiced().size() - 1) {
+                builder.append("|");
+            }
+        }
+
+        return builder.toString();
+    }
+
+    private String findNameById(int id) {
+        try {
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getInt("id") == id) {
+                    return list.get(i).getString("name");
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     public boolean setChoiced(int id) {
         if (choiced.contains(id)) {
             choiced.remove(choiced.indexOf(id));

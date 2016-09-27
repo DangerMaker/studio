@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.example.exerciseapp.BaseActivity;
 import com.example.exerciseapp.Config;
 import com.example.exerciseapp.R;
 import com.example.exerciseapp.adapter.PreGridAdapter;
+import com.example.exerciseapp.aty.organzie.BindActivity;
 import com.example.exerciseapp.volley.AuthFailureError;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
@@ -34,11 +36,11 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class AtyUserPreferedProject extends BaseActivity {
+public class AtyUserPreferedProject extends BindActivity {
     private RequestQueue mRequestQueue;
     private int selectedNum = 0;
     private Map<Integer, String> map = new HashMap<Integer, String>();
-    private Toolbar toolbar;
+    private RelativeLayout toolbar;
     private TextView pageTitle;
     @Bind(R.id.user_prefered_gridView)
     GridView gridView;
@@ -46,6 +48,10 @@ public class AtyUserPreferedProject extends BaseActivity {
     private PreGridAdapter preGridAdapter;
     private Toast mToast;
 
+    @OnClick(R.id.goback)
+    public void goback(){
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,19 +82,7 @@ public class AtyUserPreferedProject extends BaseActivity {
     }
 
     public void setTitleBar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        pageTitle = (TextView) findViewById(R.id.toolbar_text);
-        toolbar.setPadding(0, getDimensionMiss(), 0, 0);
-        toolbar.setTitle("");
-        pageTitle.setText("我喜欢的运动项目");
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.backbtn);
-        toolbar.setNavigationOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AtyUserPreferedProject.this.finish();
-            }
-        });
+        toolbar = (RelativeLayout) findViewById(R.id.toolbar);
     }
 
     @OnClick(R.id.btnsave)

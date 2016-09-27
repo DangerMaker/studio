@@ -77,7 +77,7 @@ public class ActivityHotcard extends Activity implements View.OnClickListener {
                 "&version=3.2" + "&uid=" + MyApplication.getInstance().getUid()
                 + "&title=" + title + "&content=" + content;
         StringRequest stringRequest = new StringRequest(
-                Request.Method.GET, url,
+                Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

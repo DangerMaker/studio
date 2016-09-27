@@ -1,5 +1,6 @@
 package com.example.exerciseapp.api;
 
+import com.example.exerciseapp.model.Ads;
 import com.example.exerciseapp.model.AllGroup;
 import com.example.exerciseapp.model.AllMember;
 import com.example.exerciseapp.model.AllRank;
@@ -282,4 +283,7 @@ public interface TeamService {
             @Query("sn") String sn,
             Callback<ErrorMsg> callback
     );
+
+    @GET("/py/adver?action=get_adver")
+    void getAdver(Callback<Ads> callback);
 }

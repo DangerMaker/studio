@@ -2,8 +2,13 @@ package com.example.exerciseapp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -16,13 +21,18 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.exerciseapp.aty.activityrun.ActivityBindphone;
+import com.example.exerciseapp.aty.activityrun.ActivityScoreManager;
+import com.example.exerciseapp.aty.login.ActivityWeb;
+import com.example.exerciseapp.aty.login.AtyAdvertisement;
 import com.example.exerciseapp.aty.login.AtyWelcome;
 import com.example.exerciseapp.fragment.SportTabFirstFragment;
 import com.example.exerciseapp.fragment.SportTabFiveFragment;
@@ -30,6 +40,8 @@ import com.example.exerciseapp.fragment.SportTabFourFragment;
 import com.example.exerciseapp.fragment.SportTabThirdFragment;
 import com.example.exerciseapp.fragment.SportTableSecondFragment;
 import com.example.exerciseapp.myutils.HintDialog;
+import com.example.exerciseapp.utils.LocationPro;
+import com.example.exerciseapp.utils.SharedPreferencesHelper;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
 import com.example.exerciseapp.volley.Response;
@@ -44,6 +56,8 @@ import com.umeng.update.UmengUpdateAgent;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 
 /**
@@ -95,6 +109,11 @@ public class TabMainActivity extends FragmentActivity implements OnClickListener
     private SportTabFiveFragment fiveFragment = null;
     public int bind_layer_show;
 
+
+    RelativeLayout adLayout;
+    ImageView adsImage;
+    TextView adsText;
+
     /**
      * from other activity
      */
@@ -124,6 +143,10 @@ public class TabMainActivity extends FragmentActivity implements OnClickListener
         boolean isMessagePush = false;// 不开启就设置为false;
         if (isMessagePush) {
             startService(new Intent(this, com.example.exerciseapp.service.MessageService.class));
+        }
+
+        if(intent.getBooleanExtra("showAd",false)){
+            showAd();
         }
     }
 
@@ -212,6 +235,22 @@ public class TabMainActivity extends FragmentActivity implements OnClickListener
     }
 
     public void initView() {
+        adsText = (TextView) findViewById(R.id.count);
+        adsImage = (ImageView) findViewById(R.id.ad);
+        adLayout = (RelativeLayout) findViewById(R.id.ad_layout);
+        adLayout.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!SharedPreferencesHelper.getInstance(TabMainActivity.this).getValue("html_url").equals("")){
+                    String url = SharedPreferencesHelper.getInstance(TabMainActivity.this).getValue("html_url");
+                    Intent intent = new Intent(TabMainActivity.this, ActivityScoreManager.class);
+                    intent.putExtra("navColor", "#0acbc1");    //配置导航条的背景颜色，请用#ffffff长格式。
+                    intent.putExtra("titleColor", "#ffffff");    //配置导
+                    intent.putExtra("url",url);
+                    startActivity(intent);
+                }
+            }
+        });
         // TODO Auto-generated method stub
         frameLayout = (FrameLayout) findViewById(R.id.mainFrame);
 //        mPager=(ViewPager) findViewById(R.id.viewpager);
@@ -490,5 +529,61 @@ public class TabMainActivity extends FragmentActivity implements OnClickListener
     @Override
     public void onChangeHWCallBack() {
 
+    }
+
+    private static final int INTERVAL_SECOND = 3000;
+    private static final int SHOWAD_INTERVL_SECOND = 10 * 60 * 1000;
+    private CountDownTimer timer = new CountDownTimer(INTERVAL_SECOND, 1000) {
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            adsText.setText((millisUntilFinished / 1000) + "s");
+        }
+
+        @Override
+        public void onFinish() {
+            adsText.setText("0s");
+        }
+    };
+
+    public void showAd() {
+        if (getLocal()) {
+            handler.postDelayed(finishLoad, INTERVAL_SECOND);
+            adLayout.setVisibility(View.VISIBLE);
+            timer.start();
+        } else {
+            handler.post(finishLoad);
+        }
+    }
+
+    Handler handler = new Handler();
+
+    private Runnable finishLoad = new Runnable() {
+        @Override
+        public void run() {
+           adLayout.setVisibility(View.GONE);
+        }
+
+    };
+
+    String pic_url;
+    String html_url;
+
+    private boolean getLocal() {
+        try {
+            pic_url = SharedPreferencesHelper.getInstance(this).getValue("pic_url");
+            html_url = SharedPreferencesHelper.getInstance(this).getValue("html_url");
+            if (pic_url.equals("") || html_url.equals("")) {
+                return false;
+            }
+            File file = new File(this.getCacheDir(), "splash.png");
+            FileInputStream fis = new FileInputStream(file.getPath());
+            Bitmap bitmap = BitmapFactory.decodeStream(fis);
+            adsImage.setImageBitmap(bitmap);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

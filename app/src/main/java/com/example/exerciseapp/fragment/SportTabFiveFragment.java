@@ -37,6 +37,7 @@ import com.example.exerciseapp.aty.activityrun.ActivityScoreManager;
 import com.example.exerciseapp.aty.activityrun.ActivityUserInformation;
 import com.example.exerciseapp.aty.activityrun.CreditActivity;
 import com.example.exerciseapp.aty.login.AtyWelcome;
+import com.example.exerciseapp.aty.organzie.PersonalMsgActivity;
 import com.example.exerciseapp.aty.sliding.AtyMyEntryForm;
 import com.example.exerciseapp.aty.sliding.AtyUserPreferedProject;
 import com.example.exerciseapp.aty.team.MyTeamActivity;
@@ -90,6 +91,7 @@ public class SportTabFiveFragment extends Fragment implements OnClickListener {
     private RelativeLayout MyClubAndAssocPersonalCenter;//我的协会/俱乐部
     private RelativeLayout MyTeamAndAssocPersonalCenter;
     private RelativeLayout MyGradesPersonalCenter;//我的成绩
+    private RelativeLayout MyPersonalMsg;
     private RelativeLayout ScoresManagerPersonalCenter;//积分管理，add by sonchcng
     private AlertDialog alertDialog = null;
     private List<Map<String, String>> alertItem = new ArrayList<Map<String, String>>();
@@ -132,6 +134,8 @@ public class SportTabFiveFragment extends Fragment implements OnClickListener {
         MyEntryFormPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyEntryFormPersonalCenter);
         MyClubAndAssocPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyClubAndAssocPersonalCenter);
         MyTeamAndAssocPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyTeamAndAssocPersonalCenter);
+        MyPersonalMsg = (RelativeLayout) view.findViewById(R.id.personal_message);
+        MyPersonalMsg.setOnClickListener(this);
         MyGradesPersonalCenter = (RelativeLayout) view.findViewById(R.id.MyGradesPersonalCenter);
         gotoconfig = (ImageView) view.findViewById(R.id.gotoconfig);
         gotoconfig.setOnClickListener(new OnClickListener() {
@@ -369,6 +373,11 @@ public class SportTabFiveFragment extends Fragment implements OnClickListener {
                 break;
             case R.id.gotomessage:
                 startActivity(new Intent(getActivity(), ActivityMessage.class));
+                break;
+            case R.id.personal_message:
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), PersonalMsgActivity.class);
+                startActivity(intent);
                 break;
         }
     }

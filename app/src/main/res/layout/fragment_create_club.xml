@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_green"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/BackgroudLightGrey"
+        />
+
+    <LinearLayout
+        android:background="@color/White"
+        android:id="@+id/pname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:gravity="center_vertical"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="俱乐部名称"
+            android:textSize="15sp"
+            android:textColor="@color/common_dark"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/CreateZhuzhi"
+            android:text="房山区体育总局"
+            />
+
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gonext"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/BackgroudLightGrey"
+        />
+    <LinearLayout
+        android:background="@color/White"
+        android:gravity="center_vertical"
+
+        android:id="@+id/paddr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="俱乐部地址"
+            android:textSize="15sp"
+            android:textColor="@color/common_dark"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/address"
+            style="@style/CreateZhuzhi"
+            android:text="北京市东花市北里20号楼6单元501室"
+            />
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gonext"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/BackgroudLightGrey"
+        />
+    <LinearLayout
+        android:background="@color/White"
+        android:gravity="center_vertical"
+
+        android:id="@+id/powner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="负责人"
+            android:textSize="15sp"
+            android:textColor="@color/common_dark"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/owner"
+            style="@style/CreateZhuzhi"
+            android:text="石伟"
+            />
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gonext"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/BackgroudLightGrey"
+        />
+    <LinearLayout
+        android:background="@color/White"
+        android:gravity="center_vertical"
+
+        android:id="@+id/pphone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电话"
+            android:textSize="15sp"
+            android:textColor="@color/common_dark"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/phone"
+            style="@style/CreateZhuzhi"
+            android:text="12345678901"
+            />
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gonext"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/BackgroudLightGrey"
+        />
+    <LinearLayout
+        android:background="@color/White"
+        android:gravity="center_vertical"
+
+        android:id="@+id/pqq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QQ"
+            android:textSize="15sp"
+            android:textColor="@color/common_dark"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/qq"
+            style="@style/CreateZhuzhi"
+            android:text="376723044"
+            />
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gonext"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/BackgroudLightGrey"
+        />
+    <LinearLayout
+        android:background="@color/White"
+
+        android:id="@+id/psubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="项目"
+            android:textSize="15sp"
+            android:textColor="@color/common_dark"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/subject"
+            style="@style/CreateZhuzhi"
+            android:text="足球，篮球，武术，摇滚"
+            />
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gonext"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/BackgroudLightGrey"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/soncolorblue"
+        android:text="提交审核"
+        android:textColor="@color/White"
+        android:textSize="18sp"
+        android:gravity="center"
+        />
+
+</LinearLayout>

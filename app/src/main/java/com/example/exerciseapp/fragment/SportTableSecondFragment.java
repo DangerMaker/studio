@@ -23,9 +23,11 @@ import com.example.exerciseapp.aty.activityrun.ActivityCity;
 import com.example.exerciseapp.aty.activityrun.ActivityMessage;
 import com.example.exerciseapp.aty.activityrun.ActivityNews;
 import com.example.exerciseapp.aty.activityrun.ActivityOrganize;
+import com.example.exerciseapp.aty.activityrun.ActivityOrganzie1;
 import com.example.exerciseapp.aty.activityrun.ActivityScoreManager;
 import com.example.exerciseapp.aty.activityrun.CreditActivity;
 import com.example.exerciseapp.aty.login.AtyWelcome;
+import com.example.exerciseapp.aty.organzie.PersonalMsgActivity;
 import com.example.exerciseapp.volley.Request;
 import com.example.exerciseapp.volley.RequestQueue;
 import com.example.exerciseapp.volley.Response;
@@ -88,13 +90,13 @@ public class SportTableSecondFragment extends Fragment implements OnClickListene
     public void onClick(View v) {
         Intent intent = new Intent();
         if (v == gotomessage) {
-            intent.setClass(getActivity(), ActivityMessage.class);
+            intent.setClass(getActivity(), PersonalMsgActivity.class);
             startActivity(intent);
         } else if (v == linearnews) {
             intent.setClass(getActivity(), ActivityNews.class);
             startActivity(intent);
         } else if (v == linearorganize) {
-            intent.setClass(getActivity(), ActivityOrganize.class);
+            intent.setClass(getActivity(), ActivityOrganzie1.class);
             startActivity(intent);
         } else if (v == linearsportteam) {
             intent.setClass(getActivity(), ActivityAllteam.class);

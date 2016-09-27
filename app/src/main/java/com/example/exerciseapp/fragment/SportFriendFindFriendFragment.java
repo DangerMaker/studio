@@ -24,6 +24,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -85,7 +86,7 @@ public class SportFriendFindFriendFragment extends Fragment {
     private String pathImage;
     private boolean isfirst = true;
 
-    @SuppressLint("NewApi")
+    @SuppressLint({ "JavascriptInterface", "SetJavaScriptEnabled" })
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -105,6 +106,9 @@ public class SportFriendFindFriendFragment extends Fragment {
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setJavaScriptEnabled(true);
+//        webView.addJavascriptInterface(new JavaScriptObject(getActivity()),"location");
+
+
         webView.setWebViewClient(new WebViewClient() {
 //            @Override
 //            public WebResourceResponse shouldInterceptRequest(WebView view, final WebResourceRequest request) {
@@ -233,6 +237,40 @@ public class SportFriendFindFriendFragment extends Fragment {
         webView.loadUrl(webUrl);
         return mview;
     }
+
+//    // 注入js函数监听
+//    private void addImageClickListner() {
+//        // 这段js函数的功能就是，遍历所有的img几点，并添加onclick函数，函数的功能是在图片点击的时候调用本地java接口并传递url过去
+//        webView.loadUrl("javascript:(function(){"
+//                + "var objs = $('.swiper-container'); " //轮播图片的div容器，
+//                + "for(var i=0;i<objs.length;i++)  " + "{"
+//                + "    objs[i].ontouchmove=function()  " + "    {  "
+//                + "        window.imagelistner.closetouch();  "
+//                + "   return false; }  "
+//                + "}"
+//
+//                + "var objs = $('body'); "  //点击任何地方 ， 系统开始可以接受滚动
+//                + "for(var i=0;i<objs.length;i++)  " + "{"
+//                + "    objs[i].ontouchstart=function()  " + "    {  "
+//                + "        window.imagelistner.opentouch();  "
+//                + "   return false; }  "
+//                + "}"
+//
+//                + "})()");
+//    }
+//
+//    public class JavaScriptObject {
+//        Context mContxt;
+//        //sdk17版本以上加上注解
+//        public JavaScriptObject(Context mContxt) {
+//            this.mContxt = mContxt;
+//        }
+//
+//        public void replace(String name) {
+//            Toast.makeText(mContxt, name, Toast.LENGTH_LONG).show();
+//        }
+//
+//    }
 
     private void changebacksport(final String url) {
         LayoutInflater inflater = LayoutInflater

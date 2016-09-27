@@ -19,11 +19,11 @@ import java.util.List;
  * Created by lyjq on 2016/3/27.
  */
 public class MyApplication extends Application {
-    private static String uid = "";
-    private static String token = "";
-    private static Context context;
-    private List<Activity> activities = new LinkedList<Activity>();
-    private static MyApplication instance;
+    public static String uid = "";
+    public static String token = "";
+    public static Context context;
+    public List<Activity> activities = new LinkedList<Activity>();
+    public static MyApplication instance;
 
     @Override
     public void onCreate() {

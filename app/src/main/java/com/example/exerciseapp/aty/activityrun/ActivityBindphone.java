@@ -132,6 +132,7 @@ public class ActivityBindphone extends Activity {
     public void getbind(String cellphone, String code) {
         String url = "http://101.200.214.68/py/bind?action=treat_tel_bind" +
                 "&token=" + MyApplication.getInstance().getToken() +
+                "&uid=" + MyApplication.uid +
                 "&version=3.0" +
                 "&tel=" + cellphone +
                 "&code=" + code;

@@ -44,7 +44,7 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/sportfriend_person"
+            android:src="@drawable/sportfriend_person1"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:id="@+id/sportperson" />
@@ -98,11 +98,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:id="@+id/sportfriendcommitinter"
-            android:src="@drawable/sportfriend_interaction"
+            android:src="@drawable/sportfriend_interaction1"
             android:layout_gravity="center" />
     </LinearLayout>
 
-    <android.support.v4.view.ViewPager
+    <com.example.exerciseapp.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

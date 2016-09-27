@@ -8,7 +8,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +21,12 @@ import com.example.exerciseapp.R;
 import com.example.exerciseapp.aty.activityrun.ActivityHotcard;
 import com.example.exerciseapp.aty.activityrun.ActivityInteraction;
 import com.example.exerciseapp.aty.activityrun.ActivityRunCircle;
+import com.example.exerciseapp.view.ViewPager;
 import com.example.exerciseapp.volley.RequestQueue;
 import com.example.exerciseapp.volley.toolbox.Volley;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
-import org.apache.cordova.engine.SystemWebView;
 
 import java.util.ArrayList;
 
@@ -40,7 +39,6 @@ import java.util.ArrayList;
 public class SportTabFourFragment extends Fragment {
     private static IWXAPI api;
     private View mview;
-    private SystemWebView systemWebView;
     public ImageView goback;
     private RequestQueue mRequestQueue;
     private ViewPager mPager;
@@ -82,6 +80,7 @@ public class SportTabFourFragment extends Fragment {
         personFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), ActivityRunCircle.class);
                 startActivity(intent);
@@ -142,8 +141,12 @@ public class SportTabFourFragment extends Fragment {
         fragmentList.add(sportFriendTabthirdFragment);
         //给ViewPager设置适配器
         mPager.setAdapter(new SportFriendFragmentPagerAdapter(getActivity().getSupportFragmentManager(), fragmentList));
+        mPager.setOffscreenPageLimit(3);
         mPager.setCurrentItem(0);//设置当前显示标签页为第一页
         mPager.setOnPageChangeListener(new MyOnPageChangeListener());//页面变化时的监听器
+        mPager.setSmoothScroll(false);
+        mPager.setPagingEnabled(false);
+        switchtab(0);
     }
 
     public class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
@@ -173,14 +176,35 @@ public class SportTabFourFragment extends Fragment {
             if (currIndex == 0) {
                 commitcard.setVisibility(View.GONE);
                 commitinter.setVisibility(View.VISIBLE);
+
             } else if (currIndex == 1) {
                 commitcard.setVisibility(View.VISIBLE);
                 commitinter.setVisibility(View.GONE);
+                sportfriendfind.setTextColor(getResources().getColor(R.color.blackfont));
+                sportfriendhotcard.setTextColor(getResources().getColor(R.color.common_white));
+                sportfriendinter.setTextColor(getResources().getColor(R.color.blackfont));
             } else {
                 commitcard.setVisibility(View.INVISIBLE);
                 commitinter.setVisibility(View.GONE);
             }
+            switchtab(currIndex);
         }
 
+    }
+    public void switchtab(int pos){
+        if (pos == 0) {
+            sportfriendfind.setTextColor(getResources().getColor(R.color.blackfont));
+            sportfriendhotcard.setTextColor(getResources().getColor(R.color.blackfont));
+            sportfriendinter.setTextColor(getResources().getColor(R.color.common_white));
+
+        } else if (pos == 1) {
+            sportfriendfind.setTextColor(getResources().getColor(R.color.blackfont));
+            sportfriendhotcard.setTextColor(getResources().getColor(R.color.common_white));
+            sportfriendinter.setTextColor(getResources().getColor(R.color.blackfont));
+        } else {
+            sportfriendfind.setTextColor(getResources().getColor(R.color.common_white));
+            sportfriendhotcard.setTextColor(getResources().getColor(R.color.blackfont));
+            sportfriendinter.setTextColor(getResources().getColor(R.color.blackfont));
+        }
     }
 }

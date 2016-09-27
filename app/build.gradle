@@ -9,13 +9,24 @@ android {
         applicationId "com.example.exerciseapp"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 8
-        versionName "3.1"
+        versionCode 10
+        versionName "3.3.0"
+    }
+
+    signingConfigs {
+        config {
+            keyAlias 'feiaoscience'
+            keyPassword 'shiwei1993'
+            storeFile file('feiaokeji.jks')
+            storePassword 'shiwei1993'
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+
         }
     }
 
@@ -40,6 +51,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:gridlayout-v7:22.2.1'
+    compile 'com.android.support:recyclerview-v7:22.2.1'
     compile 'com.android.support:design:22.2.1'
     compile files('libs/alipaySdk-20151103.jar')
     compile files('libs/AMap_2DMap_v2.6.0_20150916.jar')

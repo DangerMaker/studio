@@ -17,6 +17,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.exerciseapp.MyApplication;
 import com.example.exerciseapp.R;
 import com.umeng.message.PushAgent;
 
@@ -25,7 +26,7 @@ public class ActivityCity extends Activity {
     private Toolbar toolbar;
     private TextView pageTitle;
 
-    String webUrl = "http://101.200.214.68/process.html";
+    String webUrl = "http://101.200.214.68/html5/org/cityshowlist.html?uid="+ MyApplication.uid+"&token="+MyApplication.token+"446c5ca531afb443a3df89705774a18c";
 
     @Override
     public void onBackPressed() {

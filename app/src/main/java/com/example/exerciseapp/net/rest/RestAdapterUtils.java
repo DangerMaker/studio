@@ -4,6 +4,7 @@ package com.example.exerciseapp.net.rest;
 import com.example.exerciseapp.BuildConfig;
 import com.example.exerciseapp.HttpConfig;
 import com.example.exerciseapp.api.TeamService;
+import com.example.exerciseapp.api.ZhuZhiService;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -50,6 +51,10 @@ public class RestAdapterUtils {
 
     public static TeamService getTeamAPI(){
         return RestAdapterUtils.getRestAPI(HttpConfig.BASE_CMS_URL_NEW, TeamService.class);
+    }
+
+    public static ZhuZhiService getZhuAPI(){
+        return RestAdapterUtils.getRestAPI(HttpConfig.BASE_CMS_URL_NEW, ZhuZhiService.class);
     }
 
 }

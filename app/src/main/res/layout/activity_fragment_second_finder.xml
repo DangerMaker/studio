@@ -38,7 +38,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:src="@drawable/gomessage"
+            android:src="@drawable/gomessage1"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:layout_centerVertical="true"

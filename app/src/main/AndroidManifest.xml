@@ -49,6 +49,14 @@
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
             android:exported="false"></receiver>
 
+        <receiver
+            android:name=".wxapi.AppRegister"
+            android:permission="com.tencent.mm.plugin.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+            </intent-filter>
+        </receiver>
+
         <!-- 监听开机运行、网络连接变化、卸载的广播 -->
         <receiver
             android:name="com.umeng.message.SystemReceiver"
@@ -224,8 +232,8 @@
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:label="提示："
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog" />
         <activity
             android:name=".TabMainActivity"
@@ -563,9 +571,85 @@
             android:name=".aty.team.SelectTeamActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".aty.team.SelectMemberActivity"
+        <activity
+            android:name=".aty.team.SelectMemberActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.login.ActivityWeb"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.activityrun.ActivityOrganzie1"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.organzie.CreateOrganzieActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.organzie.AlterEditActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".aty.organzie.AlterEditActivity1"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.organzie.OrganzieDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.organzie.JoinTypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.organzie.ChangeSloganActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.organzie.GetApplyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.organzie.PhotoGridActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.organzie.SelectSubjectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+
+        <activity
+            android:name=".aty.organzie.picview.ImageScanActivity2"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".aty.organzie.mutipick.ImageGridActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+
+
+        <activity
+            android:name=".aty.organzie.PersonalMsgActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+
+
 
     </application>
 

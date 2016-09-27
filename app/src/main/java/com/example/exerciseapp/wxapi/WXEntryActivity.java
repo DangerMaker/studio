@@ -272,6 +272,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
 									startActivity(intent);
 								} else {
 									Intent intent = new Intent(WXEntryActivity.this, TabMainActivity.class);
+									intent.putExtra("showAd",true);
 									intent.putExtra("bind_layer_show", "" + bind_layer_show);
 									startActivity(intent);
 								}

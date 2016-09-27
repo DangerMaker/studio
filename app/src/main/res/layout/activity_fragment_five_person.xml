@@ -400,6 +400,38 @@
             android:background="#88cccccc" />
 
         <RelativeLayout
+            android:id="@+id/personal_message"
+            android:layout_width="fill_parent"
+            android:layout_height="39dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/personal_message_image"
+                android:layout_width="20dp"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:src="@drawable/personal_messagimg" />
+
+            <TextView
+                android:id="@+id/personal_message_text"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="18dp"
+                android:layout_toRightOf="@+id/personal_message_image"
+                android:gravity="center_vertical"
+                android:text="个人消息"
+                android:textColor="#292121"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#88cccccc" />
+
+        <RelativeLayout
             android:id="@+id/ScoresManagerPersonalCenter"
             android:layout_width="fill_parent"
             android:layout_height="39dp"

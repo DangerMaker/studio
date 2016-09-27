@@ -72,6 +72,7 @@ import retrofit.mime.TypedFile;
  */
 @SuppressLint("NewApi")
 public class SportFriendInterActionFragment extends Fragment {
+    String TAG = this.getClass().getSimpleName();
     private static IWXAPI api;
     private View mview;
     private WebView webView;
@@ -159,6 +160,11 @@ public class SportFriendInterActionFragment extends Fragment {
 
             @Override
             public void onPageFinished(WebView view, String url) {
+                if (progressDialog != null && progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                    progressDialog = null;
+                    view.setEnabled(true);
+                }
                 isfirst = false;
                 super.onPageFinished(view, url);
             }
@@ -213,12 +219,19 @@ public class SportFriendInterActionFragment extends Fragment {
                         }
                     }).start();
                 }
+                Log.e(TAG, "shouldInterceptRequest: " + url );
                 return super.shouldInterceptRequest(view, url);
             }
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-
+                if (progressDialog == null) {
+                    progressDialog = new ProgressDialog(getActivity());;
+                    progressDialog.setMessage("请稍后");
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progressDialog.show();
+                    view.setEnabled(false);// 当加载网页的时候将网页进行隐藏
+                }
                 super.onPageStarted(view, url, favicon);
             }
 
@@ -232,7 +245,7 @@ public class SportFriendInterActionFragment extends Fragment {
         return mview;
     }
 
-
+    ProgressDialog progressDialog;
     // 分享函数
     class MyTask extends AsyncTask<JSONObject, Integer, Bitmap> {
 
@@ -559,7 +572,7 @@ public class SportFriendInterActionFragment extends Fragment {
     @Override
     public void onResume() {
 
-        webView.loadUrl("JavaScript:doReinteractive()");
+//        webView.loadUrl("JavaScript:doReinteractive()");
         super.onResume();
 
     }

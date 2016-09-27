@@ -200,6 +200,7 @@ public class ActivityConfig extends Activity {
                             if (jsonObject.getInt("result") == 0) {
                                 Toast.makeText(ActivityConfig.this, reason, Toast.LENGTH_SHORT).show();
                             } else if (jsonObject.getInt("result") == 1) {
+                                Config.STATUS_FINISH_ACTIVITY = 0;
                                 startActivity(new Intent(ActivityConfig.this, AtyWelcome.class));
                                 DataCleanManager.quitCurrentUser(ActivityConfig.this.getApplicationContext());
                                 TabMainActivity.instance.finish();
